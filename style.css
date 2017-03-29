@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500|Roboto');
+
+body{
+  font-family: 'Raleway', sans-serif;
+  margin: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#box{
+  padding: 5px;
+  text-align: center;
+}
+
+label{
+  font-weight: 500;
+  font-size: 3em !important;
+}
+
+/* label color */
+.input-field label {
+  color: #707070;
+}
+
+
+/* label underline focus color */
+.input-field input[type=text]:focus, .input-field input[type=password]:focus {
+  border-bottom: 1px solid indigo;
+  box-shadow: 0 1px 0 0 indigo;
+}
+
+
+input[type=text], input[type=password]{
+  font-size: 4em;
+  padding: 20px 10px;
+  line-height: 28px;
+}
