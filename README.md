@@ -1,1 +1,1 @@
-# [perdola](https://solarpolarman.github.io/perdola/)
+# [Perdola](https://solarpolarman.github.io/perdola/)
