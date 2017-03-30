@@ -11,6 +11,10 @@
     <!--Import jQuery before materialize.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <!-- seedrandom.js-->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
+    <!-- clipboard.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
 
     <script src="jssource-dist.js"></script>
   </head>
@@ -18,21 +22,24 @@
 
     <div id="box">
 
+      <div id="back">
         <div class="input-field">
           <label type="text" for="app">Application</label>
           <input id="app" type="text"/>
         </div>
 
+        <br>
         <div class="input-field">
           <label type="text" for="pass">Master password</label>
           <input id="pass" type="password" />
         </div>
 
-        <a class="waves-effect waves-light btn indigo" >submit</a>
+      <a class="waves-effect waves-light btn indigo" onclick="process();">submit</a>
 
+      <span id="result">Your password will go here</span>
 
-      <span id=""></span>
-
+      <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password to clipboard</button>
+      </div>
     </div>
   </body>
 </html>
