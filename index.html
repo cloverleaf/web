@@ -15,36 +15,40 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
     <!-- clipboard.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
-
+    <!-- jquery-mousewheel for scrolling on number inputs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="jssource-dist.js"></script>
   </head>
   <body>
 
     <div id="box">
-
       <div id="back">
 
         <div class="input-field">
-          <label type="text" for="app">Application</label>
+          <label for="app">Application</label>
           <input id="app" type="text"/>
         </div>
 
         <div class="input-field">
-          <label type="text" for="pass">Master password</label>
+          <label for="pass">Master password</label>
           <input id="pass" type="password" />
         </div>
 
         <div class="input-field">
-          <label type="number" for="length">Length of password</label>
-          <input id="length" type="number" min="4" value="8"/>
+          <label for="length">Length of password</label>
+          <input id="length" type="number" min="4" value="8" />
         </div>
+
+        <span class="hint">The longer, the better</span>
 
         <a id="submit" class="waves-effect waves-light btn indigo" onclick="process();">submit</a>
 
-        <span id="result">Your password will go here</span>
+        <span id="result"></span>
 
         <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password to clipboard</button>
+
       </div>
     </div>
+
   </body>
 </html>
