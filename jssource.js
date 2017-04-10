@@ -13,16 +13,33 @@ window.onload=function(){
 function process(){
   var appName = $("#app").val().toLowerCase();
   var masterPass = $("#pass").val();
-
-  $("#copy").css('display', 'block');
-  $("#result").css('display', 'block');
-
+  var length = $("#length").val();
   var result = "";
 
-  Math.seedrandom(appName+masterPass);
+  if (appName && masterPass && length){ //If all the inputs have something in them.
 
-  while (result.length < 8) {
-  result += chars[Math.floor(Math.random() * chars.length)];
-  }
-  $("#result").text(result);
+      Math.seedrandom(appName+masterPass);
+
+      while (result.length < length) {
+      result += chars[Math.floor(Math.random() * chars.length)];
+      }
+      $("#result").text(result);
+
+
+      $("#copy").css('display', 'block');
+      $("#result").css('display', 'block');
+
+      $("input").each(function() {
+          $(this).removeClass("invalid");
+      });
+  } else{
+
+    $("input").each(function() {
+      if ($(this).val() == ""){
+        $(this).addClass("invalid");
+      }else{
+        $(this).removeClass("invalid");
+      };
+    });
+  };
 };

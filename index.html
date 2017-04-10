@@ -23,22 +23,27 @@
     <div id="box">
 
       <div id="back">
+
         <div class="input-field">
           <label type="text" for="app">Application</label>
           <input id="app" type="text"/>
         </div>
 
-        <br>
         <div class="input-field">
           <label type="text" for="pass">Master password</label>
           <input id="pass" type="password" />
         </div>
 
-      <a id="submit" class="waves-effect waves-light btn indigo" onclick="process();">submit</a>
+        <div class="input-field">
+          <label type="number" for="length">Length of password</label>
+          <input id="length" type="number" min="4" value="8"/>
+        </div>
 
-      <span id="result">Your password will go here</span>
+        <a id="submit" class="waves-effect waves-light btn indigo" onclick="process();">submit</a>
 
-      <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password to clipboard</button>
+        <span id="result">Your password will go here</span>
+
+        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password to clipboard</button>
       </div>
     </div>
   </body>
