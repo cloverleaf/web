@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400');
 
+:root {
+  --accentColor: indigo;
+}
+
+
 body{
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
@@ -23,8 +28,8 @@ label{
 .input-field input[type=text]:focus,
 .input-field input[type=number]:focus,
 .input-field input[type=password]:focus{
-  border-bottom: 1px solid indigo;
-  box-shadow: 0 1px 0 0 indigo;
+  border-bottom: 1px solid var(--accentColor);
+  box-shadow: 0 1px 0 0 var(--accentColor);
 }
 
 input[type=text],
@@ -36,7 +41,7 @@ input[type=password]{
 
 /* label focus color */
 .input-field input:focus + label{
-  color: indigo !important;
+  color: var(--accentColor) !important;
 }
 
 input[type=number]{
@@ -84,7 +89,34 @@ textarea {
     font-size: 24px;
     padding: 10px;
 
-    color: indigo;
+    color: var(--accentColor);
     text-shadow: 0px 0px 0px #000;
     -webkit-text-fill-color: transparent;
+}
+
+#faq{
+  float: right;
+  cursor: help;
+}
+
+.cf:before,
+.cf:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+* For IE 6/7 only
+* Include this rule to trigger hasLayout and contain floats.
+*/
+.cf {
+  *zoom: 1;
+}
+
+a{
+  font-weight: bold;
 }
