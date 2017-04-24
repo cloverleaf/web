@@ -1,6 +1,11 @@
 # Frequently Asked Questions
 ----
 
+**Q:** What is this and why should I use it?:
+
+**A:** This is a complete redesign of the traditional password generator/storage system. Instead of relying on a hard drive to not to fail, or that backup you keep forgetting to make, Perdola makes a password based on your master password and the application you want a password for. This generated password will be the same every time, no matter what device you're on. You can then copy this and paste it into the app you want to log into.
+
+
 
 **Q:** How do I know you're not looking at my passwords?:
 

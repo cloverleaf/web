@@ -1,0 +1,34 @@
+{
+  "Amazon":{
+    "minLength":6,
+    "logo":"https://www.amazon.com/favicon.ico"
+  },
+  "Apple":{
+    "minLength":8,
+    "maxLength":32,
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/768px-Apple_logo_black.svg.png",
+    "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
+  },
+  "Dropbox":{
+    "minLength":6,
+    "logo":"https://cfl.dropboxstatic.com/static/images/favicon-vflk5FiAC.ico"
+  },
+  "Facebook":{
+    "minLength":6,
+    "logo":"https://www.facebook.com/apple-touch-icon.png"
+  },
+  "Google":{
+    "minLength":8,
+    "maxLength":100,
+    "logo":"https://www.google.com/favicon.ico?gws_rd=ssl"
+  },
+  "Instagram":{
+    "minLength":6,
+    "maxLength":255,
+    "logo":"https://www.instagram.com/static/images/ico/favicon-192.png/b407fa101800.png"
+  },
+  "Twitter":{
+    "minLength":6,
+    "logo":"https://abs.twimg.com/favicons/favicon.ico"
+  }
+}
