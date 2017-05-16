@@ -13,6 +13,11 @@
     "minLength":6,
     "logo":"https://cfl.dropboxstatic.com/static/images/favicon-vflk5FiAC.ico"
   },
+  "eBay":{
+    "minLength":6,
+    "maxLength":64,
+    "logo":"http://www.ebay.co.uk/apple-touch-icon.png"
+  },
   "Facebook":{
     "minLength":6,
     "logo":"https://www.facebook.com/apple-touch-icon.png"
@@ -20,7 +25,7 @@
   "Google":{
     "minLength":8,
     "maxLength":100,
-    "logo":"https://www.google.com/favicon.ico?gws_rd=ssl"
+    "logo":"https://www.google.com/favicon.ico"
   },
   "Instagram":{
     "minLength":6,
