@@ -1,6 +1,7 @@
 var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 var autoCompleteData = {};
 var jsonData = {};
+var minLength = 0;
 
 window.onload=function(){
   new Clipboard('#copy');
@@ -20,33 +21,39 @@ function process(){
 
   if (appName && masterPass && length){ //If all the inputs have something in them.
 
-
+    //Set the generation seed
     Math.seedrandom(appName.toLowerCase()+masterPass);
 
+    //default regex
+    regex = ".+"
 
     if (jsonData[appName]){//If it's a site with a preset
+      //If it has a custom character set
       if (jsonData[appName]["chars"]){
         chars = jsonData[appName]["chars"];
-      }
+      };
+      //If it has a custom regex that passwords need to fit
       if (jsonData[appName]["regex"]){
         regex = jsonData[appName]["regex"];
-      }else{
-        regex = ".+"//default regex
+      };
+      if (jsonData[appName]["minLength"]){
+        minLength = jsonData[appName]["minLength"]
       };
     };
 
     var pattern = new RegExp(regex);
-    
-    if (length<jsonData[appName]["minLength"]){
+
+    //If there's a site with a minimum length, this will be custom, otherwise it'll be 0
+    if (length<minLength){
       $("#length").addClass("invalid");
     } else {
+
       $("#length").removeClass("invalid");
 
-      while (true){
-        result = "";
-        while (result.length < length ) {
-          result += chars[Math.floor(Math.random() * chars.length)];
-        };
+      //password generation cycle
+      result = "";
+      while (result.length < length ) {
+        result += chars[Math.floor(Math.random() * chars.length)];
         if (pattern.test(result)){
           break;
         }
