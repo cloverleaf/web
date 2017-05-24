@@ -24,9 +24,6 @@ function process(){
     //Set the generation seed
     Math.seedrandom(appName.toLowerCase()+masterPass);
 
-    //default regex
-    regex = ".+"
-
     if (jsonData[appName]){//If it's a site with a preset
       //If it has a custom character set
       if (jsonData[appName]["chars"]){
@@ -35,13 +32,13 @@ function process(){
       //If it has a custom regex that passwords need to fit
       if (jsonData[appName]["regex"]){
         regex = jsonData[appName]["regex"];
+        var pattern = new RegExp(regex);
       };
       if (jsonData[appName]["minLength"]){
         minLength = jsonData[appName]["minLength"]
       };
     };
 
-    var pattern = new RegExp(regex);
 
     //If there's a site with a minimum length, this will be custom, otherwise it'll be 0
     if (length<minLength){
@@ -53,12 +50,20 @@ function process(){
       //password generation cycle
       result = "";
       while (result.length < length ) {
+
         result += chars[Math.floor(Math.random() * chars.length)];
-        if (pattern.test(result)){
-          break;
-        }
+
+        //If there's a custom regex
+        if (typeof(regex) !== 'undefined'){
+          if (pattern.test(result)){
+            break;
+          }
+        };
       };
 
+      //The password has been generated
+
+      //Display password
       $("#result").text(result);
 
       $("#copy").css('display', 'block');
@@ -80,8 +85,9 @@ function process(){
 
     };
 
-
+//On page load
 $(function() {
+  //Set up the scroll wheel so it edits the length value
   $("#length").bind("mousewheel", function(event, delta) {
       if (delta > 0) {
           this.value = parseInt(this.value) + 1;
@@ -91,7 +97,7 @@ $(function() {
           }
       }
       return false;
-   });
+  });
 
   //Process the sites.json for the autocomplete structure
   $.getJSON("data/sites.json", function(json) {
@@ -107,8 +113,6 @@ $(function() {
       data: autoCompleteData,
       limit: 3,
       onAutocomplete: function(val) {
-
-
 
         var length = 16;
         var max = json[val]["maxLength"];
@@ -126,4 +130,5 @@ $(function() {
       minLength: 0,
     });
   });
+
 });
