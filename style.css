@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400');
 
 :root {
-  --accentColor: indigo;
+  --accentColor: #3f51b5;
+  --lightAccent: #6d78b5;
   --textColor: #9e9e9e;
 }
 
@@ -143,4 +144,18 @@ li img.right.circle{
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
 .circle{
   border-radius: 0px;
+}
+
+.switch{
+  padding-bottom: 20px;
+}
+
+/*Switch knob*/
+.switch label input[type=checkbox]:checked+.lever:after{
+  background-color: var(--accentColor);
+}
+
+/*Switch backing*/
+.switch label input[type=checkbox]:checked+.lever{
+  background-color: var(--lightAccent);
 }

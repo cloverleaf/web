@@ -13,6 +13,15 @@ window.onload=function(){
   });
 };
 
+function passwordToggle(){
+  if ($("#passwordToggle").prop('checked')) {
+    $("#pass").attr('type', 'password');
+  } else {
+    $("#pass").attr('type', 'text');
+  };
+};
+
+//On submit
 function process(){
   var appName = $("#app").val();
   var masterPass = $("#pass").val();
