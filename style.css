@@ -120,7 +120,7 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 a{
-  font-weight: bold;
+  font-weight: 500;
 }
 
 ul.autocomplete-content.dropdown-content{
@@ -130,10 +130,6 @@ ul.autocomplete-content.dropdown-content{
 
 ul.autocomplete-content.dropdown-content span{
   color: var(--textColor);
-}
-
-.highlight{
-  font-weight: 400;
 }
 
 li img.right.circle{
@@ -158,4 +154,8 @@ li img.right.circle{
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever{
   background-color: var(--lightAccent);
+}
+
+#passTogglelever{
+  left: -1%;
 }

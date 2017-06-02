@@ -1,6 +1,6 @@
 # [Perdola](https://childishgiant.github.io/perdola/)
 
-See the [latest patch notes here](https://github.com/childishgiant/perdola/commits/master).
+See the [latest patch notes here](https://github.com/ChildishGiant/perdola/commit/master).
 
 A smart solution to the problem of passwords. Perdola generates passwords on demand, using the name of the app you're making a password for and a master password.
 
