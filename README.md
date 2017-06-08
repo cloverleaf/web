@@ -16,8 +16,8 @@ of this would be adding more presets.
 
 **Z** is for number for **bug fixes**.
 
-So Version 1.45 would be the 1st major update (We started at Version 0.00),
-the 4th patch and the 5 bug fix for that patch.
+So Version 1.456 would be the 14th major update (We started at Version 0.00),
+the 5th patch and the 6th bug fix for that patch.
 
 ----
 

@@ -1,16 +1,36 @@
-var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //Defualt character set
 var autoCompleteData = {};
 var jsonData = {};
 var minLength = 0;
 
+//Setup
 window.onload=function(){
   new Clipboard('#copy');
 
+  //Enter detection & handling
   $("input").on('keyup', function (e) {
       if (e.keyCode == 13) {
-          $("#submit").click();
+          process();
       };
   });
+
+  //on change of password submit
+  $('#pass').on('input',function(e){
+    process();
+  });
+
+  $('#app').on('input',function(e){
+    if ($("#pass").val() != "") {
+      process();
+    }
+  });
+
+  $('#length').on('input',function(e){
+    if ($("#pass").val() != "" && $("#app").val() != "") {
+      process();
+    }
+  });
+
 };
 
 function passwordToggle(){
@@ -23,10 +43,12 @@ function passwordToggle(){
 
 //On submit
 function process(){
+  var regex = "";
   var appName = $("#app").val();
   var masterPass = $("#pass").val();
   var length = Math.trunc($("#length").val());
   var result = ""; //Has to be here, not in the loop for scope purposes
+  var minLength = 0;
 
   if (appName && masterPass && length){ //If all the inputs have something in them.
 
@@ -34,6 +56,7 @@ function process(){
     Math.seedrandom(appName.toLowerCase()+masterPass);
 
     if (jsonData[appName]){//If it's a site with a preset
+
       //If it has a custom character set
       if (jsonData[appName]["chars"]){
         chars = jsonData[appName]["chars"];
@@ -57,18 +80,23 @@ function process(){
       $("#length").removeClass("invalid");
 
       //password generation cycle
-      result = "";
-      while (result.length < length ) {
+      while (true) {
+        result = "";
+        while (result.length < length ) {
 
-        result += chars[Math.floor(Math.random() * chars.length)];
+          //Add one seeded random character at a time
+          result += chars[Math.floor(Math.random() * chars.length)];
 
+        };
         //If there's a custom regex
-        if (typeof(regex) !== 'undefined'){
+        if (regex !== ""){
           if (pattern.test(result)){
             break;
           }
-        };
-      };
+        } else { // no custom regex
+          break;
+        }
+      }
 
       //The password has been generated
 
@@ -105,7 +133,14 @@ $(function() {
               this.value = parseInt(this.value) - 1;
           }
       }
+
+      //Update password
+      if ($("#pass").val() + $("#app").val() != "") {
+        process();
+      }
+
       return false;
+
   });
 
   //Process the sites.json for the autocomplete structure

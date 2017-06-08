@@ -157,5 +157,10 @@ li img.right.circle{
 }
 
 #passTogglelever{
-  left: -1%;
+  left: -4px; /* Centering the toggle */
+}
+
+input.invalid { /* So you can see something's invalid even when focused */
+    border-bottom: 1px solid #F44336 !important;
+    box-shadow: 0 1px 0 0 #F44336 !important;
 }
