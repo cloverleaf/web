@@ -31,8 +31,6 @@
     <!-- jquery-mousewheel for scrolling on number inputs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
-    <!-- Material icons -->
-     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
   <body>
 
@@ -41,7 +39,7 @@
 
         <div class="input-field">
           <label for="app">Application</label>
-          <input id="app" type="text" autocomplete="off"/>
+          <input id="app" type="text" autocomplete="off" oninput="updateLimits();" onchange="updateLimits();"/>
         </div>
 
         <div class="input-field">

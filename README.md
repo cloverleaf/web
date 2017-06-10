@@ -8,8 +8,7 @@ A smart solution to the problem of passwords. Perdola generates passwords on dem
 All versions will take the form of XYZ
 
 **X** is the **major version** number. This is for feature updates. An example of one of this
-kind of update would be introducing the "presets" feature. Major features are defined as  It'll take the form
-of A.B. EG: 1.0 or 0.1
+kind of update would be introducing the "presets" feature. Major features are defined as updates that change the way one uses the service. The number will take the form of A.B. EG: 1.0 or 0.1
 
 **Y** is the **patch** number. This is for content updates / minor features. An example
 of this would be adding more presets.
