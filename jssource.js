@@ -230,7 +230,6 @@ $(function() {
     //Setup possible autocomplete sites
     $('input#app').autocomplete({
       data: autoCompleteData,
-      limit: 6, //How many sites can be shown in the dropdown
       onAutocomplete: function(val) {
 
         var length = 16;
