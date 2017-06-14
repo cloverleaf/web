@@ -1,17 +1,21 @@
 {
   "Amazon":{
     "minLength":6,
-    "logo":"https://www.amazon.com/favicon.ico"
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/f/fc/Amazon.com_Favicon_2.svg"
   },
   "Apple":{
     "minLength":8,
     "maxLength":32,
-    "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/f/fa/Apple_logo_black.svg/768px-Apple_logo_black.svg.png",
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
   },
   "Dropbox":{
     "minLength":6,
-    "logo":"https://cfl.dropboxstatic.com/static/images/favicon-vflk5FiAC.ico"
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/3/3a/Dropbox_Logo_02.svg"
+  },
+  "Duolingo":{
+    "minLength":6,
+    "logo":"https://cdn.worldvectorlogo.com/logos/duolingo-symbol-icon.svg"
   },
   "eBay":{
     "minLength":6,
@@ -20,20 +24,36 @@
   },
   "Facebook":{
     "minLength":6,
-    "logo":"https://www.facebook.com/apple-touch-icon.png"
+    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/f/fb/Facebook_icon_2013.svg"
   },
   "Google":{
     "minLength":8,
     "maxLength":100,
-    "logo":"https://www.google.com/favicon.ico"
+    "logo":"https://vignette4.wikia.nocookie.net/logopedia/images/2/2b/Google_icon-Sep15.svg"
   },
   "Instagram":{
     "minLength":6,
     "maxLength":255,
-    "logo":"https://www.instagram.com/static/images/ico/favicon-192.png/b407fa101800.png"
+    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/5/57/Instagram_App_Icon.svg"
+  },
+  "Reddit":{
+    "minLength":6,
+    "logo":"http://icons.iconarchive.com/icons/uiconstock/socialmedia/128/Reddit-icon.png"
+  },
+  "Steam":{
+    "minLength":8,
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"
+  },
+  "Twitch":{
+    "minLength":8,
+    "logo":"https://vignette3.wikia.nocookie.net/logopedia/images/8/83/Twitch_icon.svg"
   },
   "Twitter":{
     "minLength":6,
-    "logo":"https://abs.twimg.com/favicons/favicon.ico"
+    "logo":"https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg"
+  },
+  "Wikipedia":{
+    "minLength":1,
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/2000px-Wikipedia%27s_W.svg.png"
   }
 }

@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" href="compiled/style.min.css">
     <!--Import jQuery before materialize.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <!-- seedrandom.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
@@ -31,6 +32,17 @@
     <!-- jquery-mousewheel for scrolling on number inputs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
+
+    <!-- Google analytics -->
+    <script>
+      !function(p,e,r,d,o,l,a){p.GoogleAnalyticsObject=r;p[r]||(p[r]=function(){
+      (p[r].q=p[r].q||[]).push(arguments)});p[r].l=+new Date;l=e.createElement(d);
+      a=e.getElementsByTagName(d)[0];l.src=o;a.parentNode.insertBefore(l,a)}
+      (window,document,'ga','script','//www.google-analytics.com/analytics.js');
+
+      ga('create', 'UA-101024973-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </head>
   <body>
 
@@ -65,7 +77,7 @@
 
         <span id="result"></span>
 
-        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result" onclick="Materialize.toast('Successfully copied!', 4000)">Copy password to clipboard</button>
+        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result" onclick="Materialize.toast('Successfully copied!', 4000)">Copy password</button>
 
         <div id="footer" class="cf">
           <a href="compiled/faq.html" id="faq">Help and FAQs</a>
