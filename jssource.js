@@ -231,6 +231,7 @@ $(function() {
     $('input#app').autocomplete({
       data: autoCompleteData,
       onAutocomplete: function(val) {
+        //called when an autocomplete is used.
 
         var length = 16;
         var max = json[val]["maxLength"];
@@ -244,6 +245,12 @@ $(function() {
         };
 
         $("#length").val(length);
+
+        //If there's already a password (eg switching sites / presets)
+        if ($("#pass").val()){
+          //regen password
+          process();
+        }
       },
       minLength: 0,
     });

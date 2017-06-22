@@ -9,6 +9,11 @@
     "logo":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
   },
+  "Discord":{
+    "minLength":6,
+    "maxLength":128,
+    "logo":"https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg"
+  },
   "Dropbox":{
     "minLength":6,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/3/3a/Dropbox_Logo_02.svg"
@@ -20,21 +25,35 @@
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "logo":"http://www.ebay.co.uk/apple-touch-icon.png"
+    "logo":"https://www.ebay.co.uk/apple-touch-icon.png"
   },
   "Facebook":{
     "minLength":6,
     "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/f/fb/Facebook_icon_2013.svg"
+  },
+  "Github":{
+    "minLength":7,
+    "maxLength":72,
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}"
   },
   "Google":{
     "minLength":8,
     "maxLength":100,
     "logo":"https://vignette4.wikia.nocookie.net/logopedia/images/2/2b/Google_icon-Sep15.svg"
   },
+  "Humble Bundle":{
+    "minLength":4,
+    "logo":"https://upload.wikimedia.org/wikipedia/fr/e/ee/Humble_Bundle.svg"
+  },
   "Instagram":{
     "minLength":6,
     "maxLength":255,
     "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/5/57/Instagram_App_Icon.svg"
+  },
+  "itch.io":{
+    "minLength":2,
+    "logo":"https://itch.io/static/images/itchio-textless-pink.svg"
   },
   "Reddit":{
     "minLength":6,
