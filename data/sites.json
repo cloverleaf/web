@@ -26,7 +26,7 @@
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "logo":"https://www.ebay.co.uk/apple-touch-icon.png"
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/5/5f/EBay_2012.svg/revision/latest"
   },
   "Facebook":{
     "minLength":6,
@@ -59,7 +59,7 @@
   },
   "Reddit":{
     "minLength":6,
-    "logo":"http://icons.iconarchive.com/icons/uiconstock/socialmedia/128/Reddit-icon.png"
+    "logo":"https://icons.iconarchive.com/icons/uiconstock/socialmedia/128/Reddit-icon.png"
   },
   "Steam":{
     "minLength":8,

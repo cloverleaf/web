@@ -142,6 +142,7 @@ li img.right.circle{
 
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
 .circle{
+  object-fit:scale-down;
   border-radius: 0px;
 }
 

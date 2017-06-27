@@ -21,7 +21,7 @@ the 5th patch and the 6th bug fix for that patch.
 
 ###To-do:
 
-* Add a tutorial (Maybe guided using [intro.js](http://introjs.com/))
+* Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
 * Add #presets so that if one visited https://childishgiant.github.io/perdola#potato the word "potato" would be input as a password automatically
 * Add tumblr/yahoo preset (Warning system to say that they use the same account.)
 * Implement custom char sets to most presets
@@ -32,11 +32,11 @@ Github's [atom.io](https://atom.io/) is my text editor of choice.
 
 All minimization is done using [Prepros](https://prepros.io).
 
-Thanks to [RealFaviconGenerator](http://realfavicongenerator.net) for making a glorious website for making favicons easy.
+Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website for making favicons easy.
 
 ### Misc
 
 
-Idea stolen from [Master Password](http://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
+Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
 
 [GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license
