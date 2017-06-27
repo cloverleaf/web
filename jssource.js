@@ -1,4 +1,5 @@
 var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //Defualt character set
+var asciiPrintable = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 var autoCompleteData = {}; //Here for scope perposes
 var jsonData = {}; //As am I.
 var defaultMinLength = 4;  //We
@@ -71,8 +72,12 @@ function process(){
 
       //If it has a custom character set
       if ("chars" in jsonData[appName]){
-        //Replace the default character set with the supplied one.
-        chars = jsonData[appName]["chars"];
+        if (jsonData[appName]["chars"] == "asciiPrintable"){
+          chars = asciiPrintable
+        } else{ /*If we have a custom character set that's not trying to tell me something */
+          //Replace the default character set with the supplied one.
+          chars = jsonData[appName]["chars"];
+        };
       };
       //If it has a custom regex that passwords need to fit
       if ("regex" in jsonData[appName]){

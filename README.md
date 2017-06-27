@@ -18,8 +18,13 @@ of this would be adding more presets.
 So Version 1.456 would be the 14th major update (We started at Version 0.00),
 the 5th patch and the 6th bug fix for that patch.
 
-----
 
+###To-do:
+
+* Add a tutorial (Maybe guided using [intro.js](http://introjs.com/))
+* Add #presets so that if one visited https://childishgiant.github.io/perdola#potato the word "potato" would be input as a password automatically
+* Add tumblr/yahoo preset (Warning system to say that they use the same account.)
+* Implement custom char sets to most presets
 
 ### Tools used for development
 
@@ -32,8 +37,6 @@ Thanks to [RealFaviconGenerator](http://realfavicongenerator.net) for making a g
 ### Misc
 
 
-Idea stolen from [Master Password](http://masterpasswordapp.com/).
+Idea stolen from [Master Password](http://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
 
 [GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license
-
-----
