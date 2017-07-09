@@ -22,11 +22,6 @@ function getParameterByName(name, url) {
 //Setup
 window.onload=function(){
 
-  //Copy password from url if provided
-  $('#pass').focus();
-  $('#pass').val(getParameterByName('pass'));
-  $('#pass').blur();
-
   //Initialize the copy button
   new Clipboard('#copy');
 

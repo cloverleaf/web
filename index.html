@@ -1,11 +1,25 @@
 <html>
   <head>
+
+    <!-- SEO -->
     <meta charset="utf-8">
     <title>Perdola</title>
 
-    <!-- SEO -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="description" content="Perdola is a free, open source website that generates secure passwords on demand.">
+    <meta name="robots" content="index, nofollow">
+    <meta name="author" content="ChildishGiant">
+    <meta name="keywords" content="password manager, password generator, security, open source," />
+
+    <meta property="og:description" content="Perdola is a free, open source website that generates secure passwords on demand." />
+    <meta property="og:title" content="Perdola" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://childishgiant.github.io/perdola/" />
+    <meta property="og:image" content="http://childishgiant.github.io/perdola/og-image.jpg" />
+    <meta property="og:image:secure_url" content="https://childishgiant.github.io/perdola/og-image.jpg" />
+    <meta property="og:image:width" content="279">
+    <meta property="og:image:height" content="279">
+    <meta property="og:locale" content="en_GB" />
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -18,19 +32,18 @@
     <meta name="theme-color" content="#ffffff">
 
     <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <!--Styling css-->
-    <link rel="stylesheet" type="text/css" href="compiled/style.min.css">
+    <link async rel="stylesheet" type="text/css" href="compiled/style.min.css">
     <!--Import jQuery before materialize.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
     <!-- seedrandom.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
     <!-- clipboard.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
     <!-- jquery-mousewheel for scrolling on number inputs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
 
     <!-- Google analytics -->
@@ -45,6 +58,25 @@
     </script>
   </head>
   <body>
+
+    <div id="warning">
+      This website is still under development and will continue to be updated. This will include breaking updates that change passwords. The last update was on
+      <script>
+        var date = new Date(document.lastModified);
+        var monthNames = [
+          "January", "February", "March",
+          "April", "May", "June", "July",
+          "August", "September", "October",
+          "November", "December"
+          ];
+
+        var day = date.getDate();
+        var monthIndex = date.getMonth();
+        var year = date.getFullYear();
+
+        $("#warning").append(day + ' ' + monthNames[monthIndex] + ' ' + year);
+      </script>
+    </div>
 
     <div id="box">
       <div id="back">

@@ -1,7 +1,8 @@
 {
   "Amazon":{
     "minLength":6,
-    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/f/fc/Amazon.com_Favicon_2.svg"
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/f/fc/Amazon.com_Favicon_2.svg",
+    "chars":"asciiPrintable"
   },
   "Apple":{
     "minLength":8,
