@@ -14,30 +14,37 @@
   "Discord":{
     "minLength":6,
     "maxLength":128,
-    "logo":"https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg"
+    "logo":"https://discordapp.com/assets/f8389ca1a741a115313bede9ac02e2c0.svg",
+    "chars":"asciiPrintable"
   },
   "Dropbox":{
     "minLength":6,
-    "logo":"https://upload.wikimedia.org/wikipedia/commons/3/3a/Dropbox_Logo_02.svg"
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/3/3a/Dropbox_Logo_02.svg",
+    "chars":"asciiPrintable"
   },
   "Duolingo":{
     "minLength":6,
-    "logo":"https://cdn.worldvectorlogo.com/logos/duolingo-symbol-icon.svg"
+    "logo":"https://cdn.worldvectorlogo.com/logos/duolingo-symbol-icon.svg",
+    "chars":"asciiPrintable"
   },
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/5/5f/EBay_2012.svg/revision/latest"
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/5/5f/EBay_2012.svg/revision/latest",
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}",
+    "chars":"asciiPrintable"
   },
   "Facebook":{
     "minLength":6,
-    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/f/fb/Facebook_icon_2013.svg"
+    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/f/fb/Facebook_icon_2013.svg",
+    "chars":"asciiPrintable"
   },
   "Github":{
     "minLength":7,
     "maxLength":72,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
-    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}"
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}",
+    "chars":"asciiPrintable"
   },
   "Google":{
     "minLength":8,
@@ -47,35 +54,43 @@
   },
   "Humble Bundle":{
     "minLength":4,
-    "logo":"https://upload.wikimedia.org/wikipedia/fr/e/ee/Humble_Bundle.svg"
+    "logo":"https://upload.wikimedia.org/wikipedia/fr/e/ee/Humble_Bundle.svg",
+    "chars":"asciiPrintable"
   },
   "Instagram":{
     "minLength":6,
     "maxLength":255,
-    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/5/57/Instagram_App_Icon.svg"
+    "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/5/57/Instagram_App_Icon.svg",
+    "chars":"asciiPrintable"
   },
   "itch.io":{
     "minLength":2,
-    "logo":"https://itch.io/static/images/itchio-textless-pink.svg"
+    "logo":"https://itch.io/static/images/itchio-textless-pink.svg",
+    "chars":"asciiPrintable"
   },
   "Reddit":{
     "minLength":6,
-    "logo":"https://icons.iconarchive.com/icons/uiconstock/socialmedia/128/Reddit-icon.png"
+    "logo":"https://vignette2.wikia.nocookie.net/siivagunner/images/0/07/Reddit_icon.svg/revision/latest",
+    "chars":"asciiPrintable"
   },
   "Steam":{
     "minLength":8,
-    "logo":"https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg"
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg",
+    "chars":"asciiPrintable"
   },
   "Twitch":{
     "minLength":8,
-    "logo":"https://vignette3.wikia.nocookie.net/logopedia/images/8/83/Twitch_icon.svg"
+    "logo":"https://vignette3.wikia.nocookie.net/logopedia/images/8/83/Twitch_icon.svg",
+    "chars":"asciiPrintable"
   },
   "Twitter":{
     "minLength":6,
-    "logo":"https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg"
+    "logo":"https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg",
+    "chars":"asciiPrintable"
   },
   "Wikipedia":{
     "minLength":1,
-    "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/2000px-Wikipedia%27s_W.svg.png"
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/2000px-Wikipedia%27s_W.svg.png",
+    "chars":"asciiPrintable"
   }
 }

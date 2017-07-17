@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400');
-
 :root {
   --accentColor: #3f51b5;
   --lightAccent: #6d78b5;
@@ -7,202 +6,214 @@
   --incorrectColor: #F44336;
 }
 
-body{
+body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   margin: 0px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff; /* Incase someone has meddled with userstyles */
+  background-color: #fff;
+  /* Incase someone has meddled with userstyles */
 }
 
-#box{
+#box {
   padding: 5px;
   text-align: center;
-  max-width: calc(100% - 25px); /*Could be 100% but it's a bit too cramped.*/
+  max-width: calc(100% - 25px);
+  /*Could be 100% but it's a bit too cramped.*/
 }
 
-label{
+label {
   font-size: 1.5rem !important;
 }
 
+
 /* label underline focus color */
-.input-field input[type=text]:focus,
-.input-field input[type=number]:focus,
-.input-field input[type=password]:focus{
+
+.input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
   border-bottom: 1px solid var(--accentColor);
   box-shadow: 0 1px 0 0 var(--accentColor);
 }
 
-input[type=text],
-input[type=number],
-input[type=password]{
+input[type=text], input[type=number], input[type=password] {
   font-size: 3rem;
   padding-bottom: 0.1rem;
 }
 
+
 /* label focus color */
-.input-field input:focus + label{
+
+.input-field input:focus+label {
   color: var(--accentColor) !important;
 }
 
-input[type=number]{
+input[type=number] {
   margin-bottom: 0px;
-  overflow:scroll
+  overflow: scroll
 }
 
-#back{
-  box-shadow: 0 0.26em 0.65em 0 rgba(0,0,0,0.2);
+#back {
+  box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
   border-radius: 0.325em;
   padding: 0.975em;
   padding-top: 1.625em;
   margin: 1.625em;
 }
 
-#result{
+#result {
   font-family: 'Droid Sans Mono', monospace;
   font-size: 2rem;
   padding: 1rem 0px;
   display: inline-block;
   display: none;
-  word-wrap:break-word;
-  word-break: break-all /*Only breaks when it needs to*/
+  word-wrap: break-word;
+  word-break: break-all;
+  /*Only breaks when it needs to*/
 }
 
-#copy{
+#copy {
   display: none;
   margin: auto;
 }
 
-#submit{
-  font-weight: normal /*Resetting weight of the button to the standard.*/
+#submit {
+  font-weight: normal;
+  /*Resetting weight of the button to the standard.*/
 }
 
-.hint{
+.hint {
   float: left;
   color: var(--textColor);
   width: 100%;
   text-align: left;
 }
 
-
-input,
-textarea
- {
-    font-size: 1.56rem;
-    padding: 0.65rem;
-
-    color: var(--accentColor);
-    text-shadow: 0px 0px 0px #000;
-    -webkit-text-fill-color: transparent;
-
-    margin: 0 0 1.3rem 0 !important;
+input, textarea {
+  font-size: 1.56rem;
+  padding: 0.65rem;
+  color: var(--accentColor);
+  text-shadow: 0px 0px 0px #000;
+  -webkit-text-fill-color: transparent;
+  margin: 0 0 1.3rem 0 !important;
 }
 
-input#length{
+input#length {
   margin: 0px !important;
 }
 
-#faq{
+#faq {
   float: right;
   cursor: help;
 }
 
-.cf:before,
-.cf:after {
-  content: " "; /* 1 */
-  display: table; /* 2 */
+.cf:before, .cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
 }
 
 .cf:after {
   clear: both;
 }
 
+
 /*
 For IE 6/7 only
 Include this rule to trigger hasLayout and contain floats.
 */
+
 .cf {
   *zoom: 1;
 }
 
-a{
+a {
   font-weight: 500;
 }
 
-ul.autocomplete-content.dropdown-content{
+ul.autocomplete-content.dropdown-content {
   position: absolute !important;
   width: 100%;
   max-height: 300%;
   overflow-y: auto;
 }
 
-ul.autocomplete-content.dropdown-content span{
+ul.autocomplete-content.dropdown-content span {
   color: var(--textColor);
 }
 
-li img.right.circle{
+li img.right.circle {
   position: absolute;
   right: 0px !important;
 }
 
+
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
-.circle{
-  object-fit:scale-down;
+
+.circle {
+  object-fit: scale-down;
   border-radius: 0px;
 }
 
-.switch{
+.switch {
   padding-bottom: 1.3rem;
 }
 
+
 /*Switch knob*/
-.switch label input[type=checkbox]:checked+.lever:after{
+
+.switch label input[type=checkbox]:checked+.lever:after {
   background-color: var(--accentColor);
 }
 
+
 /*Switch backing*/
-.switch label input[type=checkbox]:checked+.lever{
+
+.switch label input[type=checkbox]:checked+.lever {
   background-color: var(--lightAccent);
 }
 
-#passTogglelever{
-  left: -4px; /* Centering the toggle */
+#passTogglelever {
+  left: -4px;
+  /* Centering the toggle */
 }
 
-input.invalid { /* So you can see something's invalid even when focused */
-    border-bottom: 1px solid var(--incorrectColor) !important;
-    box-shadow: 0 1px 0 0 var(--incorrectColor) !important;
+input.invalid {
+  /* So you can see something's invalid even when focused */
+  border-bottom: 1px solid var(--incorrectColor) !important;
+  box-shadow: 0 1px 0 0 var(--incorrectColor) !important;
 }
+
 
 /* If we're on a small/mobile device */
+
 @media only all and (max-width:25em) {
-  #back{
+  #back {
     /* Ditch loads of padding */
-    margin:0px;
+    margin: 0px;
   }
 }
 
+
 /* If it won't fit vertically */
+
 @media only all and (max-height:535px) {
-  html{
+  html {
     /* Drop the font size */
     font-size: 2vw;
-    }
+  }
 }
 
-#warning{
+#warning {
   position: absolute;
   top: 0.5rem;
   background-color: #f2dede;
   border-color: #ebcccc;
   color: #a94442;
-
   padding: .75rem 1.25rem;
   margin-bottom: 1rem;
   border: 1px solid;
   border-radius: .25rem;
-
   z-index: 1000;
 }

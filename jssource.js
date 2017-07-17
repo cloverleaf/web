@@ -2,43 +2,43 @@ var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //
 var asciiPrintable = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 var autoCompleteData = {}; //Here for scope perposes
 var jsonData = {}; //As am I.
-var defaultMinLength = 4;  //We
+var defaultMinLength = 4; //We
 var defaultMaxLength = 255; //ALl
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 
 //https://stackoverflow.com/a/901144
 function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+    results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 
 //Setup
-window.onload=function(){
+window.onload = function() {
 
   //Initialize the copy button
   new Clipboard('#copy');
 
   //Enter detection & handling
-  $("input").on('keyup', function (e) {
-      if (e.keyCode == 13) {
-          process();
-      };
+  $("input").on('keyup', function(e) {
+    if (e.keyCode == 13) {
+      process();
+    };
   });
 
   //on change of password submit
-  $('#pass').on('input',function(e){
+  $('#pass').on('input', function(e) {
     process();
   });
 
   //Executed when you type in the app field
-  $('#app').on('input',function(e){
+  $('#app').on('input', function(e) {
     //If the password field has something in it
     if ($("#pass").val() != "") {
       process();
@@ -46,7 +46,7 @@ window.onload=function(){
   });
 
   //On change in length field up and down or typing (not scrolling)
-  $('#length').on('input',function(e){
+  $('#length').on('input', function(e) {
     //If both the password field and the app field have something in them.
     if ($("#pass").val() != "" && $("#app").val() != "") {
       process();
@@ -56,7 +56,7 @@ window.onload=function(){
 };
 
 //For showing / hiding the password
-function passwordToggle(){
+function passwordToggle() {
   //If the switch is on / to the right / "Hide"
   if ($("#passwordToggle").prop('checked')) {
     //Make the password field use blobs
@@ -68,7 +68,8 @@ function passwordToggle(){
 };
 
 //On submit
-function process(){
+function process() {
+  var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //Defualt character set (Set here but overwritten if there's a custom one.)
   var regex = ""; //By default we have no regex but reset it to a blank string so we don't carry them over
   var appName = $("#app").val();
   var masterPass = $("#pass").val();
@@ -76,30 +77,30 @@ function process(){
   var result = ""; //Has to be here, not in the loop for scope purposes
   var minLength = 4;
 
-  if (appName && masterPass && length){ //If all the inputs have something in them.
+  if (appName && masterPass && length) { //If all the inputs have something in them.
 
     //Set the generation seed
-    Math.seedrandom(appName.toLowerCase()+masterPass);
+    Math.seedrandom(appName.toLowerCase() + masterPass);
 
-    if (jsonData[appName]){//If it's a site with a preset
+    if (jsonData[appName]) { //If it's a site with a preset
 
       //If it has a custom character set
-      if ("chars" in jsonData[appName]){
-        if (jsonData[appName]["chars"] == "asciiPrintable"){
+      if ("chars" in jsonData[appName]) {
+        if (jsonData[appName]["chars"] == "asciiPrintable") {
           chars = asciiPrintable
-        } else{ /*If we have a custom character set that's not trying to tell me something */
+        } else { /*If we have a custom character set that's not trying to tell me something */
           //Replace the default character set with the supplied one.
           chars = jsonData[appName]["chars"];
         };
       };
       //If it has a custom regex that passwords need to fit
-      if ("regex" in jsonData[appName]){
+      if ("regex" in jsonData[appName]) {
         //Setup custom regex
         regex = jsonData[appName]["regex"];
         var pattern = new RegExp(regex);
       };
       //If the preset has a custom minimum length
-      if ("minLength" in jsonData[appName]){
+      if ("minLength" in jsonData[appName]) {
         //Use it. If there's no custom minimum length, it'll be 4
         minLength = jsonData[appName]["minLength"]
         //Updating the length field mins is handled by updateLimits()
@@ -108,7 +109,7 @@ function process(){
 
 
     //Check that you haven't manually typed an invalid length
-    if (length<minLength){
+    if (length < minLength) {
       $("#length").addClass("invalid");
     } else {
 
@@ -117,15 +118,15 @@ function process(){
       //password generation cycle
       while (true) {
         result = "";
-        while (result.length < length ) {
+        while (result.length < length) {
 
           //Add one seeded random character at a time
           result += chars[Math.floor(Math.random() * chars.length)];
 
         };
         //If there's a custom regex
-        if (regex !== ""){
-          if (pattern.test(result)){
+        if (regex !== "") {
+          if (pattern.test(result)) {
             break;
           }
         } else { // no custom regex
@@ -142,23 +143,24 @@ function process(){
       $("#result").css('display', 'block');
 
       $("input").each(function() {
-          $(this).removeClass("invalid");
+        $(this).removeClass("invalid");
       });
-    }} else{
+    }
+  } else {
 
-      $("input:not(#length)").each(function() {
-        if ($(this).val() == ""){
-          $(this).addClass("invalid");
-        }else{
-          $(this).removeClass("invalid");
-        };
-      });
-    };
+    $("input:not(#length)").each(function() {
+      if ($(this).val() == "") {
+        $(this).addClass("invalid");
+      } else {
+        $(this).removeClass("invalid");
+      };
+    });
+  };
 
-    };
+};
 
 //on application name change
-function updateLimits(){
+function updateLimits() {
   var appName = $("#app").val();
 
   //We assume there's no preset
@@ -169,13 +171,13 @@ function updateLimits(){
   maxLength = defaultMaxLength;
 
   //If there's a preset then we overwrite the defualts
-  if (jsonData[appName]){
+  if (jsonData[appName]) {
 
     //And that preset has a minLength
-    if ("minLength" in jsonData[appName]){
+    if ("minLength" in jsonData[appName]) {
 
       //Only update if it's actually a different number.
-      if (jsonData[appName]["minLength"] != minLength){
+      if (jsonData[appName]["minLength"] != minLength) {
         //Update global var
         minLength = jsonData[appName]["minLength"]
         //Also set the length input so it can't go under the limit
@@ -186,7 +188,7 @@ function updateLimits(){
 
     if ("maxLength" in jsonData[appName]) {
       //Only update if it's actually a different number.
-      if (jsonData[appName]["maxLength"] != maxLength){
+      if (jsonData[appName]["maxLength"] != maxLength) {
         //Update global var
         maxLength = jsonData[appName]["maxLength"]
         //Also set the length input so it can't go under the limit
@@ -197,36 +199,36 @@ function updateLimits(){
   }
 };
 
-function reBindMouse(min,max){
+function reBindMouse(min, max) {
 
-  if(typeof min === "undefined") {
-        min = defaultMinLength;
+  if (typeof min === "undefined") {
+    min = defaultMinLength;
   };
 
-  if(typeof max === "undefined") {
-        max = defaultMaxLength;
+  if (typeof max === "undefined") {
+    max = defaultMaxLength;
   };
 
   //Unbind the current on function
   $("#length").unbind("mousewheel");
   //Update the mousewheel length input bind to keep <= the new limit
   $("#length").on("mousewheel", function(event, delta) {
-      if (delta > 0) {
-        if (parseInt(this.value) < max){
-          this.value = parseInt(this.value) + 1;
-        }
-      } else {
-          if (parseInt(this.value) > min) {
-              this.value = parseInt(this.value) - 1;
-          };
+    if (delta > 0) {
+      if (parseInt(this.value) < max) {
+        this.value = parseInt(this.value) + 1;
       }
+    } else {
+      if (parseInt(this.value) > min) {
+        this.value = parseInt(this.value) - 1;
+      };
+    }
 
-      //Update password
-      if ($("#pass").val() + $("#app").val() != "") {
-        process();
-      }
+    //Update password
+    if ($("#pass").val() + $("#app").val() != "") {
+      process();
+    }
 
-      return false;
+    return false;
 
   });
 }
@@ -241,7 +243,7 @@ $(function() {
 
     jsonData = json;
 
-    $.each(json, function(i, val){
+    $.each(json, function(i, val) {
       autoCompleteData[i] = val.logo;
     });
 
@@ -254,18 +256,18 @@ $(function() {
         var length = 16;
         var max = json[val]["maxLength"];
 
-        if (!max){
+        if (!max) {
           max = defaultMaxLength;
         };
 
-        if (!(json[val]["minLength"] <= 16 <= max)){
+        if (!(json[val]["minLength"] <= 16 <= max)) {
           length = json[val]["maxLength"];
         };
 
         $("#length").val(length);
 
         //If there's already a password (eg switching sites / presets)
-        if ($("#pass").val()){
+        if ($("#pass").val()) {
           //regen password
           process();
         }
