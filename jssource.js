@@ -7,23 +7,16 @@ var defaultMaxLength = 255; //ALl
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 
-//https://stackoverflow.com/a/901144
-function getParameterByName(name, url) {
-  if (!url) url = window.location.href;
-  name = name.replace(/[\[\]]/g, "\\$&");
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
-  if (!results) return null;
-  if (!results[2]) return '';
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
 
 //Setup
 window.onload = function() {
 
   //Initialize the copy button
-  new Clipboard('#copy');
+  var clipboard = new Clipboard('#copy');
+
+  clipboard.on('success', function(e) {
+    Materialize.toast('Successfully copied!', 4000)
+  });
 
   //Enter detection & handling
   $("input").on('keyup', function(e) {
@@ -67,7 +60,7 @@ function passwordToggle() {
   };
 };
 
-//On submit
+//Take inputs and display a password. (The black box)
 function process() {
   var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //Defualt character set (Set here but overwritten if there's a custom one.)
   var regex = ""; //By default we have no regex but reset it to a blank string so we don't carry them over
@@ -250,8 +243,9 @@ $(function() {
     //Setup possible autocomplete sites
     $('input#app').autocomplete({
       data: autoCompleteData,
+
+      //called when an autocomplete is used.
       onAutocomplete: function(val) {
-        //called when an autocomplete is used.
 
         var length = 16;
         var max = json[val]["maxLength"];
@@ -274,6 +268,7 @@ $(function() {
       },
       minLength: 0,
     });
+
   });
 
 });

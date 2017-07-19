@@ -59,24 +59,6 @@
   </head>
   <body>
 
-    <div id="warning">
-      This website is still under development and will continue to be updated. This will include breaking updates that change passwords. The last update was on
-      <script>
-        var date = new Date(document.lastModified);
-        var monthNames = [
-          "January", "February", "March",
-          "April", "May", "June", "July",
-          "August", "September", "October",
-          "November", "December"
-          ];
-
-        var day = date.getDate();
-        var monthIndex = date.getMonth();
-        var year = date.getFullYear();
-
-        $("#warning").append(day + ' ' + monthNames[monthIndex] + ' ' + year);
-      </script>
-    </div>
 
     <div id="box">
       <div id="back">
@@ -109,7 +91,7 @@
 
         <span id="result"></span>
 
-        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result" onclick="Materialize.toast('Successfully copied!', 4000)">Copy password</button>
+        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password</button>
 
         <div id="footer" class="cf">
           <a href="compiled/faq.html" id="faq">Help and FAQs</a>
