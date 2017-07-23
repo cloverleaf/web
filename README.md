@@ -20,13 +20,15 @@ So Version 1.456 would be the 14th major update (We started at Version 0.00), th
 
 I have removed one feature so far and may remove more in the future for security / simplicity.
 
-As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics. ![](http://i.imgur.com/JTd4v5x.png) This feature may rear its head in the future if it can be implemented so that the user's security remains the top priority.
+As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics. ![](http://i.imgur.com/JTd4v5x.png)
+
+This feature may rear its head in the future if it can be implemented so that the user's security remains the top priority. (See to-do #3)
 
 ## To-do:
 
 - Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
 - Add tumblr/yahoo preset (Warning system to say that they use the same account.)
-- Implement custom char sets to most presets
+- Saving and automagically loading passwords with cookies
 
 ## Tools used for development
 
@@ -35,6 +37,8 @@ Github's [atom.io](https://atom.io/) is my text editor of choice.
 All minimization is done using [Prepros](https://prepros.io).
 
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
+
+More thanks go out to shinnn's [isogram](https://github.com/shinnn/isogram) for the snazzy tracking code.
 
 ## Misc
 

@@ -11,6 +11,11 @@
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$",
     "chars":"asciiPrintable"
   },
+  "Chrono.gg":{
+    "minLength":8,
+    "chars":"asciiPrintable",
+    "logo":"logos/frst-is-nice.svg"
+  },
   "Discord":{
     "minLength":6,
     "maxLength":128,
@@ -68,15 +73,32 @@
     "logo":"https://itch.io/static/images/itchio-textless-pink.svg",
     "chars":"asciiPrintable"
   },
+  "Microsoft":{
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/6/68/Microsoft_box.svg",
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}",
+    "minLength":8,
+    "maxLength":127,
+    "chars":"asciiPrintable"
+  },
   "Reddit":{
     "minLength":6,
     "logo":"https://vignette2.wikia.nocookie.net/siivagunner/images/0/07/Reddit_icon.svg/revision/latest",
+    "chars":"asciiPrintable"
+  },
+  "Spotify":{
+    "logo":"https://vignette4.wikia.nocookie.net/logopedia/images/1/19/Spotify_logo_without_text.svg",
+    "minLength":4,
     "chars":"asciiPrintable"
   },
   "Steam":{
     "minLength":8,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg",
     "chars":"asciiPrintable"
+  },
+  "tic.computer":{
+    "minLength":6,
+    "chars":"asciiPrintable",
+    "logo":"logos/tic-80.svg"
   },
   "Twitch":{
     "minLength":8,

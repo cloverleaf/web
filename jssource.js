@@ -1,4 +1,3 @@
-var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"; //Defualt character set
 var asciiPrintable = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 var autoCompleteData = {}; //Here for scope perposes
 var jsonData = {}; //As am I.
