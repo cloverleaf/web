@@ -16,7 +16,6 @@
 
 **A:** I've openly acknowledged that Perdola is based off the concept of "[Master Password](https://masterpasswordapp.com/)" but why would I spend all this time re-making a working piece of software? The answer is simple: *I don't like how master password works.* It has many different offshoots that all look different. It takes 6 variables to make a password and 30 seconds to load (Yes, I timed it.). It makes everything harder than it should be. And that was my motivation to make Perdola. I absolutely love the concept of secure passwords without storing them but hate the current solutions.
 
----
 
 <style
   type="text/css">

@@ -1,5 +1,8 @@
 {
+  "lang": "en",
   "name": "Perdola",
+  "short_name": "Perdola",
+  "description": "Perdola is a free, open source website that generates secure passwords on demand.",
   "icons": [{
       "src": "/android-chrome-192x192.png",
       "sizes": "192x192",
@@ -11,7 +14,6 @@
       "type": "image/png"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
-  "display": "standalone"
+  "theme_color": "#3f51b5",
+  "background_color": "#ffffff"
 }

@@ -1,24 +1,27 @@
-<html>
+<!doctype html>
+<html lang="en">
   <head>
 
-    <!-- SEO -->
     <meta charset="utf-8">
+
+    <!-- SEO -->
     <title>Perdola</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     <meta name="description" content="Perdola is a free, open source website that generates secure passwords on demand.">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
     <meta name="keywords" content="password manager, password generator, security, open source," />
 
+    <!-- Open Graph -->
     <meta property="og:description" content="Perdola is a free, open source website that generates secure passwords on demand." />
     <meta property="og:title" content="Perdola" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://childishgiant.github.io/perdola/" />
     <meta property="og:image" content="http://childishgiant.github.io/perdola/og-image.jpg" />
     <meta property="og:image:secure_url" content="https://childishgiant.github.io/perdola/og-image.jpg" />
-    <meta property="og:image:width" content="279">
-    <meta property="og:image:height" content="279">
+    <meta property="og:image:width" content="279"/>
+    <meta property="og:image:height" content="279"/>
     <meta property="og:locale" content="en_GB" />
 
     <!-- Icons -->
@@ -29,19 +32,19 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#3f51b5">
     <meta name="apple-mobile-web-app-title" content="Perdola">
     <meta name="application-name" content="Perdola">
-    <meta name="theme-color" content="#ffffff">
+    <meta name="theme-color" content="#3f51b5">
 
     <!--Import materialize.css-->
-    <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
+    <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/css/materialize.min.css">
     <!--Styling css-->
     <link async rel="stylesheet" type="text/css" href="compiled/style.min.css">
     <!--Import jQuery before materialize.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.1/js/materialize.min.js"></script>
     <!-- seedrandom.js-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.0/seedrandom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js"></script>
     <!-- clipboard.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.6.0/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <!-- jquery-mousewheel for scrolling on number inputs -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
@@ -71,6 +74,13 @@
         <div class="input-field">
           <label for="pass">Master password</label>
           <input id="pass" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+          <span class="input-group-addon suffix">
+
+            <svg onclick="save();" class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/></svg>
+
+            <svg onclick="load();" class="icon" viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>
+
+          </span>
         </div>
 
         <div class="switch" onclick="passwordToggle();">

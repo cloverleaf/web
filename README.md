@@ -22,13 +22,14 @@ I have removed one feature so far and may remove more in the future for security
 
 As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics. ![](http://i.imgur.com/JTd4v5x.png)
 
-This feature may rear its head in the future if it can be implemented so that the user's security remains the top priority. (See to-do #3)
+This feature was implemented in a safer fashion in v0.4, using cookies.
 
 ## To-do:
 
 - Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
-- Add tumblr/yahoo preset (Warning system to say that they use the same account.)
-- Saving and automagically loading passwords with cookies
+- Aliases YouTube → Google, Tumblr → yahoo etc..
+- Add Unicode characters to passwords on presets that allow them
+- React rewrite
 
 ## Tools used for development
 
