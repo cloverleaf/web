@@ -258,9 +258,16 @@ function save() { //Save the current master password as a cookie
 
 };
 
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
 function load() { //Load the saved password from cookie
+
   if (document.cookie.startsWith("password=")) {
-    var password = document.cookie.substring(9); // Get the password from the cookie
+    var password = getCookie("password"); // Get the password from the cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
     $("#pass").val(password); //Fill the password input with the correct password
     process();
