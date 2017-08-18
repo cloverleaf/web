@@ -20,24 +20,28 @@ window.onload = function() {
 
   //on change of password submit
   $('#pass').on('input', function(e) {
-    process();
+    //If the password field has something in it
+    if ($("#app").val() != "" && $("#pass").val() != "") {
+      process();
+    } else {
+      $("#result").text("");
+      $("#copy").hide();
+    };
   });
 
   //Executed when you type in the app field
   $('#app').on('input', function(e) {
     var c = $("#app").val();
-    if (c != "") {
-      $("label[for='app']").addClass("active");
-    } else {
-      $("label[for='app']").removeClass("active");
-    };
     lastName = c;
     history.pushState(c, c);
 
 
-    //If the password field has something in it
-    if ($("#pass").val() != "") {
+    //If the both fields have something in them
+    if (c != "" && $("#pass").val() != "") {
       process();
+    } else {
+      $("#result").text("");
+      $("#copy").hide();
     }
   });
 
@@ -64,7 +68,7 @@ function passwordToggle() {
 };
 
 //Take inputs and display a password. (The black box)
-function process(appName, masterPass, length) {
+function process() {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; //Defualt character set (Set here but overwritten if there's a custom one.)
   var regex = ""; //By default we have no regex but reset it to a blank string so we don't carry them over
   var appName = $("#app").val();
@@ -122,7 +126,6 @@ function process(appName, masterPass, length) {
   $("#result").text(result);
 
   $("#copy").css('display', 'block');
-  $("#result").css('display', 'block');
 };
 
 //on application name change

@@ -26,23 +26,38 @@ This feature was implemented in a safer fashion in v0.4, using cookies.
 
 ## To-do:
 
-- Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
-- Aliases YouTube → Google, Tumblr → yahoo etc..
-- Add Unicode characters to passwords on presets that allow them
-- React rewrite
+- [ ] Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
+- [ ] Aliases YouTube → Google, Tumblr → yahoo etc..
+- [ ] Add Unicode characters to passwords on presets that allow them
+- [ ] React rewrite
 
-## Tools used for development
+## Software used for development
 
 Github's [atom.io](https://atom.io/) is my text editor of choice.
 
 All minimization is done using [Prepros](https://prepros.io).
 
+I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
+
+
+## Libs / tools
+
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
 
 More thanks go out to shinnn's [isogram](https://github.com/shinnn/isogram) for the snazzy tracking code.
 
+[GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license
+
+[jQuery](https://github.com/jquery/jquery) under the MIT license
+
+[jquery Mouse Wheel Plugin](https://github.com/jquery/jquery-mousewheel) under the MIT license
+
+[clipboard.js](https://github.com/zenorocha/clipboard.js/) under the MIT license
+
+[seedrandom](https://github.com/davidbau/seedrandom) by David Bau under the MIT license
+
+The [Materialize Framework](https://github.com/Dogfalo/materialize) under the MIT license
+
 ## Misc
 
 Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
-
-[GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license

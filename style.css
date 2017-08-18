@@ -71,7 +71,6 @@ input[type=number] {
   font-size: 2rem;
   padding: 1rem 0px;
   display: inline-block;
-  display: none;
   word-wrap: break-word;
   word-break: break-all;
   /*Only breaks when it needs to*/
@@ -138,6 +137,7 @@ ul.autocomplete-content.dropdown-content {
   width: 100%;
   max-height: 300%;
   overflow-y: auto;
+  top: 4.85em;
 }
 
 ul.autocomplete-content.dropdown-content span {

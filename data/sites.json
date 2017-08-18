@@ -9,6 +9,13 @@
     "logo":"https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg",
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
   },
+  "BBC":{
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/e/eb/BBC.svg",
+    "minLength":8,
+    "maxLength":50,
+    "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$",
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+  },
   "Chrono.gg":{
     "minLength":8,
     "logo":"logos/frst-is-nice.svg"
@@ -41,6 +48,10 @@
     "maxLength":72,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}"
+  },
+  "GOG":{
+    "minLength":2,
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/3/3c/Gog-logo-2014.svg"
   },
   "Google":{
     "minLength":8,
