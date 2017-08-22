@@ -6,15 +6,9 @@ A smart solution to the problem of passwords. Perdola generates passwords on dem
 
 ## How the versioning works
 
-All versions will take the form of XYZ
+We use [Semantic Versioning](http://semver.org/)
 
-**X** is the **major version** number. This is for feature updates. An example of one of this kind of update would be introducing the "presets" feature. Major features are defined as updates that change the way one uses the service. The number will take the form of A.B. EG: 1.0 or 0.1
-
-**Y** is the **patch** number. This is for content updates / minor features. An example of this would be adding more presets.
-
-**Z** is for number for **bug fixes**.
-
-So Version 1.456 would be the 14th major update (We started at Version 0.00), the 5th patch and the 6th bug fix for that patch.
+This basically amounts to MAJOR.MINOR.PATCH.
 
 ## Removed features
 

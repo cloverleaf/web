@@ -67,6 +67,10 @@
     "minLength":4,
     "logo":"https://upload.wikimedia.org/wikipedia/fr/e/ee/Humble_Bundle.svg"
   },
+  "IFTTT":{
+    "logo":"logos/ifttt.svg",
+    "minLength":6
+  },
   "Instagram":{
     "minLength":6,
     "maxLength":255,
@@ -95,6 +99,11 @@
   "Reddit":{
     "minLength":6,
     "logo":"https://vignette2.wikia.nocookie.net/siivagunner/images/0/07/Reddit_icon.svg/revision/latest"
+  },
+  "Soundcloud":{
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/f/f4/SoundCloud_logo%2C_orange_color%2C_plain.svg",
+    "minLength":6,
+    "maxLength":2048
   },
   "Spotify":{
     "logo":"https://vignette4.wikia.nocookie.net/logopedia/images/1/19/Spotify_logo_without_text.svg",
