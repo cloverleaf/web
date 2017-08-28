@@ -6,6 +6,7 @@ var defaultMinLength = 4; //We
 var defaultMaxLength = 255; //ALl
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
+var currentLength = 16;
 
 
 //Setup
@@ -19,7 +20,7 @@ window.onload = function() {
   });
 
   //on change of password submit
-  $('#pass').on('input', function(e) {
+  $('#pass').on('keyup', function(e) {
     //If the password field has something in it
     if ($("#app").val() != "" && $("#pass").val() != "") {
       process();
@@ -30,29 +31,49 @@ window.onload = function() {
   });
 
   //Executed when you type in the app field
-  $('#app').on('input', function(e) {
+  $('#app').on('keyup', function(e) {
+    //If they pressed enter and the suggestions are open
+    if(e.which == 13 && $("ul.autocomplete-content").height() > 0) {
+      //Click first result
+      $("ul.autocomplete-content li:first").mousedown();;
+    };
     var c = $("#app").val();
-    lastName = c;
-    history.pushState(c, c);
+
+    //If you've changed the app name
+    if (lastName != c){
+      lastName = c;
+      history.pushState(c, c);
 
 
-    //If the both fields have something in them
-    if (c != "" && $("#pass").val() != "") {
-      process();
-    } else {
-      $("#result").text("");
-      $("#copy").hide();
-    }
+      //If the both fields have something in them
+      if (c != "" && $("#pass").val() != "") {
+        process();
+      } else {
+        $("#result").text("");
+        $("#copy").hide();
+      };
+
+      //Clear logo
+      $("img#logo").attr("src","");
+    };
+
+
   });
 
   //On change in length field up and down or typing (not scrolling)
-  $('#length').on('input', function(e) {
-    //If both the password field and the app field have something in them.
-    if ($("#pass").val() != "" && $("#app").val() != "") {
-      process();
-    }
+  $('#length').on('input', function() {
+    //If we've decreased the length
+    if ($('#length').val() < currentLength) {
+      //Just trim the password
+      $("#result").text($("#result").text().substring(0, $('#length').val()));
+    } else {//If we've increased in length
+      //If both the password field and the app field have something in them.
+      if ($("#pass").val() != "" && $("#app").val() != "") {
+        process();
+      };
+    };
+    currentLength = parseInt($('#length').val());
   });
-
 };
 
 //For showing / hiding the password
@@ -77,22 +98,27 @@ function process() {
   var result = ""; //Has to be here, not in the loop for scope purposes
   var minLength = 4;
 
-  //Set the generation seed
-  Math.seedrandom(appName.toLowerCase() + masterPass);
-
   if (jsonData[appName]) { //If it's a site with a preset
+
+    //If it's an alias for another app
+    if (jsonData[appName]["alias"]) {
+      //Change the name of the app we're using to its alias
+      appName = jsonData[appName]["alias"];
+    };
 
     //If it has a custom character set
     if ("chars" in jsonData[appName]) {
       //Replace the default character set with the supplied one.
       chars = jsonData[appName]["chars"];
     };
+
     //If it has a custom regex that passwords need to fit
     if ("regex" in jsonData[appName]) {
       //Setup custom regex
       regex = jsonData[appName]["regex"];
       var pattern = new RegExp(regex);
     };
+
     //If the preset has a custom minimum length
     if ("minLength" in jsonData[appName]) {
       //Use it. If there's no custom minimum length, it'll be 4
@@ -100,6 +126,9 @@ function process() {
       //Updating the length field mins is handled by updateLimits()
     };
   };
+
+  //Set the generation seed
+  Math.seedrandom(appName.toLowerCase() + masterPass);
 
   //password generation cycle
   while (true) {
@@ -124,7 +153,6 @@ function process() {
 
   //Display password
   $("#result").text(result);
-
   $("#copy").css('display', 'block');
 };
 
@@ -141,6 +169,12 @@ function updateLimits() {
 
   //If there's a preset then we overwrite the defualts
   if (jsonData[appName]) {
+
+    //If it's an alias for another app
+    if (jsonData[appName]["alias"]) {
+      //Change the name of the app we're using to its alias
+      appName = jsonData[appName]["alias"];
+    };
 
     //And that preset has a minLength
     if ("minLength" in jsonData[appName]) {
@@ -183,19 +217,27 @@ function reBindMouse(min, max) {
   //Update the mousewheel length input bind to keep <= the new limit
   $("#length").on("mousewheel", function(event, delta) {
     if (delta > 0) {
+      // Scrolling up
       if (parseInt(this.value) < max) {
         this.value = parseInt(this.value) + 1;
+
+        //Update password
+        if ($("#pass").val() + $("#app").val() != "") {
+          process();
+        }
       }
     } else {
+      // Scrolling down
       if (parseInt(this.value) > min) {
         this.value = parseInt(this.value) - 1;
-      };
-    }
 
-    //Update password
-    if ($("#pass").val() + $("#app").val() != "") {
-      process();
-    }
+        //Just trim the password
+        $("#result").text($("#result").text().substring(0, this.value));
+      };
+    };
+
+    currentLength = parseInt(this.value);
+
 
     return false;
 
@@ -222,7 +264,7 @@ $(function() {
 
       //called when an autocomplete is used.
       onAutocomplete: function(val) {
-
+        
         lastName = val;
         history.pushState(val, val);
 
@@ -244,6 +286,9 @@ $(function() {
           //regen password
           process();
         }
+
+        //Set image
+        $("img#logo").attr("src", json[val]["logo"]);
       },
       minLength: 0,
     });

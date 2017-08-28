@@ -43,6 +43,15 @@
     "minLength":6,
     "logo":"https://vignette1.wikia.nocookie.net/logopedia/images/f/fb/Facebook_icon_2013.svg"
   },
+  "Flikr":{
+    "logo":"https://cdn.worldvectorlogo.com/logos/flickr-1.svg",
+    "alias":"Yahoo"
+  },
+  "Genius":{
+    "logo":"logos/genius.svg",
+    "minLength":4,
+    "maxLength":128
+  },
   "Github":{
     "minLength":7,
     "maxLength":72,
@@ -117,6 +126,10 @@
     "minLength":6,
     "logo":"logos/tic-80.svg"
   },
+  "Tumblr":{
+    "logo":"logos/tumblr-logo-blue.svg",
+    "alias":"Yahoo"
+  },
   "Twitch":{
     "minLength":8,
     "logo":"https://vignette3.wikia.nocookie.net/logopedia/images/8/83/Twitch_icon.svg"
@@ -125,9 +138,24 @@
     "minLength":6,
     "logo":"https://upload.wikimedia.org/wikipedia/en/9/9f/Twitter_bird_logo_2012.svg"
   },
+  "Ubisoft":{
+    "logo":"https://vignette3.wikia.nocookie.net/logopedia/images/0/0d/Ubisoft_2017_symbol.svg",
+    "regex":"^(?=.*[A-Za-z]){8,}",
+    "minLength":8,
+    "maxLength":16
+  },
   "Wikipedia":{
     "minLength":1,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/2000px-Wikipedia%27s_W.svg.png"
+  },
+  "Yahoo":{
+    "minLength":8,
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d){8,}",
+    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/0/0b/Yahoo!_3.svg/revision/latest"
+  },
+  "YouTube":{
+    "alias":"Google",
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/d/d1/YouTube_Play_Button.svg"
   },
   "YoYo Games":{
     "minLength":6,
