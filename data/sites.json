@@ -36,7 +36,7 @@
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/5/5f/EBay_2012.svg/revision/latest",
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}"
   },
   "Facebook":{
@@ -57,6 +57,11 @@
     "maxLength":72,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}"
+  },
+  "Guilded":{
+    "logo":"logos/guilded.svg",
+    "minLength":8,
+    "maxLength":128
   },
   "GOG":{
     "minLength":2,
@@ -89,6 +94,10 @@
     "minLength":2,
     "logo":"https://itch.io/static/images/itchio-textless-pink.svg"
   },
+  "LinkedIn":{
+    "logo":"logos/linkedin.svg",
+    "minLength":6
+  },
   "Microsoft":{
     "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/6/68/Microsoft_box.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}",
@@ -100,14 +109,28 @@
     "minLength":8,
     "maxLength":256
   },
+  "Netflix":{
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/7/75/Netflix_icon.svg",
+    "minLength":4,
+    "maxLength":50
+  },
   "Opera":{
     "minLength":12,
     "maxLength":1000,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/4/49/Opera_2015_icon.svg"
   },
+  "OpenStreetMap":{
+    "logo":"https://wiki.openstreetmap.org/w/images/7/79/Public-images-osm_logo.svg",
+    "minLength":8,
+    "maxLength":255
+  },
   "Reddit":{
     "minLength":6,
     "logo":"https://vignette2.wikia.nocookie.net/siivagunner/images/0/07/Reddit_icon.svg/revision/latest"
+  },
+  "Skype":{
+    "logo":"https://compass-ssl.microsoft.com/assets/21/b8/21b8af05-6d71-4abd-8db0-77453745d7d7.svg?n=skype-icon-color.svg",
+    "alias":"Microsoft"
   },
   "Soundcloud":{
     "logo":"https://upload.wikimedia.org/wikipedia/commons/f/f4/SoundCloud_logo%2C_orange_color%2C_plain.svg",
@@ -148,10 +171,14 @@
     "minLength":1,
     "logo":"https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Wikipedia%27s_W.svg/2000px-Wikipedia%27s_W.svg.png"
   },
+  "Xbox":{
+    "logo":"https://compass-ssl.microsoft.com/assets/30/f1/30f1031e-d383-4928-82ca-f7a3a4594ed2.svg?n=xboxlive-icon-color.svg",
+    "alias":"Microsoft"
+  },
   "Yahoo":{
     "minLength":8,
     "regex":"^(?=.*[A-Za-z])(?=.*\\d){8,}",
-    "logo":"https://vignette2.wikia.nocookie.net/logopedia/images/0/0b/Yahoo!_3.svg/revision/latest"
+    "logo":"https://upload.wikimedia.org/wikipedia/commons/2/24/Yahoo!_logo.svg"
   },
   "YouTube":{
     "alias":"Google",

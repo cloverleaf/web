@@ -21,7 +21,6 @@ This feature was implemented in a safer fashion in v0.4, using cookies.
 ## To-do:
 
 - [ ] Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
-- [ ] Aliases YouTube → Google, Tumblr → yahoo etc..
 - [ ] Add Unicode characters to passwords on presets that allow them
 - [ ] React rewrite
 

@@ -294,3 +294,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 ul:empty{
   display: none;
 }
+
+::-ms-reveal { /* Disable Edge's show/hide since we made one */
+    display: none;
+}

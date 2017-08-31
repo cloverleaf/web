@@ -9,6 +9,26 @@ var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
 
 
+function getQueryStrings() {
+  var assoc  = {};
+  var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
+  var queryString = location.search.substring(1);
+  var keyValues = queryString.split('&');
+
+  for(var i in keyValues) {
+    var key = keyValues[i].split('=');
+    if (key.length > 1) {
+      assoc[decode(key[0])] = decode(key[1]);
+    }
+  }
+
+  return assoc;
+}
+
+function loadPreset() {
+
+};
+
 //Setup
 window.onload = function() {
 
@@ -254,6 +274,43 @@ $(function() {
 
     jsonData = json;
 
+    var qs = getQueryStrings();
+
+    if (qs["app"]) {
+      var appName = String(qs["app"]);
+      //If it's a preset
+      if (jsonData[appName]) {
+
+        lastName = appName;
+        history.pushState(appName, appName);
+
+        var length = 16;
+        var max = json[appName]["maxLength"];
+
+        if (!max) {
+          max = defaultMaxLength;
+        };
+
+        if (!(json[appName]["minLength"] <= 16 <= max)) {
+          length = json[appName]["maxLength"];
+        };
+
+        $("#length").val(length);
+
+        //If there's already a password (eg switching sites / presets)
+        if ($("#pass").val()) {
+          //regen password
+          process();
+        }
+
+        //Set image
+        $("img#logo").attr("src", json[appName]["logo"]);
+      }
+      // Set the app name
+      $("#app").val(appName);
+      $("label[for='app']").addClass("active");
+    };
+
     $.each(json, function(i, val) {
       autoCompleteData[i] = val.logo;
     });
@@ -264,7 +321,7 @@ $(function() {
 
       //called when an autocomplete is used.
       onAutocomplete: function(val) {
-        
+
         lastName = val;
         history.pushState(val, val);
 
