@@ -291,10 +291,14 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   margin-bottom: 0.55em !important;
 }
 
-ul:empty{
+ul:empty {
   display: none;
 }
 
 ::-ms-reveal { /* Disable Edge's show/hide since we made one */
     display: none;
+}
+
+#logoContainer { /* For portrait logos so they don't oversize */
+  height: calc(3rem + 0.1em);
 }

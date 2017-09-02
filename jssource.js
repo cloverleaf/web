@@ -1,4 +1,3 @@
-var alphaNumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 var lastName = ""; // Name of last application
 var autoCompleteData = {}; //Here for scope perposes
 var jsonData = {}; //As am I.
