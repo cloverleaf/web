@@ -16,6 +16,10 @@
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$",
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
+  "Bing":{
+    "logo":"https://vignette.wikia.nocookie.net/logopedia/images/5/57/Bing_2016_favicon.svg/revision/latest?cb=20160513131333",
+    "alias":"Microsoft"
+  },
   "Channel 4":{
     "logo":"https://vignette.wikia.nocookie.net/logopedia/images/4/4b/Channel_4_2015.svg/revision/latest",
     "minLength":6,
@@ -70,6 +74,15 @@
     "logo":"logos/genius.svg",
     "minLength":4,
     "maxLength":128
+  },
+  "Gfycat":{
+    "minLength":8,
+    "maxLength":25,
+    "logo":"https://assets.gfycat.com/web/48767389/images/desktop/gfycat_short_logo.svg"
+  },
+  "GiffGaff":{
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*[\\d])\\S*",
+    "logo":"https://cdn.worldvectorlogo.com/logos/giffgaff.svg"
   },
   "Github":{
     "minLength":7,
@@ -142,7 +155,7 @@
     "maxLength":127
   },
   "Minecraft":{
-    "logo":"http://images.wikia.com/yogbox/images/d/dd/Minecraft_Block.svg",
+    "logo":"https://images.wikia.com/yogbox/images/d/dd/Minecraft_Block.svg",
     "alias":"Mojang"
   },
   "Mojang":{
@@ -165,6 +178,12 @@
     "minLength":8,
     "maxLength":255
   },
+  "PayPal":{
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*",
+    "minLength":8,
+    "maxLength":20,
+    "logo":"https://cdn.worldvectorlogo.com/logos/paypal-icon.svg"
+  },
   "Reddit":{
     "minLength":6,
     "logo":"https://vignette2.wikia.nocookie.net/siivagunner/images/0/07/Reddit_icon.svg/revision/latest"
@@ -172,6 +191,11 @@
   "Skype":{
     "logo":"https://compass-ssl.microsoft.com/assets/21/b8/21b8af05-6d71-4abd-8db0-77453745d7d7.svg?n=skype-icon-color.svg",
     "alias":"Microsoft"
+  },
+  "Songsterr":{
+    "logo":"logos/songsterr.svg",
+    "minLength":5,
+    "maxLength":200
   },
   "Soundcloud":{
     "logo":"https://upload.wikimedia.org/wikipedia/commons/f/f4/SoundCloud_logo%2C_orange_color%2C_plain.svg",
