@@ -24,10 +24,10 @@ body {
 }
 
 #box {
-  padding: 5px;
   text-align: center;
   max-width: 75%;
   /*Could be 100% but it's a bit too cramped.*/
+  max-height: 100%;
 }
 
 .partial {
@@ -71,6 +71,8 @@ input[type=number] {
   border-radius: 0.325em;
   padding: 0.975em;
   padding-top: 1.5em;
+  margin: 2em 0;
+  max-height: 100%;
 }
 
 #result {

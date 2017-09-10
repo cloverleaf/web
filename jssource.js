@@ -1,8 +1,9 @@
+"use strict";
 var lastName = ""; // Name of last application
 var autoCompleteData = {}; //Here for scope perposes
 var jsonData = {}; //As am I.
 var defaultMinLength = 4; //We
-var defaultMaxLength = 255; //ALl
+var defaultMaxLength = 512; //All
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
@@ -111,7 +112,7 @@ function process() {
   var masterPass = $("#pass").val();
   var length = Math.trunc($("#length").val()); //Get the desired length of a password and make sure it's an integer
   var result = ""; //Has to be here, not in the loop for scope purposes
-  var minLength = 4;
+  var minLength = defaultMinLength;
 
   if (jsonData[appName]) { //If it's a site with a preset
 
@@ -132,13 +133,6 @@ function process() {
       //Setup custom regex
       regex = jsonData[appName]["regex"];
       var pattern = new RegExp(regex);
-    };
-
-    //If the preset has a custom minimum length
-    if ("minLength" in jsonData[appName]) {
-      //Use it. If there's no custom minimum length, it'll be 4
-      minLength = jsonData[appName]["minLength"]
-      //Updating the length field mins is handled by updateLimits()
     };
   };
 
@@ -186,9 +180,11 @@ function updateLimits() {
   if (jsonData[appName]) {
 
     //If it's an alias for another app
-    if (jsonData[appName]["alias"]) {
+    if (jsonData[appName]["alias"] && jsonData[jsonData[appName]["alias"]]) {
       //Change the name of the app we're using to its alias
       appName = jsonData[appName]["alias"];
+    } else if (jsonData[appName]["alias"] && !jsonData[jsonData[appName]["alias"]]) {
+      throw "Invalid alias"
     };
 
     //And that preset has a minLength
@@ -234,7 +230,13 @@ function reBindMouse(min, max) {
     if (delta > 0) {
       // Scrolling up
       if (parseInt(this.value) < max) {
-        this.value = parseInt(this.value) + 1;
+
+        if (parseInt(this.value) < min) {
+          this.value = min
+        } else {
+          this.value = parseInt(this.value) + 1;
+        };
+
 
         //Update password
         if ($("#pass").val() + $("#app").val() != "") {
@@ -244,7 +246,11 @@ function reBindMouse(min, max) {
     } else {
       // Scrolling down
       if (parseInt(this.value) > min) {
-        this.value = parseInt(this.value) - 1;
+        if (parseInt(this.value) > max) {
+          this.value = max
+        } else {
+          this.value = parseInt(this.value) - 1;
+        };
 
         //Just trim the password
         $("#result").text($("#result").text().substring(0, this.value));
@@ -262,6 +268,26 @@ function reBindMouse(min, max) {
 //On page load
 $(function() {
 
+  // Stop manual typing of invalid lengths
+  $("#length").on('keydown keyup', function(e){
+
+    if ($(this).val() > maxLength
+    && e.keyCode != 46 // delete
+    && e.keyCode != 8 // backspace
+    ) {
+     e.preventDefault();
+     $(this).val(maxLength);
+    } else if ($(this).val() < minLength
+      && e.keyCode != 46 // delete
+      && e.keyCode != 8 // backspace
+    ){
+      e.preventDefault();
+      $(this).val(minLength);
+    };
+    process();
+  });
+
+  updateLimits();
   reBindMouse();
 
   //Process the sites.json for the autocomplete structure
