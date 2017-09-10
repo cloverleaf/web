@@ -38,16 +38,16 @@
     <meta name="theme-color" content="#3f51b5">
 
     <!--Import materialize.css-->
-    <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <!--Styling css-->
-    <link async rel="stylesheet" type="text/css" href="compiled/style.min.css">
+    <link rel="stylesheet" type="text/css" href="compiled/style.min.css">
     <!--Import jQuery before materialize.js-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <!-- seedrandom.js-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js"></script>
     <!-- clipboard.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
+    <script async src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <!-- jquery-mousewheel for scrolling on number inputs -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
@@ -63,16 +63,16 @@
     </script>
   </head>
   <body>
-    
+
 
     <div id="box">
-      <div id="back">
+      <div id="back" role="main">
 
         <div class="input-field">
           <label for="app">Application</label>
           <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="updateLimits();" onchange="updateLimits();"/>
           <div id="logoContainer" class="input-group-addon suffix">
-            <img id="logo" draggable="false"></img>
+            <img id="logo" draggable="false" alt=""></img>
           </div>
         </div>
 
@@ -122,6 +122,15 @@
         <a href="http://www.enable-javascript.com/" target="_blank">This website requires js to work.</a>
       </div>
     </noscript>
+
+    <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker
+               .register('/sw.js')
+               .then(function() { console.log("Service Worker Registered"); });
+    }
+
+    </script>
 
   </body>
 </html>

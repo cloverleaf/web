@@ -7,7 +7,6 @@ var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
 
-
 function getQueryStrings() {
   var assoc  = {};
   var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
@@ -23,10 +22,6 @@ function getQueryStrings() {
 
   return assoc;
 }
-
-function loadPreset() {
-
-};
 
 //Setup
 window.onload = function() {
@@ -74,6 +69,7 @@ window.onload = function() {
 
       //Clear logo
       $("img#logo").attr("src","");
+      $("img#logo").attr("alt","");
     };
 
 
@@ -304,6 +300,7 @@ $(function() {
 
         //Set image
         $("img#logo").attr("src", json[appName]["logo"]);
+        $("img#logo").attr("alt", appName);
       }
       // Set the app name
       $("#app").val(appName);
@@ -345,6 +342,7 @@ $(function() {
 
         //Set image
         $("img#logo").attr("src", json[val]["logo"]);
+        $("img#logo").attr("alt", val)
       },
       minLength: 0,
     });

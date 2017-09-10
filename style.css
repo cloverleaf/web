@@ -2,7 +2,7 @@
 :root {
   --accentColor: #3f51b5;
   --lightAccent: #6d78b5;
-  --textColor: #9e9e9e;
+  --textColor: #535353;
   --incorrectColor: #F44336;
   --correctColor: #5cb85c; /* Bootstrap green */
 }
@@ -37,6 +37,7 @@ body {
 }
 
 label {
+  color: var(--textColor) !important;
   font-size: 1.5rem !important;
 }
 
@@ -113,6 +114,8 @@ input#length {
 #faq {
   float: right;
   cursor: help;
+  font-weight: 500;
+  color: #00539B;
 }
 
 .cf:before, .cf:after {
@@ -132,10 +135,6 @@ Include this rule to trigger hasLayout and contain floats.
 
 .cf {
   *zoom: 1;
-}
-
-a {
-  font-weight: 500;
 }
 
 ul.autocomplete-content.dropdown-content {
