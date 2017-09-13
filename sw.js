@@ -49,7 +49,7 @@ return cache.addAll([
 'logos/PayPal.svg',
 'logos/Reddit.svg',
 'logos/Skype.svg',
-'logos/Songsterr.svg',
+'logos/Songsterr.png',
 'logos/Soundcloud.svg',
 'logos/Spotify.svg',
 'logos/Steam.svg',
