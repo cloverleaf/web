@@ -197,7 +197,7 @@
     "alias":"Microsoft"
   },
   "Songsterr":{
-    "logo":"logos/Songsterr.svg",
+    "logo":"logos/Songsterr.png",
     "minLength":5,
     "maxLength":200
   },
