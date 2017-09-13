@@ -202,7 +202,7 @@
     "maxLength":200
   },
   "Soundcloud":{
-    "logo":"logos/SoundCloud.svg",
+    "logo":"logos/Soundcloud.svg",
     "minLength":6,
     "maxLength":2048
   },
