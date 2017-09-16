@@ -7,15 +7,17 @@ var defaultMaxLength = 512; //All
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
+var theme = "discord";
+var themeData = {};
 
 function getQueryStrings() {
   var assoc  = {};
   var decode = function (s) { return decodeURIComponent(s.replace(/\+/g, " ")); };
   var queryString = location.search.substring(1);
-  var keyValues = queryString.split('&');
+  var keyValues = queryString.split("&");
 
   for(var i in keyValues) {
-    var key = keyValues[i].split('=');
+    var key = keyValues[i].split("=");
     if (key.length > 1) {
       assoc[decode(key[0])] = decode(key[1]);
     }
@@ -28,14 +30,14 @@ function getQueryStrings() {
 window.onload = function() {
 
   //Initialize the copy button
-  var clipboard = new Clipboard('#copy');
+  var clipboard = new Clipboard("#copy");
 
-  clipboard.on('success', function(e) {
-    Materialize.toast('Successfully copied!', 4000, "success")
+  clipboard.on("success", function(e) {
+    Materialize.toast("Successfully copied!", 4000, "success")
   });
 
   //on change of password submit
-  $('#pass').on('keyup', function(e) {
+  $("#pass").on("keyup", function(e) {
     //If the password field has something in it
     if ($("#app").val() != "" && $("#pass").val() != "") {
       process();
@@ -46,11 +48,11 @@ window.onload = function() {
   });
 
   //Executed when you type in the app field
-  $('#app').on('keyup', function(e) {
+  $("#app").on("keyup", function(e) {
     //If they pressed enter and the suggestions are open
     if(e.which == 13 && $("ul.autocomplete-content").height() > 0) {
       //Click first result
-      $("ul.autocomplete-content li:first").mousedown();;
+      $("ul.autocomplete-content li:first").mousedown();
     };
     var c = $("#app").val();
 
@@ -69,40 +71,63 @@ window.onload = function() {
       };
 
       //Clear logo
-      $("img#logo").attr("src","");
-      $("img#logo").attr("alt","");
+      $("#logoContainer").css("display","none");
+      $("img#logo").removeAttr("src");
+      $("img#logo").removeAttr("alt");
+      $("img#logo").removeAttr("title");
     };
 
 
   });
 
   //On change in length field up and down or typing (not scrolling)
-  $('#length').on('input', function() {
+  $("#length").on("input", function() {
     //If we've decreased the length
-    if ($('#length').val() < currentLength) {
+    if ($("#length").val() < currentLength) {
       //Just trim the password
-      $("#result").text($("#result").text().substring(0, $('#length').val()));
+      $("#result").text($("#result").text().substring(0, $("#length").val()));
     } else {//If we've increased in length
       //If both the password field and the app field have something in them.
       if ($("#pass").val() != "" && $("#app").val() != "") {
         process();
       };
     };
-    currentLength = parseInt($('#length').val());
+    currentLength = parseInt($("#length").val());
   });
 };
 
 //For showing / hiding the password
 function passwordToggle() {
   //If the switch is on / to the right / "Hide"
-  if ($("#passwordToggle").prop('checked')) {
+  if ($("#passwordToggle").prop("checked")) {
     //Make the password field use blobs
-    $("#pass").attr('type', 'password');
+    $("#pass").attr("type", "password");
   } else { //If it's off
     //Make the password field use actual text so you can see/copy it.
-    $("#pass").attr('type', 'text');
+    $("#pass").attr("type", "text");
   };
 };
+
+function changeTheme(theme){
+
+  if (!themeData[theme]){
+    throw "invalid theme: "+theme;
+  } else {
+    var html = document.getElementsByTagName('html')[0];
+    document.documentElement.style.setProperty("--accentColor", themeData[theme]["accent"]);
+    document.documentElement.style.setProperty("--lightAccent", themeData[theme]["lightAccent"]);
+    document.documentElement.style.setProperty("--textColor", themeData[theme]["text"]);
+    document.documentElement.style.setProperty("--backgroundColor", themeData[theme]["background"]);
+    document.documentElement.style.setProperty("--internalColor", themeData[theme]["internal"]);
+    document.documentElement.style.setProperty("--incorrectColor", themeData[theme]["incorrect"]);
+    document.documentElement.style.setProperty("--correctColor", themeData[theme]["correct"]);
+    document.documentElement.style.setProperty("--inputColor", themeData[theme]["inputColor"]);
+    document.documentElement.style.setProperty("--linkColor", themeData[theme]["linkColor"]);
+  };
+
+};
+
+
 
 //Take inputs and display a password. (The black box)
 function process() {
@@ -162,7 +187,7 @@ function process() {
 
   //Display password
   $("#result").text(result);
-  $("#copy").css('display', 'block');
+  $("#copy").css("display", "block");
 };
 
 //on application name change
@@ -239,7 +264,7 @@ function reBindMouse(min, max) {
 
 
         //Update password
-        if ($("#pass").val() + $("#app").val() != "") {
+        if ($("#pass").val() != "" && $("#app").val() != "") {
           process();
         }
       }
@@ -252,8 +277,11 @@ function reBindMouse(min, max) {
           this.value = parseInt(this.value) - 1;
         };
 
-        //Just trim the password
-        $("#result").text($("#result").text().substring(0, this.value));
+        //Update password
+        // Can't trim since regexes exist
+        if ($("#pass").val() != "" && $("#app").val() != "") {
+          process();
+        };
       };
     };
 
@@ -269,7 +297,7 @@ function reBindMouse(min, max) {
 $(function() {
 
   // Stop manual typing of invalid lengths
-  $("#length").on('keydown keyup', function(e){
+  $("#length").on("keydown keyup", function(e){
 
     if ($(this).val() > maxLength
     && e.keyCode != 46 // delete
@@ -325,8 +353,10 @@ $(function() {
         }
 
         //Set image
+        $("#logoContainer").css("display","flex");
         $("img#logo").attr("src", json[appName]["logo"]);
         $("img#logo").attr("alt", appName);
+        $("img#logo").attr("title", appName);
       }
       // Set the app name
       $("#app").val(appName);
@@ -338,7 +368,7 @@ $(function() {
     });
 
     //Setup possible autocomplete sites
-    $('input#app').autocomplete({
+    $("input#app").autocomplete({
       data: autoCompleteData,
 
       //called when an autocomplete is used.
@@ -367,21 +397,27 @@ $(function() {
         }
 
         //Set image
+        $("#logoContainer").css("display","flex");
         $("img#logo").attr("src", json[val]["logo"]);
         $("img#logo").attr("alt", val)
+        $("img#logo").attr("title", val);
       },
       minLength: 0,
     });
 
   });
 
+  $.getJSON("data/themes.json", function(json) {
+    themeData = json;
+    changeTheme(theme);
+  });
 });
 
 function save() { //Save the current master password as a cookie
 
   if ($("#pass").val()) { // If there's a password
     document.cookie = "password=" + $("#pass").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; //Set cookie with no expiration date (Close enough)
-    Materialize.toast('Password saved to your device!', 4000, "success");
+    Materialize.toast("Password saved to your device!", 4000, "success");
   };
 
 };
@@ -399,9 +435,9 @@ function load() { //Load the saved password from cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
     $("#pass").val(password); //Fill the password input with the correct password
     process();
-    Materialize.toast('Password loaded from your device!', 4000, "success");
+    Materialize.toast("Password loaded from your device!", 4000, "success");
   } else {
-    Materialize.toast('You have no saved password to load.', 4000, "warning");
+    Materialize.toast("You have no saved password to load.", 4000, "warning");
   };
 };
 

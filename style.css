@@ -3,13 +3,18 @@
   --accentColor: #3f51b5;
   --lightAccent: #6d78b5;
   --textColor: #535353;
+  --backgroundColor: #fff;
+  --internalColor: #fff;
   --incorrectColor: #F44336;
   --correctColor: #5cb85c; /* Bootstrap green */
+  --inputColor: #000;
+  --linkColor: #00539B;
 }
 
 html,
 body {
     height: 100% !important;
+    color: var(--inputColor);
 }
 
 body {
@@ -19,8 +24,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
-  /* Incase someone has meddled with userstyles */
+  background-color: var(--backgroundColor);
 }
 
 #box {
@@ -41,9 +45,11 @@ label {
   font-size: 1.5rem !important;
 }
 
+.input-field input[type=text], .input-field input[type=number], .input-field input[type=password] {
+  border-bottom: 1px solid var(--textColor);
+}
 
 /* label underline focus color */
-
 .input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
   border-bottom: 1px solid var(--accentColor) !important;
   box-shadow: 0 1px 0 0 var(--accentColor) !important;
@@ -68,6 +74,7 @@ input[type=number] {
 
 #back {
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
+  background-color: var(--internalColor);
   border-radius: 0.325em;
   padding: 0.975em;
   padding-top: 1.5em;
@@ -105,7 +112,7 @@ input[type=number] {
 input, textarea {
   font-size: 1.56rem;
   padding: 0.65rem;
-  color: #000;
+  color: var(--inputColor) !important;
   margin: 0 0 0.8rem 0 !important;
 }
 
@@ -117,7 +124,7 @@ input#length {
   float: right;
   cursor: help;
   font-weight: 500;
-  color: #00539B;
+  color: var(--linkColor);
 }
 
 .cf:before, .cf:after {
@@ -140,11 +147,20 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 87px) ,#fff calc(100% - 87px) );
   position: absolute !important;
   width: calc(100% - 3rem);
   max-height: 300%;
   overflow-y: auto;
   top: 4.85em;
+}
+
+ul.autocomplete-content.dropdown-content li{
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 70px) ,#fff calc(100% - 70px) );
+}
+
+ul.autocomplete-content.dropdown-content li:hover{
+  background: linear-gradient(to right, var(--internalColor) 0%, var(--internalColor) calc(100% - 70px) ,#fff calc(100% - 70px) );
 }
 
 ul.autocomplete-content.dropdown-content span {
@@ -225,7 +241,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 .icon {
-  fill: #333;
+  fill: var(--textColor);
   transition: fill .2s;
   cursor: pointer;
 }
@@ -268,14 +284,14 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   font-size: 10vmin;
   top:0px;
   left:0px;
-  color: #fff;
+  color: var(--backgroundColor);
   -webkit-text-stroke-width: 3px !important;
-   -webkit-text-stroke-color: #000 !important;
+   -webkit-text-stroke-color: var(--inputTextColor) !important;
 }
 
 #jsBanner a {
-  color: #fff;
-  -webkit-text-stroke: 3px #000;
+  color: var(--backgroundColor);
+  -webkit-text-stroke: 3px var(--inputTextColor);;
   text-decoration: underline;
 }
 
@@ -301,5 +317,13 @@ ul:empty {
 }
 
 #logoContainer { /* For portrait logos so they don't oversize */
+  right:-5px;
+  background: #fff;
+  padding: 3px;
+  border-radius: 5px;
+  width: calc(3rem + 0.1em);
   height: calc(3rem + 0.1em);
+  display: none;
+  justify-content: center;
+  align-items: center;
 }

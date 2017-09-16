@@ -131,6 +131,12 @@
     "minLength":6,
     "maxLength":100
   },
+  "last.fm":{
+    "minLength":6,
+    "maxLength":128,
+    "logo":"logos/last.fm.svg",
+    "regex":"\\S*(?=\\S{6,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*"
+  },
   "LinkedIn":{
     "logo":"logos/linkedin.svg",
     "minLength":6
@@ -182,11 +188,21 @@
     "minLength":8,
     "maxLength":255
   },
+  "Patreon":{
+    "minLength":6,
+    "logo":"logos/Patreon.svg"
+  },
   "PayPal":{
     "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*",
     "minLength":8,
     "maxLength":20,
     "logo":"logos/PayPal.svg"
+  },
+  "plug.dj":{
+    "minLength":8,
+    "maxLength":128,
+    "logo":"logos/plug.dj.png",
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])\\S*"
   },
   "Reddit":{
     "minLength":6,
@@ -235,6 +251,10 @@
     "regex":"^(?=.*[A-Za-z]){8,}",
     "minLength":8,
     "maxLength":16
+  },
+  "Uplay":{
+    "logo":"logos/Uplay.svg",
+    "alias":"Ubisoft"
   },
   "VK":{
     "minLength":6,
