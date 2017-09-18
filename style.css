@@ -148,7 +148,7 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 87px) ,#fff calc(100% - 87px) );
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 87px) ,#fff calc(100% - 9px) );
   position: absolute !important;
   width: calc(100% - 3rem);
   max-height: 300%;
@@ -334,6 +334,22 @@ form p label {
 input[type="radio"]:checked+label::before {
   box-shadow: 0px 0px 3px 1px var(--textColor);
 }
+
+
+::-webkit-scrollbar {
+  width: 17px !important;
+}
+
+
+::-webkit-scrollbar-track {
+	background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 50%;
+	background-color: rgba(0,0,0,0.5);
+}
+
 
 /* If we're on a small/mobile device */
 
