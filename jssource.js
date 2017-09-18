@@ -108,21 +108,21 @@ function passwordToggle() {
   };
 };
 
-function changeTheme(theme){
+function changeTheme(passedTheme){
 
-  if (!themeData[theme]){
-    throw "invalid theme: "+theme;
+  if (!themeData[passedTheme]){
+    throw "invalid theme: "+passedTheme;
   } else {
     var html = document.getElementsByTagName('html')[0];
-    document.documentElement.style.setProperty("--accentColor", themeData[theme]["accent"]);
-    document.documentElement.style.setProperty("--lightAccent", themeData[theme]["lightAccent"]);
-    document.documentElement.style.setProperty("--textColor", themeData[theme]["text"]);
-    document.documentElement.style.setProperty("--backgroundColor", themeData[theme]["background"]);
-    document.documentElement.style.setProperty("--internalColor", themeData[theme]["internal"]);
-    document.documentElement.style.setProperty("--incorrectColor", themeData[theme]["incorrect"]);
-    document.documentElement.style.setProperty("--correctColor", themeData[theme]["correct"]);
-    document.documentElement.style.setProperty("--inputColor", themeData[theme]["inputColor"]);
-    document.documentElement.style.setProperty("--linkColor", themeData[theme]["linkColor"]);
+    document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
+    document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme]["lightAccent"]);
+    document.documentElement.style.setProperty("--textColor", themeData[passedTheme]["text"]);
+    document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme]["background"]);
+    document.documentElement.style.setProperty("--internalColor", themeData[passedTheme]["internal"]);
+    document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme]["incorrect"]);
+    document.documentElement.style.setProperty("--correctColor", themeData[passedTheme]["correct"]);
+    document.documentElement.style.setProperty("--inputColor", themeData[passedTheme]["inputColor"]);
+    document.documentElement.style.setProperty("--linkColor", themeData[passedTheme]["linkColor"]);
   };
 
 };
