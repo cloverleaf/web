@@ -1,5 +1,5 @@
 {
-  "vanilla":{
+  "Vanilla":{
     "accent": "#3f51b5",
     "lightAccent": "#6d78b5",
     "text": "#535353",
@@ -10,7 +10,7 @@
     "inputColor": "#000",
     "linkColor": "#00539B"
   },
-  "discord":{
+  "Discord":{
     "accent": "#3f51b5",
     "lightAccent": "#6d78b5",
     "text": "#ffffff",
@@ -20,5 +20,16 @@
     "correct": "#5cb85c",
     "inputColor": "#C0BABC",
     "linkColor": "#1c96c5"
+  },
+  "SolarizedDark":{
+    "accent": "#3f51b5",
+    "lightAccent": "#6d78b5",
+    "text": "#93a1a1",
+    "background": "#073642",
+    "internal": "#002b36",
+    "incorrect": "#F44336",
+    "correct": "#5cb85c",
+    "inputColor": "#839496",
+    "linkColor": "#268bd2"
   }
 }

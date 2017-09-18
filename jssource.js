@@ -7,7 +7,7 @@ var defaultMaxLength = 512; //All
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
-var theme = "vanilla";
+var defaultTheme = "Vanilla";
 var themeData = {};
 
 function getQueryStrings() {
@@ -110,7 +110,9 @@ function passwordToggle() {
 
 function changeTheme(passedTheme){
 
-  if (!themeData[passedTheme]){
+  if (passedTheme=="") {
+    passedTheme = defaultTheme;
+  } else if (!themeData[passedTheme]) {
     throw "invalid theme: "+passedTheme;
   } else {
     var html = document.getElementsByTagName('html')[0];
@@ -407,10 +409,20 @@ $(function() {
 
   });
 
+
   $.getJSON("data/themes.json", function(json) {
     themeData = json;
-    changeTheme(theme);
+    $.each(themeData, function(index, item){
+      $("#themeForm").append("<p><input name='themes' class='with-gap' onclick='changeTheme(\""+index+"\");' type='radio' id='"+index+"' /><label for='"+index+"'></label></p>");
+      $("head").append("<style>form label[for="+index+"]::before{background-color: "+themeData[index]["accent"]+" !important; border: none !important;}</style>");
+      $("head").append("<style>form label[for="+index+"]::after{border: none !important; transform: scale(0.6) !important; background-color: "+themeData[index]["background"]+" !important;}</style>");
+    });
+    //Click the first radio button (Vanilla)
+    $("input[name='themes'][type=radio]").first().prop("checked", true);
+    changeTheme(defaultTheme);
   });
+
+
 });
 
 function save() { //Save the current master password as a cookie

@@ -84,6 +84,11 @@
     "regex":"\\S*(?=\\S{8,})(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*[\\d])\\S*",
     "logo":"logos/GiffGaff.svg"
   },
+  "GIPHY":{
+    "minLength":1,
+    "maxLength":128,
+    "logo":"logos/GIPHY.svg"
+  },
   "Github":{
     "minLength":7,
     "maxLength":72,
@@ -187,6 +192,10 @@
     "logo":"logos/OpenStreetMap.svg",
     "minLength":8,
     "maxLength":255
+  },
+  "Pastebin":{
+    "logo":"logos/Pastebin.png",
+    "minLength":4
   },
   "Patreon":{
     "minLength":6,
