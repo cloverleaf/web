@@ -7,7 +7,7 @@ var defaultMaxLength = 512; //All
 var minLength = defaultMinLength; //Are,
 var maxLength = defaultMaxLength; //Really
 var currentLength = 16;
-var theme = "discord";
+var theme = "vanilla";
 var themeData = {};
 
 function getQueryStrings() {
