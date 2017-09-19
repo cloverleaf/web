@@ -96,16 +96,16 @@ function changeTheme(passedTheme) {
     throw "invalid theme: "+passedTheme;
   } else {
     var html = document.getElementsByTagName('html')[0];
-    document.documentElement.style.setProperty = sp;
-    sp("--accentColor", themeData[passedTheme]["accent"]);
-    sp("--lightAccent", themeData[passedTheme]["lightAccent"]);
-    sp("--textColor", themeData[passedTheme]["text"]);
-    sp("--backgroundColor", themeData[passedTheme]["background"]);
-    sp("--internalColor", themeData[passedTheme]["internal"]);
-    sp("--incorrectColor", themeData[passedTheme]["incorrect"]);
-    sp("--correctColor", themeData[passedTheme]["correct"]);
-    sp("--inputColor", themeData[passedTheme]["inputColor"]);
-    sp("--linkColor", themeData[passedTheme]["linkColor"]);
+
+    document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
+    document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme]["lightAccent"]);
+    document.documentElement.style.setProperty("--textColor", themeData[passedTheme]["text"]);
+    document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme]["background"]);
+    document.documentElement.style.setProperty("--internalColor", themeData[passedTheme]["internal"]);
+    document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme]["incorrect"]);
+    document.documentElement.style.setProperty("--correctColor", themeData[passedTheme]["correct"]);
+    document.documentElement.style.setProperty("--inputColor", themeData[passedTheme]["inputColor"]);
+    document.documentElement.style.setProperty("--linkColor", themeData[passedTheme]["linkColor"]);
   };
 
 };
