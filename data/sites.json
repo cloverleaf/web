@@ -142,6 +142,10 @@
     "logo":"logos/last.fm.svg",
     "regex":"\\S*(?=\\S{6,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*"
   },
+  "lernu":{
+    "logo":"logos/lernu.svg",
+    "minLength":5
+  },
   "LinkedIn":{
     "logo":"logos/linkedin.svg",
     "minLength":6
@@ -272,6 +276,10 @@
   "Wikipedia":{
     "minLength":1,
     "logo":"logos/Wikipedia.svg"
+  },
+  "Wish":{
+    "logo":"logos/Wish.svg",
+    "minLength":1
   },
   "Xbox":{
     "logo":"logos/Xbox.svg",

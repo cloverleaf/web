@@ -336,16 +336,16 @@ input[type="radio"]:checked+label::before {
 }
 
 
-::-webkit-scrollbar {
+.dropdown-content::-webkit-scrollbar {
   width: 17px !important;
 }
 
 
-::-webkit-scrollbar-track {
+.dropdown-content::-webkit-scrollbar-track {
 	background-color: #F5F5F5;
 }
 
-::-webkit-scrollbar-thumb {
+.dropdown-content::-webkit-scrollbar-thumb {
   border-radius: 50%;
 	background-color: rgba(0,0,0,0.5);
 }

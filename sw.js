@@ -67,6 +67,7 @@ self.addEventListener("install", function(e) {
         "logos/Uplay.svg",
         "logos/VK.svg",
         "logos/Wikipedia.svg",
+        "logos/Wish.svg",
         "logos/Xbox.svg",
         "logos/Yahoo.svg",
         "logos/YouTube.svg",
