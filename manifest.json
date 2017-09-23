@@ -2,7 +2,7 @@
   "lang": "en",
   "name": "Perdola",
   "short_name": "Perdola",
-  "description": "Perdola is a free, open source website that generates secure passwords on demand.",
+  "description": "Perdola is a free, open source app to replace your password manager without storing them anywhere .",
   "icons": [{
       "src": "icons/android-chrome-192x192.png",
       "sizes": "192x192",

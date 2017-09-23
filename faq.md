@@ -5,20 +5,29 @@
 
 **A:** This is a complete redesign of the traditional password generator/storage system. Instead of relying on a hard drive to not to fail, or that backup you keep forgetting to make, Perdola makes a password based on your master password and the application you want a password for. This generated password will be the same every time, no matter what device you're on. You can then copy this and paste it into the app you want to log into.
 
-
+<br/>
 
 **Q:** How do I know you're not looking at my passwords?:
 
 **A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/ChildishGiant/perdola) for the website, smash your router and run Perdola offline (Not that I'd recommend smashing your router.)
 
+<br/>
 
 <a name="remake">**Q:** Why did you remake an existing product?:</a>
 
-**A:** I've openly acknowledged that Perdola is based off the concept of "[Master Password](https://masterpasswordapp.com/)" but why would I spend all this time re-making a working piece of software? The answer is simple: *I don't like how master password works.* It has many different offshoots that all look different. It takes 6 variables to make a password and 30 seconds to load (Yes, I timed it.). It makes everything harder than it should be. And that was my motivation to make Perdola. I absolutely love the concept of secure passwords without storing them but hate the current solutions.
+**A:** I've openly acknowledged that Perdola is based off the concept of "[Master Password](https://masterpasswordapp.com/)" but why would I spend all this time re-making a working piece of software? The answer is simple: *I don't like how Master Password works.* It has many different offshoots that all look different. It takes 6 variables to make a password and 30 seconds to load (Yes, I timed it.). It makes everything harder than it should be. And that was my motivation to make Perdola. I absolutely love the concept of secure passwords without storing them but hate the current solutions.
+
+<br/>
 
 **Q:** My favourite app isn't on Perdola!!!!1!:
 
 **A:** That's not a question but there is something you can do about it! Submit an issue [on github](https://github.com/ChildishGiant/perdola/issues/new) specifying the site you want added and I'll do my best to add it.
+
+<br/>
+
+**Q:** What if I have multiple accounts on one service?:
+
+**A:** There isn't a system in place for this but there doesn't need to be since you can just type `ACCOUNTNAME PASSWORD` in the password field to get the password for that account.
 
 <style
   type="text/css">
@@ -43,9 +52,6 @@
   a[href]:active {
     color: #2980b9;
   }
-  p{
-    padding: 10px 1em;
-  }
   em{
     font-style: normal;
     background-color: #ffff87;
@@ -56,5 +62,11 @@
   a:target {
     text-decoration: underline;
     font-weight: bold;
+  }
+
+  code{
+    background-color: #eee;
+    box-shadow: 3px 0 0 #eee, -3px 0 0 #eee;
+    border-radius: 3px;    
   }
 </style>

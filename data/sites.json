@@ -1,4 +1,18 @@
 {
+  "AliExpress":{
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "minLength":6,
+    "maxLength":20,
+    "logo":"logos/AliExpress.png"
+  },
+  "Alipay":{
+    "alias":"AliExpress",
+    "logo":"logos/Alipay.svg"
+  },
+  "allegorithmic":{
+    "logo":"logos/allegorithmic.svg",
+    "minLength":1
+  },
   "Amazon":{
     "minLength":6,
     "logo":"logos/Amazon.svg"
@@ -19,6 +33,10 @@
   "Bing":{
     "logo":"logos/Bing.svg",
     "alias":"Microsoft"
+  },
+  "Blend Swap":{
+    "minLength":8,
+    "logo":"logos/Blend Swap.svg"
   },
   "Channel 4":{
     "logo":"logos/Channel_4.svg",
@@ -65,6 +83,11 @@
   "Facebook":{
     "minLength":6,
     "logo":"logos/Facebook.svg"
+  },
+  "FANDOM":{
+    "logo":"logos/Fandom.svg",
+    "minLength":1,
+    "maxLength":50
   },
   "Flickr":{
     "logo":"logos/Flickr.svg",
@@ -113,6 +136,11 @@
     "minLength":6,
     "maxLength":72,
     "logo":"logos/guardian.svg"
+  },
+  "HitFilm":{
+    "logo":"logos/hitfilm.png",
+    "minLength":8,
+    "maxLength":25
   },
   "Humble Bundle":{
     "minLength":4,
@@ -216,6 +244,10 @@
     "maxLength":128,
     "logo":"logos/plug.dj.png",
     "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])\\S*"
+  },
+  "Pocket":{
+    "logo":"logos/pocket.svg",
+    "minLength":6
   },
   "Reddit":{
     "minLength":6,

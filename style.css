@@ -9,6 +9,7 @@
   --correctColor: #5cb85c; /* Bootstrap green */
   --inputColor: #000;
   --linkColor: #00539B;
+  --highlightColor: #eee;
 }
 
 html,
@@ -59,6 +60,7 @@ label {
 input[type=text], input[type=number], input[type=password] {
   font-size: 3rem !important;
   padding-bottom: 0.1em !important;
+  box-sizing:border-box;
 }
 
 
@@ -160,12 +162,33 @@ ul.autocomplete-content.dropdown-content li{
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 70px) ,#fff calc(100% - 70px) );
 }
 
-ul.autocomplete-content.dropdown-content li:hover{
-  background: linear-gradient(to right, var(--internalColor) 0%, var(--internalColor) calc(100% - 70px) ,#fff calc(100% - 70px) );
+.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
+  color:red;
+  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) calc(100% - 70px) ,#fff calc(100% - 70px) ) !important;
 }
+
 
 ul.autocomplete-content.dropdown-content span {
   color: var(--textColor);
+}
+
+ul.autocomplete-content.dropdown-content span .highlight{
+  /*color: var(--inputColor);*/
+}
+
+.dropdown-content::-webkit-scrollbar {
+  width: 17px !important;
+}
+
+
+.dropdown-content::-webkit-scrollbar-track {
+  width: 17px;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  border-radius: 100vh;
+  width: 17px;
+	background-color: rgba(0,0,0,0.5);
 }
 
 li img.right.circle {
@@ -335,24 +358,11 @@ input[type="radio"]:checked+label::before {
   box-shadow: 0px 0px 3px 1px var(--textColor);
 }
 
-
-.dropdown-content::-webkit-scrollbar {
-  width: 17px !important;
+label:focus{
+    outline: none;
 }
-
-
-.dropdown-content::-webkit-scrollbar-track {
-	background-color: #F5F5F5;
-}
-
-.dropdown-content::-webkit-scrollbar-thumb {
-  border-radius: 50%;
-	background-color: rgba(0,0,0,0.5);
-}
-
 
 /* If we're on a small/mobile device */
-
 @media only all and (max-width:25em) {
   #back {
     /* Ditch loads of padding */

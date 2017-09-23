@@ -2,7 +2,7 @@
 var lastName = ""; // Name of last application
 var autoCompleteData = {}; // Here for scope perposes
 var jsonData = {}; // As am I.
-var defaultMinLength = 4; // We
+var defaultMinLength = 1; // We
 var defaultMaxLength = 512; // All
 var minLength = defaultMinLength; // Are,
 var maxLength = defaultMaxLength; // Really
@@ -48,6 +48,7 @@ window.onload = function() {
   $("#app").on("keyup", function(e) {
     // If they pressed enter and the suggestions are open
     if (e.which == 13 && $("ul.autocomplete-content").height() > 0) {
+      console.debug("Enter on dropdown");
       // Click first result
       $("ul.autocomplete-content li:first").mousedown();
     };
@@ -106,6 +107,7 @@ function changeTheme(passedTheme) {
     document.documentElement.style.setProperty("--correctColor", themeData[passedTheme]["correct"]);
     document.documentElement.style.setProperty("--inputColor", themeData[passedTheme]["inputColor"]);
     document.documentElement.style.setProperty("--linkColor", themeData[passedTheme]["linkColor"]);
+    document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme]["highlightColor"]);
   };
 
 };
@@ -131,6 +133,8 @@ function process() {
     // Stop function from generating new password
     return "App / pass empty";
   };
+
+  console.debug("Started generating password");
 
   if (jsonData[appName]) { // If it's a site with a preset
 
@@ -286,7 +290,7 @@ $(function() {
     // Letters including e -> 0
     var localLength =  Math.trunc($("#length").val());
 
-    // Ig
+    // Make sure the length is allowed
     if (localLength > maxLength
       && e.keyCode != 46 // delete
       && e.keyCode != 8 // backspace
@@ -388,6 +392,10 @@ $(function() {
       minLength: 0,
     });
 
+    // Autocomplete has been setup
+    // Move the cursor to the app field
+    $("#app").focus();
+
   });
 
 
@@ -402,7 +410,6 @@ $(function() {
     $("input[name='themes'][type=radio]").first().prop("checked", true);
     changeTheme(defaultTheme);
   });
-
 
 });
 
