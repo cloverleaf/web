@@ -17,6 +17,7 @@ body {
     height: 100% !important;
     color: var(--inputColor);
     text-align: center;
+    transition: background-color .3s ease, color .3s ease;
 }
 
 body {
@@ -45,10 +46,16 @@ body {
 label {
   color: var(--textColor) !important;
   font-size: 1.5rem !important;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
+}
+
+.input-field label{
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
 .input-field input[type=text], .input-field input[type=number], .input-field input[type=password] {
   border-bottom: 1px solid var(--textColor);
+  transition: border .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
 /* label underline focus color */
@@ -83,6 +90,7 @@ input[type=number] {
   padding-top: 1.5em;
   margin: 2em 0;
   max-height: 100%;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 #result {
@@ -110,6 +118,7 @@ input[type=number] {
   color: var(--textColor);
   width: 100%;
   text-align: left;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 input, textarea {
@@ -117,6 +126,7 @@ input, textarea {
   padding: 0.65rem;
   color: var(--inputColor) !important;
   margin: 0 0 0.8rem 0 !important;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 input#length {
@@ -178,15 +188,17 @@ ul.autocomplete-content.dropdown-content span .highlight{
 
 .dropdown-content::-webkit-scrollbar {
   width: 17px !important;
+  background-color: #fff !important;
 }
 
 
 .dropdown-content::-webkit-scrollbar-track {
   width: 17px;
+  background-color: #fff !important;
 }
 
 .dropdown-content::-webkit-scrollbar-thumb {
-  border-radius: 100vh;
+  border-radius: 100px;
   width: 17px;
 	background-color: rgba(0,0,0,0.5);
 }
