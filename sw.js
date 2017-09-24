@@ -25,7 +25,7 @@ self.addEventListener("install", function(e) {
         "logos/Etsy.svg",
         "logos/evernote.svg",
         "logos/Facebook.svg",
-        "logos/Fandom.svg",
+        "logos/FandomIcon.svg",
         "logos/Flickr.svg",
         "logos/genius.svg",
         "logos/Gfycat.svg",

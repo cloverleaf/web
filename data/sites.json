@@ -90,7 +90,7 @@
     "logo":"logos/Facebook.svg"
   },
   "FANDOM":{
-    "logo":"logos/Fandom.svg",
+    "logo":"logos/FandomIcon.svg",
     "minLength":1,
     "maxLength":50
   },
