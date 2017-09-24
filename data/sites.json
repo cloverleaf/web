@@ -23,6 +23,11 @@
     "logo":"logos/Apple.svg",
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
   },
+  "Artsy":{
+    "logo":"logos/artsy.svg",
+    "minLength":6,
+    "maxLength":128
+  },
   "BBC":{
     "logo":"logos/BBC.svg",
     "minLength":8,
