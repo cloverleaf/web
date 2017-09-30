@@ -6,333 +6,282 @@
     "logo":"logos/AliExpress.png"
   },
   "Alipay":{
-    "alias":"AliExpress",
-    "logo":"logos/Alipay.svg"
+    "alias":"AliExpress"
   },
   "allegorithmic":{
-    "logo":"logos/allegorithmic.svg",
     "minLength":1
   },
   "Amazon":{
-    "minLength":6,
-    "logo":"logos/Amazon.svg"
+    "minLength":6
   },
   "Apple":{
     "minLength":8,
     "maxLength":32,
-    "logo":"logos/Apple.svg",
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$"
   },
   "Artsy":{
-    "logo":"logos/artsy.svg",
     "minLength":6,
     "maxLength":128
   },
   "BBC":{
-    "logo":"logos/BBC.svg",
     "minLength":8,
     "maxLength":50,
     "regex":"^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$",
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
   "Bing":{
-    "logo":"logos/Bing.svg",
     "alias":"Microsoft"
   },
   "Blend Swap":{
-    "minLength":8,
-    "logo":"logos/Blend Swap.svg"
+    "minLength":8
   },
   "Channel 4":{
-    "logo":"logos/Channel_4.svg",
     "minLength":6,
     "maxLength":255
   },
   "Chrono.gg":{
-    "minLength":8,
-    "logo":"logos/chrono.svg"
+    "minLength":8
   },
   "DeviantArt":{
-    "logo":"logos/DeviantArt.svg",
     "minLength":6
   },
   "Discord":{
     "minLength":6,
-    "maxLength":128,
-    "logo":"logos/Discord.svg"
+    "maxLength":128
+  },
+  "Dribbble":{
+    "minLength":6,
+    "maxLength":128
   },
   "Dropbox":{
-    "minLength":6,
-    "logo":"logos/Dropbox.svg"
+    "minLength":6
   },
   "Duolingo":{
-    "minLength":6,
-    "logo":"logos/Duolingo.svg"
+    "minLength":6
   },
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "logo":"logos/eBay.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}"
   },
   "Etsy":{
-    "logo":"logos/Etsy.svg",
     "minLength":6,
     "maxLength":152
   },
   "Evernote":{
-    "logo":"logos/evernote.svg",
     "minLength":6,
     "maxLength":64
   },
   "Facebook":{
-    "minLength":6,
-    "logo":"logos/Facebook.svg"
+    "minLength":6
   },
   "FANDOM":{
-    "logo":"logos/FandomIcon.svg",
     "minLength":1,
     "maxLength":50
   },
   "Flickr":{
-    "logo":"logos/Flickr.svg",
     "alias":"Yahoo"
   },
   "Genius":{
-    "logo":"logos/genius.svg",
     "minLength":4,
     "maxLength":128
   },
   "Gfycat":{
     "minLength":8,
-    "maxLength":25,
-    "logo":"logos/Gfycat.svg"
+    "maxLength":25
   },
   "GiffGaff":{
     "regex":"\\S*(?=\\S{8,})(?=\\S*[a-z])(?=\\S*[A-Z])(?=\\S*[\\d])\\S*",
-    "logo":"logos/GiffGaff.svg"
+    "minLength":8
   },
   "GIPHY":{
     "minLength":1,
-    "maxLength":128,
-    "logo":"logos/GIPHY.svg"
+    "maxLength":128
   },
   "Github":{
     "minLength":7,
     "maxLength":72,
-    "logo":"logos/Github.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}"
   },
   "Guilded":{
-    "logo":"logos/guilded.svg",
     "minLength":8,
     "maxLength":128
   },
   "GOG":{
-    "minLength":2,
-    "logo":"logos/GOG.svg"
+    "minLength":2
   },
   "Google":{
     "minLength":8,
-    "maxLength":100,
-    "logo":"logos/Google.svg"
+    "maxLength":100
   },
   "the Guardian":{
     "minLength":6,
-    "maxLength":72,
-    "logo":"logos/guardian.svg"
+    "maxLength":72
   },
   "HitFilm":{
-    "logo":"logos/hitfilm.png",
     "minLength":8,
     "maxLength":25
   },
   "Humble Bundle":{
-    "minLength":4,
-    "logo":"logos/Humble_Bundle.svg"
+    "minLength":4
   },
   "IFTTT":{
-    "logo":"logos/ifttt.svg",
     "minLength":6
   },
   "Instagram":{
     "minLength":6,
-    "maxLength":255,
-    "logo":"logos/Instagram.svg"
+    "maxLength":255
   },
   "itch.io":{
-    "minLength":2,
-    "logo":"logos/itchio.svg"
+    "minLength":2
   },
   "itv":{
-    "logo":"logos/itv.svg",
     "minLength":6,
     "maxLength":100
+  },
+  "JustGiving":{
+    "minLength":6
   },
   "last.fm":{
     "minLength":6,
     "maxLength":128,
-    "logo":"logos/last.fm.svg",
     "regex":"\\S*(?=\\S{6,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*"
   },
   "lernu":{
-    "logo":"logos/lernu.svg",
     "minLength":5
   },
   "LinkedIn":{
-    "logo":"logos/linkedin.svg",
     "minLength":6
   },
   "Mapbox":{
-    "logo":"logos/mapbox.svg",
     "minLength":8,
     "maxLength":512
   },
   "Mega":{
-    "logo":"logos/Mega.svg",
     "minLength":8
   },
   "Messenger":{
-    "logo":"logos/Messenger.svg",
     "alias":"Facebook"
   },
   "Microsoft":{
-    "logo":"logos/Microsoft.svg",
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}",
     "minLength":8,
     "maxLength":127
   },
   "Minecraft":{
-    "logo":"logos/Minecraft.svg",
     "alias":"Mojang"
   },
   "Mojang":{
-    "logo":"logos/mojang.svg",
     "minLength":8,
     "maxLength":256
   },
   "MSN":{
-    "alias":"Microsoft",
-    "logo":"logos/MSN.svg"
+    "alias":"Microsoft"
   },
   "Netflix":{
-    "logo":"logos/Netflix.svg",
     "minLength":4,
     "maxLength":50
   },
   "Opera":{
     "minLength":12,
-    "maxLength":1000,
-    "logo":"logos/Opera.svg"
+    "maxLength":1000
   },
   "OpenStreetMap":{
-    "logo":"logos/OpenStreetMap.svg",
     "minLength":8,
     "maxLength":255
+  },
+  "Oxfam":{
+    "minLength":6
   },
   "Pastebin":{
     "logo":"logos/Pastebin.png",
     "minLength":4
   },
   "Patreon":{
-    "minLength":6,
-    "logo":"logos/Patreon.svg"
+    "minLength":6
   },
   "PayPal":{
     "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*",
     "minLength":8,
-    "maxLength":20,
-    "logo":"logos/PayPal.svg"
+    "maxLength":20
   },
   "plug.dj":{
     "minLength":8,
     "maxLength":128,
-    "logo":"logos/plug.dj.png",
     "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])\\S*"
   },
   "Pocket":{
-    "logo":"logos/pocket.svg",
     "minLength":6
   },
+  "Prezi":{
+    "minLength":8,
+    "maxLength":128
+  },
   "Reddit":{
-    "minLength":6,
-    "logo":"logos/Reddit.svg"
+    "minLength":6
   },
   "Skype":{
-    "logo":"logos/Skype.svg",
     "alias":"Microsoft"
   },
   "Songsterr":{
-    "logo":"logos/Songsterr.png",
     "minLength":5,
     "maxLength":200
   },
   "Soundcloud":{
-    "logo":"logos/Soundcloud.svg",
     "minLength":6,
     "maxLength":2048
   },
   "Spotify":{
-    "logo":"logos/Spotify.svg",
     "minLength":4
   },
   "Steam":{
-    "minLength":8,
-    "logo":"logos/Steam.svg"
+    "minLength":8
   },
   "tic.computer":{
-    "minLength":6,
-    "logo":"logos/tic-80.svg"
+    "minLength":6
   },
   "Tumblr":{
-    "logo":"logos/tumblr-logo-blue.svg",
     "alias":"Yahoo"
   },
   "Twitch":{
-    "minLength":8,
-    "logo":"logos/Twitch.svg"
+    "minLength":8
   },
   "Twitter":{
-    "minLength":6,
-    "logo":"logos/Twitter.svg"
+    "minLength":6
   },
   "Ubisoft":{
-    "logo":"logos/Ubisoft.svg",
     "regex":"^(?=.*[A-Za-z]){8,}",
     "minLength":8,
     "maxLength":16
   },
   "Uplay":{
-    "logo":"logos/Uplay.svg",
     "alias":"Ubisoft"
   },
+  "Vimeo":{
+    "regex":"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}",
+    "minLength":8,
+    "maxLength":72
+  },
   "VK":{
-    "minLength":6,
-    "logo":"logos/VK.svg"
+    "minLength":6
   },
   "Wikipedia":{
-    "minLength":1,
-    "logo":"logos/Wikipedia.svg"
+    "minLength":1
   },
   "Wish":{
-    "logo":"logos/Wish.svg",
     "minLength":1
   },
   "Xbox":{
-    "logo":"logos/Xbox.svg",
     "alias":"Microsoft"
   },
   "Yahoo":{
     "minLength":8,
-    "regex":"^(?=.*[A-Za-z])(?=.*\\d){8,}",
-    "logo":"logos/Yahoo.svg"
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d){8,}"
   },
   "YouTube":{
-    "alias":"Google",
-    "logo":"logos/YouTube.svg"
+    "alias":"Google"
   },
   "YoYo Games":{
-    "minLength":6,
-    "logo":"logos/yoyogames.svg"
+    "minLength":6
   }
 }

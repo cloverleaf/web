@@ -163,7 +163,7 @@ ul.autocomplete-content.dropdown-content {
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 87px) ,#fff calc(100% - 9px) );
   position: absolute !important;
   width: calc(100% - 3rem);
-  max-height: 300%;
+  max-height: 300%; /* 100% is one row */
   overflow-y: auto;
   top: 4.85em;
 }

@@ -1,3 +1,6 @@
+//Clear the console on reload for easier debugging
+console.clear();
+
 "use strict";
 var lastName = ""; // Name of last application
 var autoCompleteData = {}; // Here for scope perposes
@@ -27,9 +30,6 @@ function getQueryStrings() {
 
 // Setup
 window.onload = function() {
-
-  //Clear the console on reload for easier debugging
-  console.clear();
 
   // Initialize the copy button
   var clipboard = new Clipboard("#copy");
@@ -89,6 +89,7 @@ function passwordToggle() {
   };
 };
 
+
 function changeTheme(passedTheme) {
 
   if (passedTheme=="") {
@@ -96,6 +97,8 @@ function changeTheme(passedTheme) {
   } else if (!themeData[passedTheme]) {
     throw "invalid theme: "+passedTheme;
   } else {
+
+    document.cookie = "theme=" + passedTheme + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
     var html = document.getElementsByTagName('html')[0];
 
     document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
@@ -344,7 +347,7 @@ $(function() {
 
         // Set image
         $("#logoContainer").css("display","flex");
-        $("img#logo").attr("src", json[appName]["logo"]);
+        $("img#logo").attr("src", autoCompleteData[appName]);
         $("img#logo").attr("alt", appName);
         $("img#logo").attr("title", appName);
       }
@@ -354,7 +357,11 @@ $(function() {
     };
 
     $.each(json, function(i, val) {
-      autoCompleteData[i] = val.logo;
+      if (val.logo) {
+        autoCompleteData[i] = val.logo;
+      } else {
+        autoCompleteData[i] = "logos/"+i+".svg"
+      }
     });
 
     // Setup possible autocomplete sites
@@ -385,7 +392,7 @@ $(function() {
 
         // Set image
         $("#logoContainer").css("display","flex");
-        $("img#logo").attr("src", json[val]["logo"]);
+        $("img#logo").attr("src", autoCompleteData[val]);
         $("img#logo").attr("alt", val)
         $("img#logo").attr("title", val);
       },
@@ -406,9 +413,19 @@ $(function() {
       $("head").append("<style>form label[for="+index+"]::before{background-color: "+themeData[index]["accent"]+" !important; border: none !important;}</style>");
       $("head").append("<style>form label[for="+index+"]::after{border: none !important; transform: scale(0.6) !important; background-color: "+themeData[index]["background"]+" !important;}</style>");
     });
-    // Click the first radio button (Vanilla)
-    $("input[name='themes'][type=radio]").first().prop("checked", true);
-    changeTheme(defaultTheme);
+
+    // If the user has a prefered theme
+    if (getCookie("theme") != undefined) {
+      console.debug("Found a prefered theme. Loading " + getCookie("theme"));
+      changeTheme(getCookie("theme"));
+      // Use the clicked CSS for the button
+      $("#"+getCookie("theme")).prop("checked", true);
+    } else { // If no theme cookie exists
+      // Use the clicked CSS for the first radio button (Vanilla)
+      $("input[name='themes'][type=radio]").first().prop("checked", true);
+      changeTheme(defaultTheme);
+    };
+
   });
 
 });
@@ -430,7 +447,7 @@ function getCookie(name) {
 
 function load() { // Load the saved password from cookie
 
-  if (document.cookie.startsWith("password=")) {
+  if (getCookie("password") != undefined) {
     var password = getCookie("password"); // Get the password from the cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
     $("#pass").val(password); // Fill the password input with the correct password
