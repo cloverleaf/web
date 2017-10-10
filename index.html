@@ -8,7 +8,7 @@
     <title>Perdola</title>
 
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
-    <meta name="description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere .">
+    <meta name="description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere.">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
     <meta name="keywords" content="password manager, password generator, security, open source," />
@@ -19,7 +19,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- OpenGraph -->
-    <meta property="og:description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere ." />
+    <meta property="og:description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere." />
     <meta property="og:title" content="Perdola" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://childishgiant.github.io/perdola/" />
@@ -34,7 +34,7 @@
     <meta name="twitter:creator" content="@ChildishGiant" />
     <meta name="twitter:creator:id" content="871150969417084928" />
     <meta name="twitter:title" content="Perdola" />
-    <meta name="twitter:description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere ." />
+    <meta name="twitter:description" content="Perdola is a free, open source app to replace your password manager without storing them anywhere." />
     <meta name="twitter:image" content="https://childishgiant.github.io/perdola/icons/android-chrome-512x512.png" />
 
     <!-- Icons -->
@@ -113,7 +113,7 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" min="4" value="16" max="526"/>
+          <input id="length" type="number" step="1" min="4" value="16" max="526" onkeypress='return event.charCode >= 48 && event.charCode <= 57' oninput="process();" onkeyup="process();" />
         </div>
 
         <span class="hint">The longer, the better</span>
@@ -123,7 +123,7 @@
         <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password</button>
 
         <div id="footer" class="cf">
-          <a href="compiled/faq.html" id="faq" title="Help and FAQs">Help and FAQs</a>
+          <a href="/faq" id="faq" title="Help and FAQs">Help and FAQs</a>
         </div>
 
       </div>

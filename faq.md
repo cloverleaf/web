@@ -1,5 +1,4 @@
 # Frequently Asked Questions
-----
 
 **Q:** What is this and why should I use it?:
 

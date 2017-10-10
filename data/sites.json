@@ -64,6 +64,11 @@
     "maxLength":64,
     "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}"
   },
+  "Epic Games":{
+    "minLength":7,
+    "regex":"^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{7,}",
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
+  },
   "Etsy":{
     "minLength":6,
     "maxLength":152
@@ -128,6 +133,11 @@
   "IFTTT":{
     "minLength":6
   },
+  "imgur":{
+    "minLength":6,
+    "maxLength":255,
+    "regex":"^(?=.*[0-9])(?=.*[a-z]).{6,}$"
+  },
   "Instagram":{
     "minLength":6,
     "maxLength":255
@@ -152,6 +162,11 @@
   },
   "LinkedIn":{
     "minLength":6
+  },
+  "Lloyds Bank":{
+    "minLength":8,
+    "maxLength":15,
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   },
   "Mapbox":{
     "minLength":8,
@@ -205,6 +220,11 @@
     "minLength":8,
     "maxLength":20
   },
+  "pixiv":{
+    "minLength":6,
+    "maxLength":72,
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  },
   "plug.dj":{
     "minLength":8,
     "maxLength":128,
@@ -220,8 +240,17 @@
   "Reddit":{
     "minLength":6
   },
+  "Rockstar Games Social Club":{
+    "minLength":8,
+    "maxLength":30,
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Z])(?=\\S*[\\d])\\S*"
+  },
   "Skype":{
     "alias":"Microsoft"
+  },
+  "Snapchat":{
+    "minLength":8,
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Za-z])(?=\\S*[\\d])\\S*"
   },
   "Songsterr":{
     "minLength":5,
@@ -261,6 +290,10 @@
     "regex":"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,}",
     "minLength":8,
     "maxLength":72
+  },
+  "Vivaldi":{
+    "minLength":8,
+    "maxLength":254
   },
   "VK":{
     "minLength":6

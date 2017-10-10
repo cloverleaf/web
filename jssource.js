@@ -72,7 +72,7 @@ window.onload = function() {
   });
 
   // On change in length field up and down or typing (not scrolling)
-  $("#length").on("input", function() {
+  $("#length").on("input", function(event) {
     process();
   });
 };
@@ -137,9 +137,10 @@ function process() {
     return "App / pass empty";
   };
 
-  console.debug("Started generating password");
 
   if (jsonData[appName]) { // If it's a site with a preset
+
+    console.debug("Found preset: "+appName);
 
     // If it's an alias for another app
     if (jsonData[appName]["alias"]) {
@@ -159,7 +160,20 @@ function process() {
       regex = jsonData[appName]["regex"];
       var pattern = new RegExp(regex);
     };
+
+    if ("minLength" in jsonData[appName]) {
+      minLength = jsonData[appName]["minLength"];
+    };
   };
+
+
+  if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
+    $("#result").text("");
+    $("#copy").css("display", "none");
+    return;
+  }
+
+  console.debug("Started generating password");
 
   // Set the generation seed
   Math.seedrandom(appName.toLowerCase() + masterPass);
@@ -286,31 +300,6 @@ function reBindMouse(min, max) {
 // On page load
 $(function() {
 
-  // Stop manual typing of invalid lengths
-  $("#length").on("keydown keyup", function(e) {
-
-    // Make the length into an int
-    // Letters including e -> 0
-    var localLength =  Math.trunc($("#length").val());
-
-    // Make sure the length is allowed
-    if (localLength > maxLength
-      && e.keyCode != 46 // delete
-      && e.keyCode != 8 // backspace
-    ) {
-      e.preventDefault();
-      $(this).val(maxLength);
-    } else if (localLength < minLength
-      && e.keyCode != 46 // delete
-      && e.keyCode != 8 // backspace
-    ) {
-      e.preventDefault();
-      $(this).val(minLength);
-    };
-
-    process();
-  });
-
   updateLimits();
   reBindMouse();
 
@@ -336,7 +325,7 @@ $(function() {
           max = defaultMaxLength;
         };
 
-        if (!(json[appName]["minLength"] <= 16 <= max)) {
+        if (!(json[appName]["minLength"] <= 16 && 16 <= max)) {
           length = json[appName]["maxLength"];
         };
 
@@ -345,9 +334,17 @@ $(function() {
         // In case there's already a password (eg switching sites / presets) regen password
         process();
 
+
+        if (json[appName].logo) {
+          logo = json[appName].logo;
+        } else {
+          logo = "logos/"+appName+".svg"
+        };
+
+
         // Set image
         $("#logoContainer").css("display","flex");
-        $("img#logo").attr("src", autoCompleteData[appName]);
+        $("img#logo").attr("src", logo);
         $("img#logo").attr("alt", appName);
         $("img#logo").attr("title", appName);
       }
@@ -380,8 +377,8 @@ $(function() {
         if (!max) {
           max = defaultMaxLength;
         };
-
-        if (!(json[val]["minLength"] <= 16 <= max)) {
+                console.debug(max);
+        if (!(json[val]["minLength"] <= 16 && 16 <= max)) {
           length = json[val]["maxLength"];
         };
 
@@ -392,6 +389,7 @@ $(function() {
 
         // Set image
         $("#logoContainer").css("display","flex");
+        console.log(autoCompleteData[val]);
         $("img#logo").attr("src", autoCompleteData[val]);
         $("img#logo").attr("alt", val)
         $("img#logo").attr("title", val);
