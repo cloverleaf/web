@@ -11,6 +11,23 @@ var minLength = defaultMinLength; // Are,
 var maxLength = defaultMaxLength; // Really
 var defaultTheme = "Vanilla";
 var themeData = {};
+var debugMode = false;
+
+function checkDebug(){
+  if (debugMode) {
+    debug("Enabling debug css")
+    $('<link>').attr('rel','stylesheet')
+      .attr('type','text/css')
+      .attr('href','debug.css')
+      .appendTo('head');
+  }
+}
+
+function debug(text) {
+  if (debugMode) {
+    console.log(text);
+  }
+}
 
 function getQueryStrings() {
   var assoc  = {};
@@ -27,55 +44,6 @@ function getQueryStrings() {
 
   return assoc;
 }
-
-// Setup
-window.onload = function() {
-
-  // Initialize the copy button
-  var clipboard = new Clipboard("#copy");
-
-  clipboard.on("success", function(e) {
-    Materialize.toast("Successfully copied!", 4000, "success")
-  });
-
-  // on change of password submit
-  $("#pass").on("keyup", function(e) {
-    // Regen the password
-    process();
-  });
-
-  // Executed when you type in the app field
-  $("#app").on("keyup", function(e) {
-    // If they pressed enter and the suggestions are open
-    if (e.which == 13 && $("ul.autocomplete-content").height() > 0) {
-      console.debug("Enter on dropdown");
-      // Click first result
-      $("ul.autocomplete-content li:first").mousedown();
-    };
-    var c = $("#app").val();
-
-    // If you've changed the app name
-    if (lastName != c) {
-      lastName = c;
-      history.pushState(c, c);
-
-      process();
-
-      // Clear logo
-      $("#logoContainer").css("display","none");
-      $("img#logo").removeAttr("src");
-      $("img#logo").removeAttr("alt");
-      $("img#logo").removeAttr("title");
-    };
-
-
-  });
-
-  // On change in length field up and down or typing (not scrolling)
-  $("#length").on("input", function(event) {
-    process();
-  });
-};
 
 // For showing / hiding the password
 function passwordToggle() {
@@ -99,7 +67,7 @@ function changeTheme(passedTheme) {
   } else {
 
     document.cookie = "theme=" + passedTheme + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
-    var html = document.getElementsByTagName('html')[0];
+    var html = document.getElementsByTagName("html")[0];
 
     document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
     document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme]["lightAccent"]);
@@ -140,7 +108,7 @@ function process() {
 
   if (jsonData[appName]) { // If it's a site with a preset
 
-    console.debug("Found preset: "+appName);
+    debug("Found preset: "+appName);
 
     // If it's an alias for another app
     if (jsonData[appName]["alias"]) {
@@ -173,7 +141,7 @@ function process() {
     return;
   }
 
-  console.debug("Started generating password");
+  debug("Started generating password");
 
   // Set the generation seed
   Math.seedrandom(appName.toLowerCase() + masterPass);
@@ -377,7 +345,7 @@ $(function() {
         if (!max) {
           max = defaultMaxLength;
         };
-                console.debug(max);
+        debug(max);
         if (!(json[val]["minLength"] <= 16 && 16 <= max)) {
           length = json[val]["maxLength"];
         };
@@ -389,7 +357,7 @@ $(function() {
 
         // Set image
         $("#logoContainer").css("display","flex");
-        console.log(autoCompleteData[val]);
+        debug(autoCompleteData[val]);
         $("img#logo").attr("src", autoCompleteData[val]);
         $("img#logo").attr("alt", val)
         $("img#logo").attr("title", val);
@@ -414,7 +382,7 @@ $(function() {
 
     // If the user has a prefered theme
     if (getCookie("theme") != undefined) {
-      console.debug("Found a prefered theme. Loading " + getCookie("theme"));
+      debug("Found a prefered theme. Loading " + getCookie("theme"));
       changeTheme(getCookie("theme"));
       // Use the clicked CSS for the button
       $("#"+getCookie("theme")).prop("checked", true);
@@ -425,6 +393,53 @@ $(function() {
     };
 
   });
+
+  // Initialize the copy button
+  var clipboard = new Clipboard("#copy");
+
+  clipboard.on("success", function(e) {
+    Materialize.toast("Successfully copied!", 4000, "success")
+  });
+
+  // on change of password submit
+  $("#pass").on("keyup", function(e) {
+    // Regen the password
+    process();
+  });
+
+  // Executed when you type in the app field
+  $("#app").on("keyup", function(e) {
+    // If they pressed enter and the suggestions are open
+    if (e.which == 13 && $("ul.autocomplete-content").height() > 0) {
+      debug("Enter on dropdown");
+      // Click first result
+      $("ul.autocomplete-content li:first").mousedown();
+    };
+    var c = $("#app").val();
+
+    // If you've changed the app name
+    if (lastName != c) {
+      lastName = c;
+      history.pushState(c, c);
+
+      process();
+
+      // Clear logo
+      $("#logoContainer").css("display","none");
+      $("img#logo").removeAttr("src");
+      $("img#logo").removeAttr("alt");
+      $("img#logo").removeAttr("title");
+    };
+
+
+  });
+
+  // On change in length field up and down or typing (not scrolling)
+  $("#length").on("input", function(event) {
+    process();
+  });
+
+  checkDebug();
 
 });
 

@@ -1,0 +1,25 @@
+/* A list of css rules to make debugging easier */
+/* Should never be on in production versions */
+
+html:after {
+    content:"";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    border-left: 2px dotted #ff0000;
+    transform: translate(-50%);
+}
+
+li {
+  border-bottom: 1px red solid;
+}
+
+img{
+  background: salmon;
+}
+
+* {
+ outline: 1px solid red;
+}

@@ -34,5 +34,17 @@
     "inputColor": "#839496",
     "linkColor": "#268bd2",
     "highlightColor": "#002b36"
+  },
+  "OLED":{
+    "accent": "#3f51b5",
+    "lightAccent": "#6d78b5",
+    "text": "#d4d4d4",
+    "background": "#000",
+    "internal": "#000",
+    "incorrect": "#F44336",
+    "correct": "#5cb85c",
+    "inputColor": "#839496",
+    "linkColor": "#268bd2",
+    "highlightColor": "#0e0e0e"
   }
 }

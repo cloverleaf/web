@@ -2,8 +2,7 @@
   "AliExpress":{
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
     "minLength":6,
-    "maxLength":20,
-    "logo":"logos/AliExpress.png"
+    "maxLength":20
   },
   "Alipay":{
     "alias":"AliExpress"
@@ -204,6 +203,12 @@
   "OpenStreetMap":{
     "minLength":8,
     "maxLength":255
+  },
+  "Origin":{
+    "minLength":8,
+    "maxLength":16,
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "regex":"\\S*(?=\\S{8,})(?=\\S*[A-Z])(?=\\S*[\\d])(?=\\S*[a-z])\\S*"
   },
   "Oxfam":{
     "minLength":6

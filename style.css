@@ -14,10 +14,11 @@
 
 html,
 body {
-    height: 100% !important;
-    color: var(--inputColor);
-    text-align: center;
-    transition: background-color .3s ease, color .3s ease;
+  height: 100% !important;
+  color: var(--inputColor);
+  text-align: center;
+  transition: background-color .3s ease, color .3s ease;
+  font-size: 2vh;
 }
 
 body {
@@ -160,29 +161,39 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 87px) ,#fff calc(100% - 9px) );
+  background: -webkit-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
+  background: -o-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
   position: absolute !important;
   width: calc(100% - 3rem);
-  max-height: 300%; /* 100% is one row */
+  max-height: 299%;
   overflow-y: auto;
-  top: 4.85em;
+  top: 3.4em;
+  margin-top: 0px;
 }
 
-ul.autocomplete-content.dropdown-content li{
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) calc(100% - 70px) ,#fff calc(100% - 70px) );
+ul.autocomplete-content.dropdown-content li {
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
+  height: 4em;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
   color:red;
-  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) calc(100% - 70px) ,#fff calc(100% - 70px) ) !important;
+  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 70% ,#fff 70% ) !important;
 }
 
 
-ul.autocomplete-content.dropdown-content span {
+ul.autocomplete-content.dropdown-content span:not(.highlight) {
   color: var(--textColor);
+  position: relative;
+  top: 1.5rem;
+  font-size: 1.5rem;
+  padding:0px 15px;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight{
+  color: var(--textColor);
+  font-size: 1.5rem;
   /*color: var(--inputColor);*/
 }
 
@@ -204,8 +215,9 @@ ul.autocomplete-content.dropdown-content span .highlight{
 }
 
 li img.right.circle {
-  position: absolute;
-  right: 0px !important;
+  width: calc(30% - 10px);
+  height: calc(100% - 10px);
+  margin:5px;
 }
 
 
@@ -351,19 +363,30 @@ ul:empty {
   transform: translate(-50%, 0px);
 }
 
-form p {
+#themePicker label, #themePicker label::before, #themePicker label::after {
+  height: 2.5rem;
+  width: 2.5rem;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+
+#themeForm p {
+  text-align: center;
   display: inline-block;
   margin-bottom: 0px;
   -webkit-margin-before: 0px;
   -webkit-margin-after: 0px;
-  width: 3em;
+  height: 3rem;
+  width: 3rem;
   text-align: center;
 }
 
-form p label {
-  transform-origin: left;
-  transform: scale(2);
-  padding-left: 1em !important;
+input[type="radio"] {
+  margin: 0px;
+  width: 0px;
+  height: 0px;
+  padding: 0px;
 }
 
 input[type="radio"]:checked+label::before {
@@ -372,6 +395,33 @@ input[type="radio"]:checked+label::before {
 
 label:focus{
     outline: none;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg);
+    }
+    40%,
+    80% {
+        transform: rotate(10deg);
+    }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
 }
 
 /* If we're on a small/mobile device */
