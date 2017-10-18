@@ -33,7 +33,7 @@ self.addEventListener("install", function(e) {
         "logos/Flickr.svg",
         "logos/Genius.svg",
         "logos/Gfycat.svg",
-        "logos/GiffGaff.svg",
+        "logos/giffgaff.svg",
         "logos/GIPHY.svg",
         "logos/Github.svg",
         "logos/GOG.svg",
