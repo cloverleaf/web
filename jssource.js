@@ -12,9 +12,16 @@ var maxLength = defaultMaxLength; // Really
 var defaultTheme = "Vanilla";
 var themeData = {};
 var debugMode = false;
+var possibleRequirements = {
+  "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "low":"abcdefghijklmnopqrstuvwxyz",
+  "num":"0123456789",
+  "special":"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
+};
 
 function checkDebug(){
   if (debugMode) {
+    document.title = "Perdola - Debug " + new Date().getTime();
     debug("Enabling debug css")
     $('<link>').attr('rel','stylesheet')
       .attr('type','text/css')
@@ -88,12 +95,13 @@ function changeTheme(passedTheme) {
 // Take inputs and display a password. (The black box)
 function process() {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
-  var regex = ""; // By default we have no regex but reset it to a blank string so we don't carry them over
+  var requirements = []; // By default we have no requirements but reset it so we don't carry them over
   var appName = $("#app").val();
   var masterPass = $("#pass").val();
   var length = Math.trunc($("#length").val()); // Get the desired length of a password and make sure it's an integer
   var result = ""; // Has to be here, not in the loop for scope purposes
   var minLength = defaultMinLength;
+  // var uniqueCharacters = 1;
 
   // If the appname or password or length are empty
   if (appName == ""|| masterPass == "" || length == "") {
@@ -122,19 +130,23 @@ function process() {
       chars = jsonData[appName]["chars"];
     };
 
-    // If it has a custom regex that passwords need to fit
-    if ("regex" in jsonData[appName]) {
-      // Setup custom regex
-      regex = jsonData[appName]["regex"];
-      var pattern = new RegExp(regex);
+    if ("requirements" in jsonData[appName]) {
+      for (i = 0; i < jsonData[appName]["requirements"].length; i++) {
+        requirements.push(possibleRequirements[jsonData[appName]["requirements"][i]]);
+      };
     };
 
     if ("minLength" in jsonData[appName]) {
       minLength = jsonData[appName]["minLength"];
     };
+
+    if ("uniqueCharacters" in jsonData[appName]) {
+      uniqueCharacters = jsonData[appName]["uniqueCharacters"];
+    };
+
   };
 
-
+//if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
     $("#result").text("");
     $("#copy").css("display", "none");
@@ -155,13 +167,60 @@ function process() {
       result += chars[Math.floor(Math.random() * chars.length)];
 
     };
-    // If there's a custom regex
-    if (regex !== "") {
-      if (pattern.test(result)) {
-        break;
+
+    // If there's requirements to forfill
+    if (requirements != []) {
+      var nope = false;
+      for (i = 0; i < requirements.length; i++) {
+
+        for (c = 0; c < requirements[i].length; c++) {
+          if (result.indexOf(requirements[i][c]) != -1) { // If c is in the password
+            break;
+          };
+          if (requirements[i].indexOf(requirements[i][c]) == requirements[i].length-1) {
+            nope = true;
+            break;
+          }
+        }
       }
-    } else { // no custom regex
-      break;
+      if (!nope) { //If all tests passed
+
+        // // If there's a custom uniqueCharacters
+        // if (uniqueCharacters != 1) {
+        //   var charCount = [];
+        //   for (i = 0; i < result.length; i++) {
+        //     if (charCount.indexOf(result[i]) == -1) { // If the letter isn't in charCount
+        //       charCount.push(result[i]);
+        //     }
+        //   }
+        //   if (charCount.length >= uniqueCharacters){
+        //     // Finish password generation loop
+        //     break;
+        //   }
+        // } else {// No custom uniqueCharacters
+          // Finish password generation loop
+          break;
+        // }
+      }
+
+    }  else { // no requirements
+
+      // // If there's a custom uniqueCharacters
+      // if (uniqueCharacters != 1) {
+      //   var charCount = [];
+      //   for (i = 0; i < result.length; i++) {
+      //     if (charCount.indexOf(result[i]) == -1) { // If the letter isn't in charCount
+      //       charCount.push(result[i]);
+      //     }
+      //   }
+      //   if (charCount.length >= uniqueCharacters){
+      //     // Finish password generation loop
+      //     break;
+      //   }
+      // } else { // No custom uniqueCharacters
+      //   // Finish password generation loop
+        break;
+      // }
     }
   }
 

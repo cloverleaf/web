@@ -168,6 +168,7 @@ ul.autocomplete-content.dropdown-content {
   width: calc(100% - 3rem);
   max-height: 299%;
   overflow-y: auto;
+  overflow-x: hidden;
   top: 3.4em;
   margin-top: 0px;
 }
