@@ -12,6 +12,7 @@ self.addEventListener("install", function(e) {
         "logos/AliExpress.svg",
         "logos/Alipay.svg",
         "logos/allegorithmic.svg",
+        "logos/AlternativeTo.svg",
         "logos/Amazon.svg",
         "logos/Apple.svg",
         "logos/Artsy.svg",

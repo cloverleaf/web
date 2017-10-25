@@ -15,6 +15,10 @@
   "allegorithmic":{
     "minLength":1
   },
+  "AlternativeTo":{
+    "minLength":8,
+    "requirements":["low","num"]
+  },
   "Amazon":{
     "minLength":6
   },
