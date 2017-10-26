@@ -92,6 +92,9 @@
     "minLength":1,
     "maxLength":50
   },
+  "Firefox":{
+    "minLength":8
+  },
   "Flickr":{
     "alias":"Yahoo"
   },

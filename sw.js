@@ -32,6 +32,7 @@ self.addEventListener("install", function(e) {
         "logos/Evernote.svg",
         "logos/Facebook.svg",
         "logos/FANDOM.svg",
+        "logos/Firefox.svg",
         "logos/Flickr.svg",
         "logos/Genius.svg",
         "logos/Gfycat.svg",
@@ -83,7 +84,7 @@ self.addEventListener("install", function(e) {
         "logos/Songsterr.svg",
         "logos/Soundcloud.svg",
         "logos/Spotify.svg",
-        "logos/Stack Overflow.svg"
+        "logos/Stack Overflow.svg",
         "logos/Steam.svg",
         "logos/Tesco.svg",
         "logos/the Guardian.svg",
