@@ -1,4 +1,4 @@
-//Clear the console on reload for easier debugging
+// Clear the console on reload for easier debugging
 console.clear();
 
 "use strict";
@@ -146,7 +146,7 @@ function process() {
 
   };
 
-//if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
+// if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
     $("#result").text("");
     $("#copy").css("display", "none");
@@ -183,7 +183,7 @@ function process() {
           }
         }
       }
-      if (!nope) { //If all tests passed
+      if (!nope) { // If all tests passed
 
         // // If there's a custom uniqueCharacters
         // if (uniqueCharacters != 1) {
