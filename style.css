@@ -16,6 +16,7 @@ html,
 body {
   height: 100% !important;
   color: var(--inputColor);
+  caret-color: var(--inputColor);
   text-align: center;
   transition: background-color .3s ease, color .3s ease;
   font-size: 2vh;
@@ -139,6 +140,7 @@ input#length {
   cursor: help;
   font-weight: 500;
   color: var(--linkColor);
+  margin-top: 0.4em;
 }
 
 .cf:before, .cf:after {
@@ -189,11 +191,19 @@ ul.autocomplete-content.dropdown-content span:not(.highlight) {
   top: 1.5rem;
   font-size: 1.5rem;
   padding:0px 15px;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 1em;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight{
   color: var(--textColor);
   font-size: 1.5rem;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: visible;
+  height: 1em;
   /*color: var(--inputColor);*/
 }
 
@@ -418,7 +428,7 @@ label:focus{
 }
 
 /* If we're on a small/mobile device */
-@media only all and (max-width:25em) {
+@media only all and (max-width:27em) {
   #back {
     /* Ditch loads of padding */
     margin: 0px;

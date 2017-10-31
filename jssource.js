@@ -1,7 +1,6 @@
 // Clear the console on reload for easier debugging
 console.clear();
 
-"use strict";
 var lastName = ""; // Name of last application
 var autoCompleteData = {}; // Here for scope perposes
 var jsonData = {}; // As am I.

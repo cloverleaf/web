@@ -167,6 +167,10 @@
   "JustGiving":{
     "minLength":6
   },
+  "Ko-fi":{
+    "minLength":6,
+    "maxLength":100
+  },
   "last.fm":{
     "minLength":6,
     "maxLength":128,
@@ -327,6 +331,9 @@
   },
   "Uplay":{
     "alias":"Ubisoft"
+  },
+  "Vidme":{
+    "minLength":4
   },
   "Vimeo":{
     "requirements":["cap","low","num","special"],
