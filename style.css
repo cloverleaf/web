@@ -19,7 +19,6 @@ body {
   caret-color: var(--inputColor);
   text-align: center;
   transition: background-color .3s ease, color .3s ease;
-  font-size: 2vh;
 }
 
 body {
@@ -43,6 +42,7 @@ body {
   width: calc(100% - 3rem) !important;
   align-self: flex-end;
   display: block;
+  white-space: nowrap;
 }
 
 label {
@@ -167,16 +167,16 @@ ul.autocomplete-content.dropdown-content {
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
   position: absolute !important;
   width: calc(100% - 3rem);
-  max-height: 299%;
+  max-height: calc(118% * 2.5) /* 118% = 1 row ¯\_(ツ)_/¯ */;
   overflow-y: auto;
   overflow-x: hidden;
-  top: 3.4em;
+  top: 3.5em;
   margin-top: 0px;
 }
 
 ul.autocomplete-content.dropdown-content li {
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
-  height: 4em;
+  height: 3em;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
@@ -184,26 +184,23 @@ ul.autocomplete-content.dropdown-content li {
   background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 70% ,#fff 70% ) !important;
 }
 
+ul.autocomplete-content.dropdown-content span {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  max-width: 70%;
+  height: 100%;
+  vertical-align: middle;
+}
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
   color: var(--textColor);
-  position: relative;
-  top: 1.5rem;
-  font-size: 1.5rem;
-  padding:0px 15px;
-  white-space: nowrap;
   overflow-x: hidden;
-  overflow-y: visible;
-  height: 1em;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight{
   color: var(--textColor);
-  font-size: 1.5rem;
-  white-space: nowrap;
-  overflow-x: hidden;
-  overflow-y: visible;
-  height: 1em;
+  overflow: visible;
   /*color: var(--inputColor);*/
 }
 
@@ -232,7 +229,6 @@ li img.right.circle {
 
 
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
-
 .circle {
   object-fit: scale-down;
   border-radius: 0px;
@@ -428,7 +424,7 @@ label:focus{
 }
 
 /* If we're on a small/mobile device */
-@media only all and (max-width:27em) {
+@media only all and (max-width:40em) {
   #back {
     /* Ditch loads of padding */
     margin: 0px;
@@ -443,6 +439,6 @@ label:focus{
 @media only all and (max-height:375px) {
   html {
     /* Drop the font size */
-    font-size: 4vh;
+    font-size: 3.5vh;
   }
 }
