@@ -98,6 +98,10 @@
   "Flickr":{
     "alias":"Yahoo"
   },
+  "Forvo":{
+    "minLength":4,
+    "maxLength":28
+  },
   "Genius":{
     "minLength":4,
     "maxLength":128
