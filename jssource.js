@@ -351,8 +351,8 @@ $(function() {
           max = defaultMaxLength;
         };
 
-        if (!(json[appName]["minLength"] <= 16 && 16 <= max)) {
-          length = json[appName]["maxLength"];
+        if (!(json[appName]["minLength"] <= length && length <= max)) {
+          length = max;
         };
 
         $("#length").val(length);
@@ -394,6 +394,19 @@ $(function() {
       // called when an autocomplete is used.
       onAutocomplete: function(val) {
 
+        // Set image
+        $("#logoContainer").css("display","flex");
+        $("img#logo").attr("src", autoCompleteData[val]);
+        $("img#logo").attr("alt", val)
+        $("img#logo").attr("title", val);
+
+        // If it's an alias for another app
+        if (json[val]["alias"]) {
+          // Change the name of the app we're using to its alias
+          val = json[val]["alias"];
+          debug("Using alias: "+val);
+        };
+
         lastName = val;
         history.pushState(val, val);
 
@@ -403,22 +416,15 @@ $(function() {
         if (!max) {
           max = defaultMaxLength;
         };
-        debug(max);
-        if (!(json[val]["minLength"] <= 16 && 16 <= max)) {
-          length = json[val]["maxLength"];
+
+        if (!(json[val]["minLength"] <= length && length <= max)) {
+          length = max;
         };
 
         $("#length").val(length);
 
         // In case there's already a password (eg switching sites / presets) regen password
         process();
-
-        // Set image
-        $("#logoContainer").css("display","flex");
-        debug(autoCompleteData[val]);
-        $("img#logo").attr("src", autoCompleteData[val]);
-        $("img#logo").attr("alt", val)
-        $("img#logo").attr("title", val);
       },
       minLength: 0,
     });
@@ -472,7 +478,13 @@ $(function() {
       debug("Enter on dropdown");
       // Click first result
       $("ul.autocomplete-content li:first").mousedown();
-    };
+    } else {
+      // Clear logo
+      $("#logoContainer").css("display","none");
+      $("img#logo").removeAttr("src");
+      $("img#logo").removeAttr("alt");
+      $("img#logo").removeAttr("title");
+    }
     var c = $("#app").val();
 
     // If you've changed the app name
@@ -481,12 +493,6 @@ $(function() {
       history.pushState(c, c);
 
       process();
-
-      // Clear logo
-      $("#logoContainer").css("display","none");
-      $("img#logo").removeAttr("src");
-      $("img#logo").removeAttr("alt");
-      $("img#logo").removeAttr("title");
     };
 
 

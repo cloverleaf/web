@@ -23,3 +23,10 @@ img{
 li {
   border-bottom: 1px blue solid;
 }
+span{
+  background-color: red;
+}
+
+span.highlight{
+  background-color: blue;
+}
