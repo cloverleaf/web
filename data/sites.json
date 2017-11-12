@@ -88,9 +88,16 @@
   "Facebook":{
     "minLength":6
   },
+  "Fanatical":{
+    "minLength":6
+  },
   "FANDOM":{
     "minLength":1,
     "maxLength":50
+  },
+  "Firebox":{
+    "minLength":7,
+    "requirements":["low","num"]
   },
   "Firefox":{
     "minLength":8
@@ -359,6 +366,10 @@
   },
   "Xbox":{
     "alias":"Microsoft"
+  },
+  "XDA Developers":{
+    "minLength":1,
+    "maxLength":50
   },
   "Yahoo":{
     "minLength":8,
