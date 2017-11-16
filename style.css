@@ -15,6 +15,7 @@
 html,
 body {
   height: 100% !important;
+  color: #000;
   color: var(--inputColor);
   caret-color: var(--accentColor);
   text-align: center;
@@ -28,6 +29,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
   background-color: var(--backgroundColor);
 }
 
@@ -46,6 +48,7 @@ body {
 }
 
 label {
+  color: #535353 !important;
   color: var(--textColor) !important;
   font-size: 1.5rem !important;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
@@ -56,13 +59,16 @@ label {
 }
 
 .input-field input[type=text], .input-field input[type=number], .input-field input[type=password] {
+  border-bottom: 1px solid #535353;
   border-bottom: 1px solid var(--textColor);
   transition: border .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
 /* label underline focus color */
 .input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
+  border-bottom: 1px solid #3f51b5 !important;
   border-bottom: 1px solid var(--accentColor) !important;
+  box-shadow: 0 1px 0 0 #3f51b5 !important;
   box-shadow: 0 1px 0 0 var(--accentColor) !important;
 }
 
@@ -76,6 +82,7 @@ input[type=text], input[type=number], input[type=password] {
 /* label focus color */
 
 .input-field input:focus+label {
+  color: #3f51b5 !important;
   color: var(--accentColor) !important;
 }
 
@@ -86,6 +93,7 @@ input[type=number] {
 
 #back {
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
+  background-color: #fff;
   background-color: var(--internalColor);
   border-radius: 0.325em;
   padding: 0.975em;
@@ -117,6 +125,7 @@ input[type=number] {
 
 .hint {
   float: left;
+  color: #535353;
   color: var(--textColor);
   width: 100%;
   text-align: left;
@@ -126,6 +135,7 @@ input[type=number] {
 input, textarea {
   font-size: 1.56rem;
   padding: 0.65rem;
+  color: #000 !important;
   color: var(--inputColor) !important;
   margin: 0 0 0.8rem 0 !important;
   transition: background-color .3s ease, color .3s ease;
@@ -133,12 +143,14 @@ input, textarea {
 
 input#length {
   margin: 0px !important;
+  height: 100%; /* To stop the input wiggling on firefox */
 }
 
 #faq {
   float: right;
   cursor: help;
   font-weight: 500;
+  color: #00539B;
   color: var(--linkColor);
   margin-top: 0.4em;
 }
@@ -162,9 +174,13 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: -webkit-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
-  background: -o-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
+  background: -webkit-linear-gradient(left, #fff 0%, #fff 80% ,#fff 80% );
+  background: -o-linear-gradient(left, #fff 0%, #fff 80% ,#fff 80% );
+  background: linear-gradient(to right, #fff 0%, #fff 80% ,#fff 80% );
+
+  background: -webkit-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
+  background: -o-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
   position: absolute !important;
   width: calc(100% - 3rem);
   max-height: calc(118% * 2.5) /* 118% = 1 row ¯\_(ツ)_/¯ */;
@@ -175,13 +191,15 @@ ul.autocomplete-content.dropdown-content {
 }
 
 ul.autocomplete-content.dropdown-content li {
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 70% ,#fff 70% );
+  background: #fff;
+  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
   height: 3em;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
   color:red;
-  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 70% ,#fff 70% ) !important;
+  background: linear-gradient(to right, #eee 0%, #eee 80% ,#fff 80% ) !important;
+  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 80% ,#fff 80% ) !important;
 }
 
 ul.autocomplete-content.dropdown-content span {
@@ -194,12 +212,14 @@ ul.autocomplete-content.dropdown-content span {
 }
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
+  color: #535353;
   color: var(--textColor);
   overflow-x: hidden;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight{
   max-width: 100%;
+  color: #535353;
   color: var(--textColor);
   overflow: visible;
   /*color: var(--inputColor);*/
@@ -223,7 +243,7 @@ ul.autocomplete-content.dropdown-content span .highlight{
 }
 
 li img.right.circle {
-  width: calc(30% - 10px);
+  width: calc(20% - 10px);
   height: calc(100% - 10px);
   margin:5px;
 }
@@ -248,12 +268,14 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 /*Switch knob*/
 .switch label input[type=checkbox]:checked+.lever:after {
+  background-color: #3f51b5;
   background-color: var(--accentColor);
 }
 
 
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever {
+  background-color: #6d78b5;
   background-color: var(--lightAccent);
 }
 
@@ -270,16 +292,19 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 .icon {
+  fill: #535353;
   fill: var(--textColor);
   transition: fill .2s;
   cursor: pointer;
 }
 
 .icon:hover {
+  fill: #6d78b5;
   fill: var(--lightAccent);
 }
 
 .icon:active {
+  fill: #3f51b5;
   fill: var(--accentColor);
 }
 
@@ -292,11 +317,13 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 /* Negative toasts get this */
 .warning {
+  background-color: #F44336;
   background-color: var(--incorrectColor);
 }
 
 /* Positive toasts get this */
 .success {
+  background-color: #5cb85c;
   background-color: var(--correctColor);
 }
 
@@ -313,14 +340,18 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   font-size: 10vmin;
   top:0px;
   left:0px;
+  color: #fff;
   color: var(--backgroundColor);
   -webkit-text-stroke-width: 2px !important;
-   -webkit-text-stroke-color: var(--textColor) !important;
+  -webkit-text-stroke-color: #535353 !important;
+  -webkit-text-stroke-color: var(--textColor) !important;
 }
 
 #jsBanner a {
+  color: #fff;
   color: var(--backgroundColor);
-  -webkit-text-stroke: 3px var(--textColor);;
+  -webkit-text-stroke: 3px #535353;
+  -webkit-text-stroke: 3px var(--textColor);
   text-decoration: underline;
 }
 
@@ -390,6 +421,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked+label::before {
+  box-shadow: 0px 0px 3px 1px #535353;
   box-shadow: 0px 0px 3px 1px var(--textColor);
 }
 

@@ -4,6 +4,11 @@
     "maxLength":100,
     "requirements":["num","low","cap"]
   },
+  "Airbnb":{
+    "minLength":8,
+    "maxLength":128,
+    "requirements":["low","num","special"]
+  },
   "AliExpress":{
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
     "minLength":6,
@@ -30,6 +35,10 @@
   "Artsy":{
     "minLength":6,
     "maxLength":128
+  },
+  "Baidu":{
+    "minLength":6,
+    "maxLength":14
   },
   "BBC":{
     "minLength":8,
@@ -198,6 +207,11 @@
     "maxLength":15,
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   },
+  "Mail.Ru":{
+    "requirements":["special","number","low"],
+    "minLength":6,
+    "maxLength":40
+  },
   "Mapbox":{
     "minLength":8,
     "maxLength":512
@@ -360,6 +374,11 @@
   },
   "Wikipedia":{
     "minLength":1
+  },
+  "Wordpress":{
+    "minLength":6,
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
+    "requirements":["cap","low","num","special"]
   },
   "Wish":{
     "minLength":1

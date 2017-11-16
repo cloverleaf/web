@@ -421,6 +421,7 @@ $(function() {
           length = max;
         };
 
+        $("label[for=length]").addClass("active");
         $("#length").val(length);
 
         // In case there's already a password (eg switching sites / presets) regen password
@@ -478,7 +479,7 @@ $(function() {
       debug("Enter on dropdown");
       // Click first result
       $("ul.autocomplete-content li:first").mousedown();
-    } else {
+    } else if (e.which != 13) {
       // Clear logo
       $("#logoContainer").css("display","none");
       $("img#logo").removeAttr("src");
