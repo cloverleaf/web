@@ -275,6 +275,11 @@
     "minLength":8,
     "maxLength":20
   },
+  "paysafecard":{
+    "minLength":8,
+    "requirements":["cap","special"],
+    "maxLength":110
+  },
   "Pinterest":{
     "minLength":6,
     "requirements":["low","num"]
@@ -356,6 +361,10 @@
   },
   "Uplay":{
     "alias":"Ubisoft"
+  },
+  "Venmo":{
+    "minLength":8,
+    "maxLength":32
   },
   "Vidme":{
     "minLength":4

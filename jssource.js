@@ -326,6 +326,10 @@ function reBindMouse(min, max) {
 // On page load
 $(function() {
 
+  if (getCookie("cookieHidden") != undefined) {
+    $('#cookieAlert').hide();
+  };
+
   updateLimits();
   reBindMouse();
 

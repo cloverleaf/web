@@ -28,6 +28,13 @@
 
 **A:** There isn't a system in place for this but there doesn't need to be since you can just type `ACCOUNTNAME PASSWORD` in the password field to get the password for that account.
 
+</br>
+
+<a name="cookies">**Q:** What are cookies and why do you use them?:</a>
+
+**A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Perdola uses these for remembering what theme you like and a few other things like that. We also use Google analytics so we can see who's using Perdola and how. This also uses cookies.
+
+
 <style
   type="text/css">
   @import url(https://fonts.googleapis.com/css?family=Open+Sans);

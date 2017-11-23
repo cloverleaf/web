@@ -475,3 +475,24 @@ label:focus{
     font-size: 3.5vh;
   }
 }
+
+#cookieAlert {
+  bottom: 0px;
+  background-color: var(--internalColor);
+  width: 100%;
+  padding: 0.5em 1em;
+  position: absolute;
+  user-select: none;
+}
+
+#cookieAlert span {
+  display: block;
+  width: calc(100% - 2em);
+  left: 0px;
+}
+
+#cookieAlert svg {
+  position: absolute;
+  top: 0.25em;
+  right: 1em;
+}
