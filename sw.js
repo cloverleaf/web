@@ -25,6 +25,7 @@ self.addEventListener("install", function(e) {
         "logos/Chrono.gg.svg",
         "logos/DeviantArt.svg",
         "logos/Discord.svg",
+        "logos/Disqus.svg",
         "logos/Dribbble.svg",
         "logos/Dropbox.svg",
         "logos/Duolingo.svg",

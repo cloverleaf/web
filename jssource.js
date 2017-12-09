@@ -51,7 +51,7 @@ function getQueryStrings() {
   return assoc;
 }
 
-// For showing / hiding the password
+// For showing / hiding the master password
 function passwordToggle() {
   // If the switch is on / to the right / "Hide"
   if ($("#passwordToggle").prop("checked")) {
@@ -60,6 +60,18 @@ function passwordToggle() {
   } else { // If it's off
     // Make the password field use actual text so you can see/copy it.
     $("#pass").attr("type", "text");
+  };
+};
+
+// For showing / hiding the generated password
+function resultToggle() {
+  // If the switch is on / to the right / "Hide"
+  if ($("#resultToggle").prop("checked")) {
+    // Make the password field use blobs
+    $("#result").addClass("hidden");
+  } else { // If it's off
+    // Make the password field use actual text so you can see/copy it.
+    $("#result").removeClass("hidden");
   };
 };
 
@@ -106,8 +118,6 @@ function process() {
   if (appName == ""|| masterPass == "" || length == "") {
     // Empty the output field
     $("#result").text("");
-    // Hide the copy password button
-    $("#copy").hide();
     // Stop function from generating new password
     return "App / pass empty";
   };
@@ -148,7 +158,6 @@ function process() {
 // if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
     $("#result").text("");
-    $("#copy").css("display", "none");
     return;
   }
 
@@ -227,7 +236,6 @@ function process() {
 
   // Display password
   $("#result").text(result);
-  $("#copy").css("display", "block");
 };
 
 // on application name change
@@ -444,9 +452,9 @@ $(function() {
   $.getJSON("data/themes.json", function(json) {
     themeData = json;
     $.each(themeData, function(index, item) {
-      $("#themeForm").append("<p><input name='themes' class='with-gap' onclick='changeTheme(\""+index+"\");' type='radio' id='"+index+"' /><label for='"+index+"'></label></p>");
-      $("head").append("<style>form label[for="+index+"]::before{background-color: "+themeData[index]["accent"]+" !important; border: none !important;}</style>");
-      $("head").append("<style>form label[for="+index+"]::after{border: none !important; transform: scale(0.6) !important; background-color: "+themeData[index]["background"]+" !important;}</style>");
+      $("#fabButtons").append("<li><a name='themes' class='btn-floating' onclick='changeTheme(\""+index+"\");' id='"+index+"' ><i class='material-icons'>color_lens</i></a></li>");
+
+      $("head").append("<style>a[id="+index+"]{background-color: "+themeData[index]["background"]+" !important; border: 1px ;}a[id="+index+"] i {color: "+themeData[index]["text"]+"}</style>");
     });
 
     // If the user has a prefered theme
@@ -467,7 +475,13 @@ $(function() {
   var clipboard = new Clipboard("#copy");
 
   clipboard.on("success", function(e) {
-    Materialize.toast("Successfully copied!", 4000, "success")
+
+    if (e.text == "") {
+      Materialize.toast("You have no password to copy.", 4000, "warning")
+    } else {
+      Materialize.toast("Successfully copied!", 4000, "success")
+    }
+
   });
 
   // on change of password submit

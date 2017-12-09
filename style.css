@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400');
+
+@font-face {
+    font-family: 'text-security-disc';
+    src: url('text-security-disc.eot');
+    src: url('text-security-disc.eot?#iefix') format('embedded-opentype'),
+    url('text-security-disc.woff') format('woff'),
+    url('text-security-disc.ttf')  format('truetype'),
+    url('text-security-disc.svg#text-security') format('svg');
+}
+
 :root {
   --accentColor: #3f51b5;
   --lightAccent: #6d78b5;
@@ -80,7 +90,6 @@ input[type=text], input[type=number], input[type=password] {
 
 
 /* label focus color */
-
 .input-field input:focus+label {
   color: #3f51b5 !important;
   color: var(--accentColor) !important;
@@ -111,10 +120,16 @@ input[type=number] {
   word-wrap: break-word;
   word-break: break-all;
   /*Only breaks when it needs to*/
+  min-height: 1em;
+  min-width: 20%;
+}
+
+#result:empty:not(:focus):before {
+  content:attr(data-text);
 }
 
 #copy {
-  display: none;
+  display: block;
   margin: auto;
 }
 
@@ -143,7 +158,7 @@ input, textarea {
 
 input#length {
   margin: 0px !important;
-  height: 100%; /* To stop the input wiggling on firefox */
+  height: 1em;  /* To stop the input wiggling on firefox */
 }
 
 #faq {
@@ -292,20 +307,21 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 .icon {
-  fill: #535353;
-  fill: var(--textColor);
-  transition: fill .2s;
+  font-size: 42px !important;
+  color: #535353;
+  color: var(--textColor);
+  transition: color .2s;
   cursor: pointer;
 }
 
 .icon:hover {
-  fill: #6d78b5;
-  fill: var(--lightAccent);
+  color: #6d78b5;
+  color: var(--lightAccent);
 }
 
 .icon:active {
-  fill: #3f51b5;
-  fill: var(--accentColor);
+  color: #3f51b5;
+  color: var(--accentColor);
 }
 
 .input-field label:not(.label-icon).active {
@@ -469,10 +485,10 @@ label:focus{
 
 
 /* If it won't fit vertically */
-@media only all and (max-height:375px) {
+@media only all and (max-height:600px) {
   html {
     /* Drop the font size */
-    font-size: 3.5vh;
+    font-size: 2vh;
   }
 }
 
@@ -481,8 +497,10 @@ label:focus{
   background-color: var(--internalColor);
   width: 100%;
   padding: 0.5em 1em;
-  position: absolute;
+  position: fixed;
   user-select: none;
+  z-index: 998;
+  box-shadow: 0 0 3px 0px var(--textColor);
 }
 
 #cookieAlert span {
@@ -495,4 +513,14 @@ label:focus{
   position: absolute;
   top: 0.25em;
   right: 1em;
+}
+
+.hidden {
+  font-family: 'text-security-disc' !important;
+  font-size: 4rem  !important;
+  line-height: 3rem;
+}
+
+.material-icons {
+  user-select:none
 }

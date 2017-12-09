@@ -66,6 +66,9 @@
     "minLength":6,
     "maxLength":128
   },
+  "Disqus":{
+    "minLength":6
+  },
   "Dribbble":{
     "minLength":6,
     "maxLength":128

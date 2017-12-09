@@ -51,6 +51,8 @@ More thanks go out to shinnn's [isogram](https://github.com/shinnn/isogram) for 
 
 The [Materialize Framework](https://github.com/Dogfalo/materialize) under the MIT license
 
+noppa's [text-security](https://github.com/noppa/text-security) font under the MIT license
+
 ## Misc
 
 Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
