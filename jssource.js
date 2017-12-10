@@ -452,7 +452,7 @@ $(function() {
   $.getJSON("data/themes.json", function(json) {
     themeData = json;
     $.each(themeData, function(index, item) {
-      $("#fabButtons").append("<li><a name='themes' class='btn-floating' onclick='changeTheme(\""+index+"\");' id='"+index+"' ><i class='material-icons'>color_lens</i></a></li>");
+      $("#fabs").append("<li><a name='themes' class='btn-floating' onclick='changeTheme(\""+index+"\");' id='"+index+"' ><i class='material-icons'>color_lens</i></a></li>");
 
       $("head").append("<style>a[id="+index+"]{background-color: "+themeData[index]["background"]+" !important; border: 1px ;}a[id="+index+"] i {color: "+themeData[index]["text"]+"}</style>");
     });

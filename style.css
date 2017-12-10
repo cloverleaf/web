@@ -198,7 +198,7 @@ ul.autocomplete-content.dropdown-content {
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
   position: absolute !important;
   width: calc(100% - 3rem);
-  max-height: calc(118% * 2.5) /* 118% = 1 row ¯\_(ツ)_/¯ */;
+  max-height: calc(99% * 4); /* 100% is just over 1 row so I'm going with 99% */
   overflow-y: auto;
   overflow-x: hidden;
   top: 3.5em;
@@ -307,7 +307,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 .icon {
-  font-size: 42px !important;
+  font-size: 1.4em !important;
   color: #535353;
   color: var(--textColor);
   transition: color .2s;
@@ -483,13 +483,22 @@ label:focus{
   }
 }
 
-
 /* If it won't fit vertically */
 @media only all and (max-height:600px) {
   html {
     /* Drop the font size */
     font-size: 2vh;
   }
+}
+
+.hidden {
+  font-family: 'text-security-disc' !important;
+  font-size: 4rem  !important;
+  line-height: 3rem;
+}
+
+.material-icons {
+  user-select:none
 }
 
 #cookieAlert {
@@ -515,12 +524,14 @@ label:focus{
   right: 1em;
 }
 
-.hidden {
-  font-family: 'text-security-disc' !important;
-  font-size: 4rem  !important;
-  line-height: 3rem;
+.btn-floating.btn-large i {
+  font-size: 2rem;
+  line-height: 4rem;
 }
 
-.material-icons {
-  user-select:none
+
+
+.btn-floating.btn-large {
+  width: 4rem;
+  height: 4rem;
 }

@@ -82,7 +82,8 @@
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "requirements":["low","num"]
+    "requirements":["low","num"],
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-.;=?@\\^_`{|}~"
   },
   "Epic Games":{
     "minLength":7,
@@ -99,6 +100,9 @@
   },
   "Facebook":{
     "minLength":6
+  },
+  "Factorio":{
+    "minLength":5
   },
   "Fanatical":{
     "minLength":6
