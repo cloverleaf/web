@@ -267,6 +267,10 @@
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
     "requirements":["cap","low","num"]
   },
+  "osu!":{
+    "minLength":8,
+    "logo":"logos/osu!.png"
+  },
   "Oxfam":{
     "minLength":6
   },

@@ -6,9 +6,9 @@ A smart solution to the problem of passwords. Perdola generates passwords on dem
 
 ## How the versioning works
 
-We use [Semantic Versioning](http://semver.org/)
+MAJOR.MINOR.PATCH
 
-This basically amounts to MAJOR.MINOR.PATCH.
+MAJOR does not have to be breaking. It's really when I feel that a feature changes the way a user uses the site.
 
 ## Removed features
 

@@ -64,6 +64,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js"></script>
     <!-- jquery-mousewheel for scrolling on number inputs -->
     <script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js"></script>
+    <script src="compiled/sha3.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
     <!-- Google analytics -->
     <script>
@@ -82,7 +83,7 @@
   </head>
   <body>
 
-    <div class="fixed-action-btn horizontal click-to-toggle">
+    <div class="fixed-action-btn horizontal click-to-toggle" id="themeSelector">
       <a class="btn-floating btn-large" style="background: var(--accentColor);">
         <i class="material-icons">menu</i>
       </a>
@@ -105,12 +106,12 @@
         <div class="input-field">
           <label for="pass" class="partial">Master password</label>
           <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-          <span class="input-group-addon suffix">
+          <div class="input-group-addon suffix">
 
             <i onclick="save();" class="material-icons icon">save</i>
             <i onclick="load();" class="material-icons icon">file_download</i>
 
-          </span>
+          </div>
         </div>
 
         <div class="switch" onclick="passwordToggle();">
@@ -129,12 +130,12 @@
 
         <span class="hint">The longer, the better</span>
 
-        <div id="result" data-text="No password :)"></div>
+        <div id="result" class="hidden" data-text="No password :)"></div>
 
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
             Show
-            <input type="checkbox" id="resultToggle">
+            <input type="checkbox" id="resultToggle" checked="checked">
             <span class="lever" id="resultTogglelever"></span>
             Hide
           </label>

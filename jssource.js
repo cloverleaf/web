@@ -11,6 +11,7 @@ var maxLength = defaultMaxLength; // Really
 var defaultTheme = "Vanilla";
 var themeData = {};
 var debugMode = false;
+var version = "5.10.0";
 var possibleRequirements = {
   "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "low":"abcdefghijklmnopqrstuvwxyz",
@@ -101,6 +102,15 @@ function changeTheme(passedTheme) {
 
 };
 
+function compareVersions(v1, v2) {
+  v1Array = v1.split(".");
+  v2Array = v2.split(".");
+
+  if (len(v1Array) != 3 || len(v2Array) != 3){
+    return "Both versions need to be x.y.z";
+  };
+
+};
 
 
 // Take inputs and display a password. (The black box)
@@ -122,6 +132,7 @@ function process() {
     return "App / pass empty";
   };
 
+  //It's a valid attempt, continue
 
   if (jsonData[appName]) { // If it's a site with a preset
 
@@ -165,6 +176,8 @@ function process() {
 
   // Set the generation seed
   Math.seedrandom(appName.toLowerCase() + masterPass);
+
+  //if    console.log(keccak512(appName.toLowerCase() + masterPass));
 
   // password generation cycle
   while (true) {
@@ -523,6 +536,11 @@ $(function() {
   });
 
   checkDebug();
+
+  //Set the engine version cookie if we haven't before
+  if (getCookie("engineVersion") === undefined) {
+    document.cookie = "engineVersion=" + version + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+  };
 
 });
 

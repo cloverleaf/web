@@ -84,8 +84,10 @@ label {
 
 input[type=text], input[type=number], input[type=password] {
   font-size: 3rem !important;
-  padding-bottom: 0.1em !important;
-  box-sizing:border-box;
+  height: 1.2em !important;
+  box-sizing: content-box;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
 }
 
 
@@ -300,11 +302,12 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 .input-group-addon {
   position: absolute;
-  width: 3rem;
+  width: calc(3rem + 0.1em);
   font-size: 2rem;
   top: 0px;
-  right: 0px;
+  right: -5px;
 }
+
 
 .icon {
   font-size: 1.4em !important;
@@ -389,11 +392,9 @@ ul:empty {
 }
 
 #logoContainer { /* For portrait logos so they don't oversize */
-  right:-5px;
   background: #fff;
   padding: 3px;
   border-radius: 5px;
-  width: calc(3rem + 0.1em);
   height: calc(3rem + 0.1em);
   display: none;
   justify-content: center;
@@ -528,8 +529,6 @@ label:focus{
   font-size: 2rem;
   line-height: 4rem;
 }
-
-
 
 .btn-floating.btn-large {
   width: 4rem;
