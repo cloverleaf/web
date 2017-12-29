@@ -46,6 +46,7 @@ self.addEventListener("install", function(e) {
         "logos/Firefox.svg",
         "logos/Flickr.svg",
         "logos/Forvo.svg",
+        "logos/Freelancer.svg",
         "logos/Genius.svg",
         "logos/Gfycat.svg",
         "logos/giffgaff.svg",

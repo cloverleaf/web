@@ -125,6 +125,10 @@
     "minLength":4,
     "maxLength":28
   },
+  "Freelancer":{
+    "minLength":6,
+    "requirements":["low","num"]
+  },
   "Genius":{
     "minLength":4,
     "maxLength":128

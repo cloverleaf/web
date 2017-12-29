@@ -64,6 +64,10 @@ label {
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
+.input-field{
+  margin-bottom: 0px;
+}
+
 .input-field label{
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
@@ -89,7 +93,6 @@ input[type=text], input[type=number], input[type=password] {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
 }
-
 
 /* label focus color */
 .input-field input:focus+label {
@@ -388,7 +391,7 @@ ul:empty {
 }
 
 ::-ms-reveal { /* Disable Edge's show/hide since we made one */
-    display: none;
+  display: none;
 }
 
 #logoContainer { /* For portrait logos so they don't oversize */
@@ -399,35 +402,6 @@ ul:empty {
   display: none;
   justify-content: center;
   align-items: center;
-}
-
-#themePicker {
-  left: 5px;
-  max-width: 90%;
-  top: 1em;
-  position: fixed;
-  position: absolute;
-  left: 50%;
-  transform: translate(-50%, 0px);
-}
-
-#themePicker label, #themePicker label::before, #themePicker label::after {
-  height: 2.5rem;
-  width: 2.5rem;
-  display: inline-block;
-  margin: 0px;
-  padding: 0px;
-}
-
-#themeForm p {
-  text-align: center;
-  display: inline-block;
-  margin-bottom: 0px;
-  -webkit-margin-before: 0px;
-  -webkit-margin-after: 0px;
-  height: 3rem;
-  width: 3rem;
-  text-align: center;
 }
 
 input[type="radio"] {
@@ -533,4 +507,33 @@ label:focus{
 .btn-floating.btn-large {
   width: 4rem;
   height: 4rem;
+}
+
+.fixed-action-btn ul a.btn-floating {
+  opacity: 1;
+}
+
+.tabs {
+  background-color: rgba(0,0,0,0);
+  cursor: pointer;
+}
+
+.tabs .tab a, .tabs .tab a:hover  {
+  color: var(--inputColor);
+  font-size: 1em;
+}
+
+.tabs .tab a.active {
+  color: var(--inputColor);
+  font-weight: 400;
+}
+
+.tabs .indicator {
+  background-color: var(--accentColor)
+}
+
+#engineSelector {
+  position: absolute;
+  top: 0px;
+  overflow: visable;
 }

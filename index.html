@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
 
@@ -83,11 +83,19 @@
   </head>
   <body>
 
+    <div id="engineSelector" style="display: none;">
+      <ul class="tabs">
+        <li class="tab"><a id="old" onclick="setMode('old');">Compatability mode</a></li>
+        <li class="tab"><a id="new" onclick="setMode('new');">Suggested mode</a></li>
+      </ul>
+    </div>
+
     <div class="fixed-action-btn horizontal click-to-toggle" id="themeSelector">
       <a class="btn-floating btn-large" style="background: var(--accentColor);">
         <i class="material-icons">menu</i>
       </a>
       <ul id="fabs">
+        <li><a name="settings" class="btn-floating red darken-4" onclick="toggleSettings()"><i class="material-icons">settings</i></a></li>
       </ul>
     </div>
 

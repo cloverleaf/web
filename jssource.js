@@ -11,7 +11,8 @@ var maxLength = defaultMaxLength; // Really
 var defaultTheme = "Vanilla";
 var themeData = {};
 var debugMode = false;
-var version = "5.10.0";
+var version = "6.0.0";
+var mode;
 var possibleRequirements = {
   "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "low":"abcdefghijklmnopqrstuvwxyz",
@@ -19,14 +20,41 @@ var possibleRequirements = {
   "special":"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 };
 
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function setCookie(name, value) {
+  document.cookie = name+"="+value+"; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+}
+
+function setMode(setTo){
+  mode = setTo;
+  setCookie("mode", setTo);
+  process();
+}
+
+function toggleSettings(){
+  $("#engineSelector").toggle();
+  $("#"+getCookie("mode")).click();
+
+  if ($('#engineSelector').is(":visible")) {
+    setCookie("showSettings", "true");
+  } else {
+    document.cookie = "showSettings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Delete the showSettings cookie
+  }
+}
+
 function checkDebug(){
   if (debugMode) {
     document.title = "Perdola - Debug " + new Date().getTime();
-    debug("Enabling debug css")
-    $('<link>').attr('rel','stylesheet')
-      .attr('type','text/css')
-      .attr('href','debug.css')
-      .appendTo('head');
+    debug("Enabling debug css");
+    $("<link>").attr("rel","stylesheet")
+      .attr("type","text/css")
+      .attr("href","debug.css")
+      .appendTo("head");
   }
 }
 
@@ -42,7 +70,7 @@ function getQueryStrings() {
   var queryString = location.search.substring(1);
   var keyValues = queryString.split("&");
 
-  for(var i in keyValues) {
+  for (var i in keyValues) {
     var key = keyValues[i].split("=");
     if (key.length > 1) {
       assoc[decode(key[0])] = decode(key[1]);
@@ -61,8 +89,8 @@ function passwordToggle() {
   } else { // If it's off
     // Make the password field use actual text so you can see/copy it.
     $("#pass").attr("type", "text");
-  };
-};
+  }
+}
 
 // For showing / hiding the generated password
 function resultToggle() {
@@ -73,19 +101,19 @@ function resultToggle() {
   } else { // If it's off
     // Make the password field use actual text so you can see/copy it.
     $("#result").removeClass("hidden");
-  };
-};
+  }
+}
 
 
 function changeTheme(passedTheme) {
 
-  if (passedTheme=="") {
+  if (passedTheme === "") {
     passedTheme = defaultTheme;
   } else if (!themeData[passedTheme]) {
     throw "invalid theme: "+passedTheme;
   } else {
 
-    document.cookie = "theme=" + passedTheme + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+    setCookie("theme", passedTheme);
     var html = document.getElementsByTagName("html")[0];
 
     document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
@@ -102,18 +130,39 @@ function changeTheme(passedTheme) {
 
 };
 
-function compareVersions(v1, v2) {
+function compareVersions(v1, v2) { // Returns the larger of the two. or "equal"
   v1Array = v1.split(".");
   v2Array = v2.split(".");
+  for(var i=0; i<v1Array.length;i++){v1Array[i] = parseInt(v1Array[i])};
+  for(var i=0; i<v2Array.length;i++){v2Array[i] = parseInt(v2Array[i])};
 
-  if (len(v1Array) != 3 || len(v2Array) != 3){
+  if (v1Array.length != 3 || v2Array.length != 3){
     return "Both versions need to be x.y.z";
-  };
-
+  } else {
+    if (v1Array[0]>v2Array[0]){
+      return v1;
+    } else if (v1Array[0]<v2Array[0]) {
+      return v2;
+    } else {
+      if (v1Array[1]>v2Array[1]){
+        return v1;
+      } else if (v1Array[1]<v2Array[1]) {
+        return v2;
+      } else {
+        if (v1Array[2]>v2Array[2]){
+          return v1;
+        } else if (v1Array[2]<v2Array[2]) {
+          return v2;
+        } else {
+          return "equal";
+        }
+      }
+    }
+  }
 };
 
 
-// Take inputs and display a password. (The black box)
+// Take inputs and display a password. (The  box)
 function process() {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
   var requirements = []; // By default we have no requirements but reset it so we don't carry them over
@@ -122,15 +171,14 @@ function process() {
   var length = Math.trunc($("#length").val()); // Get the desired length of a password and make sure it's an integer
   var result = ""; // Has to be here, not in the loop for scope purposes
   var minLength = defaultMinLength;
-  // var uniqueCharacters = 1;
 
   // If the appname or password or length are empty
-  if (appName == ""|| masterPass == "" || length == "") {
+  if (appName === ""|| masterPass === "" || length === "") {
     // Empty the output field
     $("#result").text("");
     // Stop function from generating new password
     return "App / pass empty";
-  };
+  }
 
   //It's a valid attempt, continue
 
@@ -175,9 +223,11 @@ function process() {
   debug("Started generating password");
 
   // Set the generation seed
-  Math.seedrandom(appName.toLowerCase() + masterPass);
-
-  //if    console.log(keccak512(appName.toLowerCase() + masterPass));
+  if (mode == "new") {
+    Math.seedrandom(keccak512(appName.toLowerCase() + masterPass));
+  } else {
+    Math.seedrandom(appName.toLowerCase() + masterPass);
+  }
 
   // password generation cycle
   while (true) {
@@ -204,44 +254,13 @@ function process() {
           }
         }
       }
-      if (!nope) { // If all tests passed
 
-        // // If there's a custom uniqueCharacters
-        // if (uniqueCharacters != 1) {
-        //   var charCount = [];
-        //   for (i = 0; i < result.length; i++) {
-        //     if (charCount.indexOf(result[i]) == -1) { // If the letter isn't in charCount
-        //       charCount.push(result[i]);
-        //     }
-        //   }
-        //   if (charCount.length >= uniqueCharacters){
-        //     // Finish password generation loop
-        //     break;
-        //   }
-        // } else {// No custom uniqueCharacters
-          // Finish password generation loop
-          break;
-        // }
+      if (!nope) { // If all tests passed
+        break;
       }
 
     }  else { // no requirements
-
-      // // If there's a custom uniqueCharacters
-      // if (uniqueCharacters != 1) {
-      //   var charCount = [];
-      //   for (i = 0; i < result.length; i++) {
-      //     if (charCount.indexOf(result[i]) == -1) { // If the letter isn't in charCount
-      //       charCount.push(result[i]);
-      //     }
-      //   }
-      //   if (charCount.length >= uniqueCharacters){
-      //     // Finish password generation loop
-      //     break;
-      //   }
-      // } else { // No custom uniqueCharacters
-      //   // Finish password generation loop
-        break;
-      // }
+      break;
     }
   }
 
@@ -348,7 +367,7 @@ function reBindMouse(min, max) {
 $(function() {
 
   if (getCookie("cookieHidden") != undefined) {
-    $('#cookieAlert').hide();
+    $("#cookieAlert").hide();
   };
 
   updateLimits();
@@ -489,7 +508,7 @@ $(function() {
 
   clipboard.on("success", function(e) {
 
-    if (e.text == "") {
+    if (e.text === "") {
       Materialize.toast("You have no password to copy.", 4000, "warning")
     } else {
       Materialize.toast("Successfully copied!", 4000, "success")
@@ -527,7 +546,6 @@ $(function() {
       process();
     };
 
-
   });
 
   // On change in length field up and down or typing (not scrolling)
@@ -539,25 +557,52 @@ $(function() {
 
   //Set the engine version cookie if we haven't before
   if (getCookie("engineVersion") === undefined) {
-    document.cookie = "engineVersion=" + version + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+    setCookie("engineVersion", version);
   };
+
+  //Set the mode cookie if we haven't before
+  if (getCookie("mode") === undefined) {
+    if (getCookie("engineVersion") != "5.10.0") {
+      mode = "new";
+    } else {
+      mode = "old";
+    }
+    setCookie("mode", mode);
+  } else {
+    mode = getCookie("mode");
+  };
+
+  // Initialize the tabs
+  $(".tabs").tabs();
+
+  if (getCookie("showSettings") == "true") {
+    $("#engineSelector").show();
+  }
+
+  if (mode == "new") {
+    $("#new").click();
+  } else {
+    $("#old").click();
+  }
+
+  // For when materialize 1.0.0 becomes stable / I work out why my FABs don't work with it.
+
+  // $("#themePicker").floatingActionButton({
+  //   direction: "left", // Direction menu comes out
+  //   hoverEnabled: false, // Hover disabled
+  //   toolbarEnabled: false // Toolbar transition disabled
+  // });
 
 });
 
 function save() { // Save the current master password as a cookie
 
   if ($("#pass").val()) { // If there's a password
-    document.cookie = "password=" + $("#pass").val() + "; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+    setCookie("password", $("#pass").val());
     Materialize.toast("Password saved to your device!", 4000, "success");
   };
 
 };
-
-function getCookie(name) {
-  var value = "; " + document.cookie;
-  var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
-}
 
 function load() { // Load the saved password from cookie
 
