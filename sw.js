@@ -88,6 +88,7 @@ self.addEventListener("install", function(e) {
         "logos/Patreon.svg",
         "logos/PayPal.svg",
         "logos/paysafecard.svg",
+        "logos/PCPartPicker.svg",
         "logos/Pinterest.svg",
         "logos/pixiv.svg",
         "logos/plug.dj.svg",

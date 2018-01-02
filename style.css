@@ -203,10 +203,11 @@ ul.autocomplete-content.dropdown-content {
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
   position: absolute !important;
   width: calc(100% - 3rem);
-  max-height: calc(99% * 4); /* 100% is just over 1 row so I'm going with 99% */
+  max-height: calc(82% * 4); /* 82% seems to work out as one row */
   overflow-y: auto;
   overflow-x: hidden;
-  top: 3.5em;
+  top: 3.8em;
+  /* top: 3.5em;  for materialize 1.0.0*/
   margin-top: 0px;
 }
 
@@ -214,6 +215,8 @@ ul.autocomplete-content.dropdown-content li {
   background: #fff;
   background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
   height: 3em;
+  font-family: 3em;
+  min-height: 0px;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
@@ -229,6 +232,9 @@ ul.autocomplete-content.dropdown-content span {
   max-width: 70%;
   height: 100%;
   vertical-align: middle;
+  font-size: 1em;
+  padding: 0.875em 1em;
+  overflow: hidden;
 }
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
@@ -243,6 +249,7 @@ ul.autocomplete-content.dropdown-content span .highlight{
   color: var(--textColor);
   overflow: visible;
   /*color: var(--inputColor);*/
+  padding: 0px;
 }
 
 .dropdown-content::-webkit-scrollbar {
@@ -263,9 +270,9 @@ ul.autocomplete-content.dropdown-content span .highlight{
 }
 
 li img.right.circle {
-  width: calc(20% - 10px);
-  height: calc(100% - 10px);
-  margin:5px;
+  width: calc(20% - 0.66em);
+  height: calc(100% - 0.66em);
+  margin: 0.33em;
 }
 
 
@@ -501,7 +508,9 @@ label:focus{
 
 .btn-floating.btn-large i {
   font-size: 2rem;
-  line-height: 4rem;
+  line-height: 2em;
+  top: 0px;
+  display: block;
 }
 
 .btn-floating.btn-large {
@@ -536,4 +545,27 @@ label:focus{
   position: absolute;
   top: 0px;
   overflow: visable;
+}
+
+.btn {
+  height: 2.4em;
+  line-height: 2.4em;
+}
+
+.switch label .lever {
+  height: 0.933em;
+  width: 2.4em;
+}
+
+.switch label .lever::before, .switch label .lever::after {
+  height: 1.33em;
+  width: 1.33em;
+}
+
+.switch label input[type="checkbox"]:checked + .lever::before, .switch label input[type="checkbox"]:checked + .lever::after {
+    left: 1.4em;
+}
+
+.switch label .lever::before, .switch label .lever::after{
+  top: -0.2em;
 }

@@ -11,7 +11,7 @@ var maxLength = defaultMaxLength; // Really
 var defaultTheme = "Vanilla";
 var themeData = {};
 var debugMode = false;
-var version = "6.0.0";
+var engineVersion = "6.0.0"; // Changed if breaking changes are made to the engine
 var mode;
 var possibleRequirements = {
   "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -23,7 +23,7 @@ var possibleRequirements = {
 function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
-  if (parts.length == 2) return parts.pop().split(";").shift();
+  if (parts.length == 2) {return parts.pop().split(";").shift();}
 }
 
 function setCookie(name, value) {
@@ -40,7 +40,7 @@ function toggleSettings(){
   $("#engineSelector").toggle();
   $("#"+getCookie("mode")).click();
 
-  if ($('#engineSelector').is(":visible")) {
+  if ($("#engineSelector").is(":visible")) {
     setCookie("showSettings", "true");
   } else {
     document.cookie = "showSettings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Delete the showSettings cookie
@@ -70,7 +70,7 @@ function getQueryStrings() {
   var queryString = location.search.substring(1);
   var keyValues = queryString.split("&");
 
-  for (var i in keyValues) {
+  for (var i = 0; i<keyValues.length; i++) {
     var key = keyValues[i].split("=");
     if (key.length > 1) {
       assoc[decode(key[0])] = decode(key[1]);
@@ -114,53 +114,19 @@ function changeTheme(passedTheme) {
   } else {
 
     setCookie("theme", passedTheme);
-    var html = document.getElementsByTagName("html")[0];
 
-    document.documentElement.style.setProperty("--accentColor", themeData[passedTheme]["accent"]);
-    document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme]["lightAccent"]);
-    document.documentElement.style.setProperty("--textColor", themeData[passedTheme]["text"]);
-    document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme]["background"]);
-    document.documentElement.style.setProperty("--internalColor", themeData[passedTheme]["internal"]);
-    document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme]["incorrect"]);
-    document.documentElement.style.setProperty("--correctColor", themeData[passedTheme]["correct"]);
-    document.documentElement.style.setProperty("--inputColor", themeData[passedTheme]["inputColor"]);
-    document.documentElement.style.setProperty("--linkColor", themeData[passedTheme]["linkColor"]);
-    document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme]["highlightColor"]);
-  };
-
-};
-
-function compareVersions(v1, v2) { // Returns the larger of the two. or "equal"
-  v1Array = v1.split(".");
-  v2Array = v2.split(".");
-  for(var i=0; i<v1Array.length;i++){v1Array[i] = parseInt(v1Array[i])};
-  for(var i=0; i<v2Array.length;i++){v2Array[i] = parseInt(v2Array[i])};
-
-  if (v1Array.length != 3 || v2Array.length != 3){
-    return "Both versions need to be x.y.z";
-  } else {
-    if (v1Array[0]>v2Array[0]){
-      return v1;
-    } else if (v1Array[0]<v2Array[0]) {
-      return v2;
-    } else {
-      if (v1Array[1]>v2Array[1]){
-        return v1;
-      } else if (v1Array[1]<v2Array[1]) {
-        return v2;
-      } else {
-        if (v1Array[2]>v2Array[2]){
-          return v1;
-        } else if (v1Array[2]<v2Array[2]) {
-          return v2;
-        } else {
-          return "equal";
-        }
-      }
-    }
+    document.documentElement.style.setProperty("--accentColor", themeData[passedTheme].accent);
+    document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme].lightAccent);
+    document.documentElement.style.setProperty("--textColor", themeData[passedTheme].text);
+    document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme].background);
+    document.documentElement.style.setProperty("--internalColor", themeData[passedTheme].internal);
+    document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme].incorrect);
+    document.documentElement.style.setProperty("--correctColor", themeData[passedTheme].correct);
+    document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
+    document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
+    document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
   }
-};
-
+}
 
 // Take inputs and display a password. (The  box)
 function process() {
@@ -187,32 +153,28 @@ function process() {
     debug("Found preset: "+appName);
 
     // If it's an alias for another app
-    if (jsonData[appName]["alias"]) {
+    if (jsonData[appName].alias) {
       // Change the name of the app we're using to its alias
-      appName = jsonData[appName]["alias"];
-    };
+      appName = jsonData[appName].alias;
+    }
 
     // If it has a custom character set
     if ("chars" in jsonData[appName]) {
       // Replace the default character set with the supplied one.
-      chars = jsonData[appName]["chars"];
-    };
+      chars = jsonData[appName].chars;
+    }
 
     if ("requirements" in jsonData[appName]) {
-      for (i = 0; i < jsonData[appName]["requirements"].length; i++) {
-        requirements.push(possibleRequirements[jsonData[appName]["requirements"][i]]);
-      };
-    };
+      for (var i = 0; i < jsonData[appName].requirements.length; i++) {
+        requirements.push(possibleRequirements[jsonData[appName].requirements[i]]);
+      }
+    }
 
     if ("minLength" in jsonData[appName]) {
-      minLength = jsonData[appName]["minLength"];
-    };
+      minLength = jsonData[appName].minLength;
+    }
 
-    if ("uniqueCharacters" in jsonData[appName]) {
-      uniqueCharacters = jsonData[appName]["uniqueCharacters"];
-    };
-
-  };
+  }
 
 // if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
@@ -237,18 +199,18 @@ function process() {
       // Add one seeded random character at a time
       result += chars[Math.floor(Math.random() * chars.length)];
 
-    };
+    }
 
     // If there's requirements to forfill
     if (requirements != []) {
       var nope = false;
-      for (i = 0; i < requirements.length; i++) {
+      for (var j = 0; j < requirements.length; j++) {
 
-        for (c = 0; c < requirements[i].length; c++) {
-          if (result.indexOf(requirements[i][c]) != -1) { // If c is in the password
+        for (var c = 0; c < requirements[j].length; c++) {
+          if (result.indexOf(requirements[j][c]) != -1) { // If c is in the password
             break;
-          };
-          if (requirements[i].indexOf(requirements[i][c]) == requirements[i].length-1) {
+          }
+          if (requirements[j].indexOf(requirements[j][c]) == requirements[j].length-1) {
             nope = true;
             break;
           }
@@ -268,7 +230,7 @@ function process() {
 
   // Display password
   $("#result").text(result);
-};
+}
 
 // on application name change
 function updateLimits() {
@@ -285,20 +247,20 @@ function updateLimits() {
   if (jsonData[appName]) {
 
     // If it's an alias for another app
-    if (jsonData[appName]["alias"] && jsonData[jsonData[appName]["alias"]]) {
+    if (jsonData[appName].alias && jsonData[jsonData[appName].alias]) {
       // Change the name of the app we're using to its alias
-      appName = jsonData[appName]["alias"];
-    } else if (jsonData[appName]["alias"] && !jsonData[jsonData[appName]["alias"]]) {
-      throw "Invalid alias"
-    };
+      appName = jsonData[appName].alias;
+    } else if (jsonData[appName].alias && !jsonData[jsonData[appName].alias]) {
+      throw "Invalid alias";
+    }
 
     // And that preset has a minLength
     if ("minLength" in jsonData[appName]) {
 
       // Only update if it's actually a different number.
-      if (jsonData[appName]["minLength"] != minLength) {
+      if (jsonData[appName].minLength != minLength) {
         // Update global var
-        minLength = jsonData[appName]["minLength"]
+        minLength = jsonData[appName].minLength;
         // Also set the length input so it can't go under the limit
         $("#length").attr("min", minLength);
         reBindMouse(minLength);
@@ -307,26 +269,26 @@ function updateLimits() {
 
     if ("maxLength" in jsonData[appName]) {
       // Only update if it's actually a different number.
-      if (jsonData[appName]["maxLength"] != maxLength) {
+      if (jsonData[appName].maxLength != maxLength) {
         // Update global var
-        maxLength = jsonData[appName]["maxLength"]
+        maxLength = jsonData[appName].maxLength;
         // Also set the length input so it can't go under the limit
         $("#length").attr("max", maxLength);
         reBindMouse(minLength, maxLength);
       }
     }
   }
-};
+}
 
 function reBindMouse(min, max) {
 
   if (typeof min === "undefined") {
     min = defaultMinLength;
-  };
+  }
 
   if (typeof max === "undefined") {
     max = defaultMaxLength;
-  };
+  }
 
   // Unbind the current on function
   $("#length").unbind("mousewheel");
@@ -337,10 +299,10 @@ function reBindMouse(min, max) {
       if (parseInt(this.value) < max) {
 
         if (parseInt(this.value) < min) {
-          this.value = min
+          this.value = min;
         } else {
           this.value = parseInt(this.value) + 1;
-        };
+        }
 
 
         // Update password
@@ -350,15 +312,15 @@ function reBindMouse(min, max) {
       // Scrolling down
       if (parseInt(this.value) > min) {
         if (parseInt(this.value) > max) {
-          this.value = max
+          this.value = max;
         } else {
           this.value = parseInt(this.value) - 1;
-        };
+        }
 
         // Update password
         process();
-      };
-    };
+      }
+    }
     return false;
   });
 }
@@ -366,9 +328,9 @@ function reBindMouse(min, max) {
 // On page load
 $(function() {
 
-  if (getCookie("cookieHidden") != undefined) {
+  if (getCookie("cookieHidden") !== undefined) {
     $("#cookieAlert").hide();
-  };
+  }
 
   updateLimits();
   reBindMouse();
@@ -380,8 +342,8 @@ $(function() {
 
     var qs = getQueryStrings();
 
-    if (qs["app"]) {
-      var appName = String(qs["app"]);
+    if (qs.app) {
+      var appName = String(qs.app);
       // If it's a preset
       if (jsonData[appName]) {
 
@@ -389,15 +351,15 @@ $(function() {
         history.pushState(appName, appName);
 
         var length = 16;
-        var max = json[appName]["maxLength"];
+        var max = json[appName].maxLength;
 
         if (!max) {
           max = defaultMaxLength;
-        };
+        }
 
-        if (!(json[appName]["minLength"] <= length && length <= max)) {
+        if (!(json[appName].minLength <= length && length <= max)) {
           length = max;
-        };
+        }
 
         $("#length").val(length);
 
@@ -408,8 +370,8 @@ $(function() {
         if (json[appName].logo) {
           logo = json[appName].logo;
         } else {
-          logo = "logos/"+appName+".svg"
-        };
+          logo = "logos/"+appName+".svg";
+        }
 
 
         // Set image
@@ -421,13 +383,13 @@ $(function() {
       // Set the app name
       $("#app").val(appName);
       $("label[for='app']").addClass("active");
-    };
+    }
 
     $.each(json, function(i, val) {
       if (val.logo) {
         autoCompleteData[i] = val.logo;
       } else {
-        autoCompleteData[i] = "logos/"+i+".svg"
+        autoCompleteData[i] = "logos/"+i+".svg";
       }
     });
 
@@ -441,29 +403,29 @@ $(function() {
         // Set image
         $("#logoContainer").css("display","flex");
         $("img#logo").attr("src", autoCompleteData[val]);
-        $("img#logo").attr("alt", val)
+        $("img#logo").attr("alt", val);
         $("img#logo").attr("title", val);
 
         // If it's an alias for another app
-        if (json[val]["alias"]) {
+        if (json[val].alias) {
           // Change the name of the app we're using to its alias
-          val = json[val]["alias"];
+          val = json[val].alias;
           debug("Using alias: "+val);
-        };
+        }
 
         lastName = val;
         history.pushState(val, val);
 
         var length = 16;
-        var max = json[val]["maxLength"];
+        var max = json[val].maxLength;
 
         if (!max) {
           max = defaultMaxLength;
-        };
+        }
 
-        if (!(json[val]["minLength"] <= length && length <= max)) {
+        if (!(json[val].minLength <= length && length <= max)) {
           length = max;
-        };
+        }
 
         $("label[for=length]").addClass("active");
         $("#length").val(length);
@@ -486,11 +448,11 @@ $(function() {
     $.each(themeData, function(index, item) {
       $("#fabs").append("<li><a name='themes' class='btn-floating' onclick='changeTheme(\""+index+"\");' id='"+index+"' ><i class='material-icons'>color_lens</i></a></li>");
 
-      $("head").append("<style>a[id="+index+"]{background-color: "+themeData[index]["background"]+" !important; border: 1px ;}a[id="+index+"] i {color: "+themeData[index]["text"]+"}</style>");
+      $("head").append("<style>a[id="+index+"]{background-color: "+themeData[index].background+" !important; border: 1px ;}a[id="+index+"] i {color: "+themeData[index].text+"}</style>");
     });
 
     // If the user has a prefered theme
-    if (getCookie("theme") != undefined) {
+    if (getCookie("theme") !== undefined) {
       debug("Found a prefered theme. Loading " + getCookie("theme"));
       changeTheme(getCookie("theme"));
       // Use the clicked CSS for the button
@@ -499,7 +461,7 @@ $(function() {
       // Use the clicked CSS for the first radio button (Vanilla)
       $("input[name='themes'][type=radio]").first().prop("checked", true);
       changeTheme(defaultTheme);
-    };
+    }
 
   });
 
@@ -509,9 +471,9 @@ $(function() {
   clipboard.on("success", function(e) {
 
     if (e.text === "") {
-      Materialize.toast("You have no password to copy.", 4000, "warning")
+      Materialize.toast("You have no password to copy.", 4000, "warning");
     } else {
-      Materialize.toast("Successfully copied!", 4000, "success")
+      Materialize.toast("Successfully copied!", 4000, "success");
     }
 
   });
@@ -544,7 +506,7 @@ $(function() {
       history.pushState(c, c);
 
       process();
-    };
+    }
 
   });
 
@@ -557,8 +519,8 @@ $(function() {
 
   //Set the engine version cookie if we haven't before
   if (getCookie("engineVersion") === undefined) {
-    setCookie("engineVersion", version);
-  };
+    setCookie("engineVersion", engineVersion);
+  }
 
   //Set the mode cookie if we haven't before
   if (getCookie("mode") === undefined) {
@@ -570,7 +532,7 @@ $(function() {
     setCookie("mode", mode);
   } else {
     mode = getCookie("mode");
-  };
+  }
 
   // Initialize the tabs
   $(".tabs").tabs();
@@ -600,13 +562,13 @@ function save() { // Save the current master password as a cookie
   if ($("#pass").val()) { // If there's a password
     setCookie("password", $("#pass").val());
     Materialize.toast("Password saved to your device!", 4000, "success");
-  };
+  }
 
-};
+}
 
 function load() { // Load the saved password from cookie
 
-  if (getCookie("password") != undefined) {
+  if (getCookie("password") !== undefined) {
     var password = getCookie("password"); // Get the password from the cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
     $("#pass").val(password); // Fill the password input with the correct password
@@ -614,16 +576,16 @@ function load() { // Load the saved password from cookie
     Materialize.toast("Password loaded from your device!", 4000, "success");
   } else {
     Materialize.toast("You have no saved password to load.", 4000, "warning");
-  };
-};
+  }
+}
 
 // When forward/back buttons pressed
 window.onpopstate = function(event) {
   $("#app").val(history.state);
-  if ($("#app").val() != "") {
+  if ($("#app").val() !== "") {
     $("label[for='app']").addClass("active");
   } else {
     $("label[for='app']").removeClass("active");
-  };
+  }
   process();
 };

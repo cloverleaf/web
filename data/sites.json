@@ -295,6 +295,9 @@
     "requirements":["cap","special"],
     "maxLength":110
   },
+  "PCPartPicker":{
+    "minLength":1
+  },
   "Pinterest":{
     "minLength":6,
     "requirements":["low","num"]
