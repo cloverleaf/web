@@ -28,7 +28,7 @@
 
 **A:** There isn't a system in place for this but there doesn't need to be since you can just type `ACCOUNTNAME PASSWORD` in the password field to get the password for that account.
 
-</br>
+<br/>
 
 <a name="cookies">**Q:** What are cookies and why do you use them?:</a>
 
