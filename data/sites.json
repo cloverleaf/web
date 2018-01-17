@@ -133,6 +133,9 @@
     "minLength":4,
     "maxLength":128
   },
+  "GeoGuessr":{
+    "minLength":5
+  },
   "Gfycat":{
     "minLength":8,
     "maxLength":25
@@ -360,6 +363,9 @@
     "minLength":8,
     "maxLength":15,
     "requirements":["low","cap","special"]
+  },
+  "TheCubicle.us":{
+    "minLength":5
   },
   "tic.computer":{
     "minLength":6

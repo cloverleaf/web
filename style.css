@@ -127,6 +127,11 @@ input[type=number] {
   /*Only breaks when it needs to*/
   min-height: 1em;
   min-width: 20%;
+  overflow: hidden;
+}
+
+#result:empty {
+  line-height: 2rem;
 }
 
 #result:empty:not(:focus):before {
@@ -473,9 +478,9 @@ label:focus{
   }
 }
 
-.hidden {
+.hidden:not(:empty) {
   font-family: 'text-security-disc' !important;
-  font-size: 4rem  !important;
+  font-size: 4.25rem  !important;
   line-height: 3rem;
 }
 
@@ -523,8 +528,11 @@ label:focus{
 }
 
 .tabs {
-  background-color: rgba(0,0,0,0);
+  background-color: #fff;
+  background-color: var(--backgroundColor);
   cursor: pointer;
+  overflow-x: hidden;
+  z-index: 995;
 }
 
 .tabs .tab a, .tabs .tab a:hover  {

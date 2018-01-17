@@ -138,6 +138,16 @@ function process() {
   var result = ""; // Has to be here, not in the loop for scope purposes
   var minLength = defaultMinLength;
 
+  if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
+    $("#result").text("");
+
+    if ( length > maxLength ) { //Too long
+      $("#length").val(maxLength);
+    }
+
+    return;
+  }
+
   // If the appname or password or length are empty
   if (appName === ""|| masterPass === "" || length === "") {
     // Empty the output field
@@ -174,12 +184,6 @@ function process() {
       minLength = jsonData[appName].minLength;
     }
 
-  }
-
-// if ((! ( minLength <= length && length <= maxLength )) || requirements.length > length) { // if the length is invalid
-  if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
-    $("#result").text("");
-    return;
   }
 
   debug("Started generating password");
