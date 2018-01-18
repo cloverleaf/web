@@ -131,12 +131,9 @@ input[type=number] {
   overflow: hidden;
 }
 
-#result:empty {
-  line-height: 2rem;
-}
-
 #result:empty:not(:focus):before {
   content:attr(data-text);
+  line-height: 2rem;
 }
 
 #copy {

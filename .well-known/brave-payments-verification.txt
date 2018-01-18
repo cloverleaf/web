@@ -1,4 +1,0 @@
-This is a Brave Payments publisher verification file.
-
-Domain: childishgiant.github.io
-Token: fd1bd1227a4325e3f67467fc3e3a892d69bab937043d056e5ff343122550e75a
