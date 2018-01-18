@@ -27,6 +27,7 @@ body {
   height: 100% !important;
   color: #000;
   color: var(--inputColor);
+  caret-color: #3f51b5;
   caret-color: var(--accentColor);
   text-align: center;
   transition: background-color .3s ease, color .3s ease;
@@ -490,12 +491,14 @@ label:focus{
 
 #cookieAlert {
   bottom: 0px;
+  background-color: #fff;
   background-color: var(--internalColor);
   width: 100%;
   padding: 0.5em 1em;
   position: fixed;
   user-select: none;
   z-index: 998;
+  box-shadow: 0 0 3px 0px #535353;
   box-shadow: 0 0 3px 0px var(--textColor);
 }
 
@@ -536,16 +539,19 @@ label:focus{
 }
 
 .tabs .tab a, .tabs .tab a:hover  {
+  color: #000;
   color: var(--inputColor);
   font-size: 1em;
 }
 
 .tabs .tab a.active {
+  color: #000;
   color: var(--inputColor);
   font-weight: 400;
 }
 
 .tabs .indicator {
+  background-color: #3f51b5;
   background-color: var(--accentColor)
 }
 
