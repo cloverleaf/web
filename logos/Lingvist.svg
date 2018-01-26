@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   id="svg10"
+   version="1.1"
+   viewBox="0 0 48.391251 30.003365"
+   height="30.003365"
+   width="48.391251"
+   preserveAspectRatio="xMidYMid">
+  <metadata
+     id="metadata14">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <style
+       id="style2">
+        .symbol {
+          display: none;
+        }
+        aside .full-logo,
+        header .full-logo,
+        .simple.clean header .full-logo,
+        footer .full-logo {
+          fill: #103481;
+          fill-rule: evenodd;
+        }
+        .simple header .full-logo,
+        header.dark .full-logo {
+          fill: #fff;
+          fill-rule: evenodd;
+        }
+        @media (max-width: 767px) {
+          .simple header .full-logo {
+            fill: #103481;
+            fill-rule: evenodd;
+          }
+        }
+        nav.mobile .full-logo {
+          display: none;
+        }
+        nav.mobile .symbol {
+          display: block;
+          fill: #fff;
+          fill-rule: evenodd;
+        }
+        html[dir=rtl] nav.mobile .symbol {
+          display: none;
+        }
+        html[dir=rtl] nav.mobile .full-logo {
+          display: block;
+        }
+      </style>
+  </defs>
+  <path
+     id="path6"
+     class="full-logo"
+     d="m 23.096,29.976 c -0.135,0.078 -0.303,-0.02 -0.303,-0.177 v -3.162 c 0,-0.149 0.079,-0.286 0.208,-0.36 L 42.207,15.169 23.001,4.061 C 22.872,3.987 22.793,3.85 22.793,3.701 V 0.536 c 0,-0.157 0.168,-0.254 0.303,-0.176 l 25.14,14.541 c 0.207,0.119 0.207,0.417 0,0.536 z M 22.793,16.739 c 0,0.132 -0.07,0.255 -0.186,0.321 L 0.463,29.869 C 0.257,29.988 0,29.839 0,29.601 V 0.116 C 0,0.051 0.05,0 0.113,0 H 3.152 C 3.215,0 3.267,0.051 3.267,0.116 V 24.495 L 22.535,13.346 c 0.115,-0.066 0.258,0.017 0.258,0.148 z" />
+  <path
+     style="display:none"
+     id="path8"
+     class="symbol"
+     d="m 23.096,29.976 c -0.135,0.078 -0.303,-0.02 -0.303,-0.177 v -3.162 c 0,-0.149 0.079,-0.286 0.208,-0.36 L 42.207,15.169 23.001,4.061 C 22.872,3.987 22.793,3.85 22.793,3.701 V 0.536 c 0,-0.157 0.168,-0.254 0.303,-0.176 l 25.14,14.541 c 0.207,0.119 0.207,0.417 0,0.536 z M 22.793,16.739 c 0,0.132 -0.07,0.255 -0.186,0.321 L 0.463,29.869 C 0.257,29.988 0,29.839 0,29.601 V 0.116 C 0,0.051 0.05,0 0.113,0 H 3.152 C 3.215,0 3.267,0.051 3.267,0.116 V 24.495 L 22.535,13.346 c 0.115,-0.066 0.258,0.017 0.258,0.148 z" />
+</svg>

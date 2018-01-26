@@ -31,6 +31,7 @@ body {
   caret-color: var(--accentColor);
   text-align: center;
   transition: background-color .3s ease, color .3s ease;
+  overflow-x: hidden;
 }
 
 body {
@@ -46,10 +47,10 @@ body {
 
 #box {
   text-align: center;
-  max-width: 75%;
-  /*Could be 100% but it's a bit too cramped.*/
+  max-width: calc(100% - (30px + 10em));
   max-height: 100%;
 }
+
 
 .partial {
   width: calc(100% - 3rem) !important;
@@ -488,6 +489,7 @@ label:focus{
 
 #cookieAlert {
   bottom: 0px;
+  left: 0px;
   background-color: #fff;
   background-color: var(--internalColor);
   width: 100%;
@@ -579,4 +581,8 @@ label:focus{
 
 .switch label .lever::before, .switch label .lever::after{
   top: -0.2em;
+}
+
+.material-tooltip {
+  max-width: 7em;
 }

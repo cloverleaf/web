@@ -71,10 +71,10 @@
       !function(p,e,r,d,o,l,a){p.GoogleAnalyticsObject=r;p[r]||(p[r]=function(){
       (p[r].q=p[r].q||[]).push(arguments)});p[r].l=+new Date;l=e.createElement(d);
       a=e.getElementsByTagName(d)[0];l.src=o;a.parentNode.insertBefore(l,a)}
-      (window,document,'ga','script','//www.google-analytics.com/analytics.js');
+      (window,document,"ga","script","//www.google-analytics.com/analytics.js");
 
-      ga('create', 'UA-101024973-1', 'auto');
-      ga('send', 'pageview');
+      ga("create", "UA-101024973-1", "auto");
+      ga("send", "pageview");
     </script>
 
     <!-- Material Icons -->
@@ -91,7 +91,7 @@
     </div>
 
     <div class="fixed-action-btn horizontal click-to-toggle" id="themeSelector">
-      <a class="btn-floating btn-large" style="background: var(--accentColor);">
+      <a class="btn-floating btn-large" style="background: #3f51b5;background: var(--accentColor);">
         <i class="material-icons">menu</i>
       </a>
       <ul id="fabs">
@@ -116,8 +116,8 @@
           <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
           <div class="input-group-addon suffix">
 
-            <i onclick="save();" class="material-icons icon">save</i>
-            <i onclick="load();" class="material-icons icon">file_download</i>
+            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="50" data-tooltip="Save the current master password on this device">save</i>
+            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="50" data-tooltip="Load the saved master password">file_download</i>
 
           </div>
         </div>
@@ -133,7 +133,7 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" step="1" min="4" value="16" max="526" onkeypress='return event.charCode >= 48 && event.charCode <= 57' oninput="process();" onkeyup="process();" />
+          <input id="length" type="number" step="1" min="4" value="16" max="526" onkeypress="return event.charCode >= 48 && event.charCode <= 57" oninput="process();" onkeyup="process();" />
         </div>
 
         <span class="hint">The longer, the better</span>
@@ -185,9 +185,9 @@
     </noscript>
 
     <script>
-      if('serviceWorker' in navigator) {
+      if("serviceWorker" in navigator) {
         navigator.serviceWorker
-                 .register('sw.js')
+                 .register("sw.js")
                  .then(function() { console.log("Service Worker Registered"); });
       }
     </script>

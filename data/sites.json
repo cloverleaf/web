@@ -59,6 +59,10 @@
   "Chrono.gg":{
     "minLength":8
   },
+  "Circle":{
+    "minLength":6,
+    "maxLength":255
+  },
   "DeviantArt":{
     "minLength":6
   },
@@ -213,6 +217,9 @@
   "lernu":{
     "minLength":5
   },
+  "Lingvist":{
+    "minLength":8
+  },
   "LinkedIn":{
     "minLength":6
   },
@@ -358,6 +365,9 @@
   },
   "Steam":{
     "minLength":8
+  },
+  "Streamable":{
+    "minLength":6
   },
   "Tesco":{
     "minLength":8,
