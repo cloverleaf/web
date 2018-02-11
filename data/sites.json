@@ -46,6 +46,9 @@
     "requirements":["low","num","cap"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
+  "Behance":{
+    "alias":"Adobe"
+  },
   "Bing":{
     "alias":"Microsoft"
   },
@@ -329,6 +332,11 @@
     "minLength":8,
     "maxLength":128
   },
+  "QQ":{
+    "minLength":8,
+    "maxLength":16,
+    "requirements":["low","num"]
+  },
   "Rabbit":{
     "minLength":8,
     "requirements":["low","cap","num"]
@@ -414,6 +422,9 @@
   },
   "VK":{
     "minLength":6
+  },
+  "WeChat":{
+    "alias":"QQ"
   },
   "Wikipedia":{
     "minLength":1

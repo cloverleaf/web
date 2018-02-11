@@ -332,6 +332,14 @@ function reBindMouse(min, max) {
 // On page load
 $(function() {
 
+  // Stops the android keyboard from changing the size of the site.
+  setTimeout(function () {
+        var viewheight = $(window).height();
+        var viewwidth = $(window).width();
+        var viewport = document.querySelector("meta[name=viewport]");
+        viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+    }, 1000);
+
   if (getCookie("cookieHidden") !== undefined) {
     $("#cookieAlert").hide();
   }

@@ -586,3 +586,10 @@ label:focus{
 .material-tooltip {
   max-width: 7em;
 }
+
+/* If the device can't hover, don't enable tooltips */
+@media (hover: none) {
+  .material-tooltip {
+    display: none;
+  }
+}
