@@ -593,3 +593,15 @@ label:focus{
     display: none;
   }
 }
+
+.material-tooltip > .backdrop {
+  background-color: #fff;
+  background-color: var(--internalColor);
+}
+
+.material-tooltip {
+
+  box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
+  color: #535353;
+  color: var(--textColor);
+}
