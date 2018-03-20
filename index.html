@@ -7,7 +7,7 @@
     <!-- SEO -->
     <title>Perdola</title>
 
-    <meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,initial-scale=1">
+    <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
     <meta name="description" content="Perdola is a free, open source app to replace your password manager without storing your passwords anywhere.">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
@@ -38,27 +38,27 @@
     <meta name="twitter:image" content="https://childishgiant.github.io/perdola/android-chrome-512x512.png" />
 
     <!-- Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=Jy70Gp2BEP">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png?v=Jy70Gp2BEP">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png?v=Jy70Gp2BEP">
-    <link rel="manifest" href="manifest.json?v=Jy70Gp2BEP">
-    <link rel="mask-icon" href="safari-pinned-tab.svg?v=Jy70Gp2BEP" color="#3f51b5">
-    <link rel="shortcut icon" href="favicon.ico?v=Jy70Gp2BEP">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#3f51b5">
+    <link rel="shortcut icon" href="favicon.ico">
     <meta name="apple-mobile-web-app-title" content="Perdola">
     <meta name="application-name" content="Perdola">
     <meta name="msapplication-TileColor" content="#8c97ce">
-    <meta name="msapplication-TileImage" content="mstile-144x144.png?v=Jy70Gp2BEP">
+    <meta name="msapplication-TileImage" content="mstile-144x144.png">
     <meta name="theme-color" content="#8c97ce">
 
-    <!--Import materialize.css-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" />
-    <!--Styling css-->
+    <!-- Import materialize.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU=" crossorigin="anonymous" />
+    <!-- Styling css -->
     <link rel="stylesheet" type="text/css" href="compiled/style.min.css" />
-    <!--Import jQuery before materialize.js-->
+    <!-- Import jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js" integrity="sha256-uWtSXRErwH9kdJTIr1swfHFJn/d/WQ6s72gELOHXQGM=" crossorigin="anonymous"></script>
-    <!-- seedrandom.js-->
+    <!-- materialize.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI=" crossorigin="anonymous"></script>
+    <!-- seedrandom.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js" integrity="sha256-64f1BOntWrbWIG++Jw3Ad4BSjTz8FG2DLeZ0kD3lLcc=" crossorigin="anonymous"></script>
     <!-- clipboard.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=" crossorigin="anonymous"></script>
@@ -85,12 +85,12 @@
 
     <div id="engineSelector" style="display: none;">
       <ul class="tabs">
-        <li class="tab"><a id="old" onclick="setMode('old');">Compatability mode</a></li>
-        <li class="tab"><a id="new" onclick="setMode('new');">Suggested mode</a></li>
+        <li class="tab"><a onclick="setMode('old');" href="#old">Compatability mode</a></li>
+        <li class="tab"><a onclick="setMode('new');" href="#new">Suggested mode</a></li>
       </ul>
     </div>
 
-    <div class="fixed-action-btn horizontal click-to-toggle" id="themeSelector">
+    <div class="fixed-action-btn" id="themeSelector">
       <a class="btn-floating btn-large" style="background: #3f51b5;background: var(--accentColor);">
         <i class="material-icons">menu</i>
       </a>
@@ -172,7 +172,7 @@
 
     <div id="cookieAlert">
       <span>This site uses cookies, like most websites. By using this site, you are accepting the use of <a href="faq#cookies" style="cursor:help" title="More about cookies">cookies</a>.</span>
-      <svg onclick="$('#cookieAlert').hide();document.cookie='cookieHidden=true; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/'" fill="var(--inputColor)" height="2em" viewBox="0 0 24 24" width="2em" xmlns="http://www.w3.org/2000/svg">
+      <svg onclick="$('#cookieAlert').hide();setCookie('cookieHidden',true);" fill="var(--inputColor)" height="2em" viewBox="0 0 24 24" width="2em" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
           <path d="M0 0h24v24H0z" fill="none"/>
       </svg>
@@ -185,10 +185,16 @@
     </noscript>
 
     <script>
-      if("serviceWorker" in navigator) {
-        navigator.serviceWorker
-                 .register("sw.js")
-                 .then(function() { console.log("Service Worker Registered"); });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('sw.js').then(function(registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration.scope);
+          }, function(err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
       }
     </script>
 

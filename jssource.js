@@ -13,6 +13,9 @@ var themeData = {};
 var debugMode = false;
 var engineVersion = "6.0.0"; // Changed if breaking changes are made to the engine
 var mode;
+var instance;
+var d = new Date();
+var cookieCrumble = new Date(d.getFullYear() + 10, d.getMonth(), d.getDate()); // Make a date 10 years into THE FUTURE
 var possibleRequirements = {
   "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "low":"abcdefghijklmnopqrstuvwxyz",
@@ -27,7 +30,8 @@ function getCookie(name) {
 }
 
 function setCookie(name, value) {
-  document.cookie = name+"="+value+"; expires=Fri, 31 Dec 9999 23:59:59 GMT; path=/;"; // Set cookie with no expiration date (Close enough)
+
+  document.cookie = name+"="+value+"; expires=" + cookieCrumble.toGMTString() + "; path=/;"; // Set cookie to expire in 10 years
 }
 
 function setMode(setTo){
@@ -37,8 +41,10 @@ function setMode(setTo){
 }
 
 function toggleSettings(){
+  // Show the selector div
   $("#engineSelector").toggle();
-  $("#"+getCookie("mode")).click();
+  // Click on the last used mode
+  M.Tabs.getInstance($(".tabs")).select(mode);
 
   if ($("#engineSelector").is(":visible")) {
     setCookie("showSettings", "true");
@@ -110,7 +116,7 @@ function changeTheme(passedTheme) {
   if (passedTheme === "") {
     passedTheme = defaultTheme;
   } else if (!themeData[passedTheme]) {
-    throw "invalid theme: "+passedTheme;
+    throw new Error( 'Invalid theme  "'+ passedTheme +'" ');
   } else {
 
     setCookie("theme", passedTheme);
@@ -208,10 +214,11 @@ function process() {
     // If there's requirements to forfill
     if (requirements != []) {
       var nope = false;
-      for (var j = 0; j < requirements.length; j++) {
+      for (var j = 0; j < requirements.length; j++) { // For each requirement
 
-        for (var c = 0; c < requirements[j].length; c++) {
-          if (result.indexOf(requirements[j][c]) != -1) { // If c is in the password
+        for (var c = 0; c < requirements[j].length; c++) { // For each character in the requirement group
+
+          if (result.indexOf(requirements[j][c]) != -1) { // If that character is in the password
             break;
           }
           if (requirements[j].indexOf(requirements[j][c]) == requirements[j].length-1) {
@@ -326,19 +333,12 @@ function reBindMouse(min, max) {
       }
     }
     return false;
-  });
+  }, {passive:true});
 }
 
 // On page load
 $(function() {
 
-  // Stops the android keyboard from changing the size of the site.
-  setTimeout(function () {
-        var viewheight = $(window).height();
-        var viewwidth = $(window).width();
-        var viewport = document.querySelector("meta[name=viewport]");
-        viewport.setAttribute("content", "height=" + viewheight + ", width=" + viewwidth + ", initial-scale=1.0");
-    }, 1000);
 
   if (getCookie("cookieHidden") !== undefined) {
     $("#cookieAlert").hide();
@@ -351,7 +351,6 @@ $(function() {
   $.getJSON("data/sites.json", function(json) {
 
     jsonData = json;
-
     var qs = getQueryStrings();
 
     if (qs.app) {
@@ -406,7 +405,7 @@ $(function() {
     });
 
     // Setup possible autocomplete sites
-    $("input#app").autocomplete({
+    instance = $("input#app").autocomplete({
       data: autoCompleteData,
 
       // called when an autocomplete is used.
@@ -445,7 +444,36 @@ $(function() {
         // In case there's already a password (eg switching sites / presets) regen password
         process();
       },
+      // Minimum number of characters typed for the dialog to open
       minLength: 0,
+      // For deciding the order of options.
+      sortFunction: function(a, b, inputString) {
+        // inputString will always be in both a and b if present
+
+        // if there's a given inputString
+        if (inputString) {
+
+          // If only "a" starts with inputString
+          if (a.startsWith(inputString) && !b.startsWith(inputString)) {
+            return -1;
+          }
+
+          // If only "b" starts with inputString
+          if (!a.startsWith(inputString) && b.startsWith(inputString)) {
+            return 1;
+          }
+          // If both "a" and "b" start with inputString we do the same as always so
+        }
+
+        if (a < b) {
+            return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        // a must be equal to b
+        return 0;
+    }
     });
 
     // Autocomplete has been setup
@@ -475,7 +503,19 @@ $(function() {
       changeTheme(defaultTheme);
     }
 
+    // Set up the theme picker FAB after all themes are added
+    $("#themeSelector").floatingActionButton({
+      direction: "left", // Direction menu comes out
+      hoverEnabled: false, // Hover disabled
+      toolbarEnabled: false // Toolbar transition disabled
+    });
+
+    // Set up the theme picker again so that the animation works.
+    $("#themeSelector").floatingActionButton({
+      direction: "left",hoverEnabled: false,toolbarEnabled: false
+    });
   });
+
 
   // Initialize the copy button
   var clipboard = new Clipboard("#copy");
@@ -483,9 +523,9 @@ $(function() {
   clipboard.on("success", function(e) {
 
     if (e.text === "") {
-      Materialize.toast("You have no password to copy.", 4000, "warning");
+      M.toast({html:"You have no password to copy.", displayLength:4000, classes:"warning"});
     } else {
-      Materialize.toast("Successfully copied!", 4000, "success");
+      M.toast({html:"Successfully copied!", displayLength:4000, classes:"success"});
     }
 
   });
@@ -498,12 +538,9 @@ $(function() {
 
   // Executed when you type in the app field
   $("#app").on("keyup", function(e) {
-    // If they pressed enter and the suggestions are open
-    if (e.which == 13 && $("ul.autocomplete-content").height() > 0) {
-      debug("Enter on dropdown");
-      // Click first result
-      $("ul.autocomplete-content li:first").mousedown();
-    } else if (e.which != 13) {
+
+    // If they pressed enter AND the suggestions are open AND no suggestions are selected
+    if (e.which != 13 ) {
       // Clear logo
       $("#logoContainer").css("display","none");
       $("img#logo").removeAttr("src");
@@ -546,26 +583,22 @@ $(function() {
     mode = getCookie("mode");
   }
 
+  // Initialize tooltips
+  $(".tooltipped").tooltip();
   // Initialize the tabs
   $(".tabs").tabs();
+  var tabs = M.Tabs.getInstance($(".tabs"));
 
   if (getCookie("showSettings") == "true") {
     $("#engineSelector").show();
   }
 
-  if (mode == "new") {
-    $("#new").click();
+
+  if (mode == "new" || mode == "old") {
+    tabs.select(mode);
   } else {
-    $("#old").click();
+    throw new Error( 'Invalid mode  "'+ mode +'" ');
   }
-
-  // For when materialize 1.0.0 becomes stable / I work out why my FABs don't work with it.
-
-  // $("#themePicker").floatingActionButton({
-  //   direction: "left", // Direction menu comes out
-  //   hoverEnabled: false, // Hover disabled
-  //   toolbarEnabled: false // Toolbar transition disabled
-  // });
 
 });
 
@@ -573,7 +606,7 @@ function save() { // Save the current master password as a cookie
 
   if ($("#pass").val()) { // If there's a password
     setCookie("password", $("#pass").val());
-    Materialize.toast("Password saved to your device!", 4000, "success");
+    M.toast({html:"Password saved to your device!", displayLength:4000, classes:"success"});
   }
 
 }
@@ -585,9 +618,9 @@ function load() { // Load the saved password from cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
     $("#pass").val(password); // Fill the password input with the correct password
     process();
-    Materialize.toast("Password loaded from your device!", 4000, "success");
+    M.toast({html:"Password loaded from your device!", displayLength:4000, classes:"success"});
   } else {
-    Materialize.toast("You have no saved password to load.", 4000, "warning");
+    M.toast({html:"You have no saved password to load.", displayLength:4000, classes:"warning"});
   }
 }
 

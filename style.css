@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400');
+@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400,500');
 
 @font-face {
     font-family: 'text-security-disc';
@@ -142,11 +142,6 @@ input[type=number] {
   margin: auto;
 }
 
-#submit {
-  font-weight: normal;
-  /*Resetting weight of the button to the standard.*/
-}
-
 .hint {
   float: left;
   color: #535353;
@@ -210,8 +205,7 @@ ul.autocomplete-content.dropdown-content {
   max-height: calc(82% * 4); /* 82% seems to work out as one row */
   overflow-y: auto;
   overflow-x: hidden;
-  top: 3.8em;
-  /* top: 3.5em;  for materialize 1.0.0*/
+  top: -.1em;
   margin-top: 0px;
 }
 
@@ -223,10 +217,14 @@ ul.autocomplete-content.dropdown-content li {
   min-height: 0px;
 }
 
-.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected{
+.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
   color:red;
   background: linear-gradient(to right, #eee 0%, #eee 80% ,#fff 80% ) !important;
   background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 80% ,#fff 80% ) !important;
+}
+
+ul.autocomplete-content.dropdown-content li img {
+  overflow: hidden;
 }
 
 ul.autocomplete-content.dropdown-content span {
@@ -251,8 +249,9 @@ ul.autocomplete-content.dropdown-content span .highlight{
   max-width: 100%;
   color: #535353;
   color: var(--textColor);
+  font-weight: 400;
   overflow: visible;
-  /*color: var(--inputColor);*/
+  /* color: var(--inputColor); */
   padding: 0px;
 }
 
@@ -279,7 +278,6 @@ li img.right.circle {
   margin: 0.33em;
 }
 
-
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
 .circle {
   object-fit: scale-down;
@@ -296,13 +294,11 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   background-color: rgba(63, 81, 181, 0.3);
 }
 
-
 /*Switch knob*/
 .switch label input[type=checkbox]:checked+.lever:after {
   background-color: #3f51b5;
   background-color: var(--accentColor);
 }
-
 
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever {
@@ -321,7 +317,6 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   top: 0px;
   right: -5px;
 }
-
 
 .icon {
   font-size: 1.4em !important;
@@ -513,6 +508,20 @@ label:focus{
   right: 1em;
 }
 
+.btn-floating {
+  width: 2.86rem;
+  height: 2.86rem;
+}
+
+.btn-floating i {
+  font-size: 1.75rem;
+  line-height: 1.75em;
+  top: 0px;
+  left:0px;
+  position: absolute;
+  display: block;
+}
+
 .btn-floating.btn-large i {
   font-size: 2rem;
   line-height: 2em;
@@ -543,6 +552,11 @@ label:focus{
   font-size: 1em;
 }
 
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: #fff;
+  background-color: var(--backgroundColor);
+}
+
 .tabs .tab a.active {
   color: #000;
   color: var(--inputColor);
@@ -563,6 +577,11 @@ label:focus{
 .btn {
   height: 2.4em;
   line-height: 2.4em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  outline: 0;
+  padding: 0 2rem;
 }
 
 .switch label .lever {
@@ -587,20 +606,16 @@ label:focus{
   max-width: 7em;
 }
 
-/* If the device can't hover, don't enable tooltips */
+/* If the device can't hover, don't show tooltips */
 @media (hover: none) {
   .material-tooltip {
     display: none;
   }
 }
 
-.material-tooltip > .backdrop {
+.material-tooltip {
   background-color: #fff;
   background-color: var(--internalColor);
-}
-
-.material-tooltip {
-
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
   color: #535353;
   color: var(--textColor);
