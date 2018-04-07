@@ -110,6 +110,9 @@ function resultToggle() {
   }
 }
 
+function getRandomArbitrary(min, max) {
+  return Math.trunc(Math.random() * (max - min) + min);
+}
 
 function changeTheme(passedTheme) {
 
@@ -131,6 +134,8 @@ function changeTheme(passedTheme) {
     document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
     document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
     document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
+    document.documentElement.style.setProperty("--underlineColor", themeData[passedTheme].underlineColor);
+
   }
 }
 
@@ -359,7 +364,6 @@ $(function() {
       if (jsonData[appName]) {
 
         lastName = appName;
-        history.pushState(appName, appName);
 
         var length = 16;
         var max = json[appName].maxLength;
@@ -425,7 +429,6 @@ $(function() {
         }
 
         lastName = val;
-        history.pushState(val, val);
 
         var length = 16;
         var max = json[val].maxLength;
@@ -532,6 +535,15 @@ $(function() {
 
   // on change of password submit
   $("#pass").on("keyup", function(e) {
+
+    // If there's a password
+    if ($("#pass").val()) {
+      Math.seedrandom($("#pass").val());
+      $("#pass").attr("style", "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)");
+    } else {
+      $("#pass").removeAttr("style");
+    }
+
     // Regen the password
     process();
   });
@@ -552,8 +564,6 @@ $(function() {
     // If you've changed the app name
     if (lastName != c) {
       lastName = c;
-      history.pushState(c, c);
-
       process();
     }
 
@@ -623,14 +633,3 @@ function load() { // Load the saved password from cookie
     M.toast({html:"You have no saved password to load.", displayLength:4000, classes:"warning"});
   }
 }
-
-// When forward/back buttons pressed
-window.onpopstate = function(event) {
-  $("#app").val(history.state);
-  if ($("#app").val() !== "") {
-    $("label[for='app']").addClass("active");
-  } else {
-    $("label[for='app']").removeClass("active");
-  }
-  process();
-};

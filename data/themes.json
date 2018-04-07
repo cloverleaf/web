@@ -9,7 +9,8 @@
     "correct": "#5cb85c",
     "inputColor": "#000",
     "linkColor": "#00539B",
-    "highlightColor": "#eee"
+    "highlightColor": "#eee",
+    "underlineColor": "#3f51b5"
   },
   "Discord":{
     "accent": "#3f51b5",
@@ -21,7 +22,8 @@
     "correct": "#5cb85c",
     "inputColor": "#C0BABC",
     "linkColor": "#1c96c5",
-    "highlightColor": "#36393E"
+    "highlightColor": "#36393E",
+    "underlineColor": "#3f51b5"
   },
   "SolarizedDark":{
     "accent": "#3f51b5",
@@ -33,7 +35,8 @@
     "correct": "#5cb85c",
     "inputColor": "#839496",
     "linkColor": "#268bd2",
-    "highlightColor": "#002b36"
+    "highlightColor": "#002b36",
+    "underlineColor": "#3f51b5"
   },
   "OLED":{
     "accent": "#3f51b5",
@@ -45,6 +48,7 @@
     "correct": "#5cb85c",
     "inputColor": "#839496",
     "linkColor": "#268bd2",
-    "highlightColor": "#0e0e0e"
+    "highlightColor": "#0e0e0e",
+    "underlineColor": "#3f51b5"
   }
 }

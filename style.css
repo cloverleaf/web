@@ -20,6 +20,7 @@
   --inputColor: #000;
   --linkColor: #00539B;
   --highlightColor: #eee;
+  --underlineColor: #3f51b5;
 }
 
 html,
@@ -83,9 +84,9 @@ label {
 /* label underline focus color */
 .input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
   border-bottom: 1px solid #3f51b5 !important;
-  border-bottom: 1px solid var(--accentColor) !important;
+  border-bottom: 1px solid var(--underlineColor) !important;
   box-shadow: 0 1px 0 0 #3f51b5 !important;
-  box-shadow: 0 1px 0 0 var(--accentColor) !important;
+  box-shadow: 0 1px 0 0 var(--underlineColor) !important;
 }
 
 input[type=text], input[type=number], input[type=password] {
@@ -511,15 +512,6 @@ label:focus{
 .btn-floating {
   width: 2.86rem;
   height: 2.86rem;
-}
-
-.btn-floating i {
-  font-size: 1.75rem;
-  line-height: 1.75em;
-  top: 0px;
-  left:0px;
-  position: absolute;
-  display: block;
 }
 
 .btn-floating.btn-large i {

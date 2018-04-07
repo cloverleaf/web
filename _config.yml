@@ -1,3 +1,0 @@
-# Induce Jekyll to include .well-known/dat in the gh-pages build
-# See: (https://gist.github.com/pfrazee/8eb85d7bb33efb52c7d6d1a2e639d979#gistcomment-2144479)
-include: [".well-known"]

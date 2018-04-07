@@ -386,6 +386,11 @@
   "Spotify":{
     "minLength":4
   },
+  "Square Enix":{
+    "minLength":6,
+    "maxLength":32,
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"(#$%&')=~|`{+*}<>?_-^@[;:],./"
+  },
   "Stack Overflow":{
     "minLength":8,
     "requirements":["low","num"]
@@ -406,6 +411,9 @@
   },
   "tic.computer":{
     "minLength":6
+  },
+  "Trello":{
+    "minLength":8
   },
   "Tumblr":{
     "alias":"Yahoo"
@@ -457,9 +465,6 @@
     "minLength":6,
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
     "requirements":["cap","low","num","special"]
-  },
-  "Wish":{
-    "minLength":1
   },
   "Xbox":{
     "alias":"Microsoft"
