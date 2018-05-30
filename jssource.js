@@ -622,7 +622,6 @@ function save() { // Save the current master password as a cookie
 }
 
 function load() { // Load the saved password from cookie
-
   if (getCookie("password") !== undefined) {
     var password = getCookie("password"); // Get the password from the cookie
     $("label[for='pass']").addClass("active"); // Raise the text on the input
@@ -632,4 +631,7 @@ function load() { // Load the saved password from cookie
   } else {
     M.toast({html:"You have no saved password to load.", displayLength:4000, classes:"warning"});
   }
+
+  Math.seedrandom(password);
+  $("#pass").attr("style", "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)");
 }
