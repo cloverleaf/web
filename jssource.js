@@ -607,7 +607,7 @@ $(function() {
   if (mode == "new" || mode == "old") {
     tabs.select(mode);
   } else {
-    throw new Error( 'Invalid mode  "'+ mode +'" ');
+    throw new Error( 'Invalid mode  "'+ mode +'" '); // Using the inferior kind of quotes so I may see the superior ones apon error
   }
 
 });

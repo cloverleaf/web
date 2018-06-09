@@ -161,10 +161,14 @@
     "minLength":1,
     "maxLength":128
   },
-  "Github":{
+  "GitHub":{
     "minLength":7,
     "maxLength":72,
     "requirements":["low","num"]
+  },
+  "GitLab":{
+    "minLength":8,
+    "maxLendth":128
   },
   "Guilded":{
     "minLength":8,
@@ -177,7 +181,7 @@
     "minLength":8,
     "maxLength":100
   },
-  "the Guardian":{
+  "The Guardian":{
     "minLength":6,
     "maxLength":72
   },
@@ -423,6 +427,10 @@
   },
   "Twitter":{
     "minLength":6
+  },
+  "Uber":{
+    "minLength":5,
+    "maxLength":512
   },
   "Ubisoft":{
     "minLength":8,
