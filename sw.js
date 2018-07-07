@@ -176,26 +176,27 @@ var assets  = [
     "safari-pinned-tab.svg"
 ];
 
-self.addEventListener('install', function(event) {
+self.addEventListener("install", function(event) {
     // Perform install steps
     event.waitUntil(
         caches.open(cacheName)
         .then(function(cache) {
-            console.log('Opened cache');
+            console.log("Opened cache");
             return cache.addAll(assets);
          })
     );
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener("fetch", function (event) {
     event.respondWith(
         caches.match(event.request)
-        .then(function(response) {
-            // Cache hit - return response
-            if (response) {
-                return response;
+            .then(function (response) {
+                // Cache hit - return response
+                if (response) {
+                    return response;
+                }
+                return fetch(event.request);
             }
-            return fetch(event.request);
-        })
+            )
     );
 });

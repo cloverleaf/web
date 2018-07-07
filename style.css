@@ -534,6 +534,7 @@ label:focus{
   cursor: pointer;
   overflow-x: hidden;
   z-index: 995;
+  transition: background-color .3s ease, color .3s ease;
 }
 
 .tabs .tab a, .tabs .tab a:hover  {
@@ -570,7 +571,6 @@ label:focus{
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
   font-size: 1rem;
-  outline: 0;
   padding: 0 2rem;
 }
 
@@ -609,4 +609,12 @@ label:focus{
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
   color: #535353;
   color: var(--textColor);
+}
+
+/* In the future focus-visable should be used. See https://caniuse.com/?#search=css-focus-visible */
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus, .btn-large:focus, .btn-small:focus, .btn-flat:focus {
+  outline: rgb(77, 144, 254) auto 5px;
+  outline-color: rgb(77, 144, 254);
+  outline-style: auto;
+  outline-width: 5px;
 }

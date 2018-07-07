@@ -23,10 +23,15 @@ img{
 li {
   border-bottom: 1px blue solid;
 }
-span{
+span {
   background-color: red;
 }
 
-span.highlight{
+span.highlight {
   background-color: blue;
+}
+
+:focus, :active, .tabbed, .active {
+  background: pink;
+  outline: 2px solid green;
 }

@@ -284,6 +284,11 @@
     "minLength":1,
     "maxLength":128
   },
+  "My Nintendo":{
+    "minLength":8,
+    "maxLength":20,
+    "requirements":["cap","low"]
+  },
   "Netflix":{
     "minLength":4,
     "maxLength":50

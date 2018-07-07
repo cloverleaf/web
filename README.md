@@ -1,6 +1,6 @@
 # [Perdola](https://childishgiant.github.io/perdola/)
 
-## We now have a [keybase team](https://keybase.io/team/perdola.public)!
+## We now have a [keybase team](https://keybase.io/team/perdola.public)
 
 See the [latest patch notes here](https://github.com/ChildishGiant/perdola/commit/master).
 
@@ -16,11 +16,13 @@ MAJOR does not have to be breaking. It's really when I feel that a feature chang
 
 I have removed one feature so far and may remove more in the future for security / simplicity.
 
-As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics. ![](http://i.imgur.com/JTd4v5x.png)
+As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics.
+
+This is also no longer an issue as, as of Version 6.8.0, Perdola no longer uses google analytics.
 
 This feature was implemented in a safer fashion in v0.4, using cookies.
 
-## To-do:
+## To-do
 
 - [ ] Add a tutorial (Maybe guided using [intro.js](https://introjs.com/))
 - [ ] Add Unicode characters to passwords on presets that allow them
@@ -28,18 +30,15 @@ This feature was implemented in a safer fashion in v0.4, using cookies.
 
 ## Software used for development
 
-Github's [atom.io](https://atom.io/) is my text editor of choice.
+Microsoft's [VS Code](https://code.visualstudio.com/) is my text editor of choice.
 
 All minimization is done using [Prepros](https://prepros.io).
 
 I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
 
-
 ## Libs / tools
 
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
-
-More thanks go out to shinnn's [isogram](https://github.com/shinnn/isogram) for the snazzy tracking code.
 
 [GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license
 

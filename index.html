@@ -50,8 +50,14 @@
     <meta name="msapplication-TileImage" content="mstile-144x144.png">
     <meta name="theme-color" content="#8c97ce">
 
+    <script>
+      // Clear the console on reload for easier debugging
+      console.clear();
+    </script>
+
     <!-- Import materialize.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css" integrity="sha256-tKn8A2U9uuN5rPr3gh4A9FYMJkarrzLVyks7aS/ZfBU=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.css" integrity="sha256-wJ+vP1Tpdh0NdLkiQqiBWFJkfcdramtSMYxJvyAjhII="
+      crossorigin="anonymous" />
     <!-- Custom fonts -->
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400,500" rel="stylesheet">
     <!-- Styling css -->
@@ -59,7 +65,8 @@
     <!-- Import jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <!-- materialize.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js" integrity="sha256-W9FML0cw6SfScX3k0Z8iTWhaZGSEUrR3R3KWfRA6lnI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.js" integrity="sha256-ulw7Nw82Oo1joXpeUqKzJfeP2DDW+gmM+963Q0tMQUQ="
+      crossorigin="anonymous"></script>
     <!-- seedrandom.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js" integrity="sha256-64f1BOntWrbWIG++Jw3Ad4BSjTz8FG2DLeZ0kD3lLcc=" crossorigin="anonymous"></script>
     <!-- clipboard.js -->
@@ -68,16 +75,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha256-jnOjDTXIPqall8M0MyTSt98JetJuZ7Yu+1Jm7hLTF7U=" crossorigin="anonymous"></script>
     <script src="compiled/sha3.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
-    <!-- Google analytics -->
-    <script>
-      !function(p,e,r,d,o,l,a){p.GoogleAnalyticsObject=r;p[r]||(p[r]=function(){
-      (p[r].q=p[r].q||[]).push(arguments)});p[r].l=+new Date;l=e.createElement(d);
-      a=e.getElementsByTagName(d)[0];l.src=o;a.parentNode.insertBefore(l,a)}
-      (window,document,"ga","script","//www.google-analytics.com/analytics.js");
-
-      ga("create", "UA-101024973-1", "auto");
-      ga("send", "pageview");
-    </script>
 
     <!-- Material Icons -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
@@ -93,7 +90,7 @@
     </div>
 
     <div class="fixed-action-btn" id="themeSelector">
-      <a class="btn-floating btn-large" style="background: #3f51b5;background: var(--accentColor);">
+      <a class="btn-floating btn-large" style="background: #3f51b5; background: var(--accentColor);" tabindex="10">
         <i class="material-icons">menu</i>
       </a>
       <ul id="fabs">
@@ -107,7 +104,7 @@
 
         <div class="input-field">
           <label for="app" class="partial">Application</label>
-          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="updateLimits();" onchange="updateLimits();"/>
+          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="updateLimits();" onchange="updateLimits();" tabindex="1"/>
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false"></img>
           </div>
@@ -115,11 +112,11 @@
 
         <div class="input-field">
           <label for="pass" class="partial">Master password</label>
-          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="2"/>
           <div class="input-group-addon suffix">
 
-            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Save the current master password on this device">save</i>
-            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Load the saved master password">file_download</i>
+            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Save the current master password on this device" tabindex="3">save</i>
+            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Load the saved master password" tabindex="4">file_download</i>
 
           </div>
         </div>
@@ -127,7 +124,7 @@
         <div class="switch" onclick="passwordToggle();">
           <label>
             Show
-            <input type="checkbox" id="passwordToggle" checked="checked">
+            <input type="checkbox" id="passwordToggle" checked="checked" tabindex="5">
             <span class="lever" id="passTogglelever"></span>
             Hide
           </label>
@@ -135,7 +132,7 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" step="1" min="4" value="16" max="526" onkeypress="return event.charCode >= 48 && event.charCode <= 57" oninput="process();" onkeyup="process();" />
+          <input id="length" type="number" step="1" min="4" value="16" max="526" oninput="process();" onkeyup="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57" tabindex="6" />
         </div>
 
         <span class="hint">The longer, the better</span>
@@ -145,32 +142,33 @@
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
             Show
-            <input type="checkbox" id="resultToggle" checked="checked">
+            <input type="checkbox" id="resultToggle" checked="checked" tabindex="7">
             <span class="lever" id="resultTogglelever"></span>
             Hide
           </label>
         </div>
 
-        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password</button>
+        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result" tabindex="8">Copy password</button>
 
         <div id="footer" class="cf">
-          <a href="faq" id="faq" title="Help and FAQs">Help and FAQs</a>
+          <a href="faq" id="faq" title="Help and FAQs" tabindex="9">Help and FAQs</a>
         </div>
 
       </div>
     </div>
 
-  	<a href="https://github.com/ChildishGiant/perdola" class="github-corner" aria-label="View source on Github">
-  	<svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true">
-  	<defs>
-  	  <mask id="octomask">
-  		<path fill="white" d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
-  		<path fill="black" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" style="transform-origin: 130px 106px;" class="octo-arm"></path>
-  		<path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="black" class="octo-body"></path>
-  	  </mask>
-  	</defs>
-  	<rect class="filler" width="100%" height="100%" mask="url(#octomask)"></rect>
-  	</svg></a>
+  	<a href="https://github.com/ChildishGiant/perdola" class="github-corner" aria-label="View source on Github" tabindex="-1">
+      <svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true" tabindex="11">
+        <defs>
+          <mask id="octomask">
+          <path fill="white" d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+          <path fill="black" d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+          <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="black" class="octo-body"></path>
+          </mask>
+        </defs>
+        <rect class="filler" width="100%" height="100%" mask="url(#octomask)"></rect>
+      </svg>
+    </a>
 
     <div id="cookieAlert">
       <span>This site uses cookies, like most websites. By using this site, you are accepting the use of <a href="faq#cookies" style="cursor:help" title="More about cookies">cookies</a>.</span>
