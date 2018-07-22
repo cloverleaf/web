@@ -1,4 +1,6 @@
 # [Perdola](https://childishgiant.github.io/perdola/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FChildishGiant%2Fperdola.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FChildishGiant%2Fperdola?ref=badge_shield)
+
 
 ## We now have a [keybase team](https://keybase.io/team/perdola.public)
 
@@ -57,3 +59,7 @@ noppa's [text-security](https://github.com/noppa/text-security) font under the M
 ## Misc
 
 Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FChildishGiant%2Fperdola.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FChildishGiant%2Fperdola?ref=badge_large)
