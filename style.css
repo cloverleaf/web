@@ -512,11 +512,16 @@ label:focus{
   height: 2.86rem;
 }
 
+.btn-floating i {
+  font-size: 1.6rem;
+  line-height: 2.86rem;  
+  display: block;
+  top: 0px;
+}
+
 .btn-floating.btn-large i {
   font-size: 2rem;
-  line-height: 2em;
-  top: 0px;
-  display: block;
+  line-height: 4rem;
 }
 
 .btn-floating.btn-large {
@@ -617,4 +622,10 @@ label:focus{
   outline-color: rgb(77, 144, 254);
   outline-style: auto;
   outline-width: 5px;
+}
+
+/* Always show arrows on the number inputs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {  
+  opacity: 1;
 }
