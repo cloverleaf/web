@@ -62,8 +62,6 @@
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400,500" rel="stylesheet">
     <!-- Styling css -->
     <link rel="stylesheet" type="text/css" href="compiled/style.min.css" />
-    <!-- Import jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <!-- materialize.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.js" integrity="sha256-ulw7Nw82Oo1joXpeUqKzJfeP2DDW+gmM+963Q0tMQUQ="
       crossorigin="anonymous"></script>
@@ -71,8 +69,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js" integrity="sha256-64f1BOntWrbWIG++Jw3Ad4BSjTz8FG2DLeZ0kD3lLcc=" crossorigin="anonymous"></script>
     <!-- clipboard.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=" crossorigin="anonymous"></script>
-    <!-- jquery-mousewheel for scrolling on number inputs -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.min.js" integrity="sha256-jnOjDTXIPqall8M0MyTSt98JetJuZ7Yu+1Jm7hLTF7U=" crossorigin="anonymous"></script>
     <script src="compiled/sha3.min.js"></script>
     <script src="compiled/jssource.min.js"></script>
 
@@ -83,18 +79,18 @@
   <body>
 
     <div id="engineSelector" style="display: none;">
-      <ul class="tabs">
+      <ul class="tabs" id="engineTabs">
         <li class="tab"><a onclick="setMode('old');" href="#old">Compatibility mode</a></li>
         <li class="tab"><a onclick="setMode('new');" href="#new">Suggested mode</a></li>
       </ul>
     </div>
 
     <div class="fixed-action-btn" id="themeSelector">
-      <a class="btn-floating btn-large" style="background: #3f51b5; background: var(--accentColor);" tabindex="10">
+      <a class="btn-floating btn-large" style="background: #3f51b5; background: var(--accentColor);">
         <i class="material-icons">menu</i>
       </a>
       <ul id="fabs">
-        <li><a name="settings" class="btn-floating red darken-4" onclick="toggleSettings()"><i class="material-icons">settings</i></a></li>
+        <li><a class="btn-floating red darken-4" onclick="toggleSettings()"><i class="material-icons">settings</i></a></li>
       </ul>
     </div>
 
@@ -104,19 +100,19 @@
 
         <div class="input-field">
           <label for="app" class="partial">Application</label>
-          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="updateLimits();" onchange="updateLimits();" tabindex="1"/>
+          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="appUp(event);"/>
           <div id="logoContainer" class="input-group-addon suffix">
-            <img id="logo" draggable="false"></img>
+            <img id="logo" draggable="false"/>
           </div>
         </div>
 
         <div class="input-field">
           <label for="pass" class="partial">Master password</label>
-          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="2"/>
+          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();"/>
           <div class="input-group-addon suffix">
 
-            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Save the current master password on this device" tabindex="3">save</i>
-            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Load the saved master password" tabindex="4">file_download</i>
+            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Save the current master password on this device" tabindex="0">save</i>
+            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-background-color="#fff" data-tooltip="Load the saved master password" tabindex="0">file_download</i>
 
           </div>
         </div>
@@ -124,7 +120,7 @@
         <div class="switch" onclick="passwordToggle();">
           <label>
             Show
-            <input type="checkbox" id="passwordToggle" checked="checked" tabindex="5">
+            <input type="checkbox" id="passwordToggle" checked="checked"/>
             <span class="lever" id="passTogglelever"></span>
             Hide
           </label>
@@ -132,7 +128,7 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" step="1" min="4" value="16" max="526" oninput="process();" onkeyup="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57" tabindex="6" />
+          <input id="length" type="number" step="1" min="4" value="16" max="526" oninput="process();" onkeyup="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
         </div>
 
         <span class="hint">The longer, the better</span>
@@ -142,23 +138,23 @@
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
             Show
-            <input type="checkbox" id="resultToggle" checked="checked" tabindex="7">
+            <input type="checkbox" id="resultToggle" checked="checked"/>
             <span class="lever" id="resultTogglelever"></span>
             Hide
           </label>
         </div>
 
-        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result" tabindex="8">Copy password</button>
+        <button id="copy" class="waves-effect waves-light btn indigo" data-clipboard-target="#result">Copy password</button>
 
         <div id="footer" class="cf">
-          <a href="faq" id="faq" title="Help and FAQs" tabindex="9">Help and FAQs</a>
+          <a href="faq" id="faq" title="Help and FAQs">Help and FAQs</a>
         </div>
 
       </div>
     </div>
 
   	<a href="https://github.com/ChildishGiant/perdola" class="github-corner" aria-label="View source on Github" tabindex="-1">
-      <svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true" tabindex="11">
+      <svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true" tabindex="0">
         <defs>
           <mask id="octomask">
           <path fill="white" d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -172,7 +168,7 @@
 
     <div id="cookieAlert">
       <span>This site uses cookies, like most websites. By using this site, you are accepting the use of <a href="faq#cookies" style="cursor:help" title="More about cookies">cookies</a>.</span>
-      <svg onclick="$('#cookieAlert').hide();setCookie('cookieHidden',true);" fill="var(--inputColor)" height="2em" viewBox="0 0 24 24" width="2em" xmlns="http://www.w3.org/2000/svg">
+      <svg onclick="document.getElementById('cookieAlert').style.display='none';setCookie('cookieHidden',true);" fill="var(--inputColor)" height="2em" viewBox="0 0 24 24" width="2em" xmlns="http://www.w3.org/2000/svg">
           <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
           <path d="M0 0h24v24H0z" fill="none"/>
       </svg>

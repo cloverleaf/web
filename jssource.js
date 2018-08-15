@@ -1,4 +1,3 @@
-var lastName = ""; // Name of last application
 var autoCompleteData = {}; // Here for scope perposes
 var jsonData = {}; // As am I.
 var defaultMinLength = 1; // We
@@ -10,9 +9,8 @@ var themeData = {};
 var debugMode = false;
 var engineVersion = "6.0.0"; // Changed if breaking changes are made to the engine
 var mode;
-var instance;
 var d = new Date();
-var cookieCrumble = new Date(d.getFullYear() + 10, d.getMonth(), d.getDate()); // Make a date 10 years into THE FUTURE
+var cookieCrumble = new Date(d.getFullYear() + 1, d.getMonth(), d.getDate()); // Make a date 1 year into THE FUTURE
 var possibleRequirements = {
   "cap":"ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   "low":"abcdefghijklmnopqrstuvwxyz",
@@ -27,8 +25,7 @@ function getCookie(name) {
 }
 
 function setCookie(name, value) {
-
-  document.cookie = name+"="+value+"; expires=" + cookieCrumble.toGMTString() + "; path=/;"; // Set cookie to expire in 10 years
+  document.cookie = name+"="+value+"; expires=" + cookieCrumble.toGMTString() + "; path=/;"; // Set cookie to expire in 1 year
 }
 
 function setMode(setTo){
@@ -39,11 +36,13 @@ function setMode(setTo){
 
 function toggleSettings(){
   // Show the selector div
-  $("#engineSelector").toggle();
+  var engineSelector = document.getElementById("engineSelector");
+  engineSelector.style.display = engineSelector.style.display == "none" ? "block" : "none";
   // Click on the last used mode
-  M.Tabs.getInstance($(".tabs")).select(mode);
+  M.Tabs.getInstance(document.getElementById("engineTabs")).select(mode);
 
-  if ($("#engineSelector").is(":visible")) {
+  // If engineSelector is visable
+  if (engineSelector.offsetParent !== null) {
     setCookie("showSettings", "true");
   } else {
     document.cookie = "showSettings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Delete the showSettings cookie
@@ -54,10 +53,11 @@ function checkDebug(){
   if (debugMode) {
     document.title = "Perdola - Debug " + new Date().getTime();
     debug("Enabling debug css");
-    $("<link>").attr("rel","stylesheet")
-      .attr("type","text/css")
-      .attr("href","debug.css")
-      .appendTo("head");
+    var link = document.createElement('link');
+    link.setAttribute('rel', 'stylesheet');
+    link.setAttribute('type', 'text/css');
+    link.setAttribute('href', 'debug.css');
+    document.getElementsByTagName('head')[0].appendChild(link);
   }
 }
 
@@ -73,12 +73,12 @@ function getQueryStrings() {
   var queryString = location.search.substring(1);
   var keyValues = queryString.split("&");
 
-  for (var i = 0; i<keyValues.length; i++) {
-    var key = keyValues[i].split("=");
+  keyValues.forEach((product) => {
+    var key = product.split("=");
     if (key.length > 1) {
       assoc[decode(key[0])] = decode(key[1]);
     }
-  }
+  });
 
   return assoc;
 }
@@ -86,24 +86,25 @@ function getQueryStrings() {
 // For showing / hiding the master password
 function passwordToggle() {
   // If the switch is on / to the right / "Hide"
-  if ($("#passwordToggle").prop("checked")) {
+  if (document.getElementById("passwordToggle").checked) {
     // Make the password field use blobs
-    $("#pass").attr("type", "password");
+    document.getElementById("pass").type = "password";
   } else { // If it's off
     // Make the password field use actual text so you can see/copy it.
-    $("#pass").attr("type", "text");
+    document.getElementById("pass").type = "text";
+
   }
 }
 
 // For showing / hiding the generated password
 function resultToggle() {
   // If the switch is on / to the right / "Hide"
-  if ($("#resultToggle").prop("checked")) {
+  if (document.getElementById("resultToggle").checked) {
     // Make the password field use blobs
-    $("#result").addClass("hidden");
+    document.getElementById("result").classList.add("hidden");
   } else { // If it's off
     // Make the password field use actual text so you can see/copy it.
-    $("#result").removeClass("hidden");
+    document.getElementById("result").classList.remove("hidden");
   }
 }
 
@@ -136,30 +137,35 @@ function changeTheme(passedTheme) {
   }
 }
 
-// Take inputs and display a password. (The  box)
+// Take inputs and display a password. (The black box)
 function process() {
   var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
   var requirements = []; // By default we have no requirements but reset it so we don't carry them over
-  var appName = $("#app").val();
-  var masterPass = $("#pass").val();
-  var length = Math.trunc($("#length").val()); // Get the desired length of a password and make sure it's an integer
+  var appName = document.getElementById("app").value;
+  var masterPass = document.getElementById("pass").value;
+  var length = Math.trunc(document.getElementById("length").value); // Get the desired length of a password and make sure it's an integer
   var result = ""; // Has to be here, not in the loop for scope purposes
   var minLength = defaultMinLength;
 
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
-    $("#result").text("");
 
     if ( length > maxLength ) { //Too long
-      $("#length").val(maxLength);
+      document.getElementById("length").value = maxLength;
+    } else if (length < minLength) { // Too short
+      document.getElementById("length").value = minLength;
+    } else { // Should never be triggered but better safe than sorry
+      document.getElementById("length").value = 16;
     }
 
+    // Now we have a sensible value, restart the process
+    process();
     return;
   }
 
   // If the appname or password or length are empty
   if (appName === ""|| masterPass === "" || length === "") {
     // Empty the output field
-    $("#result").text("");
+    document.getElementById("result").innerHTML = "";
     // Stop function from generating new password
     return "App / pass empty";
   }
@@ -242,17 +248,16 @@ function process() {
   // The password has been generated
 
   // Display password
-  $("#result").text(result);
+  document.getElementById("result").textContent = result;
 }
 
 // on application name change
 function updateLimits() {
-  var appName = $("#app").val();
+  var appName = document.getElementById("app").value;
 
   // We assume there's no preset
-  reBindMouse(defaultMinLength, defaultMaxLength);
-  $("#length").attr("min", defaultMinLength);
-  $("#length").attr("max", defaultMaxLength);
+  document.getElementById("length").min = defaultMinLength;
+  document.getElementById("length").max = defaultMaxLength;
   minLength = defaultMinLength;
   maxLength = defaultMaxLength;
 
@@ -275,8 +280,7 @@ function updateLimits() {
         // Update global var
         minLength = jsonData[appName].minLength;
         // Also set the length input so it can't go under the limit
-        $("#length").attr("min", minLength);
-        reBindMouse(minLength);
+        document.getElementById("length").min = minLength;
       }
     }
 
@@ -286,73 +290,28 @@ function updateLimits() {
         // Update global var
         maxLength = jsonData[appName].maxLength;
         // Also set the length input so it can't go under the limit
-        $("#length").attr("max", maxLength);
-        reBindMouse(minLength, maxLength);
+        document.getElementById("length").max = maxLength;
       }
     }
   }
-}
-
-function reBindMouse(min, max) {
-
-  if (typeof min === "undefined") {
-    min = defaultMinLength;
-  }
-
-  if (typeof max === "undefined") {
-    max = defaultMaxLength;
-  }
-
-  // Unbind the current on function
-  $("#length").unbind("mousewheel");
-  // Update the mousewheel length input bind to keep <= the new limit
-  $("#length").on("mousewheel", function(event, delta) {
-    if (delta > 0) {
-      // Scrolling up
-      if (parseInt(this.value) < max) {
-
-        if (parseInt(this.value) < min) {
-          this.value = min;
-        } else {
-          this.value = parseInt(this.value) + 1;
-        }
-
-
-        // Update password
-        process();
-      }
-    } else {
-      // Scrolling down
-      if (parseInt(this.value) > min) {
-        if (parseInt(this.value) > max) {
-          this.value = max;
-        } else {
-          this.value = parseInt(this.value) - 1;
-        }
-
-        // Update password
-        process();
-      }
-    }
-    return false;
-  }, {passive:true});
 }
 
 // On page load
-$(function() {
+window.onload = function() {
 
 
   if (getCookie("cookieHidden") !== undefined) {
-    $("#cookieAlert").hide();
+    document.getElementById("cookieAlert").style.display = "none";
   }
 
   updateLimits();
-  reBindMouse();
 
   // Process the sites.json for the autocomplete structure
-  $.getJSON("data/sites.json", function(json) {
+  var sites = new XMLHttpRequest()
+  sites.onload = function() {
 
-    jsonData = json;
+    jsonData = JSON.parse(sites.response);
+
     var qs = getQueryStrings();
 
     if (qs.app) {
@@ -360,86 +319,87 @@ $(function() {
       // If it's a preset
       if (jsonData[appName]) {
 
-        lastName = appName;
 
         var length = 16;
-        var max = json[appName].maxLength;
+        var max = jsonData[appName].maxLength;
 
         if (!max) {
           max = defaultMaxLength;
         }
 
-        if (!(json[appName].minLength <= length && length <= max)) {
+        if (!(jsonData[appName].minLength <= length && length <= max)) {
           length = max;
         }
 
-        $("#length").val(length);
+        document.getElementById("length").value = length;
 
         // In case there's already a password (eg switching sites / presets) regen password
         process();
 
 
-        if (json[appName].logo) {
-          logo = json[appName].logo;
+        if (jsonData[appName].logo) {
+          logo = jsonData[appName].logo;
         } else {
           logo = "logos/"+appName+".svg";
         }
 
 
         // Set image
-        $("#logoContainer").css("display","flex");
-        $("img#logo").attr("src", logo);
-        $("img#logo").attr("alt", appName);
-        $("img#logo").attr("title", appName);
+        document.querySelector("#logoContainer").style.display = "flex";
+        document.querySelector("img#logo").src = "logo";
+        document.querySelector("img#logo").alt = "appName";
+        document.querySelector("img#logo").title = "appName";
       }
       // Set the app name
-      $("#app").val(appName);
-      $("label[for='app']").addClass("active");
+      document.getElementById("app").value = appName;
+
+      document.querySelector("label[for='app']").classList.add("active");
     }
 
-    $.each(json, function(i, val) {
-      if (val.logo) {
-        autoCompleteData[i] = val.logo;
+
+    for (var key in jsonData) {
+      // If the preset has a custom logo url
+      if (jsonData[key].logo) {
+      autoCompleteData[key] = jsonData[key].logo;
       } else {
-        autoCompleteData[i] = "logos/"+i+".svg";
+      // Set the logo url to the default
+      autoCompleteData[key] = "logos/"+key+".svg";
       }
-    });
+  }
 
     // Setup possible autocomplete sites
-    instance = $("input#app").autocomplete({
+    M.Autocomplete.init(document.getElementById("app"), {
       data: autoCompleteData,
 
       // called when an autocomplete is used.
       onAutocomplete: function(val) {
 
         // Set image
-        $("#logoContainer").css("display","flex");
-        $("img#logo").attr("src", autoCompleteData[val]);
-        $("img#logo").attr("alt", val);
-        $("img#logo").attr("title", val);
+        document.querySelector("#logoContainer").style.display = "flex";
+        document.querySelector("img#logo").src = autoCompleteData[val];
+        document.querySelector("img#logo").alt = val;
+        document.querySelector("img#logo").title = val;
 
         // If it's an alias for another app
-        if (json[val].alias) {
+        if (jsonData[val].alias) {
           // Change the name of the app we're using to its alias
-          val = json[val].alias;
+          val = jsonData[val].alias;
           debug("Using alias: "+val);
         }
 
-        lastName = val;
-
         var length = 16;
-        var max = json[val].maxLength;
+        var max = jsonData[val].maxLength;
 
         if (!max) {
           max = defaultMaxLength;
         }
 
-        if (!(json[val].minLength <= length && length <= max)) {
+        if (!(jsonData[val].minLength <= length && length <= max)) {
           length = max;
         }
 
-        $("label[for=length]").addClass("active");
-        $("#length").val(length);
+        document.querySelector("label[for=length]").classList.add("active");
+        document.getElementById("length").value = length;
 
         // In case there's already a password (eg switching sites / presets) regen password
         process();
@@ -478,43 +438,56 @@ $(function() {
 
     // Autocomplete has been setup
     // Move the cursor to the app field
-    $("#app").focus();
+    document.getElementById("app").focus();
 
-  });
+  };
+  sites.open("get", "data/sites.json", true);
+  sites.send();
 
+  // Process the sites.json for the autocomplete structure
+  var themes = new XMLHttpRequest()
+  themes.onload = function() {
+    themeData = JSON.parse(themes.response);
 
-  $.getJSON("data/themes.json", function(json) {
-    themeData = json;
-    $.each(themeData, function(index, item) {
-      $("#fabs").append("<li><a name='themes' class='btn-floating' onclick='changeTheme(\""+index+"\");' id='"+index+"' ><i class='material-icons'>color_lens</i></a></li>");
+    for (var key in themeData) {
+      var themeRadio = document.createElement("li")
+      themeRadio.innerHTML = "<a class='btn-floating' onclick='changeTheme(\""+key+"\");' id='"+key+"' ><i class='material-icons'>color_lens</i></a>";
+      document.getElementById("fabs").appendChild(themeRadio);
 
-      $("head").append("<style>a[id="+index+"]{background-color: "+themeData[index].background+" !important; border: 1px ;}a[id="+index+"] i {color: "+themeData[index].text+"}</style>");
-    });
+      var css = "a[id="+key+"]{background-color: "+themeData[key].background+" !important; border: 1px ;}a[id="+key+"] i {color: "+themeData[key].text;
+      var style = document.createElement('style');
+      style.type = 'text/css';
+      if (style.styleSheet){
+        // This is required for IE8 and below.
+        style.styleSheet.cssText = css;
+      } else {
+        style.appendChild(document.createTextNode(css));
+      }
+      document.getElementsByTagName("head")[0].appendChild(style);
+    };
 
     // If the user has a prefered theme
     if (getCookie("theme") !== undefined) {
       debug("Found a prefered theme. Loading " + getCookie("theme"));
       changeTheme(getCookie("theme"));
       // Use the clicked CSS for the button
-      $("#"+getCookie("theme")).prop("checked", true);
+      document.getElementById(getCookie("theme")).checked = true;
     } else { // If no theme cookie exists
-      // Use the clicked CSS for the first radio button (Vanilla)
-      $("input[name='themes'][type=radio]").first().prop("checked", true);
+      // Click the vanilla theme.
+      document.getElementById("Vanilla").checked = true;
       changeTheme(defaultTheme);
     }
 
-    // Set up the theme picker FAB after all themes are added
-    $("#themeSelector").floatingActionButton({
+    M.FloatingActionButton.init(document.querySelectorAll('.fixed-action-btn'), {
       direction: "left", // Direction menu comes out
       hoverEnabled: false, // Hover disabled
       toolbarEnabled: false // Toolbar transition disabled
     });
 
-    // Set up the theme picker again so that the animation works.
-    $("#themeSelector").floatingActionButton({
-      direction: "left",hoverEnabled: false,toolbarEnabled: false
-    });
-  });
+  };
+
+  themes.open("get", "data/themes.json", true);
+  themes.send();
 
 
   // Initialize the copy button
@@ -528,47 +501,6 @@ $(function() {
       M.toast({html:"Successfully copied!", displayLength:4000, classes:"success"});
     }
 
-  });
-
-  // on change of password submit
-  $("#pass").on("keyup", function(e) {
-
-    // If there's a password
-    if ($("#pass").val()) {
-      Math.seedrandom($("#pass").val());
-      $("#pass").attr("style", "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)");
-    } else {
-      $("#pass").removeAttr("style");
-    }
-
-    // Regen the password
-    process();
-  });
-
-  // Executed when you type in the app field
-  $("#app").on("keyup", function(e) {
-
-    // If they pressed enter AND the suggestions are open AND no suggestions are selected
-    if (e.which != 13 ) {
-      // Clear logo
-      $("#logoContainer").css("display","none");
-      $("img#logo").removeAttr("src");
-      $("img#logo").removeAttr("alt");
-      $("img#logo").removeAttr("title");
-    }
-    var c = $("#app").val();
-
-    // If you've changed the app name
-    if (lastName != c) {
-      lastName = c;
-      process();
-    }
-
-  });
-
-  // On change in length field up and down or typing (not scrolling)
-  $("#length").on("input", function(event) {
-    process();
   });
 
   checkDebug();
@@ -591,13 +523,13 @@ $(function() {
   }
 
   // Initialize tooltips
-  $(".tooltipped").tooltip();
+  M.Tooltip.init(document.querySelectorAll(".tooltipped"))
   // Initialize the tabs
-  $(".tabs").tabs();
-  var tabs = M.Tabs.getInstance($(".tabs"));
+  M.Tabs.init(document.querySelectorAll(".tabs"))
+  var tabs = M.Tabs.getInstance(document.getElementById("engineTabs"));
 
   if (getCookie("showSettings") == "true") {
-    $("#engineSelector").show();
+    document.getElementById("engineSelector").style.display = "block";
   }
 
 
@@ -607,12 +539,12 @@ $(function() {
     throw new Error( 'Invalid mode  "'+ mode +'" '); // Using the inferior kind of quotes so I may see the superior ones apon error
   }
 
-});
+};
 
 function save() { // Save the current master password as a cookie
 
-  if ($("#pass").val()) { // If there's a password
-    setCookie("password", $("#pass").val());
+  if (document.getElementById("pass").value) { // If there's a password
+    setCookie("password", document.getElementById("pass").value);
     M.toast({html:"Password saved to your device!", displayLength:4000, classes:"success"});
   }
 
@@ -621,8 +553,8 @@ function save() { // Save the current master password as a cookie
 function load() { // Load the saved password from cookie
   if (getCookie("password") !== undefined) {
     var password = getCookie("password"); // Get the password from the cookie
-    $("label[for='pass']").addClass("active"); // Raise the text on the input
-    $("#pass").val(password); // Fill the password input with the correct password
+    document.querySelector("label[for='pass']").classList.add("active") // Raise the text on the input
+    document.getElementById("pass").value = password; // Fill the password input with the correct password
     process();
     M.toast({html:"Password loaded from your device!", displayLength:4000, classes:"success"});
   } else {
@@ -630,5 +562,35 @@ function load() { // Load the saved password from cookie
   }
 
   Math.seedrandom(password);
-  $("#pass").attr("style", "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)");
+  document.getElementById("pass").style = "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)";
+}
+
+function appUp(e){
+
+  // Pressed a printable character
+  if (e.key && e.key.length === 1) {
+    // Clear logo
+    document.getElementById("logoContainer").style.display = "none";
+    document.getElementById("logo").removeAttribute("src");
+    document.getElementById("logo").removeAttribute("alt");
+    document.getElementById("logo").removeAttribute("title");
+
+    process();
+
+  }
+}
+
+function passwordUp(){
+
+  // If there's a password
+  if (document.getElementById("pass").value) {
+    Math.seedrandom(document.getElementById("pass").value);
+    document.getElementById("pass").style.underlineColor = "HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)";
+  } else {
+    document.getElementById("pass").removeAttribute("style");
+  }
+
+  // Regen the password
+  process();
+
 }

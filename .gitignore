@@ -2,3 +2,5 @@
 *.config
 
 \.vscode/
+
+*.code-workspace
