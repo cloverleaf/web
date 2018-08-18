@@ -561,9 +561,8 @@ function load() { // Load the saved password from cookie
     M.toast({html:"You have no saved password to load.", displayLength:4000, classes:"warning"});
   }
 
-  Math.seedrandom(password);
-  document.getElementById("pass").style = "--underlineColor: HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)";
-}
+  colourUnderline()
+ }
 
 function appUp(e){
 
@@ -582,15 +581,21 @@ function appUp(e){
 
 function passwordUp(){
 
-  // If there's a password
-  if (document.getElementById("pass").value) {
-    Math.seedrandom(document.getElementById("pass").value);
-    document.getElementById("pass").style.underlineColor = "HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)";
-  } else {
-    document.getElementById("pass").removeAttribute("style");
-  }
+  colourUnderline();
 
   // Regen the password
   process();
 
+}
+
+function colourUnderline() {
+  // If there's a password
+  if (document.getElementById("pass").value) {
+    // Seed the 
+    Math.seedrandom(document.getElementById("pass").value);
+    document.getElementById("pass").style.setProperty("--underlineColor", "HSL(" + getRandomArbitrary(0, 360) + ", " + getRandomArbitrary(60, 100) + "%, " + getRandomArbitrary(45, 80) + "%)")
+  } else {
+    // If there's no password, reset the underline colour
+    document.getElementById("pass").removeAttribute("style");
+  }
 }
