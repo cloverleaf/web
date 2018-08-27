@@ -1,6 +1,6 @@
 var autoCompleteData = {}; // Here for scope perposes
 var jsonData = {}; // As am I.
-var defaultMinLength = 1; // We
+var defaultMinLength = 4; // We
 var defaultMaxLength = 512; // All
 var minLength = defaultMinLength; // Are,
 var maxLength = defaultMaxLength; // Really
@@ -52,7 +52,7 @@ function toggleSettings(){
 function checkDebug(){
   if (debugMode) {
     document.title = "Perdola - Debug " + new Date().getTime();
-    debug("Enabling debug css");
+    console.debug("Enabling debug css");
     var link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
     link.setAttribute('type', 'text/css');
@@ -61,11 +61,7 @@ function checkDebug(){
   }
 }
 
-function debug(text) {
-  if (debugMode) {
-    console.log(text);
-  }
-}
+
 
 function getQueryStrings() {
   var assoc  = {};
@@ -145,11 +141,10 @@ function process() {
   var masterPass = document.getElementById("pass").value;
   var length = Math.trunc(document.getElementById("length").value); // Get the desired length of a password and make sure it's an integer
   var result = ""; // Has to be here, not in the loop for scope purposes
-  var minLength = defaultMinLength;
 
   if (! ( minLength <= length && length <= maxLength ) ) { // if the length is invalid
 
-    if ( length > maxLength ) { //Too long
+    if ( length > maxLength ) { // Too long
       document.getElementById("length").value = maxLength;
     } else if (length < minLength) { // Too short
       document.getElementById("length").value = minLength;
@@ -170,11 +165,11 @@ function process() {
     return "App / pass empty";
   }
 
-  //It's a valid attempt, continue
+  // It's a valid attempt, continue
 
   if (jsonData[appName]) { // If it's a site with a preset
 
-    debug("Found preset: "+appName);
+    console.debug("Found preset: "+appName);
 
     // If it's an alias for another app
     if (jsonData[appName].alias) {
@@ -194,13 +189,9 @@ function process() {
       }
     }
 
-    if ("minLength" in jsonData[appName]) {
-      minLength = jsonData[appName].minLength;
-    }
-
   }
 
-  debug("Started generating password");
+  console.debug("Started generating password");
 
   // Set the generation seed
   if (mode == "new") {
@@ -251,51 +242,6 @@ function process() {
   document.getElementById("result").textContent = result;
 }
 
-// on application name change
-function updateLimits() {
-  var appName = document.getElementById("app").value;
-
-  // We assume there's no preset
-  document.getElementById("length").min = defaultMinLength;
-  document.getElementById("length").max = defaultMaxLength;
-  minLength = defaultMinLength;
-  maxLength = defaultMaxLength;
-
-  // If there's a preset then we overwrite the defualts
-  if (jsonData[appName]) {
-
-    // If it's an alias for another app
-    if (jsonData[appName].alias && jsonData[jsonData[appName].alias]) {
-      // Change the name of the app we're using to its alias
-      appName = jsonData[appName].alias;
-    } else if (jsonData[appName].alias && !jsonData[jsonData[appName].alias]) {
-      throw "Invalid alias";
-    }
-
-    // And that preset has a minLength
-    if ("minLength" in jsonData[appName]) {
-
-      // Only update if it's actually a different number.
-      if (jsonData[appName].minLength != minLength) {
-        // Update global var
-        minLength = jsonData[appName].minLength;
-        // Also set the length input so it can't go under the limit
-        document.getElementById("length").min = minLength;
-      }
-    }
-
-    if ("maxLength" in jsonData[appName]) {
-      // Only update if it's actually a different number.
-      if (jsonData[appName].maxLength != maxLength) {
-        // Update global var
-        maxLength = jsonData[appName].maxLength;
-        // Also set the length input so it can't go under the limit
-        document.getElementById("length").max = maxLength;
-      }
-    }
-  }
-}
-
 // On page load
 window.onload = function() {
 
@@ -303,8 +249,6 @@ window.onload = function() {
   if (getCookie("cookieHidden") !== undefined) {
     document.getElementById("cookieAlert").style.display = "none";
   }
-
-  updateLimits();
 
   // Process the sites.json for the autocomplete structure
   var sites = new XMLHttpRequest()
@@ -336,6 +280,7 @@ window.onload = function() {
         // In case there's already a password (eg switching sites / presets) regen password
         process();
 
+        var logo;
 
         if (jsonData[appName].logo) {
           logo = jsonData[appName].logo;
@@ -346,9 +291,9 @@ window.onload = function() {
 
         // Set image
         document.querySelector("#logoContainer").style.display = "flex";
-        document.querySelector("img#logo").src = "logo";
-        document.querySelector("img#logo").alt = "appName";
-        document.querySelector("img#logo").title = "appName";
+        document.querySelector("img#logo").src = logo;
+        document.querySelector("img#logo").alt = appName;
+        document.querySelector("img#logo").title = appName;
       }
       // Set the app name
       document.getElementById("app").value = appName;
@@ -384,22 +329,24 @@ window.onload = function() {
         if (jsonData[val].alias) {
           // Change the name of the app we're using to its alias
           val = jsonData[val].alias;
-          debug("Using alias: "+val);
+          console.debug("Using alias: "+val);
         }
 
-        var length = 16;
-        var max = jsonData[val].maxLength;
-
-        if (!max) {
-          max = defaultMaxLength;
+        if (jsonData[val].minLength) {
+          minLength = jsonData[val].minLength;
+        } else {
+          minLength = defaultMinLength;
+        }
+        document.getElementById("length").min = minLength;
+        
+        if (jsonData[val].maxLength) {
+          maxLength = jsonData[val].maxLength;
+        } else {
+          maxLength = defaultMaxLength;
         }
 
-        if (!(jsonData[val].minLength <= length && length <= max)) {
-          length = max;
-        }
+        document.getElementById("length").max = maxLength;
 
-        document.querySelector("label[for=length]").classList.add("active");
-        document.getElementById("length").value = length;
 
         // In case there's already a password (eg switching sites / presets) regen password
         process();
@@ -468,7 +415,7 @@ window.onload = function() {
 
     // If the user has a prefered theme
     if (getCookie("theme") !== undefined) {
-      debug("Found a prefered theme. Loading " + getCookie("theme"));
+      console.debug("Found a prefered theme. Loading " + getCookie("theme"));
       changeTheme(getCookie("theme"));
       // Use the clicked CSS for the button
       document.getElementById(getCookie("theme")).checked = true;
@@ -491,7 +438,7 @@ window.onload = function() {
 
 
   // Initialize the copy button
-  var clipboard = new Clipboard("#copy");
+  var clipboard = new ClipboardJS("#copy");
 
   clipboard.on("success", function(e) {
 
@@ -505,12 +452,12 @@ window.onload = function() {
 
   checkDebug();
 
-  //Set the engine version cookie if we haven't before
+  // Set the engine version cookie if we haven't before
   if (getCookie("engineVersion") === undefined) {
     setCookie("engineVersion", engineVersion);
   }
 
-  //Set the mode cookie if we haven't before
+  // Set the mode cookie if we haven't before
   if (getCookie("mode") === undefined) {
     if (getCookie("engineVersion") != "5.10.0") {
       mode = "new";
@@ -564,19 +511,23 @@ function load() { // Load the saved password from cookie
   colourUnderline()
  }
 
-function appUp(e){
+function appInput(e){
 
-  // Pressed a printable character
-  if (e.key && e.key.length === 1) {
-    // Clear logo
-    document.getElementById("logoContainer").style.display = "none";
-    document.getElementById("logo").removeAttribute("src");
-    document.getElementById("logo").removeAttribute("alt");
-    document.getElementById("logo").removeAttribute("title");
+  // Clear logo
+  document.getElementById("logoContainer").style.display = "none";
+  document.getElementById("logo").removeAttribute("src");
+  document.getElementById("logo").removeAttribute("alt");
+  document.getElementById("logo").removeAttribute("title");
 
-    process();
+  // Reset the mins and maxes for length
+  minLength = defaultMinLength;
+  maxLength = defaultMaxLength;
 
-  }
+  document.getElementById("length").max = maxLength;
+  document.getElementById("length").min = minLength;
+
+  process();
+  
 }
 
 function passwordUp(){

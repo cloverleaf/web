@@ -100,7 +100,7 @@
 
         <div class="input-field">
           <label for="app" class="partial">Application</label>
-          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="appUp(event);"/>
+          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);"/>
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false"/>
           </div>
@@ -128,7 +128,7 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" step="1" min="4" value="16" max="526" oninput="process();" onkeyup="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
+          <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process()" onkeypress="return event.charCode >= 48 && event.charCode <= 57" />
         </div>
 
         <span class="hint">The longer, the better</span>
