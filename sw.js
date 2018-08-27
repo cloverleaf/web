@@ -19,6 +19,7 @@ var assets  = [
     "logos/allegorithmic.svg",
     "logos/AlternativeTo.svg",
     "logos/Amazon.svg",
+    "logos/Amino.svg",
     "logos/Apple.svg",
     "logos/Artsy.svg",
     "logos/Baidu.svg",

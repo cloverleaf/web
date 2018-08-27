@@ -30,6 +30,9 @@
   "Amazon":{
     "minLength":6
   },
+  "Amino":{
+    "minLength":6
+  },
   "Apple":{
     "minLength":8,
     "maxLength":32,
