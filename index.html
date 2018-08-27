@@ -55,21 +55,21 @@
       console.clear();
     </script>
 
-    <!-- Import materialize.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.css" integrity="sha256-wJ+vP1Tpdh0NdLkiQqiBWFJkfcdramtSMYxJvyAjhII="
-      crossorigin="anonymous" />
+    <!-- materialize css 1.0.0-rc.2 -->
+    <link rel="stylesheet" href="libs/materialize.min.css"/>
     <!-- Custom fonts -->
     <link href="https://fonts.googleapis.com/css?family=Droid+Sans+Mono|Roboto:300,400,500" rel="stylesheet">
     <!-- Styling css -->
     <link rel="stylesheet" type="text/css" href="compiled/style.min.css" />
-    <!-- materialize.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.js" integrity="sha256-ulw7Nw82Oo1joXpeUqKzJfeP2DDW+gmM+963Q0tMQUQ="
-      crossorigin="anonymous"></script>
-    <!-- seedrandom.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/seedrandom/2.4.3/seedrandom.min.js" integrity="sha256-64f1BOntWrbWIG++Jw3Ad4BSjTz8FG2DLeZ0kD3lLcc=" crossorigin="anonymous"></script>
-    <!-- clipboard.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha256-Daf8GuI2eLKHJlOWLRR/zRy9Clqcj4TUSumbxYH9kGI=" crossorigin="anonymous"></script>
-    <script src="compiled/sha3.min.js"></script>
+    <!-- materialize js 1.0.0-rc.2-->
+    <script src="libs/materialize.min.js"></script>
+    <!-- seedrandom.js 2.4.4 -->
+    <script src="libs/seedrandom.min.js"></script>
+    <!-- clipboard.js 2.0.1 -->
+    <script src="libs/clipboard.min.js"></script>
+    <!-- js-sha3 0.8.0 -->
+    <script src="libs/sha3.min.js"></script>
+    <!-- Perdola source -->
     <script src="compiled/jssource.min.js"></script>
 
     <!-- Material Icons -->
@@ -181,16 +181,20 @@
     </noscript>
 
     <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('sw.js').then(function(registration) {
-            // Registration was successful
-            console.log('ServiceWorker registration successful with scope: ', registration.scope);
-          }, function(err) {
-            // registration failed :(
-            console.log('ServiceWorker registration failed: ', err);
+      //This is the service worker with the Cache-first network
+      // Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
+      if ("serviceWorker" in navigator) {
+        if (navigator.serviceWorker.controller) {
+          console.debug("Active service worker found, no need to register")
+        } else {
+
+        //Register the ServiceWorker
+          navigator.serviceWorker.register("sw.js", {
+            scope: "./"
+          }).then(function(reg) {
+            console.debug("Service worker has been registered for scope:"+ reg.scope);
           });
-        });
+        }
       }
     </script>
 

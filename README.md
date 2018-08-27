@@ -63,6 +63,8 @@ noppa's [text-security](https://github.com/noppa/text-security) font under the M
 
 [js-sha3](https://github.com/emn178/js-sha3) under the MIT license
 
+[PWA Builder](https://www.pwabuilder.com/) under the MIT license
+
 ## Misc
 
 Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)

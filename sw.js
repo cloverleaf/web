@@ -1,16 +1,27 @@
-var cacheName = "perdola";
-var assets  = [
+// This is the service worker with the Cache-first network
+// Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
+var CACHE = "perdola";
+var precacheFiles = [
+    // Perdola source
     "/",
     "index.html",
     "compiled/style.min.css",
     "compiled/jssource.min.js",
-    "compiled/sha3.min.js",
+    // Libraries
+    "libs/clipboard.min.js",
+    "libs/materialize.min.js",
+    "libs/materialize.min.css",
+    "libs/seedrandom.min.js",
+    "libs/sha3.min.js",
+    // Fonts
     "compiled/text-security-disc.eot",
     "compiled/text-security-disc.svg",
     "compiled/text-security-disc.ttf",
     "compiled/text-security-disc.woff",
+    // Data
     "data/sites.json",
     "data/themes.json",
+    // Preset Logos
     "logos/Ada.svg",
     "logos/Adobe.svg",
     "logos/Airbnb.svg",
@@ -142,6 +153,7 @@ var assets  = [
     "logos/Yahoo.svg",
     "logos/YouTube.svg",
     "logos/YoYo Games.svg",
+    // PWA stuff
     "android-chrome-192x192.png",
     "android-chrome-512x512.png",
     "apple-touch-icon-114x114-precomposed.png",
@@ -177,27 +189,64 @@ var assets  = [
     "safari-pinned-tab.svg"
 ];
 
-self.addEventListener("install", function(event) {
-    // Perform install steps
-    event.waitUntil(
-        caches.open(cacheName)
-        .then(function(cache) {
-            console.log("Opened cache");
-            return cache.addAll(assets);
-         })
-    );
+
+// Install stage sets up the cache-array to configure pre-cache content
+self.addEventListener("install", function (evt) {
+    console.debug("The service worker is being installed.");
+    evt.waitUntil(precache().then(function () {
+        console.debug("Skip waiting on install");
+        return self.skipWaiting();
+    }));
 });
 
-self.addEventListener("fetch", function (event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                // Cache hit - return response
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            }
-            )
-    );
+
+// allow sw to control of current page
+self.addEventListener("activate", function (event) {
+    console.debug("Claiming clients for current page");
+    return self.clients.claim();
 });
+
+self.addEventListener("fetch", function (evt) {
+    console.debug("The service worker is serving the asset. " + evt.request.url);
+    evt.respondWith(fromCache(evt.request).catch(fromServer(evt.request)));
+    evt.waitUntil(update(evt.request));
+});
+
+
+function precache() {
+    return caches.open(CACHE).then(function (cache) {
+        return cache.addAll(precacheFiles);
+    });
+}
+
+function fromCache(request) {
+    // we pull files from the cache first thing so we can show them fast
+    return caches.open(CACHE).then(function (cache) {
+        return cache.match(request).then(function (matching) {
+            return matching || Promise.reject("no-match");
+        });
+    });
+}
+
+function update(request) {
+    // this is where we call the server to get the newest version of the 
+    // file to use the next time we show view
+    return caches.open(CACHE).then(function (cache) {
+        return fetch(request).then(function (response) {
+            return cache.put(request, response);
+        });
+    });
+}
+
+function fromServer(request) {
+    // this is the fallback if it is not in the cache to go to the server and get it
+    try {
+        return fetch(request).then(function (response) {return response});
+    } catch (error) {
+        if (navigator.onLine) { // If the browser is online
+            console.log(error);
+            console.log(request);
+            console.trace();
+        }
+    }
+}
