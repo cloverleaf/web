@@ -415,7 +415,7 @@
   },
   "Tesco":{
     "minLength":8,
-    "maxLength":15,
+    "maxLength":45,
     "requirements":["low","cap","special"]
   },
   "TheCubicle.us":{
