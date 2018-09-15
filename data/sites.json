@@ -451,9 +451,6 @@
     "minLength":8,
     "maxLength":32
   },
-  "Vidme":{
-    "minLength":4
-  },
   "Vimeo":{
     "requirements":["cap","low","num","special"],
     "minLength":8,
