@@ -32,7 +32,7 @@
 
 <a name="cookies">**Q:** What are cookies and why do you use them?:</a>
 
-**A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Perdola uses these for remembering what theme you like and a few other things like that. We also use Google analytics so we can see who's using Perdola and how. This also uses cookies.
+**A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Perdola uses these for remembering what theme you like and a few other things like that.
 
 
 <style
