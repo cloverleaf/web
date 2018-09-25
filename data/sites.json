@@ -254,7 +254,7 @@
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   },
   "Mail.Ru":{
-    "requirements":["special","number","low"],
+    "requirements":["special","num","low"],
     "minLength":6,
     "maxLength":40
   },
@@ -291,6 +291,13 @@
     "minLength":8,
     "maxLength":20,
     "requirements":["cap","low"]
+  },
+  "Nectar":{
+    "minLength":8,
+    "maxLength":100,
+    "requirements":["num","cap","low"],
+    "logo":"logos/Nectar.png",
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*,-./:;<=>?@[\\]^_`{|}~"
   },
   "Netflix":{
     "minLength":4,
