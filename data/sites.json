@@ -46,6 +46,10 @@
     "minLength":6,
     "maxLength":14
   },
+  "Battle.net":{
+    "logo":"logos/Battlenet.webp",
+    "alias":"Blizzard"
+  },
   "BBC":{
     "minLength":8,
     "maxLength":50,
@@ -60,6 +64,11 @@
   },
   "Blend Swap":{
     "minLength":8
+  },
+  "Blizzard":{
+    "minLength":8,
+    "maxLength":16,
+    "requirements":["low","num"]
   },
   "Channel 4":{
     "minLength":6,
