@@ -460,6 +460,11 @@
     "minLength":8,
     "maxLength":16
   },
+  "UCAS":{
+    "minLength":8,
+    "maxLenth":14,
+    "requirements":["cap","low","num","special"]
+  },
   "Uplay":{
     "alias":"Ubisoft"
   },
