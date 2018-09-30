@@ -59,6 +59,11 @@ function checkDebug(){
     link.setAttribute('href', 'debug.css');
     document.getElementsByTagName('head')[0].appendChild(link);
   }
+
+  // If I'm testing, change the page title so I can tell the tabs apart
+  if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+    document.title = "Perdola - LocalHost";
+  }
 }
 
 
@@ -450,7 +455,6 @@ window.onload = function() {
 
   });
 
-  checkDebug();
 
   // Set the engine version cookie if we haven't before
   if (getCookie("engineVersion") === undefined) {
@@ -486,6 +490,7 @@ window.onload = function() {
     throw new Error( 'Invalid mode  "'+ mode +'" '); // Using the inferior kind of quotes so I may see the superior ones apon error
   }
 
+  checkDebug();
 };
 
 function save() { // Save the current master password as a cookie

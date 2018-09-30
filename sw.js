@@ -14,10 +14,13 @@ var precacheFiles = [
     "libs/seedrandom.min.js",
     "libs/sha3.min.js",
     // Fonts
-    "compiled/text-security-disc.eot",
-    "compiled/text-security-disc.svg",
-    "compiled/text-security-disc.ttf",
-    "compiled/text-security-disc.woff",
+    "fonts/MaterialIcons-Regular.eot",
+    "fonts/MaterialIcons-Regular.ttf",
+    "fonts/MaterialIcons-Regular.woff2",
+    "fonts/text-security-disc.eot",
+    "fonts/text-security-disc.svg",
+    "fonts/text-security-disc.ttf",
+    "fonts/text-security-disc.woff",
     // Data
     "data/sites.json",
     "data/themes.json",

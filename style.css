@@ -1,10 +1,72 @@
 @font-face {
-    font-family: 'text-security-disc';
-    src: url('text-security-disc.eot');
-    src: url('text-security-disc.eot?#iefix') format('embedded-opentype'),
-    url('text-security-disc.woff') format('woff'),
-    url('text-security-disc.ttf')  format('truetype'),
-    url('text-security-disc.svg#text-security') format('svg');
+  font-family: 'text-security-disc';
+  src: url(../fonts/text-security-disc.eot);
+  src: url(../fonts/text-security-disc.eot?#iefix) format('embedded-opentype'),
+  url(../fonts/text-security-disc.woff) format('woff'),
+  url(../fonts/text-security-disc.ttf)  format('truetype'),
+  url(../fonts/text-security-disc.svg#text-security) format('svg');
+}
+
+/* Material Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url(../fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+  /* Disable user selection */
+  user-select:none
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
 }
 
 :root {
@@ -119,7 +181,7 @@ input[type=number] {
 }
 
 #result {
-  font-family: 'Droid Sans Mono', monospace;
+  font-family: 'Roboto Mono', monospace;
   font-size: 2rem;
   padding: 0.9rem 0px;
   display: inline-block;
@@ -363,7 +425,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 900;
+  font-weight: 500;
   font-size: 10vmin;
   top:0px;
   left:0px;
@@ -475,10 +537,6 @@ label:focus{
   font-family: 'text-security-disc' !important;
   font-size: 4.25rem  !important;
   line-height: 3rem;
-}
-
-.material-icons {
-  user-select:none
 }
 
 #cookieAlert {
