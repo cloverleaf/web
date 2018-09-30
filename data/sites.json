@@ -462,7 +462,7 @@
   },
   "UCAS":{
     "minLength":8,
-    "maxLenth":14,
+    "maxLength":14,
     "requirements":["cap","low","num","special"]
   },
   "Uplay":{
