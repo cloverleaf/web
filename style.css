@@ -687,3 +687,9 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {  
   opacity: 1;
 }
+
+ul.tabs li.tab a i.material-icons {
+  vertical-align: middle;
+  color: #F44336;
+  color: var(--incorrectColor);
+}
