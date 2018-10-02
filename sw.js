@@ -5,7 +5,7 @@ var precacheFiles = [
     // Perdola source
     "/",
     "index.html",
-    "compiled/style.min.css",
+    "style.css",
     "compiled/jssource.min.js",
     // Libraries
     "libs/clipboard.min.js",
