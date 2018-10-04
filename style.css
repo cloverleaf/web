@@ -254,13 +254,8 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: -webkit-linear-gradient(left, #fff 0%, #fff 80% ,#fff 80% );
-  background: -o-linear-gradient(left, #fff 0%, #fff 80% ,#fff 80% );
-  background: linear-gradient(to right, #fff 0%, #fff 80% ,#fff 80% );
-
-  background: -webkit-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
-  background: -o-linear-gradient(left, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
+  background: #fff;
+  background: var(--backgroundColor);
   position: absolute !important;
   width: calc(100% - 3rem);
   max-height: calc(82% * 4); /* 82% seems to work out as one row */
@@ -271,21 +266,24 @@ ul.autocomplete-content.dropdown-content {
 }
 
 ul.autocomplete-content.dropdown-content li {
-  background: #fff;
-  background: linear-gradient(to right, var(--backgroundColor) 0%, var(--backgroundColor) 80% ,#fff 80% );
+
   height: 3em;
-  font-family: 3em;
   min-height: 0px;
 }
 
 .dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
+  background: #eee;
+  background: var(--highlightColor);
   color:red;
-  background: linear-gradient(to right, #eee 0%, #eee 80% ,#fff 80% ) !important;
-  background: linear-gradient(to right, var(--highlightColor) 0%, var(--highlightColor) 80% ,#fff 80% ) !important;
 }
 
-ul.autocomplete-content.dropdown-content li img {
+ul.autocomplete-content.dropdown-content li img.right.circle {
   overflow: hidden;
+  background: #fff;
+  width: calc(20% - 0.66em);
+  height: 100%;
+  padding: 0.33em;
+  margin: 0px;
 }
 
 ul.autocomplete-content.dropdown-content span {
@@ -331,12 +329,6 @@ ul.autocomplete-content.dropdown-content span .highlight{
   border-radius: 100px;
   width: 17px;
 	background-color: rgba(0,0,0,0.5);
-}
-
-li img.right.circle {
-  width: calc(20% - 0.66em);
-  height: calc(100% - 0.66em);
-  margin: 0.33em;
 }
 
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
