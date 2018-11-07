@@ -40,8 +40,8 @@
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
   font-feature-settings: 'liga';
-  /* Disable user selection */
-  user-select:none
+  user-select:none;
+  font-display: block; 
 }
 
 @font-face {

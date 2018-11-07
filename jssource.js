@@ -542,7 +542,12 @@ function passwordUp(){
   // Regen the password
   process();
 
-}
+window.addEventListener('beforeinstallprompt', (e) => {
+	installPromptEvent = e;
+	// Prevent Chrome 67 and earlier from automatically showing the prompt
+	e.preventDefault();
+	// Show the prompt on later versions
+});
 
 function colourUnderline() {
   // If there's a password
