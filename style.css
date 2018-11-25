@@ -266,7 +266,6 @@ ul.autocomplete-content.dropdown-content {
 }
 
 ul.autocomplete-content.dropdown-content li {
-
   height: 3em;
   min-height: 0px;
 }
@@ -497,34 +496,6 @@ label:focus{
     }
 }
 
-@media (max-width: 500px) {
-    .github-corner:hover .octo-arm {
-        animation: none;
-    }
-    .github-corner .octo-arm {
-        animation: octocat-wave 560ms ease-in-out;
-    }
-}
-
-/* If we're on a small/mobile device */
-@media only all and (max-width:40em) {
-  #back {
-    /* Ditch loads of padding */
-    margin: 0px;
-  }
-  #box {
-    max-width: calc(100% - 25px);
-  }
-}
-
-/* If it won't fit vertically */
-@media only all and (max-height:600px) {
-  html {
-    /* Drop the font size */
-    font-size: 2vh;
-  }
-}
-
 .hidden:not(:empty) {
   font-family: 'text-security-disc' !important;
   font-size: 4.25rem  !important;
@@ -555,32 +526,6 @@ label:focus{
   position: absolute;
   top: 0.25em;
   right: 1em;
-}
-
-.btn-floating {
-  width: 2.86rem;
-  height: 2.86rem;
-}
-
-.btn-floating i {
-  font-size: 1.6rem;
-  line-height: 2.86rem;  
-  display: block;
-  top: 0px;
-}
-
-.btn-floating.btn-large i {
-  font-size: 2rem;
-  line-height: 4rem;
-}
-
-.btn-floating.btn-large {
-  width: 4rem;
-  height: 4rem;
-}
-
-.fixed-action-btn ul a.btn-floating {
-  opacity: 1;
 }
 
 .tabs {
@@ -684,4 +629,118 @@ ul.tabs li.tab a i.material-icons {
   vertical-align: middle;
   color: #F44336;
   color: var(--incorrectColor);
+}
+
+/* Theme selectors */
+.fixed-action-btn ul a.btn-floating {
+  opacity: 1;
+}
+
+.fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+  right: 50px
+}
+
+.fixed-action-btn.direction-right ul li {
+  margin: 7.5px 1vw 0 0;
+}
+
+/* Install icon */
+#install-icon {
+  padding-right: 3px;
+}
+
+/* Normal size */
+.btn-floating {
+  width: 2.86rem;
+  height: 2.86rem;
+}
+
+.btn-floating i {
+  font-size: 1.6rem;
+  line-height: 2.86rem;  
+  display: block;
+  top: 0px;
+}
+
+/* Large size */
+.btn-floating.btn-large {
+  width: 4rem;
+  height: 4rem;
+}
+
+.btn-floating.btn-large i {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+
+
+/* Media Queries */
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+      animation: none;
+  }
+  .github-corner .octo-arm {
+      animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+/* If we're on a small/mobile device */
+@media only all and (max-width:40em) {
+  #back {
+    /* Ditch loads of padding */
+    margin: 0px;
+  }
+  #box {
+    max-width: calc(100% - 25px);
+  }
+
+  /* Theme selectors */
+  .fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+    right: 15vw;
+  }
+
+  .fixed-action-btn.direction-left ul li, .fixed-action-btn.direction-right ul li {
+    margin:2.4vw 1vw 0 0;
+  }
+
+  /* Install icon */
+  #install-icon {
+    padding-right: .5vw;
+  }
+
+  /* Normal size */
+  .btn-floating {
+    width: 10vw;
+    height: 10vw;
+  }
+  
+  #themeSelector {
+    right: 2vw;
+    bottom: 2vw;
+  }
+
+  .btn-floating i {
+    font-size: 5vw;
+    line-height: 10vw;  
+  }
+
+  /* Large size */
+  .btn-floating.btn-large {
+    width: 15vw;
+    height: 15vw;
+  }
+
+  .btn-floating.btn-large i {
+    font-size: 7.5vw;
+    line-height: 15vw;
+  }
+
+}
+
+/* If it won't fit vertically */
+@media only all and (max-height:600px) {
+html {
+  /* Drop the font size */
+  font-size: 2vh;
+}
 }
