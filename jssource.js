@@ -17,6 +17,7 @@ var possibleRequirements = {
   "num":"0123456789",
   "special":"!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 };
+const targetLength = 16;
 
 function getCookie(name) {
   var value = "; " + document.cookie;
@@ -329,6 +330,7 @@ window.onload = function() {
         document.querySelector("img#logo").src = autoCompleteData[val];
         document.querySelector("img#logo").alt = val;
         document.querySelector("img#logo").title = val;
+				let length = targetLength;
 
         // If it's an alias for another app
         if (jsonData[val].alias) {
@@ -351,6 +353,12 @@ window.onload = function() {
         }
 
         document.getElementById("length").max = maxLength;
+
+				if (!(minLength <= length && length <= maxLength)) {
+					length = maxLength;
+				}
+
+				document.getElementById("length").max = maxLength;
 
 
         // In case there's already a password (eg switching sites / presets) regen password
