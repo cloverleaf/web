@@ -51,19 +51,25 @@ I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
 
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
 
-[GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the MIT license
+[GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the [MIT license](https://github.com/tholman/github-corners/blob/master/license.md)
 
-[clipboard.js](https://github.com/zenorocha/clipboard.js/) under the MIT license
+[clipboard.js](https://github.com/zenorocha/clipboard.js/) under the [MIT license](https://github.com/zenorocha/clipboard.js/#license)
 
-[seedrandom](https://github.com/davidbau/seedrandom) by David Bau under the MIT license
+[seedrandom](https://github.com/davidbau/seedrandom) by David Bau under the [MIT license](https://github.com/davidbau/seedrandom#license-mit)
 
-The [Materialize Framework](https://github.com/Dogfalo/materialize) under the MIT license
+The [Materialize Framework](https://github.com/Dogfalo/materialize) under the [MIT license](https://github.com/Dogfalo/materialize/blob/v1-dev/LICENSE)
 
-noppa's [text-security](https://github.com/noppa/text-security) font under the MIT license
+noppa's [text-security](https://github.com/noppa/text-security) font under the [MIT license](https://github.com/noppa/text-security/blob/master/LICENSE)
 
-[js-sha3](https://github.com/emn178/js-sha3) under the MIT license
+[js-sha3](https://github.com/emn178/js-sha3) under the [MIT license](https://github.com/emn178/js-sha3/blob/master/LICENSE.txt)
 
-[PWA Builder](https://www.pwabuilder.com/) under the MIT license
+[Roboto](https://github.com/google/fonts/tree/master/apache/roboto) under the [Apache License 2.0](https://github.com/google/fonts/blob/master/apache/roboto/LICENSE.txt)
+
+[Roboto Mono](https://github.com/google/fonts/tree/master/apache/robotomono) under the [Apache License 2.0](https://github.com/google/fonts/blob/master/apache/robotomono/LICENSE.txt)
+
+[PWA Builder](https://www.pwabuilder.com/) under the [MIT license](https://github.com/pwa-builder/serviceworkers/blob/master/LICENSE.txt)
+
+[Material Design icons DX](https://github.com/jossef/material-design-icons-iconfont) under [CC-BY](https://creativecommons.org/licenses/by/4.0/) (Forked from [Material Design icons](https://github.com/google/material-design-icons))
 
 ## Misc
 
