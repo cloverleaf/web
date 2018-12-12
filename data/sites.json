@@ -465,6 +465,11 @@
     "maxLength":14,
     "requirements":["cap","low","num","special"]
   },
+  "Unity ID":{
+    "minLength":8,
+    "maxLength":72,
+    "requirements":["cap","low","num"]
+  },
   "Uplay":{
     "alias":"Ubisoft"
   },
