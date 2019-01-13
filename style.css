@@ -201,6 +201,8 @@ input[type=number] {
 #copy {
   display: block;
   margin: auto;
+  background: #3f51b5;
+  background: var(--accentColor);
 }
 
 .hint {
@@ -642,11 +644,6 @@ ul.tabs li.tab a i.material-icons {
 
 .fixed-action-btn.direction-right ul li {
   margin: 7.5px 1vw 0 0;
-}
-
-/* Install icon */
-#install-icon {
-  padding-right: 3px;
 }
 
 /* Normal size */

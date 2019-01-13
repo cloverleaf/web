@@ -2,25 +2,19 @@
 
 **Q:** What is this and why should I use it?:
 
-**A:** This is a complete redesign of the traditional password generator/storage system. Instead of relying on a hard drive to not to fail, or that backup you keep forgetting to make, Perdola makes a password based on your master password and the application you want a password for. This generated password will be the same every time, no matter what device you're on. You can then copy this and paste it into the app you want to log into.
+**A:** This is a complete redesign of the traditional password generator/storage system. Instead of relying on a hard drive to not to fail, or that backup you keep forgetting to make, Cloverleaf makes a password based on your master password and the application you want a password for. This generated password will be the same every time, no matter what device you're on. You can then copy this and paste it into the app you want to log into.
 
 <br/>
 
 **Q:** How do I know you're not looking at my passwords?:
 
-**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/ChildishGiant/perdola) for the website, smash your router and run Perdola offline (Not that I'd recommend smashing your router.)
+**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/ChildishGiant/Cloverleaf) for the website, smash your router and run Cloverleaf offline (Not that I'd recommend smashing your router.)
 
 <br/>
 
 <a name="remake">**Q:** Why did you remake an existing product?:</a>
 
-**A:** I've openly acknowledged that Perdola is based off the concept of "[Master Password](https://masterpasswordapp.com/)" but why would I spend all this time re-making a working piece of software? The answer is simple: *I don't like how Master Password works.* It has many different offshoots that all look different. It takes 6 variables to make a password and 30 seconds to load (Yes, I timed it.). It makes everything harder than it should be. And that was my motivation to make Perdola. I absolutely love the concept of secure passwords without storing them but hate the current solutions.
-
-<br/>
-
-**Q:** My favourite app isn't on Perdola!!!!1!:
-
-**A:** That's not a question but there is something you can do about it! Submit an issue [on github](https://github.com/ChildishGiant/perdola/issues/new) specifying the site you want added and I'll do my best to add it.
+**A:** I've openly acknowledged that Cloverleaf is based off the concept of "[Master Password](https://masterpasswordapp.com/)" but why would I spend all this time re-making a working piece of software? The answer is simple: *I don't like how Master Password works.* It has many different offshoots that all look different. It takes 6 variables to make a password and 30 seconds to load (Yes, I timed it.). It makes everything harder than it should be. And that was my motivation to make Cloverleaf. I absolutely love the concept of secure passwords without storing them but hate the current solutions.
 
 <br/>
 
@@ -32,7 +26,7 @@
 
 <a name="cookies">**Q:** What are cookies and why do you use them?:</a>
 
-**A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Perdola uses these for remembering what theme you like and a few other things like that.
+**A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Cloverleaf uses these for remembering what theme you like and a few other things like that.
 
 
 <style

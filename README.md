@@ -1,10 +1,8 @@
-# [Perdola](https://childishgiant.github.io/perdola/)
+# [Cloverleaf](https://childishgiant.github.io/Cloverleaf/)
 
-## We now have a [keybase team](https://keybase.io/team/perdola.public)
+See the [latest patch notes here](https://github.com/ChildishGiant/Cloverleaf/commit/master).
 
-See the [latest patch notes here](https://github.com/ChildishGiant/perdola/commit/master).
-
-A smart solution to the problem of passwords. Perdola generates passwords on demand, using the name of the app you're making a password for and a master password.
+A smart solution to the problem of passwords. Cloverleaf generates passwords on demand, using the name of the app you're making a password for and a master password.
 
 ## Version Notes
 
@@ -12,7 +10,7 @@ A smart solution to the problem of passwords. Perdola generates passwords on dem
 
 #### Versioning
 
-In version 1.35.0 I *finally* got around to fixing the versioning of Perdola. The issue is that I've been using the format of [Semantic versioning](https://semver.org/) but failing to actually follow how that works. Up until this version I had the following in this readme:
+In version 1.35.0 I *finally* got around to fixing the versioning of Cloverleaf. The issue is that I've been using the format of [Semantic versioning](https://semver.org/) but failing to actually follow how that works. Up until this version I had the following in this readme:
 
 > ## How the versioning works
 > MAJOR.MINOR.PATCH
@@ -35,7 +33,7 @@ I have removed one feature so far and may remove more in the future for security
 
 As of 09/07/2017 (Version 0.36) the ability to have your master password pre-entered, using a custom url, has been removed. This is due to the fact that your password would then show up in my google analytics.
 
-This is also no longer an issue as, as of Version 6.8.0, Perdola no longer uses google analytics.
+This is also no longer an issue as, as of Version 6.8.0, Cloverleaf no longer uses google analytics.
 
 This feature was implemented in a safer fashion in v0.4, using cookies.
 
@@ -73,4 +71,4 @@ noppa's [text-security](https://github.com/noppa/text-security) font under the [
 
 ## Misc
 
-Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/perdola/faq#remake)
+Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/Cloverleaf/faq#remake)

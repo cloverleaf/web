@@ -67,7 +67,7 @@ window.toggleSettings = function () {
 
 function checkDebug () {
   if (debugMode) {
-    document.title = `Cloverleaf - Debug ${new Date().getTime()}`;
+    document.title += ` - Debug ${new Date().getTime()}`;
     console.debug('Enabling debug css');
     const link = document.createElement('link');
     link.setAttribute('rel', 'stylesheet');
@@ -78,7 +78,7 @@ function checkDebug () {
 
   // If I'm testing, change the page title so I can tell the tabs apart
   if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-    document.title = 'Cloverleaf - LocalHost';
+    document.title += ' - LocalHost';
   }
 }
 

@@ -1,6 +1,6 @@
 
 
-The purple used through out perdola is
+The purple used through out Cloverleaf is
 
 **material.io** Indigo
 **Hex triplet**	3f51b5
