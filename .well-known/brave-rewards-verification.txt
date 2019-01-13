@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: cloverleaf.app
+Token: 01b99e240ae18faee433ff5c6029f9bd491acbee41be2d0d18a4f928613d3860
