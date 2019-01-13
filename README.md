@@ -1,6 +1,6 @@
-# [Cloverleaf](https://childishgiant.github.io/Cloverleaf/)
+# [Cloverleaf](https://cloverleaf.app/)
 
-See the [latest patch notes here](https://github.com/ChildishGiant/Cloverleaf/commit/master).
+See the [latest patch notes here](https://github.com/ChildishGiant/cloverleaf/commit/master).
 
 A smart solution to the problem of passwords. Cloverleaf generates passwords on demand, using the name of the app you're making a password for and a master password.
 
@@ -71,4 +71,4 @@ noppa's [text-security](https://github.com/noppa/text-security) font under the [
 
 ## Misc
 
-Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://childishgiant.github.io/Cloverleaf/faq#remake)
+Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](https://cloverleaf.app/faq#remake)
