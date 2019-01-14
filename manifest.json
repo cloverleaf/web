@@ -1,16 +1,16 @@
 {
-  "lang": "en",
-  "name": "Cloverleaf",
-  "short_name": "Cloverleaf",
-  "description": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
+    "lang": "en",
+    "name": "Cloverleaf",
+    "short_name": "Cloverleaf",
+    "description": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
     "icons": [
         {
-            "src": "android-chrome-192x192.png?v=xQdPOk5yKA",
+            "src": "android-chrome-192x192.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "android-chrome-512x512.png?v=xQdPOk5yKA",
+            "src": "android-chrome-512x512.png",
             "sizes": "512x512",
             "type": "image/png"
         }
