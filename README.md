@@ -1,6 +1,10 @@
 # [Cloverleaf](https://cloverleaf.app/)
 
-See the [latest patch notes here](https://github.com/ChildishGiant/cloverleaf/commit/master).
+![](https://img.shields.io/github/last-commit/cloverleaf/web.svg)<br>
+[![](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)<br>
+![](https://img.shields.io/github/license/cloverleaf/web.svg)<br>
+
+See the [latest patch notes here](https://github.com/cloverleaf/web/commit/master).
 
 A smart solution to the problem of passwords. Cloverleaf generates passwords on demand, using the name of the app you're making a password for and a master password.
 
