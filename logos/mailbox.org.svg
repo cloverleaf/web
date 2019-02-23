@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   id="svg14"
+   xml:space="preserve"
+   enable-background="new 0 0 150 94"
+   viewBox="0 0 62.918999 56.860001"
+   height="56.860001"
+   width="62.918999"
+   y="0px"
+   x="0px"
+   version="1.1"><metadata
+   id="metadata18"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata>
+<defs
+   id="defs2">
+</defs>
+<g
+   id="g12">
+	<defs
+   id="defs5">
+		<rect
+   y="0"
+   x="0"
+   height="94.336998"
+   width="150"
+   id="SVGID_1_" />
+	</defs>
+	<clipPath
+   id="SVGID_2_">
+		<use
+   height="100%"
+   width="100%"
+   y="0"
+   x="0"
+   style="overflow:visible"
+   id="use7"
+   overflow="visible"
+   xlink:href="#SVGID_1_" />
+	</clipPath>
+	<path
+   style="fill:#76bc21"
+   id="path10"
+   d="M 38.766,32.55 62.919,16.007 V 0 H 5.841 C 5.841,0 0,0 0,5.84 V 6 Z M 5.841,56.86 H 62.919 V 24.5 L 40.299,39.922 C 38.69,41.018 37.087,39.915 37.087,39.915 L 0,14.399 v 36.622 c 0,0 0,5.839 5.841,5.839"
+   clip-path="url(#SVGID_2_)" />
+</g>
+</svg>

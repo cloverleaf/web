@@ -262,6 +262,11 @@
     "maxLength":15,
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   },
+  "mailbox.org":{
+    "minLength":6,
+    "requirements":["cap","low","num"],
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$\"%&/()=*+-#.,;:@?{}[]"
+  },
   "Mail.Ru":{
     "requirements":["special","num","low"],
     "minLength":6,
