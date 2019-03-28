@@ -443,9 +443,10 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   left:0px;
   color: #fff;
   color: var(--backgroundColor);
-  -webkit-text-stroke-width: 2px !important;
+  -webkit-text-stroke-width: 0.05em !important;
   -webkit-text-stroke-color: #535353 !important;
   -webkit-text-stroke-color: var(--textColor) !important;
+  padding: 10px;
 }
 
 #jsBanner a {
@@ -652,7 +653,7 @@ ul.tabs li.tab a i.material-icons {
 }
 
 .fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
-  right: 50px
+  right: 55px
 }
 
 .fixed-action-btn.direction-right ul li {
