@@ -158,7 +158,7 @@ function process () {
   let chars =
         '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'; // Defualt character set (Set here but overwritten if there's a custom one.)
   const requirements = []; // By default we have no requirements but reset it so we don't carry them over
-  let appName = document.getElementById('app').value;
+	let appName = document.getElementById("app").value.trim();
   const masterPass = document.getElementById('pass').value;
   const length = Math.trunc(document.getElementById('length').value); // Get the desired length of a password and make sure it's an integer
   let result = ''; // Has to be here, not in the loop for scope purposes
