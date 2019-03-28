@@ -214,7 +214,7 @@ function process () {
   // If the appname or password or length are empty
   if (appName === '' || masterPass === '' || length === '') {
     // Empty the output field
-    document.getElementById('result').innerHTML = '';
+		document.getElementById("result").value = "";
     // Stop function from generating new password
     return;
   }
@@ -297,7 +297,7 @@ function process () {
   // The password has been generated
 
   // Display password
-  document.getElementById('result').textContent = result;
+	document.getElementById("result").value = result;
 }
 
 /**
