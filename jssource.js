@@ -113,6 +113,35 @@ window.passwordToggle = function () {
   }
 };
 
+window.copy = function () {
+
+	const pass = document.getElementById("result").value;
+
+	if (pass === "") {
+		M.toast({
+			html: "You have no password to copy.",
+			displayLength: 4000,
+			classes: "warning"
+		});
+	} else {
+
+		let copyElement = document.createElement("input");
+		copyElement.setAttribute("type", "text");
+		copyElement.setAttribute("value", pass);
+		copyElement = document.body.appendChild(copyElement);
+		copyElement.select();
+		document.execCommand("copy");
+		copyElement.remove();
+
+		M.toast({
+			html: "Successfully copied!",
+			displayLength: 4000,
+			classes: "success"
+		});
+	}
+
+};
+
 // For showing / hiding the generated password
 window.resultToggle = function () {
   // If the switch is on / to the right / "Hide"
@@ -478,25 +507,6 @@ window.onload = function () {
 
   themes.open('get', 'data/themes.json', true);
   themes.send();
-
-  // Initialize the copy button
-  const clipboard = new ClipboardJS('#copy');
-
-  clipboard.on('success', e => {
-    if (e.text === '') {
-      M.toast({
-        html: 'You have no password to copy.',
-        displayLength: 4000,
-        classes: 'warning'
-      });
-    } else {
-      M.toast({
-        html: 'Successfully copied!',
-        displayLength: 4000,
-        classes: 'success'
-      });
-    }
-  });
 
   // Set the engine version cookie if we haven't before
   if (getCookie('engineVersion') === undefined) {
