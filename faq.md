@@ -28,7 +28,7 @@
 
 **A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Cloverleaf uses these for remembering what theme you like and a few other things like that.
 
-
+<title>Frequently Asked Questions - Cloverleaf</title>
 <style
   type="text/css">
   @import url(https://fonts.googleapis.com/css?family=Open+Sans);
