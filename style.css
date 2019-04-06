@@ -307,12 +307,12 @@ ul.autocomplete-content.dropdown-content li img.right.circle {
 }
 
 ul.autocomplete-content.dropdown-content span {
-  display: inline-flex;
+  /* display: inline-flex; */
   align-items: center;
   white-space: nowrap;
   max-width: 70%;
   height: 100%;
-  vertical-align: middle;
+  /* vertical-align: middle; */
   font-size: 1em;
   padding: 0.875em 1em;
   overflow: hidden;

@@ -55,13 +55,9 @@ Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a 
 
 [GitHub Corners](https://github.com/tholman/github-corners) by Tim Holman under the [MIT license](https://github.com/tholman/github-corners/blob/master/license.md)
 
-[clipboard.js](https://github.com/zenorocha/clipboard.js/) under the [MIT license](https://github.com/zenorocha/clipboard.js/#license)
-
 [seedrandom](https://github.com/davidbau/seedrandom) by David Bau under the [MIT license](https://github.com/davidbau/seedrandom#license-mit)
 
 The [Materialize Framework](https://github.com/Dogfalo/materialize) under the [MIT license](https://github.com/Dogfalo/materialize/blob/v1-dev/LICENSE)
-
-noppa's [text-security](https://github.com/noppa/text-security) font under the [MIT license](https://github.com/noppa/text-security/blob/master/LICENSE)
 
 [js-sha3](https://github.com/emn178/js-sha3) under the [MIT license](https://github.com/emn178/js-sha3/blob/master/LICENSE.txt)
 
