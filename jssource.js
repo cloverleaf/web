@@ -544,8 +544,8 @@ window.onload = function () {
 
 	//  If the user is on a PC, not a mobile device
 	if (
-		!(typeof window.orientation !== "undefined")
-        || navigator.userAgent.indexOf("IEMobile") !== -1
+		!(typeof window.orientation !== "undefined") ||
+			navigator.userAgent.indexOf("IEMobile") !== -1
 	) {
 		// Change the install icon to reflect that
 		document.getElementById("install-icon").innerHTML = "add_to_queue";
@@ -644,3 +644,20 @@ window.addEventListener("beforeinstallprompt", e => {
 	e.preventDefault();
 	// Show the prompt on later versions
 });
+
+window.appDown = function (e) {
+
+	// Enter pressed and dropdown visible
+	if (
+		(e.key === "Enter" || e.code === "Enter" || e.keyCode === 13) &&
+		document.querySelector(".autocomplete-content.dropdown-content").offsetHeight > 0
+	) {
+
+		// If no entry is selected
+		if (document.querySelector(".autocomplete-content.dropdown-content .active") === null) {
+			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
+		}
+
+	}
+
+};
