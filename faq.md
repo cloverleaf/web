@@ -8,7 +8,7 @@
 
 **Q:** How do I know you're not looking at my passwords?:
 
-**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/ChildishGiant/Cloverleaf) for the website, smash your router and run Cloverleaf offline (Not that I'd recommend smashing your router.)
+**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/cloverleaf/web) for the website, smash your router and run Cloverleaf offline (Not that I'd recommend smashing your router.)
 
 <br/>
 
