@@ -67,10 +67,10 @@
   --textColor: #535353;
   --backgroundColor: #fff;
   --internalColor: #fff;
-  --incorrectColor: #F44336;
-  --correctColor: #5cb85c; /* Bootstrap green */
+  --incorrectColor: #f44336;
+  --correctColor: #8fff66;
   --inputColor: #000;
-  --linkColor: #00539B;
+  --linkColor: #00539b;
   --highlightColor: #eee;
   --underlineColor: #3f51b5;
 }
@@ -251,7 +251,7 @@ input#length {
   float: right;
   cursor: help;
   font-weight: 500;
-  color: #00539B;
+  color: #00539b;
   color: var(--linkColor);
   margin-top: 0.4em;
 }
@@ -416,9 +416,13 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   transform-origin: 0 0;
 }
 
+.toast {
+  font-weight: 400
+}
+
 /* Negative toasts get this */
 .warning {
-  background-color: #F44336;
+  background-color: #f44336;
   background-color: var(--incorrectColor);
 }
 
@@ -426,6 +430,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 .success {
   background-color: #5cb85c;
   background-color: var(--correctColor);
+  color: #000;
 }
 
 #jsBanner {
@@ -643,7 +648,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 ul.tabs li.tab a i.material-icons {
   vertical-align: middle;
-  color: #F44336;
+  color: #f44336;
   color: var(--incorrectColor);
 }
 
