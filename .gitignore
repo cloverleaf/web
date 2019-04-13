@@ -1,9 +1,5 @@
 
-*.config
-
 \.vscode/
-
-*.code-workspace
 
 desktop.ini
 

@@ -1,0 +1,15 @@
+{
+	"folders": [{
+		"path": "."
+	}],
+	"settings": {
+		"json.schemas": [{
+			"fileMatch": [
+				"data/themes.json"
+			],
+			"url": "/data/themes_schema.json"
+		}]
+	},
+
+
+}
