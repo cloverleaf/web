@@ -28,6 +28,12 @@
 
 **A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Cloverleaf uses these for remembering what theme you like and a few other things like that.
 
+<br/>
+
+**Q:** What if I have a question that's not listed here?
+
+**A:** [Ask your question here](https://github.com/cloverleaf/web/issues/new?assignees=&labels=Question&template=question.md&title=)
+
 <title>Frequently Asked Questions - Cloverleaf</title>
 <style
   type="text/css">
@@ -40,6 +46,7 @@
     text-align: center;
     margin:auto;
     margin-top:2em;
+    margin-bottom: 5em;
   }
 
   a[href],
