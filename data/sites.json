@@ -5,12 +5,12 @@
   "Adobe":{
     "minLength":8,
     "maxLength":100,
-    "requirements":["num","low","cap"]
+    "requirements":["num", "low", "cap"]
   },
   "Airbnb":{
     "minLength":8,
     "maxLength":128,
-    "requirements":["low","num","special"]
+    "requirements":["low", "num", "special"]
   },
   "AliExpress":{
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -25,7 +25,7 @@
   },
   "AlternativeTo":{
     "minLength":8,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Amazon":{
     "minLength":6
@@ -36,7 +36,7 @@
   "Apple":{
     "minLength":8,
     "maxLength":32,
-    "requirements":["low","num","cap"]
+    "requirements":["low", "num", "cap"]
   },
   "Artsy":{
     "minLength":6,
@@ -53,7 +53,7 @@
   "BBC":{
     "minLength":8,
     "maxLength":50,
-    "requirements":["low","num","cap"],
+    "requirements":["low", "num", "cap"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
   "Behance":{
@@ -68,7 +68,7 @@
   "Blizzard":{
     "minLength":8,
     "maxLength":16,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Channel 4":{
     "minLength":6,
@@ -107,12 +107,12 @@
   "eBay":{
     "minLength":6,
     "maxLength":64,
-    "requirements":["low","num"],
+    "requirements":["low", "num"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-.;=?@\\^_`{|}~"
   },
   "Epic Games":{
     "minLength":7,
-    "requirements":["low","num"],
+    "requirements":["low", "num"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
   "Etsy":{
@@ -138,7 +138,7 @@
   },
   "Firebox":{
     "minLength":7,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Firefox":{
     "minLength":8
@@ -152,7 +152,7 @@
   },
   "Freelancer":{
     "minLength":6,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Genius":{
     "minLength":4,
@@ -166,7 +166,7 @@
     "maxLength":25
   },
   "giffgaff":{
-    "requirements":["cap","low","num"],
+    "requirements":["cap", "low", "num"],
     "minLength":8
   },
   "GIPHY":{
@@ -176,7 +176,7 @@
   "GitHub":{
     "minLength":7,
     "maxLength":72,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "GitLab":{
     "minLength":8,
@@ -185,7 +185,7 @@
   "Government Gateway":{
     "minLength":8,
     "maxLength":12,
-    "requirements":["low","num"],
+    "requirements":["low", "num"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
   },
   "Guilded":{
@@ -226,7 +226,7 @@
   "imgur":{
     "minLength":6,
     "maxLength":255,
-    "requirements":["num","low"]
+    "requirements":["num", "low"]
   },
   "Instagram":{
     "minLength":6,
@@ -252,7 +252,7 @@
   "last.fm":{
     "minLength":6,
     "maxLength":128,
-    "requirements":["num","special"]
+    "requirements":["num", "special"]
   },
   "lernu":{
     "minLength":5
@@ -270,11 +270,11 @@
   },
   "mailbox.org":{
     "minLength":6,
-    "requirements":["cap","low","num"],
+    "requirements":["cap", "low", "num"],
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!$\"%&/()=*+-#.,;:@?{}[]"
   },
   "Mail.Ru":{
-    "requirements":["special","num","low"],
+    "requirements":["special", "num", "low"],
     "minLength":6,
     "maxLength":40
   },
@@ -289,7 +289,7 @@
     "alias":"Facebook"
   },
   "Microsoft":{
-    "requirements":["cap","low"],
+    "requirements":["cap", "low"],
     "minLength":8,
     "maxLength":127
   },
@@ -310,12 +310,12 @@
   "My Nintendo":{
     "minLength":8,
     "maxLength":20,
-    "requirements":["cap","low"]
+    "requirements":["cap", "low"]
   },
   "Nectar":{
     "minLength":8,
     "maxLength":100,
-    "requirements":["num","cap","low"],
+    "requirements":["num", "cap", "low"],
     "logo":"logos/Nectar.png",
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*,-./:;<=>?@[\\]^_`{|}~"
   },
@@ -340,7 +340,7 @@
     "minLength":8,
     "maxLength":16,
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    "requirements":["cap","low","num"]
+    "requirements":["cap", "low", "num"]
   },
   "osu!":{
     "minLength":8,
@@ -353,6 +353,11 @@
     "logo":"logos/Pastebin.png",
     "minLength":4
   },
+  "Patient Access":{
+    "minLength":8,
+    "maxLength":99,
+    "requirements":["num", "cap", "low"]
+  },
   "Patreon":{
     "minLength":6
   },
@@ -363,7 +368,7 @@
   },
   "paysafecard":{
     "minLength":8,
-    "requirements":["cap","special"],
+    "requirements":["cap", "special"],
     "maxLength":110
   },
   "PCPartPicker":{
@@ -371,7 +376,7 @@
   },
   "Pinterest":{
     "minLength":6,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "pixiv":{
     "minLength":6,
@@ -393,11 +398,11 @@
   "QQ":{
     "minLength":8,
     "maxLength":16,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Rabbit":{
     "minLength":8,
-    "requirements":["low","cap","num"]
+    "requirements":["low", "cap", "num"]
   },
   "Reddit":{
     "minLength":6
@@ -405,14 +410,14 @@
   "Rockstar Games Social Club":{
     "minLength":8,
     "maxLength":30,
-    "requirements":["num","cap"]
+    "requirements":["num", "cap"]
   },
   "Skype":{
     "alias":"Microsoft"
   },
   "Snapchat":{
     "minLength":8,
-    "requirements":["num","cap"]
+    "requirements":["num", "cap"]
   },
   "Songsterr":{
     "minLength":5,
@@ -432,7 +437,7 @@
   },
   "Stack Overflow":{
     "minLength":8,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "Steam":{
     "minLength":8
@@ -443,7 +448,7 @@
   "Tesco":{
     "minLength":8,
     "maxLength":45,
-    "requirements":["low","cap","special"]
+    "requirements":["low", "cap", "special"]
   },
   "TheCubicle.us":{
     "minLength":5
@@ -474,12 +479,12 @@
   "UCAS":{
     "minLength":8,
     "maxLength":14,
-    "requirements":["cap","low","num","special"]
+    "requirements":["cap", "low", "num", "special"]
   },
   "Unity ID":{
     "minLength":8,
     "maxLength":72,
-    "requirements":["cap","low","num"]
+    "requirements":["cap", "low", "num"]
   },
   "Uplay":{
     "alias":"Ubisoft"
@@ -489,7 +494,7 @@
     "maxLength":32
   },
   "Vimeo":{
-    "requirements":["cap","low","num","special"],
+    "requirements":["cap", "low", "num", "special"],
     "minLength":8,
     "maxLength":72
   },
@@ -514,7 +519,7 @@
   "Wordpress":{
     "minLength":6,
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[]^_`{|}~",
-    "requirements":["cap","low","num","special"]
+    "requirements":["cap", "low", "num", "special"]
   },
   "Xbox":{
     "alias":"Microsoft"
@@ -525,7 +530,7 @@
   },
   "Yahoo":{
     "minLength":8,
-    "requirements":["low","num"]
+    "requirements":["low", "num"]
   },
   "YouTube":{
     "alias":"Google"
