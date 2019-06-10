@@ -15,17 +15,17 @@
   "Discord":{
     "accent": "#3f51b5",
     "lightAccent": "#6d78b5",
-    "text": "#fff",
+    "text": "#c0babc",
     "background": "#2f3136",
     "internal": "#36393e",
     "incorrect": "#f04747",
     "correct": "#43b581",
-    "inputColor": "#c0babc",
+    "inputColor": "#fff",
     "linkColor": "#1c96c5",
     "highlightColor": "#36393e",
     "underlineColor": "#3f51b5"
   },
-  "SolarizedDark":{
+  "Solarized Dark":{
     "accent": "#3f51b5",
     "lightAccent": "#6d78b5",
     "text": "#93a1a1",

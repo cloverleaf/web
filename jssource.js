@@ -19,6 +19,8 @@ const possibleRequirements = {
 	special: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
 };
 const targetLength = 16;
+let side; // Side nav
+let select; // Theme selector
 
 /**
  * Gets a cookie
@@ -43,25 +45,6 @@ function getCookie(name) {
 function setCookie(name, value) {
 	document.cookie = `${name}=${value}; expires=${cookieCrumble.toGMTString()}; path=/;`; // Set cookie to expire in 1 year
 }
-
-/**
- * Toggles the visability of the mode selector and sets the according cookie
- */
-window.toggleSettings = function () {
-	// Show the selector div
-	const engineSelector = document.getElementById("engineSelector");
-
-	engineSelector.style.display = engineSelector.style.display === "none" ? "block" : "none";
-	// Click on the last used mode
-	M.Tabs.getInstance(document.getElementById("engineTabs")).select(mode);
-
-	// If engineSelector is visable
-	if (engineSelector.offsetParent !== null) {
-		setCookie("showSettings", "true");
-	} else {
-		document.cookie = "showSettings=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; // Delete the showSettings cookie
-	}
-};
 
 function checkDebug() {
 	if (debugMode) {
@@ -466,9 +449,13 @@ window.onload = function () {
 		themeData = JSON.parse(themes.response);
 
 		for (const key in themeData) {
-			const themeRadio = document.createElement("li");
-			themeRadio.innerHTML = `<a class='btn-floating' onclick='changeTheme("${key}");' id='${key}' ><i class='material-icons'>color_lens</i></a>`;
-			document.getElementById("fabs").appendChild(themeRadio);
+
+			// Add select option for the theme
+			const themeOption = document.createElement("option");
+			themeOption.onclick = `changeTheme("${key}")`;
+			themeOption.id = key;
+			themeOption.innerHTML = key;
+			document.querySelector("#options .input-field select").appendChild(themeOption);
 
 			const css = `a[id=${key}]{background-color: ${
 				themeData[key].background
@@ -487,23 +474,23 @@ window.onload = function () {
 		// If the user has a prefered theme
 		if (getCookie("theme") !== undefined) {
 			console.debug(`Found a prefered theme. Loading ${getCookie("theme")}`);
+
 			changeTheme(getCookie("theme"));
-			// Use the clicked CSS for the button
-			document.getElementById(getCookie("theme")).checked = true;
+			// Select the correct selection
+			document.getElementById("themeSelector").value = getCookie("theme");
 		} else {
 			// If no theme cookie exists
 			// Click the vanilla theme.
-			document.getElementById("Vanilla").checked = true;
+			document.getElementById("themeSelector").value = defaultTheme;
 			changeTheme(defaultTheme);
 		}
 
-		M.FloatingActionButton.init(
-			document.querySelectorAll(".fixed-action-btn"), {
-				direction: "left", // Direction menu comes out
-				hoverEnabled: false, // Hover disabled
-				toolbarEnabled: false // Toolbar transition disabled
-			}
-		);
+		// Initialise the side nav
+		side = M.Sidenav.init(document.querySelectorAll(".sidenav"), { edge: "left" })[0];
+		// Initalise the theme selection
+		// Or not since materialize styled select is terrible.
+		// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
+
 	};
 
 	themes.open("get", "data/themes.json", true);
@@ -529,26 +516,12 @@ window.onload = function () {
 	// Initialize tooltips
 	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
 	// Initialize the tabs
-	M.Tabs.init(document.querySelectorAll(".tabs"));
-	const tabs = M.Tabs.getInstance(document.getElementById("engineTabs"));
-
-	if (getCookie("showSettings") === "true") {
-		document.getElementById("engineSelector").style.display = "block";
-	}
+	const tabs = M.Tabs.init(document.querySelectorAll(".tabs"))[0];
 
 	if (mode === "new" || mode === "old") {
 		tabs.select(mode);
 	} else {
 		throw new Error(`Invalid mode  "${mode}" `); // Using the inferior kind of quotes so I may see the superior ones apon error
-	}
-
-	//  If the user is on a PC, not a mobile device
-	if (
-		!(typeof window.orientation !== "undefined") ||
-			navigator.userAgent.indexOf("IEMobile") !== -1
-	) {
-		// Change the install icon to reflect that
-		document.getElementById("install-icon").innerHTML = "add_to_queue";
 	}
 
 	checkDebug();

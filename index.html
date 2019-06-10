@@ -62,7 +62,6 @@
     <meta name="theme-color" content="#ffffff">
 
 
-
     <script>
       // Clear the console on reload for easier debugging
       console.clear();
@@ -70,42 +69,64 @@
 
     <!-- CSS -->
     <!-- materialize css 1.0.0 -->
-    <link rel="stylesheet" href="libs/materialize.min.css"/>
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css"/>
     <!-- Styling css -->
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="compiled/style.min.css"/>
 
     <!-- If I wanted super fast loads I'd use these:
-    <link rel="stylesheet" href="libs/materialize.min.css" media="none" onload="if(media!='all')media='all'"/>
-    <link rel="stylesheet" type="text/css" href="style.css" media="none" onload="if(media!='all')media='all'"/> -->
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css" media="none" onload="if(media!='all')media='all'"/>
+    <link rel="stylesheet" type="text/css" href="compiled/style.min.css" media="none" onload="if(media!='all')media='all'"/> -->
 
     <!-- JS -->
     <!-- materialize js 1.0.0-->
-    <script defer src="libs/materialize.min.js"></script>
+    <script defer src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <!-- seedrandom.js 2.4.4 -->
-    <script defer src="libs/seedrandom.min.js"></script>
+    <script defer src="node_modules/seedrandom/seedrandom.min.js"></script>
     <!-- js-sha3 0.8.0 -->
-    <script defer src="libs/sha3.min.js"></script>
+    <script defer src="node_modules/js-sha3/build/sha3.min.js"></script>
     <!-- Cloverleaf source -->
-    <script defer src="compiled/jssource.min.js?cache=bust"></script>
+    <script defer src="compiled/jssource.min.js?cache=busted"></script>
 
   </head>
   <body>
 
-    <div id="engineSelector" style="display: none;">
-      <ul class="tabs" id="engineTabs">
-        <li class="tab tooltipped" data-position="bottom" data-delay="500" data-tooltip="Significantly less secure" tabindex="0" ><a onclick="setMode('old');" href="#old"> <i class="material-icons">warning</i> Legacy mode <i class="material-icons">warning</i> </a></li>
-        <li class="tab"><a onclick="setMode('new');" href="#new">Suggested mode</a></li>
-      </ul>
-    </div>
 
-    <div class="fixed-action-btn" id="themeSelector">
-      <a class="btn-floating btn-large" style="background: #3f51b5; background: var(--accentColor);">
-        <i class="material-icons">menu</i>
+    <ul id="slide-out" class="sidenav">
+      <div class="row">
+          <ul class="tabs" id="engineTabs">
+              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="Significantly less secure" tabindex="0" >
+                <a onclick="setMode('old');" href="#old">
+                  <i class="material-icons">warning</i> Legacy mode <i class="material-icons">warning</i>
+                </a>
+              </li>
+              <li class="tab col s6"><a onclick="setMode('new');" href="#new">Suggested mode</a></li>
+          </ul>
+      </div>
+
+      <div id="options">
+        <div class="input-field">
+          <select id="themeSelector" onchange="changeTheme(`${this.value}`)" class="browser-default">
+          </select>
+          <label>Theme</label>
+        </div>
+
+        <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
+          Install as a native app <i class="material-icons" id="install-icon">add_to_home_screen</i>
+        </a>
+
+      </div>
+
+
+
+
+      <i class="material-icons" id="close" onclick="side.close();">close</i> </a>
+
+    </ul>
+
+    <div id="settings">
+      <a href="#" data-target="slide-out" class="sidenav-trigger">
+        <i class="material-icons">settings</i>
       </a>
-      <ul id="fabs">
-        <li><a class="btn-floating red darken-4" onclick="toggleSettings()"><i class="material-icons">settings</i></a></li>
-        <li><a class="btn-floating blue lighten-1 tooltipped" data-position="top" data-delay="500" data-tooltip="Install as a native app" tabindex="0" onclick="installPromptEvent.prompt();"><i class="material-icons" id="install-icon">add_to_home_screen</i></a></li>
-      </ul>
     </div>
 
 
@@ -167,7 +188,7 @@
       </div>
     </div>
 
-  	<a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="View source on Github" tabindex="-1">
+    <a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="View source on Github" tabindex="-1">
       <svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; fill: var(--accentColor); color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true" tabindex="0">
         <defs>
           <mask id="octomask">
@@ -188,7 +209,7 @@
       </svg>
     </div>
 
-	  <noscript>
+    <noscript>
       <div id="jsBanner">
         <a href="https://www.enable-javascript.com/?ref=Cloverleaf" target="_blank">This website requires js to work.</a>
       </div>

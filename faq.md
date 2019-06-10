@@ -74,6 +74,6 @@
   code{
     background-color: #eee;
     box-shadow: 3px 0 0 #eee, -3px 0 0 #eee;
-    border-radius: 3px;    
+    border-radius: 3px;
   }
 </style>

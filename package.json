@@ -1,0 +1,35 @@
+{
+  "name": "cloverleaf",
+  "version": "1.0.0",
+  "description": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
+  "main": "jssource.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cloverleaf/web.git"
+  },
+  "keywords": [
+    "password",
+    "password-manager",
+    "password-generator",
+    "security",
+    "password-vault",
+    "web-app",
+    "web-application",
+    "material"
+  ],
+  "author": "ChildishGiant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cloverleaf/web/issues"
+  },
+  "homepage": "https://github.com/cloverleaf/web#readme",
+  "dependencies": {
+    "js-sha3": "^0.8.0",
+    "material-design-icons-iconfont": "^5.0.1",
+    "materialize-css": "^1.0.0",
+    "seedrandom": "^3.0.1"
+  }
+}

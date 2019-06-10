@@ -3,12 +3,12 @@
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(fonts/MaterialIcons-Regular.woff2) format('woff2'),
-    url(fonts/MaterialIcons-Regular.woff) format('woff'),
-    url(fonts/MaterialIcons-Regular.ttf) format('truetype');
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
 
 .material-icons {
@@ -33,32 +33,32 @@
   /* Support for IE. */
   font-feature-settings: 'liga';
   user-select:none;
-  font-display: block; 
+  font-display: block;
 }
 
 @font-face {
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(fonts/RobotoMono-Regular.ttf) format('truetype');
+  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(fonts/Roboto-Light.ttf) format('truetype');
+  src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(fonts/Roboto-Regular.ttf) format('truetype');
+  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(fonts/Roboto-Medium.ttf) format('truetype');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
 }
 
 :root {
@@ -90,7 +90,7 @@ body {
 body {
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
-  margin: 0px;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -105,7 +105,6 @@ body {
   margin: auto; /* This helps with compatibility  */
 }
 
-
 .partial {
   width: calc(100% - 3rem) !important;
   align-self: flex-end;
@@ -113,15 +112,15 @@ body {
   white-space: nowrap;
 }
 
-label {
+label, .input-field>label {
   color: #535353 !important;
   color: var(--textColor) !important;
-  font-size: 1.5rem !important;
+  font-size: 1.5rem;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
 .input-field{
-  margin-bottom: 0px;
+  margin-bottom: 0;
 }
 
 .input-field label{
@@ -142,7 +141,7 @@ label {
   box-shadow: 0 1px 0 0 var(--underlineColor) !important;
 }
 
-input[type=text]:not(#result), input[type=number], input[type=password]:not(#result) {
+input[type=text]:not(#result):not(.select-dropdown), input[type=number], input[type=password]:not(#result) {
   font-size: 3rem !important;
   height: 1.2em !important;
   box-sizing: content-box;
@@ -157,7 +156,7 @@ input[type=text]:not(#result), input[type=number], input[type=password]:not(#res
 }
 
 input[type=number] {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   overflow: scroll
 }
 
@@ -176,12 +175,12 @@ input[type=number] {
 #result {
   font-family: 'Roboto Mono', monospace;
   font-size: 2rem;
-  padding: 0.9rem 0px;
+  padding: 0.9rem 0;
   min-height: 1em;
   min-width: 20%;
   border: none;
   text-align: center;
-  margin: 0px;
+  margin: 0;
   width: 100%;
 }
 
@@ -220,8 +219,6 @@ input[type=number] {
 #copy {
   display: block;
   margin: auto;
-  background: #3f51b5;
-  background: var(--accentColor);
 }
 
 .hint {
@@ -243,7 +240,7 @@ input, textarea {
 }
 
 input#length {
-  margin: 0px !important;
+  margin: 0 !important;
   height: 1em;  /* To stop the input wiggling on firefox */
 }
 
@@ -265,7 +262,6 @@ input#length {
   clear: both;
 }
 
-
 /*
 For IE 6/7 only
 Include this rule to trigger hasLayout and contain floats.
@@ -283,18 +279,20 @@ ul.autocomplete-content.dropdown-content {
   overflow-y: auto;
   overflow-x: hidden;
   top: -.1em;
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 ul.autocomplete-content.dropdown-content li {
   height: 3em;
-  min-height: 0px;
+  min-height: 0;
 }
 
-.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected {
+/* Presets */
+.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected,
+/* Theme selection */
+body.keyboard-focused .select-dropdown.dropdown-content li:focus, .select-dropdown.dropdown-content li.selected {
   background: #eee;
   background: var(--highlightColor);
-  color:red;
 }
 
 ul.autocomplete-content.dropdown-content li img.right.circle {
@@ -303,7 +301,7 @@ ul.autocomplete-content.dropdown-content li img.right.circle {
   width: calc(20% - 0.66em);
   height: 100%;
   padding: 0.33em;
-  margin: 0px;
+  margin: 0;
 }
 
 ul.autocomplete-content.dropdown-content span {
@@ -316,6 +314,8 @@ ul.autocomplete-content.dropdown-content span {
   font-size: 1em;
   padding: 0.875em 1em;
   overflow: hidden;
+  /* To allow scaling */
+  line-height: 1.57em;
 }
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
@@ -331,14 +331,13 @@ ul.autocomplete-content.dropdown-content span .highlight{
   font-weight: 400;
   overflow: visible;
   /* color: var(--inputColor); */
-  padding: 0px;
+  padding: 0;
 }
 
 .dropdown-content::-webkit-scrollbar {
   width: 17px !important;
   background-color: #fff !important;
 }
-
 
 .dropdown-content::-webkit-scrollbar-track {
   width: 17px;
@@ -348,13 +347,13 @@ ul.autocomplete-content.dropdown-content span .highlight{
 .dropdown-content::-webkit-scrollbar-thumb {
   border-radius: 100px;
   width: 17px;
-	background-color: rgba(0,0,0,0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
 .circle {
   object-fit: scale-down;
-  border-radius: 0px;
+  border-radius: 0;
 }
 
 .switch {
@@ -387,7 +386,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
   position: absolute;
   width: calc(3rem + 0.1em);
   font-size: 2rem;
-  top: 0px;
+  top: 0;
   right: -5px;
 }
 
@@ -490,15 +489,15 @@ ul:empty {
 }
 
 input[type="radio"] {
-  margin: 0px;
-  width: 0px;
-  height: 0px;
-  padding: 0px;
+  margin: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
 }
 
 input[type="radio"]:checked+label::before {
-  box-shadow: 0px 0px 3px 1px #535353;
-  box-shadow: 0px 0px 3px 1px var(--textColor);
+  box-shadow: 0 0 3px 1px #535353;
+  box-shadow: 0 0 3px 1px var(--textColor);
 }
 
 label:focus{
@@ -524,8 +523,8 @@ label:focus{
 }
 
 #cookieAlert {
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   background-color: #fff;
   background-color: var(--internalColor);
   width: 100%;
@@ -533,14 +532,14 @@ label:focus{
   position: fixed;
   user-select: none;
   z-index: 998;
-  box-shadow: 0 0 3px 0px #535353;
-  box-shadow: 0 0 3px 0px var(--textColor);
+  box-shadow: 0 0 3px 0 #535353;
+  box-shadow: 0 0 3px 0 var(--textColor);
 }
 
 #cookieAlert span {
   display: block;
   width: calc(100% - 2em);
-  left: 0px;
+  left: 0;
 }
 
 #cookieAlert svg {
@@ -562,6 +561,7 @@ label:focus{
   color: #000;
   color: var(--inputColor);
   font-size: 1em;
+  padding: 0 .5em;
 }
 
 .tabs .tab a:focus, .tabs .tab a:focus.active {
@@ -580,12 +580,6 @@ label:focus{
   background-color: var(--accentColor)
 }
 
-#engineSelector {
-  position: absolute;
-  top: 0px;
-  overflow: visable;
-}
-
 .btn {
   height: 2.4em;
   line-height: 2.4em;
@@ -593,6 +587,13 @@ label:focus{
   font-weight: 300;
   font-size: 1rem;
   padding: 0 2rem;
+  background: #3f51b5;
+  background: var(--accentColor);
+}
+
+.btn:focus, .btn:hover {
+  background: #3f51b5;
+  background: var(--accentColor);
 }
 
 .switch label .lever {
@@ -641,8 +642,8 @@ label:focus{
 }
 
 /* Always show arrows on the number inputs */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
@@ -673,9 +674,9 @@ ul.tabs li.tab a i.material-icons {
 
 .btn-floating i {
   font-size: 1.6rem;
-  line-height: 2.86rem;  
+  line-height: 2.86rem;
   display: block;
-  top: 0px;
+  top: 0;
 }
 
 /* Large size */
@@ -688,7 +689,6 @@ ul.tabs li.tab a i.material-icons {
   font-size: 2rem;
   line-height: 4rem;
 }
-
 
 /* Media Queries */
 @media (max-width: 500px) {
@@ -704,7 +704,7 @@ ul.tabs li.tab a i.material-icons {
 @media only all and (max-width:40em) {
   #back {
     /* Ditch loads of padding */
-    margin: 0px;
+    margin: 0;
   }
   #box {
     max-width: calc(100% - 25px);
@@ -729,15 +729,10 @@ ul.tabs li.tab a i.material-icons {
     width: 10vw;
     height: 10vw;
   }
-  
-  #themeSelector {
-    right: 2vw;
-    bottom: 2vw;
-  }
 
   .btn-floating i {
     font-size: 5vw;
-    line-height: 10vw;  
+    line-height: 10vw;
   }
 
   /* Large size */
@@ -751,6 +746,11 @@ ul.tabs li.tab a i.material-icons {
     line-height: 15vw;
   }
 
+  #settings {
+    right: 2vw;
+    bottom: 2vw;
+  }
+
 }
 
 /* If it won't fit vertically */
@@ -759,4 +759,89 @@ html {
   /* Drop the font size */
   font-size: 2vh;
 }
+}
+
+.sidenav {
+  background-color: #fff;
+  background-color: var(--internalColor);
+  width: 350px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sidenav li>a {
+  font-weight: 300;
+}
+
+/* Shows warning icons properly */
+.sidenav li>a>i, .sidenav li>a>[class^="mdi-"], .sidenav li>a li>a>[class*="mdi-"], .sidenav li>a>i.material-icons {
+  margin: 0;
+  float: none;
+}
+
+#close {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#settings {
+  position: absolute;
+  left: 1vw;
+  bottom: 1vw;
+}
+
+#settings a i.material-icons {
+  display: block;
+  font-size: 2.5em;
+  color: var(--textColor);
+}
+
+.sidenav label {
+  font-size: 1rem;
+  top: -33px;
+}
+
+#options {
+  padding: 10px;
+}
+
+.sidenav .dropdown-content {
+  background: #fff;
+  background: var(--backgroundColor);
+}
+
+.sidenav .dropdown-content li>a,.dropdown-content li>span {
+  color: #000;
+  color: var(--inputColor);
+}
+
+select {
+  background-color: #fff;
+  background-color: var(--backgroundColor);
+
+  border: 1px solid #fff;
+  border: 1px solid var(--backgroundColor);
+
+  color: #000;
+  color: var(--inputColor);
+}
+
+select:focus {
+  outline: 1px solid #6d78b5;
+  outline: 1px solid var(--lightAccent);
+}
+
+.sidenav .input-field {
+  margin-bottom: 1rem;
+}
+
+.btn i {
+  vertical-align: top;
+}
+
+/* https://github.com/Dogfalo/materialize/issues/6386 */
+.drag-target {
+  left: 0;
 }

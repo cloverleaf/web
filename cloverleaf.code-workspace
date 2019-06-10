@@ -8,8 +8,7 @@
 				"data/themes.json"
 			],
 			"url": "/data/themes_schema.json"
-		}]
-	},
-
-
+		}
+	]
+	}
 }
