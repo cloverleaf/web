@@ -7,6 +7,8 @@ assignees: ''
 
 ---
 
+<!-- Try to fill this out as much as you can but don't worry if you can't -->
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
@@ -36,3 +38,5 @@ If applicable, add screenshots to help explain your problem.
 
 **Additional context**
 Add any other context about the problem here.
+
+<!-- Thanks for taking the time to contribute to Cloverleaf :) -->
