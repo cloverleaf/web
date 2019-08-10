@@ -30,6 +30,6 @@
     "js-sha3": "^0.8.0",
     "material-design-icons-iconfont": "^5.0.1",
     "materialize-css": "^1.0.0",
-    "seedrandom": "^3.0.1"
+    "seedrandom": "^3.0.3"
   }
 }
