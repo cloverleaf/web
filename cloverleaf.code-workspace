@@ -3,12 +3,19 @@
 		"path": "."
 	}],
 	"settings": {
-		"json.schemas": [{
+		"json.schemas": [
+			{
 			"fileMatch": [
 				"data/themes.json"
 			],
 			"url": "/data/themes_schema.json"
-		}
+			},
+			{
+				"fileMatch": [
+					"data/sites.json"
+				],
+				"url": "/data/sites_schema.json"
+			},
 	]
 	}
 }

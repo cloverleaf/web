@@ -10,7 +10,8 @@
   "Airbnb":{
     "minLength":8,
     "maxLength":128,
-    "requirements":["low", "num", "special"]
+    "requirements":["low", "num", "special"],
+    "mini": true
   },
   "AliExpress":{
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
@@ -18,7 +19,8 @@
     "maxLength":20
   },
   "Alipay":{
-    "alias":"AliExpress"
+    "alias":"AliExpress",
+    "mini": true
   },
   "allegorithmic":{
     "minLength":1
@@ -28,10 +30,12 @@
     "requirements":["low", "num"]
   },
   "Amazon":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Amino":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Apple":{
     "minLength":8,
@@ -40,15 +44,13 @@
   },
   "Artsy":{
     "minLength":6,
-    "maxLength":128
+    "maxLength":128,
+    "mini": true
   },
   "Baidu":{
     "minLength":6,
-    "maxLength":14
-  },
-  "Battle.net":{
-    "logo":"logos/Battlenet.png",
-    "alias":"Blizzard"
+    "maxLength":14,
+    "mini": true
   },
   "BBC":{
     "minLength":8,
@@ -57,10 +59,12 @@
     "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!#$%&()*+,-./:;<=>?@[\\]^_`{|}~"
   },
   "Behance":{
-    "alias":"Adobe"
+    "alias":"Adobe",
+    "mini": true
   },
   "Bing":{
-    "alias":"Microsoft"
+    "alias":"Microsoft",
+    "mini": true
   },
   "Blend Swap":{
     "minLength":8
@@ -77,32 +81,35 @@
   "Chrono.gg":{
     "minLength":8
   },
-  "Circle":{
-    "minLength":6,
-    "maxLength":255
-  },
   "CodePen":{
-    "minLength":1
+    "minLength":1,
+    "mini": true
   },
   "DeviantArt":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Discord":{
     "minLength":6,
-    "maxLength":128
+    "maxLength":128,
+    "mini": true
   },
   "Disqus":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Dribbble":{
     "minLength":6,
-    "maxLength":128
+    "maxLength":128,
+    "mini": true
   },
   "Dropbox":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Duolingo":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "eBay":{
     "minLength":6,
@@ -117,34 +124,42 @@
   },
   "Etsy":{
     "minLength":6,
-    "maxLength":152
+    "maxLength":152,
+    "mini": true
   },
   "Evernote":{
     "minLength":6,
-    "maxLength":64
+    "maxLength":64,
+    "mini": true
   },
   "Facebook":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "Factorio":{
     "minLength":5
   },
   "Fanatical":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "FANDOM":{
     "minLength":1,
-    "maxLength":50
+    "maxLength":50,
+    "mini": true
   },
   "Firebox":{
     "minLength":7,
-    "requirements":["low", "num"]
+    "requirements":["low", "num"],
+    "mini": true
   },
   "Firefox":{
-    "minLength":8
+    "minLength":8,
+    "mini": true
   },
   "Flickr":{
-    "alias":"Yahoo"
+    "alias":"Yahoo",
+    "mini": true
   },
   "Forvo":{
     "minLength":4,
@@ -152,14 +167,17 @@
   },
   "Freelancer":{
     "minLength":6,
-    "requirements":["low", "num"]
+    "requirements":["low", "num"],
+    "mini": true
   },
   "Genius":{
     "minLength":4,
-    "maxLength":128
+    "maxLength":128,
+    "mini": true
   },
   "GeoGuessr":{
-    "minLength":5
+    "minLength":5,
+    "mini": true
   },
   "Gfycat":{
     "minLength":8,
@@ -171,7 +189,8 @@
   },
   "GIPHY":{
     "minLength":1,
-    "maxLength":128
+    "maxLength":128,
+    "mini": true
   },
   "GitHub":{
     "minLength":7,
@@ -180,7 +199,7 @@
   },
   "GitLab":{
     "minLength":8,
-    "maxLendth":128
+    "maxLength":128
   },
   "Government Gateway":{
     "minLength":8,
@@ -226,7 +245,8 @@
   "imgur":{
     "minLength":6,
     "maxLength":255,
-    "requirements":["num", "low"]
+    "requirements":["num", "low"],
+    "mini": true
   },
   "Instagram":{
     "minLength":6,
@@ -321,7 +341,8 @@
   },
   "Netflix":{
     "minLength":4,
-    "maxLength":50
+    "maxLength":50,
+    "mini": true
   },
   "Native Instruments":{
     "minLength":10,
@@ -359,29 +380,34 @@
     "requirements":["num", "cap", "low"]
   },
   "Patreon":{
-    "minLength":6
+    "minLength":6,
+    "mini": true
   },
   "PayPal":{
     "requirements":["num"],
     "minLength":8,
-    "maxLength":20
+    "maxLength":20,
+    "mini": true
   },
   "paysafecard":{
     "minLength":8,
     "requirements":["cap", "special"],
-    "maxLength":110
+    "maxLength":110,
+    "mini": true
   },
   "PCPartPicker":{
     "minLength":1
   },
   "Pinterest":{
     "minLength":6,
-    "requirements":["low", "num"]
+    "requirements":["low", "num"],
+    "mini": true
   },
   "pixiv":{
     "minLength":6,
     "maxLength":72,
-    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "mini": true
   },
   "plug.dj":{
     "minLength":8,
@@ -428,12 +454,14 @@
     "maxLength":2048
   },
   "Spotify":{
-    "minLength":4
+    "minLength":4,
+    "mini": true
   },
   "Square Enix":{
     "minLength":6,
     "maxLength":32,
-    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"(#$%&')=~|`{+*}<>?_-^@[;:],./"
+    "chars":"0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"(#$%&')=~|`{+*}<>?_-^@[;:],./",
+    "mini": true
   },
   "Stack Overflow":{
     "minLength":8,
@@ -441,6 +469,13 @@
   },
   "Steam":{
     "minLength":8
+  },
+  "StellarX":{
+    "minLength":8,
+    "maxLength":50,
+    "requirements":["cap", "low", "num"],
+    "regex": "^(?!.*(.)\\1{2,}).+",
+    "mini": true
   },
   "Streamable":{
     "minLength":6
@@ -460,7 +495,8 @@
     "minLength":8
   },
   "Tumblr":{
-    "alias":"Yahoo"
+    "alias":"Yahoo",
+    "mini": true
   },
   "Twitch":{
     "minLength":8

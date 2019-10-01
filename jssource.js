@@ -1,4 +1,4 @@
-/* global M, location, XMLHttpRequest, keccak512 */
+/* global M, keccak512 */
 const autoCompleteData = {}; // Here for scope perposes
 let jsonData = {}; // As am I.
 const defaultMinLength = 4; // We
@@ -179,6 +179,9 @@ function getRandomArbitrary(min, max) {
 	return Math.trunc(Math.random() * (max - min) + min);
 }
 
+/**
+ * @param  {String} passedTheme - Changes the theme and updates the cookie to match
+ */
 function changeTheme(passedTheme) {
 	let usedTheme = passedTheme;
 	if (passedTheme === "") {
@@ -348,6 +351,52 @@ window.setMode = function (setTo) {
 	setCookie("mode", setTo);
 	process();
 };
+/**
+ * Sets the small logo based off an app name
+ * @param  {string} appName
+ */
+function setLogo (appName) {
+	let logo;
+
+	switch (typeof jsonData[appName].mini) {
+
+	case "string":
+		logo = jsonData[appName].mini;
+		break;
+
+	case "boolean":
+		if (jsonData[appName].mini) {
+			logo = `logos/${appName}-MINI.svg`;
+		} else {
+			if (jsonData[appName].logo) {
+				logo = jsonData[appName].logo;
+			} else {
+				logo = `logos/${appName}.svg`;
+			}
+		}
+		break;
+
+	case "undefined":
+
+		if (jsonData[appName].logo) {
+			logo = jsonData[appName].logo;
+		} else {
+			logo = `logos/${appName}.svg`;
+		}
+
+		break;
+
+	default:
+		throw new Error(`Invalid mini value "${typeof jsonData[appName].mini}" for ${jsonData[appName]} preset`);
+
+	}
+
+	// Set image
+	document.getElementById("logoContainer").style.display = "flex";
+	document.getElementById("logo").src = logo;
+	document.getElementById("logo").alt = appName;
+	document.getElementById("logo").title = appName;
+}
 
 /**
  * On page load
@@ -384,19 +433,8 @@ window.onload = function () {
 				// In case there's already a password (eg switching sites / presets) regen password
 				process();
 
-				let logo;
+				setLogo(appName);
 
-				if (jsonData[appName].logo) {
-					logo = jsonData[appName].logo;
-				} else {
-					logo = `logos/${appName}.svg`;
-				}
-
-				// Set image
-				document.getElementById("logoContainer").style.display = "flex";
-				document.getElementById("logo").src = logo;
-				document.getElementById("logo").alt = appName;
-				document.getElementById("logo").title = appName;
 			}
 			// Set the app name
 			document.getElementById("app").value = appName;
@@ -421,10 +459,7 @@ window.onload = function () {
 			// called when an autocomplete is used.
 			onAutocomplete(val) {
 				// Set image
-				document.getElementById("logoContainer").style.display = "flex";
-				document.getElementById("logo").src = autoCompleteData[val];
-				document.getElementById("logo").alt = val;
-				document.getElementById("logo").title = val;
+				setLogo(val);
 				let length = targetLength;
 
 				// If it's an alias for another app
@@ -545,6 +580,7 @@ window.onload = function () {
 		// Or not since materialize styled select is terrible.
 		// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
 
+		checkDebug();
 	};
 
 	themes.open("get", "data/themes.json", true);
@@ -578,7 +614,6 @@ window.onload = function () {
 		throw new Error(`Invalid mode  "${mode}" `); // Using the inferior kind of quotes so I may see the superior ones apon error
 	}
 
-	checkDebug();
 };
 
 /**
