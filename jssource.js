@@ -206,6 +206,7 @@ function changeTheme(passedTheme) {
 function process() {
 	let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
 	const requirements = []; // By default we have no requirements but reset it so we don't carry them over
+	let regex; // Blank for the same reason
 	let appName = document.getElementById("app").value.trim();
 	const masterPass = document.getElementById("pass").value;
 	const length = Math.trunc(document.getElementById("length").value); // Get the desired length of a password and make sure it's an integer
@@ -256,6 +257,16 @@ function process() {
 			chars = jsonData[appName].chars;
 		}
 
+		// If it has a regex
+		if ("regex" in jsonData[appName]) {
+			// Set the regex to match
+			try {
+				regex = new RegExp(jsonData[appName].regex);
+			} catch (SyntaxError) {
+				throw new Error(`Invalid regex from ${appName} "${jsonData[appName].regex}"`);
+			}
+		}
+
 		if ("requirements" in jsonData[appName]) {
 			for (let i = 0; i < jsonData[appName].requirements.length; i++) {
 				requirements.push(
@@ -283,7 +294,7 @@ function process() {
 		}
 
 		// If there's requirements to forfill
-		if (requirements !== []) {
+		if (requirements.length !== 0 || regex) {
 			let nope = false;
 			for (let j = 0; j < requirements.length; j++) {
 				// For each requirement
@@ -302,12 +313,21 @@ function process() {
 				}
 			}
 
+			// If there's a regex
+			if (regex) {
+				// See if the generated password fails the regex
+				if (!regex.test(result)) {
+					console.log(regex.test(result), result);
+					nope = true;
+				}
+			}
+
 			if (!nope) {
 				// If all tests passed
 				break;
 			}
 		} else {
-			// no requirements
+			// No requirements, including regexes
 			break;
 		}
 	}
