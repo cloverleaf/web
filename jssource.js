@@ -94,6 +94,19 @@ function checkDebug() {
 	// If I'm testing, change the page title so I can tell the tabs apart
 	if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 		document.title += " - LocalHost";
+
+	// If the user is on the dev build
+	} else if(location.hostname === "dev.cloverleaf.app") {
+
+		// Change title
+		document.title += " - Dev Build";
+
+		// Change favicon
+		document.head = document.head || document.getElementsByTagName("head")[0];
+		var link = document.createElement("link");
+		link.rel = "shortcut icon";
+		link.href = "dev.ico";
+		document.head.appendChild(link);
 	}
 }
 
