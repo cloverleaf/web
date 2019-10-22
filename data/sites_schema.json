@@ -1,0 +1,49 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"patternProperties": {
+		"^[^\"\/\\\n]+$": {
+			"properties": {
+				"alias": {
+					"type": "string"
+				},
+				"chars": {
+					"type": "string",
+					"pattern": "^(?!.*(.).*\\1).+$"
+				},
+				"logo": {
+					"type":"string",
+					"pattern": "logos\/[a-zA-Z0-9_\\-\\!]+\\.(png|jpg)"
+				},
+				"maxLength": {
+					"minimum": 1,
+					"type": "integer"
+				},
+				"mini":{
+					"type": ["string", "boolean"],
+					"pattern": "logos\/[a-zA-Z0-9_\\-\\!]+-MINI\\.(png|jpg)"
+				},
+				"minLength": {
+					"minimum": 1,
+					"type": "integer"
+				},
+				"regex": {
+					"type": "string",
+					"format": "regex"
+				},
+				"requirements": {
+					"type": "array",
+					"minItems": 1,
+					"maxItems": 4,
+					"uniqueItems": true,
+					"items": {
+						"type": "string"
+					}
+				}
+
+			},
+			"type": "object",
+			"additionalProperties": false
+		}
+	}
+}

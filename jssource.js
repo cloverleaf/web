@@ -1,4 +1,4 @@
-/* global M, location, XMLHttpRequest, keccak512 */
+/* global M, keccak512 */
 const autoCompleteData = {}; // Here for scope perposes
 let jsonData = {}; // As am I.
 const defaultMinLength = 4; // We
@@ -55,11 +55,57 @@ function checkDebug() {
 		link.setAttribute("type", "text/css");
 		link.setAttribute("href", "debug.css");
 		document.getElementsByTagName("head")[0].appendChild(link);
+
+		// Add select option for an all #ff00ff theme
+
+		themeData.testTheme = {
+			"accent": "#ff00ff",
+			"lightAccent": "#ff00ff",
+			"text": "#ff00ff",
+			"background": "#ff00ff",
+			"internal": "#ff00ff",
+			"incorrect": "#ff00ff",
+			"correct": "#ff00ff",
+			"inputColor": "#ff00ff",
+			"linkColor": "#ff00ff",
+			"highlightColor": "#ff00ff",
+			"underlineColor": "#ff00ff"
+		};
+
+		const themeOption = document.createElement("option");
+		themeOption.onclick = "changeTheme('testTheme')";
+		themeOption.id = "testTheme";
+		themeOption.innerHTML = "testTheme";
+		document.querySelector("#options .input-field select").appendChild(themeOption);
+
+		const css = "a[id=testTheme]{background-color: #ff00ff !important; border: 1px ;}a[id=testTheme] i {color: #ff00ff";
+		const style = document.createElement("style");
+		style.type = "text/css";
+		if (style.styleSheet) {
+			// This is required for IE8 and below.
+			style.styleSheet.cssText = css;
+		} else {
+			style.appendChild(document.createTextNode(css));
+		}
+		document.getElementsByTagName("head")[0].appendChild(style);
+
 	}
 
 	// If I'm testing, change the page title so I can tell the tabs apart
 	if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
 		document.title += " - LocalHost";
+
+	// If the user is on the dev build
+	} else if(location.hostname === "dev.cloverleaf.app") {
+
+		// Change title
+		document.title += " - Dev Build";
+
+		// Change favicon
+		var link = document.createElement("link");
+		link.rel = "shortcut icon";
+		link.href = "dev.ico";
+		document.head.appendChild(link);
 	}
 }
 
@@ -145,6 +191,9 @@ function getRandomArbitrary(min, max) {
 	return Math.trunc(Math.random() * (max - min) + min);
 }
 
+/**
+ * @param  {String} passedTheme - Changes the theme and updates the cookie to match
+ */
 function changeTheme(passedTheme) {
 	let usedTheme = passedTheme;
 	if (passedTheme === "") {
@@ -172,6 +221,7 @@ function changeTheme(passedTheme) {
 function process() {
 	let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
 	const requirements = []; // By default we have no requirements but reset it so we don't carry them over
+	let regex; // Blank for the same reason
 	let appName = document.getElementById("app").value.trim();
 	const masterPass = document.getElementById("pass").value;
 	const length = Math.trunc(document.getElementById("length").value); // Get the desired length of a password and make sure it's an integer
@@ -222,6 +272,16 @@ function process() {
 			chars = jsonData[appName].chars;
 		}
 
+		// If it has a regex
+		if ("regex" in jsonData[appName]) {
+			// Set the regex to match
+			try {
+				regex = new RegExp(jsonData[appName].regex);
+			} catch (SyntaxError) {
+				throw new Error(`Invalid regex from ${appName} "${jsonData[appName].regex}"`);
+			}
+		}
+
 		if ("requirements" in jsonData[appName]) {
 			for (let i = 0; i < jsonData[appName].requirements.length; i++) {
 				requirements.push(
@@ -249,7 +309,7 @@ function process() {
 		}
 
 		// If there's requirements to forfill
-		if (requirements !== []) {
+		if (requirements.length !== 0 || regex) {
 			let nope = false;
 			for (let j = 0; j < requirements.length; j++) {
 				// For each requirement
@@ -268,12 +328,21 @@ function process() {
 				}
 			}
 
+			// If there's a regex
+			if (regex) {
+				// See if the generated password fails the regex
+				if (!regex.test(result)) {
+					console.log(regex.test(result), result);
+					nope = true;
+				}
+			}
+
 			if (!nope) {
 				// If all tests passed
 				break;
 			}
 		} else {
-			// no requirements
+			// No requirements, including regexes
 			break;
 		}
 	}
@@ -294,6 +363,52 @@ window.setMode = function (setTo) {
 	setCookie("mode", setTo);
 	process();
 };
+/**
+ * Sets the small logo based off an app name
+ * @param  {string} appName
+ */
+function setLogo (appName) {
+	let logo;
+
+	switch (typeof jsonData[appName].mini) {
+
+	case "string":
+		logo = jsonData[appName].mini;
+		break;
+
+	case "boolean":
+		if (jsonData[appName].mini) {
+			logo = `logos/${appName}-MINI.svg`;
+		} else {
+			if (jsonData[appName].logo) {
+				logo = jsonData[appName].logo;
+			} else {
+				logo = `logos/${appName}.svg`;
+			}
+		}
+		break;
+
+	case "undefined":
+
+		if (jsonData[appName].logo) {
+			logo = jsonData[appName].logo;
+		} else {
+			logo = `logos/${appName}.svg`;
+		}
+
+		break;
+
+	default:
+		throw new Error(`Invalid mini value "${typeof jsonData[appName].mini}" for ${jsonData[appName]} preset`);
+
+	}
+
+	// Set image
+	document.getElementById("logoContainer").style.display = "flex";
+	document.getElementById("logo").src = logo;
+	document.getElementById("logo").alt = appName;
+	document.getElementById("logo").title = appName;
+}
 
 /**
  * On page load
@@ -330,19 +445,8 @@ window.onload = function () {
 				// In case there's already a password (eg switching sites / presets) regen password
 				process();
 
-				let logo;
+				setLogo(appName);
 
-				if (jsonData[appName].logo) {
-					logo = jsonData[appName].logo;
-				} else {
-					logo = `logos/${appName}.svg`;
-				}
-
-				// Set image
-				document.getElementById("logoContainer").style.display = "flex";
-				document.getElementById("logo").src = logo;
-				document.getElementById("logo").alt = appName;
-				document.getElementById("logo").title = appName;
 			}
 			// Set the app name
 			document.getElementById("app").value = appName;
@@ -367,10 +471,7 @@ window.onload = function () {
 			// called when an autocomplete is used.
 			onAutocomplete(val) {
 				// Set image
-				document.getElementById("logoContainer").style.display = "flex";
-				document.getElementById("logo").src = autoCompleteData[val];
-				document.getElementById("logo").alt = val;
-				document.getElementById("logo").title = val;
+				setLogo(val);
 				let length = targetLength;
 
 				// If it's an alias for another app
@@ -491,6 +592,7 @@ window.onload = function () {
 		// Or not since materialize styled select is terrible.
 		// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
 
+		checkDebug();
 	};
 
 	themes.open("get", "data/themes.json", true);
@@ -524,7 +626,6 @@ window.onload = function () {
 		throw new Error(`Invalid mode  "${mode}" `); // Using the inferior kind of quotes so I may see the superior ones apon error
 	}
 
-	checkDebug();
 };
 
 /**

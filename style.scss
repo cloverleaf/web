@@ -1,0 +1,899 @@
+@charset "UTF-8";
+
+// Import only what you need from Materialize
+
+@import "node_modules/materialize-css/sass/components/normalize";
+
+// Color
+@import "node_modules/materialize-css/sass/components/color-variables";
+@import "node_modules/materialize-css/sass/components/color-classes";
+
+$accentColor: #3f51b5;
+$lightAccent: #6d78b5;
+$textColor: #535353;
+$backgroundColor: #fff;
+$internalColor: #fff;
+$incorrectColor: #f44336;
+$correctColor: #8fff66;
+$inputColor: #000;
+$linkColor: #00539b;
+$highlightColor: #eee;
+$underlineColor: #3f51b5;
+
+
+$sidenav-bg-color: $backgroundColor;
+$button-raised-background: $accentColor;
+$tabs-underline-color: $accentColor;
+$tabs-text-color: $inputColor;
+$tabs-bg-color: $internalColor;
+$input-border-color: $textColor;
+
+
+// Variables;
+@import "node_modules/materialize-css/sass/components/variables";
+
+// Components
+@import "node_modules/materialize-css/sass/components/global";
+@import "node_modules/materialize-css/sass/components/badges";
+@import "node_modules/materialize-css/sass/components/icons-material-design";
+@import "node_modules/materialize-css/sass/components/grid";
+@import "node_modules/materialize-css/sass/components/navbar";
+@import "node_modules/materialize-css/sass/components/typography";
+@import "node_modules/materialize-css/sass/components/toast";
+@import "node_modules/materialize-css/sass/components/tabs";
+@import "node_modules/materialize-css/sass/components/tooltip";
+@import "node_modules/materialize-css/sass/components/buttons";
+@import "node_modules/materialize-css/sass/components/dropdown";
+@import "node_modules/materialize-css/sass/components/waves";
+@import "node_modules/materialize-css/sass/components/sidenav";
+// Form parts
+@import "node_modules/materialize-css/sass/components/forms/switches.scss";
+@import "node_modules/materialize-css/sass/components/forms/select.scss";
+@import "node_modules/materialize-css/sass/components/forms/input-fields.scss";
+
+
+
+/* Material Icons */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  src: local('Material Icons'),
+  local('MaterialIcons-Regular'),
+  url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+  /* Support for Firefox. */
+  -moz-font-feature-settings: "liga" on;
+  -moz-osx-font-smoothing: grayscale;
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+  user-select:none;
+  font-display: block;
+}
+
+@font-face {
+  font-family: 'Roboto Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
+}
+
+:root {
+  --accentColor: #3f51b5;
+  --lightAccent: #6d78b5;
+  --textColor: #535353;
+  --backgroundColor: #fff;
+  --internalColor: #fff;
+  --incorrectColor: #f44336;
+  --correctColor: #8fff66;
+  --inputColor: #000;
+  --linkColor: #00539b;
+  --highlightColor: #eee;
+  --underlineColor: #3f51b5;
+}
+
+html,
+body {
+  height: 100% !important;
+  color: $inputColor;
+  color: var(--inputColor);
+  caret-color: $accentColor;
+  caret-color: var(--accentColor);
+  text-align: center;
+  transition: background-color .3s ease, color .3s ease;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  background-color: var(--backgroundColor);
+}
+
+#box {
+  text-align: center;
+  max-width: calc(100% - (30px + 10em));
+  max-height: 100%;
+  margin: auto; /* This helps with compatibility  */
+}
+
+.partial {
+  width: calc(100% - 3rem) !important;
+  align-self: flex-end;
+  display: block;
+  white-space: nowrap;
+}
+
+label, .input-field>label {
+  color: var(--textColor);
+  font-size: 1.5rem;
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
+}
+
+.input-field{
+  margin-bottom: 0;
+}
+
+.input-field label{
+  transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
+}
+
+.input-field input[type=text], .input-field input[type=number], .input-field input[type=password] {
+  border-bottom: 1px solid #535353;
+  border-bottom: 1px solid var(--textColor);
+  transition: border .3s ease-out, background-color .3s ease, color .3s ease;
+}
+
+/* label underline focus color */
+.input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
+  border-bottom: 1px solid #3f51b5 !important;
+  border-bottom: 1px solid var(--underlineColor) !important;
+  box-shadow: 0 1px 0 0 #3f51b5 !important;
+  box-shadow: 0 1px 0 0 var(--underlineColor) !important;
+}
+
+input[type=text]:not(#result):not(.select-dropdown), input[type=number], input[type=password]:not(#result) {
+  font-size: 3rem !important;
+  height: 1.2em !important;
+  box-sizing: content-box;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+}
+
+// /* label focus color */
+// .input-field input:focus+label {
+//   color: #3f51b5 !important;
+//   color: var(--accentColor) !important;
+// }
+
+input[type=number] {
+  margin-bottom: 0;
+  overflow: scroll
+}
+
+#back {
+  box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
+  background-color: $internalColor;
+  background-color: var(--internalColor);
+  border-radius: 0.325em;
+  padding: 0.975em;
+  padding-top: 1.5em;
+  margin: 2em 0;
+  max-height: 100%;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+#result {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 2rem;
+  padding: 0.9rem 0;
+  min-height: 1em;
+  min-width: 20%;
+  border: none;
+  text-align: center;
+  margin: 0;
+  width: 100%;
+}
+
+#result[type=password]:not([value=""]) {
+  font-size: 2rem;
+  font-family: 'Roboto', sans-serif;
+
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+  color: $inputColor;
+  color: var(--inputColor);
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color: $inputColor;
+  color: var(--inputColor);
+  opacity:  1;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color: $inputColor;
+  color: var(--inputColor);
+  opacity:  1;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $inputColor;
+  color: var(--inputColor);
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $inputColor;
+  color: var(--inputColor);
+}
+
+::placeholder { /* Most modern browsers support this now. */
+  color: $inputColor;
+  color: var(--inputColor);
+}
+
+#copy {
+  display: block;
+  margin: auto;
+}
+
+.hint {
+  float: left;
+  color: #535353;
+  color: var(--textColor);
+  width: 100%;
+  text-align: left;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+input, textarea {
+  font-size: 1.56rem;
+  padding: 0.65rem;
+  color: #000 !important;
+  color: var(--inputColor) !important;
+  margin: 0 0 0.8rem 0 !important;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+input#length {
+  margin: 0 !important;
+  height: 1em;  /* To stop the input wiggling on firefox */
+}
+
+#faq {
+  float: right;
+  cursor: help;
+  font-weight: 500;
+  color: #00539b;
+  color: var(--linkColor);
+  margin-top: 0.4em;
+}
+
+.cf:before, .cf:after {
+  content: " ";
+  display: table;
+}
+
+.cf:after {
+  clear: both;
+}
+
+/*
+For IE 6/7 only
+Include this rule to trigger hasLayout and contain floats.
+*/
+.cf {
+  *zoom: 1;
+}
+
+ul.autocomplete-content.dropdown-content {
+  background: #fff;
+  background: var(--backgroundColor);
+  position: absolute !important;
+  width: calc(100% - 3rem);
+  max-height: calc(82% * 4); /* 82% seems to work out as one row */
+  overflow-y: auto;
+  overflow-x: hidden;
+  top: -.1em;
+  margin-top: 0;
+}
+
+ul.autocomplete-content.dropdown-content li {
+  height: 3em;
+  min-height: 0;
+}
+
+/* Presets */
+.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected,
+/* Theme selection */
+body.keyboard-focused .select-dropdown.dropdown-content li:focus, .select-dropdown.dropdown-content li.selected {
+  background: #eee;
+  background: var(--highlightColor);
+}
+
+ul.autocomplete-content.dropdown-content li img.right.circle {
+  overflow: hidden;
+  background: #fff;
+  width: calc(20% - 0.66em);
+  height: 100%;
+  padding: 0.33em;
+  margin: 0;
+}
+
+ul.autocomplete-content.dropdown-content span {
+  /* display: inline-flex; */
+  align-items: center;
+  white-space: nowrap;
+  max-width: 70%;
+  height: 100%;
+  /* vertical-align: middle; */
+  font-size: 1em;
+  padding: 0.875em 1em;
+  overflow: hidden;
+  /* To allow scaling */
+  line-height: 1.57em;
+}
+
+ul.autocomplete-content.dropdown-content span:not(.highlight) {
+  color: #535353;
+  color: var(--textColor);
+  overflow-x: hidden;
+}
+
+ul.autocomplete-content.dropdown-content span .highlight{
+  max-width: 100%;
+  color: #535353;
+  color: var(--textColor);
+  font-weight: 400;
+  overflow: visible;
+  /* color: var(--inputColor); */
+  padding: 0;
+}
+
+.dropdown-content::-webkit-scrollbar {
+  width: 17px !important;
+  background-color: #fff !important;
+}
+
+.dropdown-content::-webkit-scrollbar-track {
+  width: 17px;
+  background-color: #fff !important;
+}
+
+.dropdown-content::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  width: 17px;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+/*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
+.circle {
+  object-fit: scale-down;
+  border-radius: 0;
+}
+
+.switch {
+  padding-bottom: 1.3rem;
+}
+
+input[type=checkbox]:checked:not(:disabled) ~ .lever:active::before,
+input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
+  transform: scale(2.4);
+  background-color: rgba(63, 81, 181, 0.3);
+}
+
+/*Switch knob*/
+.switch label input[type=checkbox]:checked+.lever:after {
+  background-color: #3f51b5;
+  background-color: var(--accentColor);
+}
+
+/*Switch backing*/
+.switch label input[type=checkbox]:checked+.lever {
+  background-color: #6d78b5;
+  background-color: var(--lightAccent);
+}
+
+#passTogglelever {
+  left: -4px; /* Centering the toggle */
+}
+
+.input-group-addon {
+  position: absolute;
+  width: calc(3rem + 0.1em);
+  font-size: 2rem;
+  top: 0;
+  right: -5px;
+}
+
+.icon {
+  font-size: 1.4em !important;
+  color: #535353;
+  color: var(--textColor);
+  transition: color .2s;
+  cursor: pointer;
+}
+
+.icon:hover {
+  color: #6d78b5;
+  color: var(--lightAccent);
+}
+
+.icon:active {
+  color: #3f51b5;
+  color: var(--accentColor);
+}
+
+.input-field label:not(.label-icon).active {
+  -webkit-transform: translateY(-1em) scale(0.8);
+  transform: translateY(-1em) scale(0.8);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.toast {
+  font-weight: 400
+}
+
+/* Negative toasts get this */
+.warning {
+  background-color: #f44336;
+  background-color: var(--incorrectColor);
+}
+
+/* Positive toasts get this */
+.success {
+  background-color: #5cb85c;
+  background-color: var(--correctColor);
+  color: #000;
+}
+
+#jsBanner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 10vmin;
+  top: 0;
+  left: 0;
+  color: #fff;
+  color: var(--backgroundColor);
+  -webkit-text-stroke-width: 0.05em !important;
+  -webkit-text-stroke-color: #535353 !important;
+  -webkit-text-stroke-color: var(--textColor) !important;
+  padding: 10px;
+}
+
+#jsBanner a {
+  color: #fff;
+  color: var(--backgroundColor);
+  -webkit-text-stroke: 3px #535353;
+  -webkit-text-stroke: 3px var(--textColor);
+  text-decoration: underline;
+}
+
+#logo {
+  max-width:100%;
+  max-height:100%;
+}
+
+#app {
+  margin-bottom: 0.55em !important;
+}
+
+ul:empty {
+  display: none;
+}
+
+::-ms-reveal { /* Disable Edge's show/hide since we made one */
+  display: none;
+}
+
+#logoContainer { /* For portrait logos so they don't oversize */
+  background: #fff;
+  padding: 3px;
+  border-radius: 5px;
+  height: calc(3rem + 0.1em);
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="radio"] {
+  margin: 0;
+  width: 0;
+  height: 0;
+  padding: 0;
+}
+
+input[type="radio"]:checked+label::before {
+  box-shadow: 0 0 3px 1px #535353;
+  box-shadow: 0 0 3px 1px var(--textColor);
+}
+
+label:focus{
+    outline: none;
+}
+
+.github-corner:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+    0%, 100% {
+        transform: rotate(0);
+    }
+    20%,
+    60% {
+        transform: rotate(-25deg);
+    }
+    40%,
+    80% {
+        transform: rotate(10deg);
+    }
+}
+
+#cookieAlert {
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  background-color: var(--internalColor);
+  width: 100%;
+  padding: 0.5em 1em;
+  position: fixed;
+  user-select: none;
+  z-index: 998;
+  box-shadow: 0 0 3px 0 #535353;
+  box-shadow: 0 0 3px 0 var(--textColor);
+}
+
+#cookieAlert span {
+  display: block;
+  width: calc(100% - 2em);
+  left: 0;
+}
+
+#cookieAlert svg {
+  position: absolute;
+  top: 0.25em;
+  right: 1em;
+}
+
+.tabs {
+  background-color: var(--backgroundColor);
+  cursor: pointer;
+  overflow-x: hidden;
+  z-index: 995;
+}
+
+.tabs .tab a, .tabs .tab a:hover  {
+  // color: #000;
+  color: var(--inputColor);
+  font-size: 1em;
+  padding: 0 .5em;
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+  background-color: var(--backgroundColor);
+}
+
+.tabs .tab a.active {
+  color: var(--inputColor);
+  font-weight: 400;
+}
+
+.tabs .indicator {
+  background-color: var(--accentColor)
+}
+
+.btn {
+  height: 2.4em;
+  line-height: 2.4em;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 1rem;
+  padding: 0 2rem;
+  background: var(--accentColor);
+}
+
+.btn:focus, .btn:hover {
+  background: var(--accentColor);
+}
+
+.switch label .lever {
+  height: 0.933em;
+  width: 2.4em;
+}
+
+.switch label .lever::before, .switch label .lever::after {
+  height: 1.33em;
+  width: 1.33em;
+}
+
+.switch label input[type="checkbox"]:checked + .lever::before, .switch label input[type="checkbox"]:checked + .lever::after {
+    left: 1.4em;
+}
+
+.switch label .lever::before, .switch label .lever::after{
+  top: -0.2em;
+}
+
+.material-tooltip {
+  max-width: 7em;
+}
+
+/* If the device can't hover, don't show tooltips */
+@media (hover: none) {
+  .material-tooltip {
+    display: none;
+  }
+}
+
+.material-tooltip {
+  background-color: $internalColor;
+  background-color: var(--internalColor);
+  box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
+  color: $textColor;
+  color: var(--textColor);
+}
+
+/* In the future focus-visable should be used. See https://caniuse.com/?#search=css-focus-visible */
+.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus, .btn-large:focus, .btn-small:focus, .btn-flat:focus {
+  outline: rgb(77, 144, 254) auto 5px;
+  outline-color: rgb(77, 144, 254);
+  outline-style: auto;
+  outline-width: 5px;
+}
+
+/* Always show arrows on the number inputs */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+ul.tabs li.tab a i.material-icons {
+  vertical-align: middle;
+  color: $incorrectColor;
+  color: var(--incorrectColor);
+}
+
+/* Theme selectors */
+.fixed-action-btn ul a.btn-floating {
+  opacity: 1;
+}
+
+.fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+  right: 55px
+}
+
+.fixed-action-btn.direction-right ul li {
+  margin: 7.5px 1vw 0 0;
+}
+
+/* Normal size */
+.btn-floating {
+  width: 2.86rem;
+  height: 2.86rem;
+}
+
+.btn-floating i {
+  font-size: 1.6rem;
+  line-height: 2.86rem;
+  display: block;
+  top: 0;
+}
+
+/* Large size */
+.btn-floating.btn-large {
+  width: 4rem;
+  height: 4rem;
+}
+
+.btn-floating.btn-large i {
+  font-size: 2rem;
+  line-height: 4rem;
+}
+
+/* Media Queries */
+@media (max-width: 500px) {
+  .github-corner:hover .octo-arm {
+      animation: none;
+  }
+  .github-corner .octo-arm {
+      animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+/* If we're on a small/mobile device */
+@media only all and (max-width:40em) {
+  #back {
+    /* Ditch loads of padding */
+    margin: 0;
+  }
+  #box {
+    max-width: calc(100% - 25px);
+  }
+
+  /* Theme selectors */
+  .fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+    right: 15vw;
+  }
+
+  .fixed-action-btn.direction-left ul li, .fixed-action-btn.direction-right ul li {
+    margin:2.4vw 1vw 0 0;
+  }
+
+  /* Install icon */
+  #install-icon {
+    padding-right: .5vw;
+  }
+
+  /* Normal size */
+  .btn-floating {
+    width: 10vw;
+    height: 10vw;
+  }
+
+  .btn-floating i {
+    font-size: 5vw;
+    line-height: 10vw;
+  }
+
+  /* Large size */
+  .btn-floating.btn-large {
+    width: 15vw;
+    height: 15vw;
+  }
+
+  .btn-floating.btn-large i {
+    font-size: 7.5vw;
+    line-height: 15vw;
+  }
+
+  #settings {
+    right: 2vw;
+  }
+
+}
+
+/* If it won't fit vertically */
+@media only all and (max-height:600px) {
+html {
+  /* Drop the font size */
+  font-size: 2vh;
+}
+}
+
+.sidenav {
+  background-color: var(--internalColor);
+  width: 350px;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.sidenav li>a {
+  font-weight: 300;
+}
+
+/* Shows warning icons properly */
+.sidenav li>a>i, .sidenav li>a>[class^="mdi-"], .sidenav li>a li>a>[class*="mdi-"], .sidenav li>a>i.material-icons {
+  margin: 0;
+  float: none;
+}
+
+#close {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+
+#settings {
+  position: absolute;
+  left: 1vw;
+  bottom: 1vw;
+  display: block;
+}
+
+#settings a i.material-icons {
+  display: block;
+  font-size: 2.5em;
+  color: var(--textColor);
+}
+
+.sidenav label {
+  font-size: 1rem;
+  top: -33px;
+}
+
+#options {
+  padding: 10px;
+}
+
+.sidenav .dropdown-content {
+  background: #fff;
+  background: var(--backgroundColor);
+}
+
+.sidenav .dropdown-content li>a,.dropdown-content li>span {
+  color: #000;
+  color: var(--inputColor);
+}
+
+select {
+  background-color: #fff;
+  background-color: var(--backgroundColor);
+
+  border: 1px solid #fff;
+  border: 1px solid var(--backgroundColor);
+
+  color: #000;
+  color: var(--inputColor);
+}
+
+select:focus {
+  outline: 1px solid #6d78b5;
+  outline: 1px solid var(--lightAccent);
+}
+
+.sidenav .input-field {
+  margin-bottom: 1rem;
+}
+
+.btn i {
+  vertical-align: top;
+}
+
+.drag-target {
+  left: 0;
+}
