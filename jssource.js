@@ -102,7 +102,6 @@ function checkDebug() {
 		document.title += " - Dev Build";
 
 		// Change favicon
-		document.head = document.head || document.getElementsByTagName("head")[0];
 		var link = document.createElement("link");
 		link.rel = "shortcut icon";
 		link.href = "dev.ico";
