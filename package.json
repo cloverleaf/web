@@ -5,7 +5,7 @@
   "main": "jssource.js",
   "scripts": {
     "build": "rimraf -r bundles/ && webpack --config config/webpack/config.js",
-    "start": "webpack-dev-server --watch --inline --watch --hot --config config/webpack/config.development.js"
+    "start": "webpack-dev-server --config config/webpack/config.development.js"
   },
   "repository": {
     "type": "git",

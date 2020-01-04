@@ -238,12 +238,6 @@ input[type=number] {
   width: 100%;
 }
 
-#result[type=password]:not([value=""]) {
-  font-size: 2rem;
-  font-family: 'Roboto', sans-serif;
-
-}
-
 ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
   color: $inputColor;
   color: var(--inputColor);
