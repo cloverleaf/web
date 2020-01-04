@@ -1,0 +1,53 @@
+{
+    "extends": "eslint:recommended",
+
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+
+    "rules":{
+        "quotes": ["error", "double"],
+        "comma-dangle": "off",
+        "no-console":"off",
+        "quote-props":"off",
+        "no-plusplus": ["warn", { "allowForLoopAfterthoughts": true }],
+        "no-restricted-globals": ["error", "event", "fdescribe"],
+        "no-inline-comments": "off",
+        "line-comment-position": "off",
+        "func-style": "off",
+        "no-undefined": "off",
+        "no-magic-numbers":"off",
+        "max-len": "off",
+        "func-names": "off",
+        "max-statements": "off",
+        "max-lines-per-function": "off",
+        "max-lines": "off",
+        "no-unused-vars":"off",
+        "indent": ["error", "tab"],
+        "linebreak-style": "off",
+        "no-tabs": "off",
+        "prefer-destructuring": "off",
+        "no-param-reassign": "off",
+        "no-restricted-syntax": "off",
+        "guard-for-in": "off",
+        "no-constant-condition": "off",
+        "arrow-body-style": ["error", "always"],
+        "padded-blocks": "off",
+        "arrow-parens": ["error", "as-needed"],
+        "no-var": "off",
+        "vars-on-top": "off",
+        "prefer-const": "warn",
+        "operator-linebreak": ["error", "after"],
+        "no-loop-func": "warn",
+        "no-redeclare": ["error", { "builtinGlobals": true }],
+        "complexity": ["warn", 30]
+    }
+
+}

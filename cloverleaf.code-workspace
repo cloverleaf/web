@@ -16,6 +16,7 @@
 				],
 				"url": "/data/sites_schema.json"
 			},
-	]
+	],
+	"git.ignoreLimitWarning": true
 	}
 }

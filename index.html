@@ -1,3 +1,5 @@
+<!-- For source, see src/src.html -->
+
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
@@ -7,35 +9,35 @@
     <!-- SEO -->
     <title>Cloverleaf</title>
 
-    <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
+    <meta name="viewport" content="minimum-scale=1,initial-scale=1">
     <meta name="description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
-    <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola" />
-    <link rel="alternate" href="https://cloverleaf.app/" hreflang="en" />
+    <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola">
+    <link rel="alternate" href="https://cloverleaf.app/" hreflang="en">
     <!-- Verifing ownership for Bing -->
-    <meta name="msvalidate.01" content="22AEF740B887329DA98B4F687396B7C1" />
+    <meta name="msvalidate.01" content="22AEF740B887329DA98B4F687396B7C1">
     <!-- Allowing adding as webapp -->
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- OpenGraph -->
-    <meta property="og:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere." />
-    <meta property="og:title" content="Cloverleaf" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://cloverleaf.app" />
-    <meta property="og:image" content="https://cloverleaf.app/android-chrome-512x512.png" />
-    <meta property="og:image:secure_url" content="https://cloverleaf.app/android-chrome-512x512.png" />
-    <meta property="og:image:width" content="512"/>
-    <meta property="og:image:height" content="512"/>
-    <meta property="og:locale" content="en_GB" />
+    <meta property="og:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
+    <meta property="og:title" content="Cloverleaf">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cloverleaf.app">
+    <meta property="og:image" content="https://cloverleaf.app/android-chrome-512x512.png">
+    <meta property="og:image:secure_url" content="https://cloverleaf.app/android-chrome-512x512.png">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:locale" content="en_GB">
 
     <!-- Twitter's proprietary OpenGraph type thing -->
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:creator" content="@ChildishGiant" />
-    <meta name="twitter:creator:id" content="871150969417084928" />
-    <meta name="twitter:title" content="Cloverleaf" />
-    <meta name="twitter:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere." />
-    <meta name="twitter:image" content="https://cloverleaf.app/android-chrome-512x512.png" />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:creator" content="@ChildishGiant">
+    <meta name="twitter:creator:id" content="871150969417084928">
+    <meta name="twitter:title" content="Cloverleaf">
+    <meta name="twitter:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
+    <meta name="twitter:image" content="https://cloverleaf.app/android-chrome-512x512.png">
 
     <!-- Icons -->
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
@@ -55,30 +57,14 @@
       console.clear();
     </script>
 
-    <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="compiled/style.min.css?cache=busted"/>
-
-    <!-- If I wanted super fast loads I'd use these:
-    <link rel="stylesheet" type="text/css" href="compiled/style.min.css" media="none" onload="if(media!='all')media='all'"/> -->
-
-    <!-- JS -->
-    <!-- materialize js 1.0.0-->
-    <script defer src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <!-- seedrandom.js 2.4.4 -->
-    <script defer src="node_modules/seedrandom/seedrandom.min.js"></script>
-    <!-- js-sha3 0.8.0 -->
-    <script defer src="node_modules/js-sha3/build/sha3.min.js"></script>
-    <!-- Cloverleaf source -->
-    <script defer src="compiled/jssource.min.js?cache=unbusted"></script>
-
-  </head>
+  <link href="bundles/bundle-09beefca.css" rel="stylesheet"><script type="text/javascript" src="bundles/bundle-09beefca.js"></script></head>
   <body>
 
 
     <ul id="slide-out" class="sidenav">
       <div class="row">
           <ul class="tabs" id="engineTabs">
-              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="Significantly less secure" tabindex="0" >
+              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="Significantly less secure" tabindex="0">
                 <a onclick="setMode('old');" href="#old">
                   <i class="material-icons">warning</i> Legacy mode <i class="material-icons">warning</i>
                 </a>
@@ -89,7 +75,7 @@
 
       <div id="options">
         <div class="input-field">
-          <select id="themeSelector" onchange="changeTheme(`${this.value}`)" class="browser-default">
+          <select id="themeSelector" onchange="changeTheme(this.value)" class="browser-default">
           </select>
           <label>Theme</label>
         </div>
@@ -100,10 +86,7 @@
 
       </div>
 
-
-
-
-      <i class="material-icons" id="close" onclick="side.close();">close</i> </a>
+      <i class="material-icons" id="close" onclick="side.close();">close</i>
 
     </ul>
 
@@ -119,15 +102,15 @@
 
         <div class="input-field">
           <label for="app" class="partial">Application</label>
-          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);"/>
+          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
           <div id="logoContainer" class="input-group-addon suffix">
-            <img id="logo" draggable="false"/>
+            <img id="logo" draggable="false">
           </div>
         </div>
 
         <div class="input-field">
           <label for="pass" class="partial">Master password</label>
-          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();"/>
+          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
           <div class="input-group-addon suffix">
 
             <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-tooltip="Save the current master password on this device" tabindex="0">save</i>
@@ -139,7 +122,7 @@
         <div class="switch" onclick="passwordToggle();">
           <label>
             Show
-            <input type="checkbox" id="passwordToggle" checked="checked"/>
+            <input type="checkbox" id="passwordToggle" checked="checked">
             <span class="lever" id="passTogglelever"></span>
             Hide
           </label>
@@ -147,17 +130,17 @@
 
         <div class="input-field">
           <label for="length">Length of password</label>
-          <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;" />
+          <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
         </div>
 
         <span class="hint">The longer, the better</span>
 
-        <input id="result" type="password" placeholder="No password :)" readonly value >
+        <input id="result" type="password" placeholder="No password :)" readonly="readonly">
 
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
             Show
-            <input type="checkbox" id="resultToggle" checked="checked"/>
+            <input type="checkbox" id="resultToggle" checked="checked">
             <span class="lever" id="resultTogglelever"></span>
             Hide
           </label>
