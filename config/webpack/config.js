@@ -15,7 +15,7 @@ module.exports = {
 			minify: true
 		}),
 		new MiniCssExtractPlugin({
-			filename: "bundle-[chunkhash:8].css",
+			filename: "bundle-[Contenthash:8].css",
 		}),
 	],
 
@@ -56,7 +56,7 @@ module.exports = {
 
 	entry: "./src/main.js",
 	output: {
-		filename: "bundle-[chunkhash:8].js",
+		filename: "bundle-[Contenthash:8].js",
 		path: path.resolve(__dirname, "../../bundles")
 	}
 };
