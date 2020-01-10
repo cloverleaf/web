@@ -45,7 +45,7 @@
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
     "rimraf": "^3.0.0",
-    "sass": "^1.24.3",
+    "sass": "^1.24.4",
     "sass-loader": "^8.0.0",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.1.2",
