@@ -1,4 +1,3 @@
-/* global self, caches, fetch, Request */
 // This is the "Offline copy of pages" service worker
 // Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
 

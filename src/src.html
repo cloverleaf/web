@@ -1,5 +1,3 @@
-<!-- For source, see src/src.html -->
-
 <!DOCTYPE html>
 <html lang="en-GB">
   <head>
@@ -80,6 +78,21 @@
           <label>Theme</label>
         </div>
 
+
+        <!-- <div class="input-field">
+          <label for="session">Remember my password until a new session</label>
+
+        <div class="switch" id="session">
+          <label>
+            Off
+            <input type="checkbox">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        </div> -->
+
+
         <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
           Install as a native app <i class="material-icons" id="install-icon">add_to_home_screen</i>
         </a>
@@ -101,22 +114,16 @@
       <div id="back" role="main">
 
         <div class="input-field">
-          <label for="app" class="partial">Application</label>
-          <input id="app" class="partial" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
+          <label for="app">Application</label>
+          <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false">
           </div>
         </div>
 
         <div class="input-field">
-          <label for="pass" class="partial">Master password</label>
-          <input id="pass" class="partial" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
-          <div class="input-group-addon suffix">
-
-            <i onclick="save();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-tooltip="Save the current master password on this device" tabindex="0">save</i>
-            <i onclick="load();" class="material-icons icon tooltipped" data-position="right" data-delay="500" data-tooltip="Load the saved master password" tabindex="0">file_download</i>
-
-          </div>
+          <label for="pass">Master password</label>
+          <input id="pass" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
         </div>
 
         <div class="switch" onclick="passwordToggle();">

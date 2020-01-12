@@ -24,10 +24,8 @@ let minLength = defaultMinLength; // Are,
 let maxLength = defaultMaxLength; // Really
 const defaultTheme = "Vanilla";
 const debugMode = false;
-const engineVersion = "6.0.0"; // Changed if breaking changes are made to the engine
 let mode;
-const date = new Date();
-const cookieCrumble = new Date(date.getFullYear() + 1, date.getMonth(), date.getDate()); // Make a date 1 year into THE FUTURE
+const cookieCrumble = 604800; // 7 days * 24 hours * 60 mins * 60 seconds = 604800
 const possibleRequirements = {
 	cap: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
 	low: "abcdefghijklmnopqrstuvwxyz",
@@ -36,6 +34,7 @@ const possibleRequirements = {
 };
 const targetLength = 16;
 let select; // Theme selector
+window.doSessionCookie = true;
 
 /**
  * Gets a cookie
@@ -58,7 +57,7 @@ function getCookie(name) {
  * @returns {void}
  */
 window.setCookie = function(name, value) {
-	document.cookie = `${name}=${value}; expires=${cookieCrumble.toGMTString()}; path=/;`; // Set cookie to expire in 1 year
+	document.cookie = `${name}=${value}; max-age=${cookieCrumble}; path=/;`; // Set cookie to expire in 1 week
 }
 
 function checkDebug() {
@@ -430,42 +429,75 @@ function setLogo (appName) {
  * On page load
  */
 window.onload = function () {
-	if (getCookie("cookieHidden") !== undefined) {
-		document.getElementById("cookieAlert").style.display = "none";
+
+	// Process the themes.json
+	for (const key in themeData) {
+
+		// Add select option for the theme
+		const themeOption = document.createElement("option");
+		themeOption.onclick = `changeTheme("${key}")`;
+		themeOption.id = key;
+		themeOption.innerHTML = key;
+		document.querySelector("#options .input-field select").appendChild(themeOption);
+
+		const css = `a[id=${key}]{background-color: ${
+			themeData[key].background
+		} !important; border: 1px ;}a[id=${key}] i {color: ${themeData[key].text}`;
+		const style = document.createElement("style");
+		style.type = "text/css";
+		if (style.styleSheet) {
+			// This is required for IE8 and below.
+			style.styleSheet.cssText = css;
+		} else {
+			style.appendChild(document.createTextNode(css));
+		}
+		document.getElementsByTagName("head")[0].appendChild(style);
+	}
+
+	// If the user has a prefered theme
+	if (getCookie("theme") !== undefined) {
+		console.debug(`Found a prefered theme. Loading ${getCookie("theme")}`);
+
+		window.changeTheme(getCookie("theme"));
+		// Select the correct selection
+		document.getElementById("themeSelector").value = getCookie("theme");
+	} else {
+		// If no theme cookie exists
+		// Click the vanilla theme.
+		window.changeTheme(defaultTheme);
+		document.getElementById("themeSelector").value = defaultTheme;
+	}
+
+
+	// Initialize tooltips
+	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
+	// Initialize the tabs
+	const tabs = M.Tabs.init(document.querySelectorAll(".tabs"))[0];
+
+	// Initialise the side nav
+	M.Sidenav.init(document.querySelectorAll(".sidenav"), { edge: "left" })[0];
+	window.side = M.Sidenav.getInstance(document.getElementById("slide-out"));
+	// Initalise the theme selection
+	// Or not since materialize styled select is terrible.
+	// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
+
+
+	// Set the mode cookie if we haven't before
+	if (getCookie("mode") === undefined) {
+		mode = "new";
+	} else {
+		mode = getCookie("mode");
+	}
+
+	tabs.select(mode);
+
+	// Get saved password
+	if (getCookie("password")) {
+		document.getElementById("pass").value = getCookie("password"); // Fill the password input with the correct password
+		document.querySelector("label[for='pass']").classList.add("active"); // Raise the text on the input
 	}
 
 	// Process the sites.json for the autocomplete structure
-	const qs = getQueryStrings();
-
-	if (qs.app) {
-		const appName = String(qs.app);
-		// If it's a preset
-		if (jsonData[appName]) {
-			let length = targetLength;
-			let max = jsonData[appName].maxLength;
-
-			if (!max) {
-				max = defaultMaxLength;
-			}
-
-			if (!(jsonData[appName].minLength <= length && length <= max)) {
-				length = max;
-			}
-
-			document.getElementById("length").value = length;
-
-			// In case there's already a password (eg switching sites / presets) regen password
-			window.process();
-
-			setLogo(appName);
-
-		}
-		// Set the app name
-		document.getElementById("app").value = appName;
-
-		document.querySelector("label[for='app']").classList.add("active");
-	}
-
 	for (const key in jsonData) {
 		// If the preset has a custom logo url
 		if (jsonData[key].logo) {
@@ -552,101 +584,40 @@ window.onload = function () {
 	// Autocomplete has been setup
 	// Move the cursor to the app field
 	document.getElementById("app").focus();
+	document.querySelector("label[for='app']").classList.add("active");
 
+	const qs = getQueryStrings();
 
-	// Process the sites.json for the autocomplete structure
-	for (const key in themeData) {
+	if (qs.app) {
+		const appName = String(qs.app);
 
-		// Add select option for the theme
-		const themeOption = document.createElement("option");
-		themeOption.onclick = `changeTheme("${key}")`;
-		themeOption.id = key;
-		themeOption.innerHTML = key;
-		document.querySelector("#options .input-field select").appendChild(themeOption);
+		// Set the app name
+		document.getElementById("app").value = appName;
 
-		const css = `a[id=${key}]{background-color: ${
-			themeData[key].background
-		} !important; border: 1px ;}a[id=${key}] i {color: ${themeData[key].text}`;
-		const style = document.createElement("style");
-		style.type = "text/css";
-		if (style.styleSheet) {
-			// This is required for IE8 and below.
-			style.styleSheet.cssText = css;
-		} else {
-			style.appendChild(document.createTextNode(css));
+		// If it's a preset
+		if (jsonData[appName]) {
+			// Press enter to select the preset
+			document.getElementById("app").click();
+			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
 		}
-		document.getElementsByTagName("head")[0].appendChild(style);
+
+		// In case there's already a password
+		window.process();
+
+		// Move the cursor to the app field
+		document.getElementById("pass").focus();
+		document.querySelector("label[for='pass']").classList.add("active");
 	}
 
-	// If the user has a prefered theme
-	if (getCookie("theme") !== undefined) {
-		console.debug(`Found a prefered theme. Loading ${getCookie("theme")}`);
 
-		window.changeTheme(getCookie("theme"));
-		// Select the correct selection
-		document.getElementById("themeSelector").value = getCookie("theme");
-	} else {
-		// If no theme cookie exists
-		// Click the vanilla theme.
-		document.getElementById("themeSelector").value = defaultTheme;
-		window.changeTheme(defaultTheme);
+	// If the cookie tray hasn't been hidden and the user has cookies enabled
+	if (getCookie("cookieHidden") === undefined && navigator.cookieEnabled) {
+		document.getElementById("cookieAlert").style.display = "block";
 	}
-
 
 	checkDebug();
-
-
-	// Set the engine version cookie if we haven't before
-	if (getCookie("engineVersion") === undefined) {
-		window.setCookie("engineVersion", engineVersion);
-	}
-
-	// Set the mode cookie if we haven't before
-	if (getCookie("mode") === undefined) {
-		if (getCookie("engineVersion") !== "5.10.0") {
-			mode = "new";
-		} else {
-			mode = "old";
-		}
-		window.setCookie("mode", mode);
-	} else {
-		mode = getCookie("mode");
-	}
-
-	// Initialize tooltips
-	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
-	// Initialize the tabs
-	const tabs = M.Tabs.init(document.querySelectorAll(".tabs"))[0];
-
-	// Initialise the side nav
-	M.Sidenav.init(document.querySelectorAll(".sidenav"), { edge: "left" })[0];
-	window.side = M.Sidenav.getInstance(document.getElementById("slide-out"));
-	// Initalise the theme selection
-	// Or not since materialize styled select is terrible.
-	// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
-
-	if (mode === "new" || mode === "old") {
-		tabs.select(mode);
-	} else {
-		throw new Error(`Invalid mode  "${mode}" `); // Using the inferior kind of quotes so I may see the superior ones apon error
-	}
-
 };
 
-/**
- * Save the current master password as a cookie
- */
-window.save = function exported() {
-	if (document.getElementById("pass").value) {
-		// If there's a password
-		window.setCookie("password", document.getElementById("pass").value);
-		M.toast({
-			html: "Password saved to your device!",
-			displayLength: 4000,
-			classes: "success"
-		});
-	}
-};
 
 /**
  * Use the current password as a seed to colour the underline of the field
@@ -669,29 +640,6 @@ function colourUnderline() {
 	}
 }
 
-window.load = function () {
-	// Load the saved password from cookie
-	if (getCookie("password") !== undefined) {
-		const password = getCookie("password"); // Get the password from the cookie
-		document.querySelector("label[for='pass']").classList.add("active"); // Raise the text on the input
-		document.getElementById("pass").value = password; // Fill the password input with the correct password
-		window.process();
-		M.toast({
-			html: "Password loaded from your device!",
-			displayLength: 4000,
-			classes: "success"
-		});
-	} else {
-		M.toast({
-			html: "You have no saved password to load.",
-			displayLength: 4000,
-			classes: "warning"
-		});
-	}
-
-	colourUnderline();
-};
-
 
 window.appInput = function (e) {
 	// Clear logo
@@ -713,6 +661,18 @@ window.appInput = function (e) {
 
 window.passwordUp = function () {
 	colourUnderline();
+
+	// Keep master password while this browser session's open
+	if (window.doSessionCookie) {
+		document.cookie = "password=" + (
+			// If there's a password
+			document.getElementById("pass").value ?
+				// Store it
+				document.getElementById("pass").value:
+				// Otherwise, delete the cookie
+				"; Max-Age=0"
+		);
+	}
 
 	// Regen the password
 	window.process();

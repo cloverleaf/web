@@ -5,8 +5,7 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 new webpack.SourceMapDevToolPlugin({
-	filename: "[file].map",
-	publicPath: path.resolve(__dirname, "../../bundles")
+	filename: "[file].map"
 }),
 
 module.exports = {
@@ -18,7 +17,7 @@ module.exports = {
 		new MiniCssExtractPlugin(),
 		new HtmlWebpackPlugin({
 			template: "src/src.html",
-			filename: path.join(__dirname,"../../index.html"),
+			filename: "index.html",
 			inject: "head",
 		}),
 	],
@@ -63,8 +62,7 @@ module.exports = {
 
 	entry: "./src/main.js",
 	output: {
-		filename: "main.js",
-		path: path.resolve(__dirname, "../../bundles"),
+		filename: "main.js"
 	},
 
 

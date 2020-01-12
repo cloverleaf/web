@@ -20,7 +20,10 @@ $linkColor: #00539b;
 $highlightColor: #eee;
 $underlineColor: #3f51b5;
 
+$secondary-color: $accentColor;
 
+$select-background: $internalColor;
+$switch-checked-lever-bg: $lightAccent;
 $sidenav-bg-color: $backgroundColor;
 $button-raised-background: $accentColor;
 $tabs-underline-color: $accentColor;
@@ -157,13 +160,6 @@ body {
   margin: auto; /* This helps with compatibility  */
 }
 
-.partial {
-  width: calc(100% - 3rem) !important;
-  align-self: flex-end;
-  display: block;
-  white-space: nowrap;
-}
-
 label, .input-field>label {
   color: var(--textColor);
   font-size: 1.5rem;
@@ -200,12 +196,6 @@ input[type=text]:not(#result):not(.select-dropdown), input[type=number], input[t
   font-weight: 300;
 }
 
-// /* label focus color */
-// .input-field input:focus+label {
-//   color: #3f51b5 !important;
-//   color: var(--accentColor) !important;
-// }
-
 input[type=number] {
   margin-bottom: 0;
   overflow: scroll
@@ -235,34 +225,19 @@ input[type=number] {
   width: 100%;
 }
 
-::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-  color: $inputColor;
-  color: var(--inputColor);
-}
-
-:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+/* Mozilla Firefox 19-50 */
+:-moz-placeholder,
+::-moz-placeholder {
   color: $inputColor;
   color: var(--inputColor);
   opacity:  1;
 }
 
-::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: $inputColor;
-  color: var(--inputColor);
-  opacity:  1;
-}
-
-:-ms-input-placeholder { /* Internet Explorer 10-11 */
-  color: $inputColor;
-  color: var(--inputColor);
-}
-
-::-ms-input-placeholder { /* Microsoft Edge */
-  color: $inputColor;
-  color: var(--inputColor);
-}
-
-::placeholder { /* Most modern browsers support this now. */
+/* WebKit, Blink, Edge, Internet Explorer, Modern browsers */
+::-webkit-input-placeholder,
+:-ms-input-placeholder,
+::-ms-input-placeholder,
+::placeholder  {
   color: $inputColor;
   color: var(--inputColor);
 }
@@ -407,7 +382,7 @@ ul.autocomplete-content.dropdown-content span .highlight{
   border-radius: 0;
 }
 
-.switch {
+#back .switch {
   padding-bottom: 1.3rem;
 }
 
@@ -419,13 +394,11 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 /*Switch knob*/
 .switch label input[type=checkbox]:checked+.lever:after {
-  background-color: #3f51b5;
   background-color: var(--accentColor);
 }
 
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever {
-  background-color: #6d78b5;
   background-color: var(--lightAccent);
 }
 
@@ -519,6 +492,11 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 
 #app {
   margin-bottom: 0.55em !important;
+  width: calc(100% - 3.6rem) !important;
+  padding-right: 1.2em !important;
+  align-self: flex-end;
+  display: block;
+  white-space: nowrap;
 }
 
 ul:empty {
@@ -530,6 +508,7 @@ ul:empty {
 }
 
 #logoContainer { /* For portrait logos so they don't oversize */
+  margin-right: 5px;
   background: #fff;
   padding: 3px;
   border-radius: 5px;
@@ -574,6 +553,7 @@ label:focus{
 }
 
 #cookieAlert {
+  display: none;
   bottom: 0;
   left: 0;
   background-color: #fff;
@@ -810,6 +790,7 @@ html {
   width: 350px;
   max-width: 100%;
   max-height: 100%;
+  overflow-y: hidden;
 }
 
 .sidenav li>a {
@@ -848,7 +829,10 @@ html {
 }
 
 #options {
-  padding: 10px;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .sidenav .dropdown-content {
@@ -862,23 +846,26 @@ html {
 }
 
 select {
-  background-color: #fff;
   background-color: var(--internalColor);
 
-  border: 1px solid #fff;
-  border: 1px solid var(--internalColor);
+  border: 1px solid $textColor;
+  border: 1px solid var(--textColor);
+  border-radius: 3px;
 
   color: #000;
   color: var(--inputColor);
 }
 
 select:focus {
-  outline: 1px solid #6d78b5;
-  outline: 1px solid var(--lightAccent);
+  border: 1px solid #6d78b5;
+  border: 1px solid var(--lightAccent);
+
+  outline: none;
 }
 
 .sidenav .input-field {
-  margin-bottom: 1rem;
+  // margin-top: 2.4rem;
+  padding-bottom: 1.5rem;
 }
 
 .btn i {
@@ -887,4 +874,12 @@ select:focus {
 
 .drag-target {
   left: 0;
+}
+
+.sidenav .switch label {
+  font-size: 1.2em;
+}
+
+.sidenav {
+  place-content: center;
 }

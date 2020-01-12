@@ -12,7 +12,11 @@ module.exports = {
 			template: "src/src.html",
 			filename: path.join(__dirname,"../../index.html"),
 			inject: "head",
-			minify: true
+			minify: {
+				minifyJS: true,
+				removeComments: true,
+				collapseWhitespace: true
+			}
 		}),
 		new MiniCssExtractPlugin({
 			filename: "bundle-[Contenthash:8].css",
@@ -23,7 +27,8 @@ module.exports = {
 		rules: [
 			{
 				test: /\.js$/,
-				use: ["source-map-loader"],
+				exclude: /node_modules/,
+				use: {loader: "eslint-loader", options: {configFile: ".eslintrc.json", emitWarning: true}},
 				enforce: "pre"
 			},
 			{
