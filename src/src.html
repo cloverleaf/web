@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-GB">
+<html lang="${langCode}">
   <head>
 
     <meta charset="utf-8">
@@ -8,10 +8,10 @@
     <title>Cloverleaf</title>
 
     <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
-    <meta name="description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
+    <meta name="description" content="${description}">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
-    <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola">
+    <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app">
     <link rel="alternate" href="https://cloverleaf.app/" hreflang="en">
     <!-- Verifing ownership for Bing -->
     <meta name="msvalidate.01" content="22AEF740B887329DA98B4F687396B7C1">
@@ -19,7 +19,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- OpenGraph -->
-    <meta property="og:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
+    <meta property="og:description" content="${description}">
     <meta property="og:title" content="Cloverleaf">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cloverleaf.app">
@@ -34,7 +34,7 @@
     <meta name="twitter:creator" content="@ChildishGiant">
     <meta name="twitter:creator:id" content="871150969417084928">
     <meta name="twitter:title" content="Cloverleaf">
-    <meta name="twitter:description" content="Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.">
+    <meta name="twitter:description" content="${description}">
     <meta name="twitter:image" content="https://cloverleaf.app/android-chrome-512x512.png">
 
     <!-- Icons -->
@@ -62,44 +62,52 @@
     <ul id="slide-out" class="sidenav">
       <div class="row">
           <ul class="tabs" id="engineTabs">
-              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="Significantly less secure" tabindex="0">
+              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="${securityWarning}" tabindex="0">
                 <a onclick="setMode('old');" href="#old">
-                  <i class="material-icons">warning</i> Legacy mode <i class="material-icons">warning</i>
+                  <i class="material-icons">warning</i> ${legacy} <i class="material-icons">warning</i>
                 </a>
               </li>
-              <li class="tab col s6"><a onclick="setMode('new');" href="#new">Suggested mode</a></li>
+              <li class="tab col s6"><a onclick="setMode('new');" href="#new">${suggested}</a></li>
           </ul>
       </div>
 
       <div id="options">
-        <div class="input-field">
-          <select id="themeSelector" onchange="changeTheme(this.value)" class="browser-default">
+        <div class="input-field" id="theme-container">
+          <select id="theme" onchange="changeTheme(this.value)" class="browser-default">
           </select>
-          <label>Theme</label>
+          <label>${theme}</label>
         </div>
 
 
-        <!-- <div class="input-field">
-          <label for="session">Remember my password until a new session</label>
-
-        <div class="switch" id="session">
-          <label>
-            Off
-            <input type="checkbox">
-            <span class="lever"></span>
-            On
-          </label>
+        <div class="input-field" id="lang-container">
+          <select id="lang" onchange="changeLang(this.selectedOptions[0].dataset.short)" class="browser-default">
+          </select>
+          <label>${language}</label>
         </div>
-        </div> -->
 
+        <div class="input-field" id="session-container">
 
-        <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
-          Install as a native app <i class="material-icons" id="install-icon">add_to_home_screen</i>
-        </a>
+          <label for="session">${remember}</label>
+
+          <div class="switch" id="session" onclick="sessionToggle();">
+            <label>
+              ${off}
+              <input type="checkbox" id="session-toggle">
+              <span class="lever"></span>
+              ${on}
+            </label>
+          </div>
+        </div>
+
+        <div id="footer">
+          <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
+            ${install} <i class="material-icons" id="install-icon">add_to_home_screen</i>
+          </a>
+          <i class="material-icons" id="close" onclick="side.close();">close</i>
+        </div>
 
       </div>
 
-      <i class="material-icons" id="close" onclick="side.close();">close</i>
 
     </ul>
 
@@ -114,7 +122,7 @@
       <div id="back" role="main">
 
         <div class="input-field">
-          <label for="app">Application</label>
+          <label for="app">${app}</label>
           <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false">
@@ -122,48 +130,48 @@
         </div>
 
         <div class="input-field">
-          <label for="pass">Master password</label>
+          <label for="pass">${pass}</label>
           <input id="pass" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
         </div>
 
         <div class="switch" onclick="passwordToggle();">
           <label>
-            Show
+            ${show}
             <input type="checkbox" id="passwordToggle" checked="checked">
             <span class="lever" id="passTogglelever"></span>
-            Hide
+            ${hide}
           </label>
         </div>
 
         <div class="input-field">
-          <label for="length">Length of password</label>
+          <label for="length">${length}</label>
           <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
         </div>
 
-        <span class="hint">The longer, the better</span>
+        <span class="hint">${hint}</span>
 
-        <input id="result" type="password" placeholder="No password :)" readonly="readonly">
+        <input id="result" type="password" placeholder="${noPassword}" readonly="readonly">
 
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
-            Show
+            ${show}
             <input type="checkbox" id="resultToggle" checked="checked">
             <span class="lever" id="resultTogglelever"></span>
-            Hide
+            ${hide}
           </label>
         </div>
 
-        <button id="copy" class="waves-effect waves-light btn" onclick="copy();">Copy password</button>
+        <button id="copy" class="waves-effect waves-light btn" onclick="copy();">${copy}</button>
 
-        <div id="footer" class="cf">
-          <a href="faq.html" id="faq" title="Help and FAQs">Help and FAQs</a>
+        <div class="cf">
+          <a href="faq" id="faq" title="Frequently Asked Questions - Cloverleaf">${faq}</a>
         </div>
 
       </div>
     </div>
 
-    <a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="View source on Github" tabindex="-1">
-      <svg width="5em" height="5em" viewBox="0 0 250 250" style="fill: #3f51b5; fill: var(--accentColor); color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true" tabindex="0">
+    <a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="${viewSource}" title="${viewSource}" tabindex="-1">
+      <svg width="5em" height="5em" viewBox="0 0 250 250"  aria-hidden="true" tabindex="0">
         <defs>
           <mask id="octomask">
           <path fill="white" d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
@@ -175,17 +183,10 @@
       </svg>
     </a>
 
-    <div id="cookieAlert">
-      <span>This site uses cookies, like most websites. By using this site, you are accepting the use of <a href="faq#cookies" style="cursor:help" title="More about cookies">cookies</a>.</span>
-      <svg onclick="document.getElementById('cookieAlert').style.display='none';setCookie('cookieHidden',true);" fill="var(--inputColor)" height="2em" viewBox="0 0 24 24" width="2em" xmlns="http://www.w3.org/2000/svg">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-          <path d="M0 0h24v24H0z" fill="none"/>
-      </svg>
-    </div>
 
     <noscript>
       <div id="jsBanner">
-        <a href="https://www.enable-javascript.com/?ref=Cloverleaf" target="_blank">This website requires js to work.</a>
+        <a href="https://www.enable-javascript.com/?ref=Cloverleaf" target="_blank">${jsMessage}</a>
       </div>
     </noscript>
 

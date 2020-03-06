@@ -1,0 +1,90 @@
+{
+	"legacy": {
+		"message": "Legacy mode",
+		"description": "This appears on the button to change to legacy mode"
+	},
+	"suggested": {
+		"message": "Suggested mode",
+		"description": "This appears on the button to change to suggested mode"
+	},
+	"theme": {
+		"message": "Theme",
+		"description": "Label for the theme selector"
+	},
+	"remember": {
+		"message": "Remember my password",
+		"description": "Label for the password saving toggle"
+	},
+	"off": {
+		"message": "Off",
+		"description": "Shows the state of an option"
+	},
+	"on": {
+		"message": "On",
+		"description": ""
+	},
+	"install": {
+		"message": "Install as a native app",
+		"description": ""
+	},
+	"app": {
+		"message": "Application",
+		"description": "Label for the Application field"
+	},
+	"pass": {
+		"message": "Master password",
+		"description": "Label for the password field"
+	},
+	"show": {
+		"message": "Show",
+		"description": ""
+	},
+	"hide": {
+		"message": "Hide",
+		"description": ""
+	},
+	"length": {
+		"message": "Length of password",
+		"description": "Label for the length field"
+	},
+	"hint": {
+		"message": "The longer, the better",
+		"description": "Shown underneath the length field"
+	},
+	"copy": {
+		"message": "Copy password",
+		"description": "Shown on the copy password button"
+	},
+	"faq": {
+		"message": "Help and FAQs",
+		"description": ""
+	},
+	"jsMessage": {
+		"message": "This website requires js to work.",
+		"description": "Message shown when the user has javascript disabled"
+	},
+	"noPassword": {
+		"message": "No password :)",
+		"description": "Message shown when there is no outputted password"
+	},
+	"securityWarning": {
+		"message": "Significantly less secure",
+		"description": "Shown when hovering on Legacy Mode"
+	},
+	"viewSource": {
+		"message": "View source on Github",
+		"description": "Shown when hovering on the octocat in the corner. Also used by screen readers"
+	},
+	"description": {
+		"message": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
+		"description": "This is the description shown on search engines"
+	},
+	"langCode": {
+		"message": "de-DE",
+		"description": "The locale code of the language you're translating too"
+	},
+	"language": {
+		"message": "Language",
+		"description": "Label for the language selector"
+	}
+}

@@ -4,8 +4,9 @@
   "description": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
   "main": "jssource.js",
   "scripts": {
-    "build": "rimraf -r bundles/ && webpack --config config/webpack/config.js",
-    "start": "webpack-dev-server --inline --watch --hot --config config/webpack/config.development.js"
+    "build": "node config/webpack/config.js",
+    "start": "webpack-dev-server --inline --watch --hot --config config/webpack/config.development.js",
+    "server-test": "py -m http.server"
   },
   "repository": {
     "type": "git",

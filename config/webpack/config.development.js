@@ -1,12 +1,17 @@
 const path = require("path");
-const webpack = require("webpack");
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const fs = require("fs");
 
-new webpack.SourceMapDevToolPlugin({
-	filename: "[file].map"
-}),
+// Read json
+const json = JSON.parse(fs.readFileSync(path.join(__dirname, "../../src/strings.json"), "utf8"));
+
+const replacements = {};
+
+for (var k in json) {
+	replacements[k] = json[k].message;
+}
 
 module.exports = {
 	mode: "development",
@@ -19,6 +24,7 @@ module.exports = {
 			template: "src/src.html",
 			filename: "index.html",
 			inject: "head",
+			templateParameters: replacements
 		}),
 	],
 
@@ -41,7 +47,7 @@ module.exports = {
 					{
 						loader: "postcss-loader",
 						options: {
-							plugins: () => {return [require("autoprefixer")]}
+							plugins: () => [require("autoprefixer")]
 						}
 					},
 					"sass-loader"
@@ -76,4 +82,4 @@ module.exports = {
 		quiet: true,
 	}
 
-}
+};

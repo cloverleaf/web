@@ -3,6 +3,7 @@
 		"path": "."
 	}],
 	"settings": {
+		"eslint.options": { "configFile": "config/.eslintrc.json" },
 		"json.schemas": [
 			{
 			"fileMatch": [

@@ -6,7 +6,6 @@
 
 // Color
 @import "node_modules/materialize-css/sass/components/color-variables";
-@import "node_modules/materialize-css/sass/components/color-classes";
 
 $accentColor: #3f51b5;
 $lightAccent: #6d78b5;
@@ -30,7 +29,7 @@ $tabs-underline-color: $accentColor;
 $tabs-text-color: $inputColor;
 $tabs-bg-color: $internalColor;
 $input-border-color: $textColor;
-
+$link-color: $linkColor;
 
 // Variables;
 @import "node_modules/materialize-css/sass/components/variables";
@@ -58,10 +57,11 @@ $input-border-color: $textColor;
   font-family: 'Material Icons';
   font-style: normal;
   font-weight: 400;
-  src: url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot); /* For IE6-8 */
+  /* For IE6-8 */
+  src: url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot);
   src: local('Material Icons'),
-  local('MaterialIcons-Regular'),
-  url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    local('MaterialIcons-Regular'),
+    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
     url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
     url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
 }
@@ -70,7 +70,8 @@ $input-border-color: $textColor;
   font-family: 'Material Icons';
   font-weight: normal;
   font-style: normal;
-  font-size: 24px;  /* Preferred icon size */
+  /* Preferred icon size */
+  font-size: 24px;
   display: inline-block;
   line-height: 1;
   text-transform: none;
@@ -82,12 +83,10 @@ $input-border-color: $textColor;
   -webkit-font-smoothing: antialiased;
   /* Support for Safari and Chrome. */
   text-rendering: optimizeLegibility;
-  /* Support for Firefox. */
-  -moz-font-feature-settings: "liga" on;
   -moz-osx-font-smoothing: grayscale;
   /* Support for IE. */
   font-feature-settings: 'liga';
-  user-select:none;
+  user-select: none;
   font-display: block;
 }
 
@@ -97,18 +96,21 @@ $input-border-color: $textColor;
   font-weight: 400;
   src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
 }
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
   src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
 }
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
 }
+
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
@@ -158,37 +160,45 @@ body {
   max-width: calc(100% - (30px + 10em));
   max-height: 100%;
   margin: auto; /* This helps with compatibility  */
+  grid-row: 1;
 }
 
-label, .input-field>label {
+label,
+.input-field>label {
   color: var(--textColor);
   font-size: 1.5rem;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
-.input-field{
+.input-field {
   margin-bottom: 0;
 }
 
-.input-field label{
+.input-field label {
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
-.input-field input[type=text], .input-field input[type=number], .input-field input[type=password] {
+.input-field input[type=text],
+.input-field input[type=number],
+.input-field input[type=password] {
   border-bottom: 1px solid #535353;
   border-bottom: 1px solid var(--textColor);
   transition: border .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
 /* label underline focus color */
-.input-field input[type=text]:focus, .input-field input[type=number]:focus, .input-field input[type=password]:focus {
+.input-field input[type=text]:focus,
+.input-field input[type=number]:focus,
+.input-field input[type=password]:focus {
   border-bottom: 1px solid #3f51b5 !important;
   border-bottom: 1px solid var(--underlineColor) !important;
   box-shadow: 0 1px 0 0 #3f51b5 !important;
   box-shadow: 0 1px 0 0 var(--underlineColor) !important;
 }
 
-input[type=text]:not(#result):not(.select-dropdown), input[type=number], input[type=password]:not(#result) {
+input[type=text]:not(#result):not(.select-dropdown),
+input[type=number],
+input[type=password]:not(#result) {
   font-size: 3rem !important;
   height: 1.2em !important;
   box-sizing: content-box;
@@ -223,6 +233,8 @@ input[type=number] {
   text-align: center;
   margin: 0;
   width: 100%;
+  color: $inputColor;
+  color: var(--inputColor);
 }
 
 /* Mozilla Firefox 19-50 */
@@ -230,14 +242,14 @@ input[type=number] {
 ::-moz-placeholder {
   color: $inputColor;
   color: var(--inputColor);
-  opacity:  1;
+  opacity: 1;
 }
 
 /* WebKit, Blink, Edge, Internet Explorer, Modern browsers */
 ::-webkit-input-placeholder,
 :-ms-input-placeholder,
 ::-ms-input-placeholder,
-::placeholder  {
+::placeholder {
   color: $inputColor;
   color: var(--inputColor);
 }
@@ -256,7 +268,8 @@ input[type=number] {
   transition: background-color .3s ease, color .3s ease;
 }
 
-input, textarea {
+input,
+textarea {
   font-size: 1.56rem;
   padding: 0.65rem;
   color: #000 !important;
@@ -267,19 +280,18 @@ input, textarea {
 
 input#length {
   margin: 0 !important;
-  height: 1em;  /* To stop the input wiggling on firefox */
+  height: 1em; /* To stop the input wiggling on firefox */
 }
 
 #faq {
   float: right;
   cursor: help;
   font-weight: 500;
-  color: #00539b;
-  color: var(--linkColor);
   margin-top: 0.4em;
 }
 
-.cf:before, .cf:after {
+.cf:before,
+.cf:after {
   content: " ";
   display: table;
 }
@@ -314,9 +326,12 @@ ul.autocomplete-content.dropdown-content li {
 }
 
 /* Presets */
-.dropdown-content li:hover, .dropdown-content li.active, .dropdown-content li.selected,
+.dropdown-content li:hover,
+.dropdown-content li.active,
+.dropdown-content li.selected,
 /* Theme selection */
-body.keyboard-focused .select-dropdown.dropdown-content li:focus, .select-dropdown.dropdown-content li.selected {
+body.keyboard-focused .select-dropdown.dropdown-content li:focus,
+.select-dropdown.dropdown-content li.selected {
   background: #eee;
   background: var(--highlightColor);
 }
@@ -350,7 +365,7 @@ ul.autocomplete-content.dropdown-content span:not(.highlight) {
   overflow-x: hidden;
 }
 
-ul.autocomplete-content.dropdown-content span .highlight{
+ul.autocomplete-content.dropdown-content span .highlight {
   max-width: 100%;
   color: #535353;
   color: var(--textColor);
@@ -373,7 +388,7 @@ ul.autocomplete-content.dropdown-content span .highlight{
 .dropdown-content::-webkit-scrollbar-thumb {
   border-radius: 100px;
   width: 17px;
-	background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 /*If I keep the rounded element, the twitter bird's beak gets cut :-;*/
@@ -386,8 +401,8 @@ ul.autocomplete-content.dropdown-content span .highlight{
   padding-bottom: 1.3rem;
 }
 
-input[type=checkbox]:checked:not(:disabled) ~ .lever:active::before,
-input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
+input[type=checkbox]:checked:not(:disabled)~.lever:active::before,
+input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   transform: scale(2.4);
   background-color: rgba(63, 81, 181, 0.3);
 }
@@ -486,8 +501,8 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus ~ .lever::before {
 }
 
 #logo {
-  max-width:100%;
-  max-height:100%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #app {
@@ -503,11 +518,13 @@ ul:empty {
   display: none;
 }
 
-::-ms-reveal { /* Disable Edge's show/hide since we made one */
+/* Disable Edge's show/hide since we made one */
+::-ms-reveal {
   display: none;
 }
 
-#logoContainer { /* For portrait logos so they don't oversize */
+/* For portrait logos so they don't oversize */
+#logoContainer {
   margin-right: 5px;
   background: #fff;
   padding: 3px;
@@ -530,55 +547,41 @@ input[type="radio"]:checked+label::before {
   box-shadow: 0 0 3px 1px var(--textColor);
 }
 
-label:focus{
-    outline: none;
+label:focus {
+  outline: none;
+}
+
+.github-corner {
+  fill: #3f51b5;
+  fill: var(--accentColor);
+  color:#fff;
+  position: absolute;
+  top: 0;
+  border: 0;
+  right: 0;
 }
 
 .github-corner:hover .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
+  animation: octocat-wave 560ms ease-in-out;
 }
 
 @keyframes octocat-wave {
-    0%, 100% {
-        transform: rotate(0);
-    }
-    20%,
-    60% {
-        transform: rotate(-25deg);
-    }
-    40%,
-    80% {
-        transform: rotate(10deg);
-    }
-}
 
-#cookieAlert {
-  display: none;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  background-color: var(--internalColor);
-  width: 100%;
-  padding: 0.5em 1em;
-  position: fixed;
-  user-select: none;
-  z-index: 998;
-  box-shadow: 0 0 3px 0 #535353;
-  box-shadow: 0 0 3px 0 var(--textColor);
-}
+  0%,
+  100% {
+    transform: rotate(0);
+  }
 
-#cookieAlert span {
-  display: block;
-  width: calc(100% - 2em);
-  left: 0;
-}
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
 
-#cookieAlert svg {
-  position: absolute;
-  top: 0.25em;
-  right: 1em;
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
 }
-
 .tabs {
   background-color: var(--internalColor);
   cursor: pointer;
@@ -586,7 +589,8 @@ label:focus{
   z-index: 995;
 }
 
-.tabs .tab a, .tabs .tab a:hover  {
+.tabs .tab a,
+.tabs .tab a:hover {
   // color: #000;
   color: var(--textColor);
   font-size: 1em;
@@ -594,7 +598,8 @@ label:focus{
   transition: background-color .3s ease, color .3s ease;
 }
 
-.tabs .tab a:focus, .tabs .tab a:focus.active {
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
   background-color: var(--backgroundColor);
 }
 
@@ -617,7 +622,8 @@ label:focus{
   background: var(--accentColor);
 }
 
-.btn:focus, .btn:hover {
+.btn:focus,
+.btn:hover {
   background: var(--accentColor);
 }
 
@@ -626,16 +632,19 @@ label:focus{
   width: 2.4em;
 }
 
-.switch label .lever::before, .switch label .lever::after {
+.switch label .lever::before,
+.switch label .lever::after {
   height: 1.33em;
   width: 1.33em;
 }
 
-.switch label input[type="checkbox"]:checked + .lever::before, .switch label input[type="checkbox"]:checked + .lever::after {
-    left: 1.4em;
+.switch label input[type="checkbox"]:checked+.lever::before,
+.switch label input[type="checkbox"]:checked+.lever::after {
+  left: 1.4em;
 }
 
-.switch label .lever::before, .switch label .lever::after{
+.switch label .lever::before,
+.switch label .lever::after {
   top: -0.2em;
 }
 
@@ -659,7 +668,13 @@ label:focus{
 }
 
 /* In the future focus-visable should be used. See https://caniuse.com/?#search=css-focus-visible */
-.btn:focus, .btn-large:focus, .btn-small:focus, .btn-floating:focus, .btn-large:focus, .btn-small:focus, .btn-flat:focus {
+.btn:focus,
+.btn-large:focus,
+.btn-small:focus,
+.btn-floating:focus,
+.btn-large:focus,
+.btn-small:focus,
+.btn-flat:focus {
   outline: rgb(77, 144, 254) auto 5px;
   outline-color: rgb(77, 144, 254);
   outline-style: auto;
@@ -683,7 +698,8 @@ ul.tabs li.tab a i.material-icons {
   opacity: 1;
 }
 
-.fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+.fixed-action-btn.direction-left ul,
+.fixed-action-btn.direction-right ul {
   right: 55px
 }
 
@@ -718,10 +734,11 @@ ul.tabs li.tab a i.material-icons {
 /* Media Queries */
 @media (max-width: 500px) {
   .github-corner:hover .octo-arm {
-      animation: none;
+    animation: none;
   }
+
   .github-corner .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
+    animation: octocat-wave 560ms ease-in-out;
   }
 }
 
@@ -731,17 +748,20 @@ ul.tabs li.tab a i.material-icons {
     /* Ditch loads of padding */
     margin: 0;
   }
+
   #box {
     max-width: calc(100% - 25px);
   }
 
   /* Theme selectors */
-  .fixed-action-btn.direction-left ul, .fixed-action-btn.direction-right ul {
+  .fixed-action-btn.direction-left ul,
+  .fixed-action-btn.direction-right ul {
     right: 15vw;
   }
 
-  .fixed-action-btn.direction-left ul li, .fixed-action-btn.direction-right ul li {
-    margin:2.4vw 1vw 0 0;
+  .fixed-action-btn.direction-left ul li,
+  .fixed-action-btn.direction-right ul li {
+    margin: 2.4vw 1vw 0 0;
   }
 
   /* Install icon */
@@ -771,18 +791,14 @@ ul.tabs li.tab a i.material-icons {
     line-height: 15vw;
   }
 
-  #settings {
-    right: 2vw;
-  }
-
 }
 
 /* If it won't fit vertically */
 @media only all and (max-height:600px) {
-html {
-  /* Drop the font size */
-  font-size: 2vh;
-}
+  html {
+    /* Drop the font size */
+    font-size: 2vh;
+  }
 }
 
 .sidenav {
@@ -798,16 +814,12 @@ html {
 }
 
 /* Shows warning icons properly */
-.sidenav li>a>i, .sidenav li>a>[class^="mdi-"], .sidenav li>a li>a>[class*="mdi-"], .sidenav li>a>i.material-icons {
+.sidenav li>a>i,
+.sidenav li>a>[class^="mdi-"],
+.sidenav li>a li>a>[class*="mdi-"],
+.sidenav li>a>i.material-icons {
   margin: 0;
   float: none;
-}
-
-#close {
-  position: absolute;
-  bottom: 20px;
-  right: 20px;
-  cursor: pointer;
 }
 
 #settings {
@@ -829,10 +841,13 @@ html {
 }
 
 #options {
-  padding: 0 10px;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  padding: 10px;
+  padding-top: 0;
+  display: grid;
+  height: calc(100vh - 68px);
+  grid-template-rows: repeat(12, 1fr);
+  // grid-template-rows: repeat(auto-fill, minmax(70px, 1fr))
+  // grid-auto-rows: repeat(min-content, 60px) ;
 }
 
 .sidenav .dropdown-content {
@@ -840,7 +855,8 @@ html {
   background: var(--backgroundColor);
 }
 
-.sidenav .dropdown-content li>a,.dropdown-content li>span {
+.sidenav .dropdown-content li>a,
+.dropdown-content li>span {
   color: #000;
   color: var(--inputColor);
 }
@@ -882,4 +898,31 @@ select:focus {
 
 .sidenav {
   place-content: center;
+}
+
+#theme-container {
+  grid-row: 1;
+}
+
+#session-container {
+  grid-row: 3;
+}
+
+#footer {
+  display: grid;
+  grid-template-columns: 1fr calc(2.4em + 10px);
+  align-content: stretch;
+  grid-row: last-line;
+}
+
+#close {
+  cursor: pointer;
+  align-self: end;
+  justify-self: flex-end;
+  font-size: 2.4em;
+}
+
+a {
+  color: #00539b;
+  color: var(--linkColor);
 }
