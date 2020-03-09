@@ -140,8 +140,11 @@ body {
   caret-color: $accentColor;
   caret-color: var(--accentColor);
   text-align: center;
-  transition: background-color .3s ease, color .3s ease;
   overflow-x: hidden;
+}
+
+* {
+  transition: background-color .3s ease, color .3s ease;
 }
 
 body {
@@ -151,7 +154,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #fff;
+  background-color: $backgroundColor;
   background-color: var(--backgroundColor);
 }
 
@@ -165,6 +168,7 @@ body {
 
 label,
 .input-field>label {
+  color: $textColor;
   color: var(--textColor);
   font-size: 1.5rem;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
@@ -174,14 +178,10 @@ label,
   margin-bottom: 0;
 }
 
-.input-field label {
-  transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
-}
-
 .input-field input[type=text],
 .input-field input[type=number],
 .input-field input[type=password] {
-  border-bottom: 1px solid #535353;
+  border-bottom: 1px solid $textColor;
   border-bottom: 1px solid var(--textColor);
   transition: border .3s ease-out, background-color .3s ease, color .3s ease;
 }
@@ -190,9 +190,9 @@ label,
 .input-field input[type=text]:focus,
 .input-field input[type=number]:focus,
 .input-field input[type=password]:focus {
-  border-bottom: 1px solid #3f51b5 !important;
+  border-bottom: 1px solid $underlineColor !important;
   border-bottom: 1px solid var(--underlineColor) !important;
-  box-shadow: 0 1px 0 0 #3f51b5 !important;
+  box-shadow: 0 1px 0 0 $underlineColor !important;
   box-shadow: 0 1px 0 0 var(--underlineColor) !important;
 }
 
@@ -220,7 +220,6 @@ input[type=number] {
   padding-top: 1.5em;
   margin: 2em 0;
   max-height: 100%;
-  transition: background-color .3s ease, color .3s ease;
 }
 
 #result {
@@ -261,21 +260,19 @@ input[type=number] {
 
 .hint {
   float: left;
-  color: #535353;
+  color: $textColor;
   color: var(--textColor);
   width: 100%;
   text-align: left;
-  transition: background-color .3s ease, color .3s ease;
 }
 
 input,
 textarea {
   font-size: 1.56rem;
   padding: 0.65rem;
-  color: #000 !important;
+  color: $inputColor !important;
   color: var(--inputColor) !important;
   margin: 0 0 0.8rem 0 !important;
-  transition: background-color .3s ease, color .3s ease;
 }
 
 input#length {
@@ -309,7 +306,7 @@ Include this rule to trigger hasLayout and contain floats.
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: #fff;
+  background: $backgroundColor;
   background: var(--backgroundColor);
   position: absolute !important;
   width: calc(100% - 3rem);
@@ -332,7 +329,7 @@ ul.autocomplete-content.dropdown-content li {
 /* Theme selection */
 body.keyboard-focused .select-dropdown.dropdown-content li:focus,
 .select-dropdown.dropdown-content li.selected {
-  background: #eee;
+  background: $highlightColor;
   background: var(--highlightColor);
 }
 
@@ -360,18 +357,17 @@ ul.autocomplete-content.dropdown-content span {
 }
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
-  color: #535353;
+  color: $textColor;
   color: var(--textColor);
   overflow-x: hidden;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight {
   max-width: 100%;
-  color: #535353;
+  color: $textColor;
   color: var(--textColor);
   font-weight: 400;
   overflow: visible;
-  /* color: var(--inputColor); */
   padding: 0;
 }
 
@@ -409,11 +405,13 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 /*Switch knob*/
 .switch label input[type=checkbox]:checked+.lever:after {
+  background-color: $accentColor;
   background-color: var(--accentColor);
 }
 
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever {
+  background-color: $lightAccent;
   background-color: var(--lightAccent);
 }
 
@@ -431,19 +429,19 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 .icon {
   font-size: 1.4em !important;
-  color: #535353;
+  color: $textColor;
   color: var(--textColor);
   transition: color .2s;
   cursor: pointer;
 }
 
 .icon:hover {
-  color: #6d78b5;
+  color: $lightAccent;
   color: var(--lightAccent);
 }
 
 .icon:active {
-  color: #3f51b5;
+  color: $accentColor;
   color: var(--accentColor);
 }
 
@@ -460,13 +458,13 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 /* Negative toasts get this */
 .warning {
-  background-color: #f44336;
+  background-color: $incorrectColor;
   background-color: var(--incorrectColor);
 }
 
 /* Positive toasts get this */
 .success {
-  background-color: #5cb85c;
+  background-color: $correctColor;
   background-color: var(--correctColor);
   color: #000;
 }
@@ -484,18 +482,18 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   font-size: 10vmin;
   top: 0;
   left: 0;
-  color: #fff;
+  color: $backgroundColor;
   color: var(--backgroundColor);
   -webkit-text-stroke-width: 0.05em !important;
-  -webkit-text-stroke-color: #535353 !important;
+  -webkit-text-stroke-color: $textColor !important;
   -webkit-text-stroke-color: var(--textColor) !important;
   padding: 10px;
 }
 
 #jsBanner a {
-  color: #fff;
+  color: $backgroundColor;
   color: var(--backgroundColor);
-  -webkit-text-stroke: 3px #535353;
+  -webkit-text-stroke: 3px $textColor;
   -webkit-text-stroke: 3px var(--textColor);
   text-decoration: underline;
 }
@@ -543,7 +541,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked+label::before {
-  box-shadow: 0 0 3px 1px #535353;
+  box-shadow: 0 0 3px 1px $textColor;
   box-shadow: 0 0 3px 1px var(--textColor);
 }
 
@@ -552,7 +550,7 @@ label:focus {
 }
 
 .github-corner {
-  fill: #3f51b5;
+  fill: $accentColor;
   fill: var(--accentColor);
   color:#fff;
   position: absolute;
@@ -583,6 +581,7 @@ label:focus {
   }
 }
 .tabs {
+  background-color: $internalColor;
   background-color: var(--internalColor);
   cursor: pointer;
   overflow-x: hidden;
@@ -591,24 +590,26 @@ label:focus {
 
 .tabs .tab a,
 .tabs .tab a:hover {
-  // color: #000;
+  color: $textColor;
   color: var(--textColor);
   font-size: 1em;
   padding: 0 .5em;
-  transition: background-color .3s ease, color .3s ease;
 }
 
 .tabs .tab a:focus,
 .tabs .tab a:focus.active {
+  background-color: $backgroundColor;
   background-color: var(--backgroundColor);
 }
 
 .tabs .tab a.active {
+  color: $inputColor;
   color: var(--inputColor);
   font-weight: 400;
 }
 
 .tabs .indicator {
+  background: $accentColor;
   background-color: var(--accentColor)
 }
 
@@ -619,11 +620,13 @@ label:focus {
   font-weight: 300;
   font-size: 1rem;
   padding: 0 2rem;
+  background: $accentColor;
   background: var(--accentColor);
 }
 
 .btn:focus,
 .btn:hover {
+  background: $accentColor;
   background: var(--accentColor);
 }
 
@@ -802,6 +805,7 @@ ul.tabs li.tab a i.material-icons {
 }
 
 .sidenav {
+  background-color: $backgroundColor;
   background-color: var(--backgroundColor);
   width: 350px;
   max-width: 100%;
@@ -832,6 +836,7 @@ ul.tabs li.tab a i.material-icons {
 #settings a i.material-icons {
   display: block;
   font-size: 2.5em;
+  color: $textColor;
   color: var(--textColor);
 }
 
@@ -851,29 +856,30 @@ ul.tabs li.tab a i.material-icons {
 }
 
 .sidenav .dropdown-content {
-  background: #fff;
+  background: $backgroundColor;
   background: var(--backgroundColor);
 }
 
 .sidenav .dropdown-content li>a,
 .dropdown-content li>span {
-  color: #000;
+  color: $inputColor;
   color: var(--inputColor);
 }
 
 select {
+  background-color: $internalColor;
   background-color: var(--internalColor);
 
   border: 1px solid $textColor;
   border: 1px solid var(--textColor);
   border-radius: 3px;
 
-  color: #000;
+  color: $inputColor;
   color: var(--inputColor);
 }
 
 select:focus {
-  border: 1px solid #6d78b5;
+  border: 1px solid $lightAccent;
   border: 1px solid var(--lightAccent);
 
   outline: none;
@@ -920,9 +926,11 @@ select:focus {
   align-self: end;
   justify-self: flex-end;
   font-size: 2.4em;
+  color: $inputColor;
+  color: var(--inputColor);
 }
 
 a {
-  color: #00539b;
+  color: $linkColor;
   color: var(--linkColor);
 }

@@ -38,6 +38,36 @@ const targetLength = 16;
 let chosen = false; // Current preset (False if no preset)
 
 /**
+ * @param  {String} passedTheme - Changes the theme and updates the cookie to match
+ */
+window.changeTheme = function (passedTheme) {
+
+	// Invalid theme
+	if (!themeData[passedTheme]) {
+		throw new Error(`Invalid theme "${passedTheme}" `);
+	}
+
+	setStored("theme", passedTheme);
+
+	document.documentElement.style.setProperty("--accentColor", themeData[passedTheme].accent);
+	document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme].lightAccent);
+	document.documentElement.style.setProperty("--textColor", themeData[passedTheme].text);
+	document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme].background);
+	document.documentElement.style.setProperty("--internalColor", themeData[passedTheme].internal);
+	document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme].incorrect);
+	document.documentElement.style.setProperty("--correctColor", themeData[passedTheme].correct);
+	document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
+	document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
+	document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
+	document.documentElement.style.setProperty("--underlineColor", themeData[passedTheme].underlineColor);
+
+};
+
+// Change theme to stored before the page loads to avoid flicker.
+window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
+
+
+/**
  * Gets a cookie
  * @param  {string} name - The name of the cookie to retrive
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
@@ -205,32 +235,6 @@ window.resultToggle = function () {
  */
 window.getRandomArbitrary = function (min, max) {
 	return Math.trunc(Math.random() * (max - min) + min);
-};
-
-/**
- * @param  {String} passedTheme - Changes the theme and updates the cookie to match
- */
-window.changeTheme = function (passedTheme) {
-
-	// Invalid theme
-	if (!themeData[passedTheme]) {
-		throw new Error(`Invalid theme "${passedTheme}" `);
-	}
-
-	setStored("theme", passedTheme);
-
-	document.documentElement.style.setProperty("--accentColor", themeData[passedTheme].accent);
-	document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme].lightAccent);
-	document.documentElement.style.setProperty("--textColor", themeData[passedTheme].text);
-	document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme].background);
-	document.documentElement.style.setProperty("--internalColor", themeData[passedTheme].internal);
-	document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme].incorrect);
-	document.documentElement.style.setProperty("--correctColor", themeData[passedTheme].correct);
-	document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
-	document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
-	document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
-	document.documentElement.style.setProperty("--underlineColor", themeData[passedTheme].underlineColor);
-
 };
 
 /**
@@ -530,44 +534,21 @@ window.onload = function () {
 
 	window.changeLang(usingLang);
 
+
+	// Themes have already been set, now we handle the options
 	// Process themes.json
 	for (const key in themeData) {
 
 		// Add select option for the theme
 		const themeOption = document.createElement("option");
-		// themeOption.onclick = `changeTheme("${key}")`;
 		themeOption.id = key;
 		themeOption.innerHTML = key;
 		document.querySelector("#theme").appendChild(themeOption);
 
-		// const css = `a[id=${key}]{background-color: ${
-		// 	themeData[key].background
-		// } !important; border: 1px ;}a[id=${key}] i {color: ${themeData[key].text}`;
-		// const style = document.createElement("style");
-		// style.type = "text/css";
-		// if (style.styleSheet) {
-		// 	// This is required for IE8 and below.
-		// 	style.styleSheet.cssText = css;
-		// } else {
-		// 	style.appendChild(document.createTextNode(css));
-		// }
-		// document.getElementsByTagName("head")[0].appendChild(style);
 	}
 
-	// If the user has a prefered theme
-	if (getStored("theme") !== null) {
-		console.debug(`Found a prefered theme. Loading ${getStored("theme")}`);
-
-		window.changeTheme(getStored("theme"));
-		// Select the correct selection
-		document.getElementById("theme").value = getStored("theme");
-	} else {
-		// If no theme cookie exists
-		// Click the vanilla theme.
-		window.changeTheme(defaultTheme);
-		document.getElementById("theme").value = defaultTheme;
-	}
-
+	// Set the select to chosen theme or vanilla as a backup
+	document.getElementById("theme").value = getStored("theme") ? getStored("theme") : defaultTheme;
 
 	// Initialize tooltips
 	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
