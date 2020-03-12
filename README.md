@@ -3,6 +3,7 @@
 ![](https://img.shields.io/github/last-commit/cloverleaf/web.svg)
 [![](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
 ![](https://img.shields.io/github/license/cloverleaf/web.svg)
+[![Crowdin](https://badges.crowdin.net/cloverleaf/localized.svg)](https://crowdin.com/project/cloverleaf)
 
 See the [latest patch notes here](https://github.com/cloverleaf/web/commit/master).
 
