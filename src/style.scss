@@ -934,3 +934,7 @@ a {
   color: $linkColor;
   color: var(--linkColor);
 }
+
+#old {
+  text-overflow: clip;
+}
