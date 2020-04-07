@@ -238,7 +238,8 @@ input[type=number] {
 
 /* Mozilla Firefox 19-50 */
 :-moz-placeholder,
-::-moz-placeholder {
+::-moz-placeholder,
+::placeholder  {
   color: $inputColor;
   color: var(--inputColor);
   opacity: 1;
@@ -938,3 +939,7 @@ a {
 #old {
   text-overflow: clip;
 }
+
+// #new:lang(de) {
+//   background: red;
+// }

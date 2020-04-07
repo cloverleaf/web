@@ -5,7 +5,7 @@
   "main": "jssource.js",
   "scripts": {
     "build": "node config/webpack/config.js",
-    "start": "webpack-dev-server --inline --watch --hot --config config/webpack/config.development.js",
+    "start": "node config/webpack/config.development.js",
     "server-test": "py -m http.server"
   },
   "repository": {
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^9.7.6",
-    "css-loader": "^3.4.2",
+    "css-loader": "^3.5.1",
     "cssnano": "^4.1.10",
     "eslint": "^6.8.0",
     "eslint-loader": "^4.0.0",
