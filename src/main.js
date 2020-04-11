@@ -1,16 +1,22 @@
 /* global M */
 
-// Importing materialize partially is broken (See https://github.com/Dogfalo/materialize/issues/5958)
-// import "materialize-css/js/cash.js";
-// import "materialize-css/js/component.js";
-// import "materialize-css/js/global.js";
-// import "materialize-css/js/tooltip.js";
-// import "materialize-css/js/forms.js"
-// import "materialize-css/js/autocomplete.js";
+// Import what we need from materialize
+import "materialize-css/js/cash.js";
+import "materialize-css/js/component.js";
+import "materialize-css/js/global.js";
+import "materialize-css/js/anime.min.js";
+import "materialize-css/js/tooltip.js";
+import "materialize-css/js/forms.js";
+import "materialize-css/js/autocomplete.js";
+import "materialize-css/js/tabs.js";
+import "materialize-css/js/sidenav.js";
+import "materialize-css/js/toasts.js";
+import "materialize-css/js/buttons";
+import "materialize-css/js/dropdown";
+import "materialize-css/js/waves";
 
 import "./style.scss";
 
-require("materialize-css/dist/js/materialize.min.js");
 import {keccak512} from "js-sha3";
 Math.seedrandom = require("seedrandom");
 

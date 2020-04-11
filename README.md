@@ -52,7 +52,6 @@ I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
 
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
 
-
 ## Licensing
 
 **A full licensing report can be found on [FOSSA](https://app.fossa.com/reports/50704854-c664-4b03-94a6-683674bae968?ref=badge_shield)**
@@ -72,7 +71,6 @@ The [Materialize Framework](https://github.com/Dogfalo/materialize) under the [M
 [PWA Builder](https://www.pwabuilder.com/) under the [MIT license](https://github.com/pwa-builder/serviceworkers/blob/master/LICENSE.txt)
 
 [Material Design icons DX](https://github.com/jossef/material-design-icons-iconfont) under [Apache License 2.0](https://github.com/jossef/material-design-icons-iconfont/blob/master/LICENSEs) (Forked from [Material Design icons](https://github.com/google/material-design-icons))
-
 
 ## Misc
 
