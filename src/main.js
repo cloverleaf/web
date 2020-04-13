@@ -854,3 +854,7 @@ window.sessionToggle = function () {
 		localStorage.removeItem("password");
 	}
 };
+
+window.getVar = function (varName) {
+	return eval(varName);
+};
