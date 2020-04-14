@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const rimraf = require("rimraf");
 const translation = require("./translation.js");
+const SriPlugin = require("webpack-subresource-integrity");
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -34,7 +35,12 @@ const configPromise = new Promise(function (resolve, reject) {
 				plugins: plugins.concat([
 					new MiniCssExtractPlugin({
 						filename: "bundle-[Contenthash:8].css",
-					})
+					}),
+					new SriPlugin({
+						hashFuncNames: ["sha256"],
+						enabled: process.env.NODE_ENV === "production",
+					}),
+					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"})
 				]),
 
 				module: {
@@ -86,6 +92,7 @@ const configPromise = new Promise(function (resolve, reject) {
 
 				entry: "./src/main.js",
 				output: {
+					crossOriginLoading: "anonymous",
 					filename: "bundle-[Contenthash:8].js",
 					path: path.resolve(__dirname, "../../bundles")
 				}

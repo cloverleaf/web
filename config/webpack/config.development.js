@@ -1,85 +1,104 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
+// const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const fs = require("fs");
+const webpack = require("webpack");
+const webpackDevServer = require("webpack-dev-server");
+const translation = require("./translation.js");
 
-// Read json
-const json = JSON.parse(fs.readFileSync(path.join(__dirname, "../../src/strings.json"), "utf8"));
 
-const replacements = {};
+const configPromise = new Promise(function (resolve, reject) {
 
-for (var k in json) {
-	replacements[k] = json[k].message;
-}
+	setTimeout(() => {
 
-module.exports = {
-	mode: "development",
-	target: "web",
+		translation.then( plugins => {
 
-	plugins: [
-		new FriendlyErrorsWebpackPlugin(),
-		new MiniCssExtractPlugin(),
-		new HtmlWebpackPlugin({
-			template: "src/src.html",
-			filename: "index.html",
-			inject: "head",
-			templateParameters: replacements
-		}),
-	],
+			const config = {
+				mode: "development",
+				target: "web",
 
-	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				use: ["source-map-loader"],
-				enforce: "pre"
-			},
-			{
-				test: /\.(s*)css$/,
-				use: [
-					"style-loader",
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {hmr: true}
-					},
-					"css-loader",
-					{
-						loader: "postcss-loader",
-						options: {
-							plugins: () => [require("autoprefixer")]
+				plugins: plugins.concat([
+					new MiniCssExtractPlugin()
+				]),
+
+				module: {
+					rules: [
+						{
+							test: /\.js$/,
+							use: ["source-map-loader"],
+							enforce: "pre"
+						},
+						{
+							test: /\.(s*)css$/,
+							use: [
+								"style-loader",
+								{
+									loader: MiniCssExtractPlugin.loader,
+									options: {hmr: true}
+								},
+								"css-loader",
+								{
+									loader: "postcss-loader",
+									options: {
+										plugins: () => [require("autoprefixer")]
+									}
+								},
+								"sass-loader"
+							]
+						},
+						{
+							test: /\.(woff(2)?|ttf|eot|svg)?$/,
+							use: [{
+								loader: "file-loader",
+								options: {
+									name: "[name].[ext]",
+									outputPath: "fonts/"
+								}
+							}]
 						}
-					},
-					"sass-loader"
-				]
-			},
-			{
-				test: /\.(woff(2)?|ttf|eot|svg)?$/,
-				use: [{
-					loader: "file-loader",
-					options: {
-						name: "[name].[ext]",
-						outputPath: "fonts/"
-					}
-				}]
-			}
-		]
-	},
+					]
+				},
 
-	entry: "./src/main.js",
-	output: {
-		filename: "main.js"
-	},
+				entry: "./src/main.js",
+				output: {
+					filename: "main.js"
+				},
 
 
-	devtool: "source-map",
-	devServer: {
-		compress: true,
-		contentBase: "./",
-		port: 8080,
-		open: true,
-		// For FriendlyErrorsWebpackPlugin
-		quiet: true,
-	}
+				devtool: "source-map",
+				devServer: {
+					compress: true,
+					contentBase: "./",
+					port: 8080,
+					open: true,
+					// For FriendlyErrorsWebpackPlugin
+					// quiet: true,
+				}
 
-};
+			};
+
+			resolve(config);
+
+		});}
+	, 1000);
+});
+
+
+configPromise
+	// Passes the config to webpack
+	.then(config => {
+
+		const compiler = webpack(config);
+
+		// webpack-dev-server --inline --watch --hot --config config/webpack/config.development.js
+
+		const devServerOptions = Object.assign({}, config.devServer, {
+			open: true,
+			inline: true,
+			hot: true
+		});
+
+		const server = new webpackDevServer(compiler, devServerOptions);
+
+		server.listen(8080, "127.0.0.1", () => {
+			console.log("Starting server on http://localhost:8080");
+		});
+	});

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="${langCode}">
+<html lang="<%= langCode %>">
   <head>
 
     <meta charset="utf-8">
@@ -8,7 +8,7 @@
     <title>Cloverleaf</title>
 
     <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
-    <meta name="description" content="${description}">
+    <meta name="description" content="<%= description %>">
     <meta name="robots" content="index, nofollow">
     <meta name="author" content="ChildishGiant">
     <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app">
@@ -19,7 +19,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- OpenGraph -->
-    <meta property="og:description" content="${description}">
+    <meta property="og:description" content="<%= description %>">
     <meta property="og:title" content="Cloverleaf">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cloverleaf.app">
@@ -34,7 +34,7 @@
     <meta name="twitter:creator" content="@ChildishGiant">
     <meta name="twitter:creator:id" content="871150969417084928">
     <meta name="twitter:title" content="Cloverleaf">
-    <meta name="twitter:description" content="${description}">
+    <meta name="twitter:description" content="<%= description %>">
     <meta name="twitter:image" content="https://cloverleaf.app/android-chrome-512x512.png">
 
     <!-- Icons -->
@@ -62,12 +62,12 @@
     <ul id="slide-out" class="sidenav">
       <div class="row">
           <ul class="tabs" id="engineTabs">
-              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="${securityWarning}" tabindex="0">
+              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="<%= securityWarning %>" tabindex="0">
                 <a onclick="setMode('old');" href="#old" id="old">
-                  <i class="material-icons">warning</i> ${legacy} <i class="material-icons">warning</i>
+                  <i class="material-icons">warning</i> <%= legacy %> <i class="material-icons">warning</i>
                 </a>
               </li>
-              <li class="tab col s6"><a onclick="setMode('new');" href="#new">${suggested}</a></li>
+              <li class="tab col s6"><a onclick="setMode('new');" href="#new"><%= suggested %></a></li>
           </ul>
       </div>
 
@@ -75,33 +75,33 @@
         <div class="input-field" id="theme-container">
           <select id="theme" onchange="changeTheme(this.value)" class="browser-default">
           </select>
-          <label>${theme}</label>
+          <label><%= theme %></label>
         </div>
 
 
         <div class="input-field" id="lang-container">
           <select id="lang" onchange="changeLang(this.selectedOptions[0].dataset.short)" class="browser-default">
           </select>
-          <label>${language}</label>
+          <label><%= language %></label>
         </div>
 
         <div class="input-field" id="session-container">
 
-          <label for="session">${remember}</label>
+          <label for="session"><%= remember %></label>
 
           <div class="switch" id="session" onclick="sessionToggle();">
             <label>
-              ${off}
+              <%= off %>
               <input type="checkbox" id="session-toggle">
               <span class="lever"></span>
-              ${on}
+              <%= on %>
             </label>
           </div>
         </div>
 
         <div id="footer">
           <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
-            ${install} <i class="material-icons" id="install-icon">add_to_home_screen</i>
+            <%= install %> <i class="material-icons" id="install-icon">add_to_home_screen</i>
           </a>
           <i class="material-icons" id="close" onclick="side.close();">close</i>
         </div>
@@ -122,7 +122,7 @@
       <div id="back" role="main">
 
         <div class="input-field">
-          <label for="app">${app}</label>
+          <label for="app"><%= app %></label>
           <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false">
@@ -130,47 +130,47 @@
         </div>
 
         <div class="input-field">
-          <label for="pass">${pass}</label>
+          <label for="pass"><%= pass %></label>
           <input id="pass" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
         </div>
 
         <div class="switch" onclick="passwordToggle();">
           <label>
-            ${show}
+            <%= show %>
             <input type="checkbox" id="passwordToggle" checked="checked">
             <span class="lever" id="passTogglelever"></span>
-            ${hide}
+            <%= hide %>
           </label>
         </div>
 
         <div class="input-field">
-          <label for="length">${length}</label>
+          <label for="length"><%= length %></label>
           <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
         </div>
 
-        <span class="hint">${hint}</span>
+        <span class="hint"><%= hint %></span>
 
-        <input id="result" type="password" placeholder="${noPassword}" readonly="readonly">
+        <input id="result" type="password" placeholder="<%= noPassword %>" readonly="readonly">
 
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
-            ${show}
+            <%= show %>
             <input type="checkbox" id="resultToggle" checked="checked">
             <span class="lever" id="resultTogglelever"></span>
-            ${hide}
+            <%= hide %>
           </label>
         </div>
 
-        <button id="copy" class="waves-effect waves-light btn" onclick="copy();">${copy}</button>
+        <button id="copy" class="waves-effect waves-light btn" onclick="copy();"><%= copy %></button>
 
         <div class="cf">
-          <a href="faq" id="faq" title="Frequently Asked Questions - Cloverleaf">${faq}</a>
+          <a href="faq" id="faq" title="Frequently Asked Questions - Cloverleaf"><%= faq %></a>
         </div>
 
       </div>
     </div>
 
-    <a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="${viewSource}" title="${viewSource}" tabindex="-1">
+    <a href="https://github.com/cloverleaf/web" class="github-corner" aria-label="<%= viewSource %>" title="<%= viewSource %>" tabindex="-1">
       <svg width="5em" height="5em" viewBox="0 0 250 250"  aria-hidden="true" tabindex="0">
         <defs>
           <mask id="octomask">
@@ -186,7 +186,7 @@
 
     <noscript>
       <div id="jsBanner">
-        <a href="https://www.enable-javascript.com/?ref=Cloverleaf" target="_blank">${jsMessage}</a>
+        <a href="https://www.enable-javascript.com/?ref=Cloverleaf" target="_blank"><%= jsMessage %></a>
       </div>
     </noscript>
 

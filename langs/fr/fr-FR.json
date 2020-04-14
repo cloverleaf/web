@@ -1,30 +1,30 @@
 {
 	"legacy": {
-		"message": "Legacy mode",
+		"message": "Mode patrimonial",
 		"description": "This appears on the button to change to legacy mode"
 	},
 	"suggested": {
-		"message": "Suggested mode",
+		"message": "Mode suggéré",
 		"description": "This appears on the button to change to suggested mode"
 	},
 	"theme": {
-		"message": "Theme",
+		"message": "Thème",
 		"description": "Label for the theme selector"
 	},
 	"remember": {
-		"message": "Remember my password",
+		"message": "Mémoriser mon mot de passe",
 		"description": "Label for the password saving toggle"
 	},
 	"off": {
-		"message": "Off",
+		"message": "Non",
 		"description": "Shows the state of an option"
 	},
 	"on": {
-		"message": "On",
+		"message": "Oui",
 		"description": ""
 	},
 	"install": {
-		"message": "Install as a native app",
+		"message": "Installer comme application native",
 		"description": ""
 	},
 	"app": {
@@ -32,51 +32,51 @@
 		"description": "Label for the Application field"
 	},
 	"pass": {
-		"message": "Master password",
+		"message": "Mot de passe principal",
 		"description": "Label for the password field"
 	},
 	"show": {
-		"message": "Show",
+		"message": "Afficher",
 		"description": ""
 	},
 	"hide": {
-		"message": "Hide",
+		"message": "Masquer",
 		"description": ""
 	},
 	"length": {
-		"message": "Length of password",
+		"message": "Longueur du mot de passe",
 		"description": "Label for the length field"
 	},
 	"hint": {
-		"message": "The longer, the better",
+		"message": "Plus c'est long, mieux c'est",
 		"description": "Shown underneath the length field"
 	},
 	"copy": {
-		"message": "Copy password",
+		"message": "Copier le mot de passe",
 		"description": "Shown on the copy password button"
 	},
 	"faq": {
-		"message": "Help and FAQs",
+		"message": "Aide et FAQ",
 		"description": ""
 	},
 	"jsMessage": {
-		"message": "This website requires js to work.",
+		"message": "Ce site nécessite js pour fonctionner.",
 		"description": "Message shown when the user has javascript disabled"
 	},
 	"noPassword": {
-		"message": "No password :)",
+		"message": "Pas de mot de passe :)",
 		"description": "Message shown when there is no outputted password"
 	},
 	"securityWarning": {
-		"message": "Significantly less secure",
+		"message": "Considérablement moins sécurisé",
 		"description": "Shown when hovering on Legacy Mode"
 	},
 	"viewSource": {
-		"message": "View source on Github",
+		"message": "Voir la source sur Github",
 		"description": "Shown when hovering on the octocat in the corner. Also used by screen readers"
 	},
 	"description": {
-		"message": "Cloverleaf is a free, open source app to replace your password manager without storing your passwords anywhere.",
+		"message": "Cloverleaf est une appli libre et de source ouverte qui remplace votre gestionnaire de mots de passe, sans garder vos mots de passe ailleurs.",
 		"description": "This is the description shown on search engines"
 	},
 	"langCode": {
@@ -84,7 +84,7 @@
 		"description": "The locale code of the language you're translating too"
 	},
 	"language": {
-		"message": "Language",
+		"message": "Langue",
 		"description": "Label for the language selector"
 	}
 }
