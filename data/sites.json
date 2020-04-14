@@ -430,12 +430,14 @@
     "maxLength":16,
     "requirements":["low", "num"]
   },
-  "Rabbit":{
-    "minLength":8,
-    "requirements":["low", "cap", "num"]
-  },
   "Reddit":{
     "minLength":6
+  },
+  "Riot Games": {
+    "minLength": 8,
+    "maxLength": 128,
+    "requirements": ["low", "num"],
+    "mini": true
   },
   "Rockstar Games Social Club":{
     "minLength":8,
