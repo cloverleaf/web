@@ -7,16 +7,10 @@ from meta import pass_vis
 from meta import get_var
 getVar = get_var.getVar
 
-local = False
-
 address = "http://localhost:8080/"
 
 options = Options()
 options.headless = True
-
-if local:
-    address = "https://dev.cloverleaf.app/"
-    options.headless = False
 
 
 @pytest.fixture()
@@ -72,5 +66,42 @@ def test_enter_preset(driver):
     assert logo.get_attribute("src") == address+"logos/Apple.svg", "Enter not setting preset logo src"
     assert logo.get_attribute("title") == "Apple", "Enter not setting preset logo title"
     assert logo.get_attribute("alt") == "Apple", "Enter not setting preset logo alt"
+
+
+# Tests to make sure that query strings presets are loaded properly
+def test_qs_preset(driver):
+
+    driver.get(address + "?app=Apple")
+
+    appElem = driver.find_element_by_id("app")
+    logo = driver.find_element_by_id("logo")
+
+    assert appElem.get_attribute("value") == "Apple", "Query strings not setting preset name"
+    assert getVar(driver, "minLength") == 8, "Query strings not setting preset minLength"
+    assert getVar(driver, "maxLength") == 32, "Query strings not setting preset maxLength"
+
+    # Logo
+    assert logo.get_attribute("src") == address+"logos/Apple.svg", "Query strings not setting preset logo src"
+    assert logo.get_attribute("title") == "Apple", "Query strings not setting preset logo title"
+    assert logo.get_attribute("alt") == "Apple", "Query strings not setting preset logo alt"
+
+
+# Tests to make sure that query strings without presets are loaded properly
+def test_qs_no_preset(driver):
+
+    driver.get(address + "?app=apple")
+
+    appElem = driver.find_element_by_id("app")
+    logo = driver.find_element_by_id("logo")
+
+    assert appElem.get_attribute("value") == "apple", "Query string incorrectly setting non-preset name"
+    assert getVar(driver, "minLength") == getVar(driver, "defaultMinLength"), "Query string incorrectly setting non-preset minLength"
+    assert getVar(driver, "maxLength") == getVar(driver, "defaultMaxLength"), "Query string incorrectly setting non-preset maxLength"
+
+    # Logo
+    assert logo.get_attribute("src") is None, "Query string incorrectly setting non-preset logo src"
+    assert logo.get_attribute("title") == "", "Query string incorrectly setting non-preset logo title"
+    assert logo.get_attribute("alt") == "", "Query string incorrectly setting non-preset logo alt"
+
 
 # def test_all_themes(driver):

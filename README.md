@@ -1,8 +1,9 @@
 # [Cloverleaf](https://cloverleaf.app/)
 
-![](https://img.shields.io/github/last-commit/cloverleaf/web.svg)
-[![](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
-![](https://img.shields.io/github/license/cloverleaf/web.svg)
+![CI](https://github.com/cloverleaf/web/workflows/CI/badge.svg)
+![Last commit label](https://img.shields.io/github/last-commit/cloverleaf/web.svg)
+[![Up or down indicator](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
+![MIT License](https://img.shields.io/github/license/cloverleaf/web.svg)
 [![Crowdin](https://badges.crowdin.net/cloverleaf/localized.svg)](https://crowdin.com/project/cloverleaf)
 
 See the [latest patch notes here](https://github.com/cloverleaf/web/commit/master).
@@ -46,11 +47,13 @@ This feature was implemented in a safer fashion in v0.4, using cookies.
 
 Microsoft's [VS Code](https://code.visualstudio.com/) is my text editor of choice.
 
-All minimization is done using [Prepros](https://prepros.io).
+All minimization is done using [Webpack](https://webpack.js.org/).
 
 I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
 
 Thanks to [RealFaviconGenerator](https://realfavicongenerator.net) for making a glorious website that makes making favicons easy.
+
+We use [Crowdin](https://crowdin.com/project/cloverleaf) for localisation.
 
 ## Licensing
 

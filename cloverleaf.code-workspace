@@ -18,6 +18,12 @@
 				"url": "/data/sites_schema.json"
 			},
 	],
-	"git.ignoreLimitWarning": true
+	"git.ignoreLimitWarning": true,
+
+	// Python testing
+	"python.linting.pylintEnabled": true,
+	"python.analysis.disabled": [
+		"unresolved-import"
+	],
 	}
 }

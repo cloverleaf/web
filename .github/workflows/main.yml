@@ -20,10 +20,6 @@ jobs:
         sudo chmod +x /usr/bin/geckodriver
         rm geckodriver-v0.24.0-linux64.tar.gz
         export PATH=$PATH:/usr/bin/geckodriver
-    - name: Test to see how github actions work
-      run: |
-        pwd
-        ls
     - name: Test with pytest
       run: |
         cd unit_tests
