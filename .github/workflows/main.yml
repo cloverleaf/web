@@ -8,7 +8,7 @@ jobs:
     - uses: actions/checkout@master
     - name: Start server
       run: |
-        npx http-server --port 8080
+        npx http-server --port 8080 &
         cd unit_tests
     - name: Install dependencies
       run: |
