@@ -6,9 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Clone commit
+    - name: Start server
       run: |
-        ls
+        npx http-server --port 8080
+        cd unit_tests
     - name: Install dependencies
       run: |
         # sudo apt-get install xvfb firefox
@@ -22,6 +23,4 @@ jobs:
         export PATH=$PATH:/usr/bin/geckodriver
     - name: Test with pytest
       run: |
-        npx http-server --port 8080
-        cd unit_tests
         python3 -m pytest
