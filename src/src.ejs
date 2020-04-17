@@ -191,10 +191,17 @@
     </noscript>
 
     <script>
+
+      const scriptTag = document.querySelector("script[src^=bundles\\/bundle-]");
+			const cssTag = document.querySelector("link[href^=bundles\\/bundle-]");
+
+			const inUse = [scriptTag.src, cssTag.href];
+
       //This is the "Offline copy of pages" service worker
       // Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
       if (navigator.serviceWorker.controller) {
         console.log('Active service worker found, no need to register')
+        navigator.serviceWorker.controller.postMessage(inUse);
       } else {
         //Register the ServiceWorker
         navigator.serviceWorker.register('sw.js', {

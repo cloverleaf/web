@@ -236,10 +236,10 @@ input[type=number] {
   color: var(--inputColor);
 }
 
-input:-moz-placeholder,
-input::-moz-placeholder {
-  color: $inputColor;
-  color: var(--inputColor);
+// Colour fix
+#result::placeholder {
+  color: $inputColor !important;
+  color: var(--inputColor) !important;
   opacity: 1;
 }
 
