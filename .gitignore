@@ -6,3 +6,9 @@ desktop.ini
 node_modules/
 
 config/crowdin-key.txt
+
+__pycache__
+
+.pytest_cache/
+
+geckodriver.log

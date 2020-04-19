@@ -1,12 +1,26 @@
-name: Dispatch
+name: CI
 on: [push, pull_request]
 jobs:
-  trigger:
+  build:
+
     runs-on: ubuntu-latest
     steps:
-      - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: cloverleaf/unit-tests
-          event-type: 'dispatchEvent'
+    - uses: actions/checkout@master
+    - name: Start server
+      run: npx http-server --port 8080 &
+    - name: Install dependencies
+      run: |
+        cd unit_tests
+        # sudo apt-get install xvfb firefox
+        python3 -m pip install -r requirements.txt
+    - name: Gecko setup
+      run: |
+        wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
+        sudo sh -c 'tar -x geckodriver -zf geckodriver-v0.24.0-linux64.tar.gz -O > /usr/bin/geckodriver'
+        sudo chmod +x /usr/bin/geckodriver
+        rm geckodriver-v0.24.0-linux64.tar.gz
+        export PATH=$PATH:/usr/bin/geckodriver
+    - name: Test with pytest
+      run: |
+        cd unit_tests
+        python3 -m pytest

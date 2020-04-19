@@ -24,7 +24,7 @@ Math.seedrandom = require("seedrandom");
 const jsonData = require("../data/sites.json");
 const themeData = require("../data/themes.json");
 const langData = require("../langs/langs.json");
-const autoCompleteData = {}; // Here for scope perposes
+const autoCompleteData = {}; // Here for scope purposes
 const defaultMinLength = 4; // We
 const defaultMaxLength = 512; // All
 let minLength = defaultMinLength; // Are,
@@ -75,7 +75,7 @@ window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
 
 /**
  * Gets a cookie
- * @param  {string} name - The name of the cookie to retrive
+ * @param  {string} name - The name of the cookie to retrieve
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
  */
 function getStored (name) {

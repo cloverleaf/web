@@ -236,22 +236,11 @@ input[type=number] {
   color: var(--inputColor);
 }
 
-/* Mozilla Firefox 19-50 */
-:-moz-placeholder,
-::-moz-placeholder,
-::placeholder  {
-  color: $inputColor;
-  color: var(--inputColor);
+// Colour fix
+#result::placeholder {
+  color: $inputColor !important;
+  color: var(--inputColor) !important;
   opacity: 1;
-}
-
-/* WebKit, Blink, Edge, Internet Explorer, Modern browsers */
-::-webkit-input-placeholder,
-:-ms-input-placeholder,
-::-ms-input-placeholder,
-::placeholder {
-  color: $inputColor;
-  color: var(--inputColor);
 }
 
 #copy {
