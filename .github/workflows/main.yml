@@ -16,11 +16,6 @@ jobs:
         npm i
         npm run-script build
 
-  ci:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
     - name: Start server
       run: npx http-server --port 8080 &
 
