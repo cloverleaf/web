@@ -40,7 +40,7 @@ function processTranslations () {
 
 			langs[code] = {
 				native: lc.getLanguageNativeName(code),
-				english: lc.getLanguageName(code)
+				// english: lc.getLanguageName(code)
 			};
 
 			// Add plugin instance to array

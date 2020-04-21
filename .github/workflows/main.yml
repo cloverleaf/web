@@ -6,13 +6,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: Get secrets
+      run: |
+        cd config
+        echo "${{ secrets.crowdin_key }}" > crowdin-key.txt
+
+    - name: Webpack build
+      run: |
+        npm i
+        npm run-script build
+
     - name: Start server
       run: npx http-server --port 8080 &
+
     - name: Install dependencies
       run: |
         cd unit_tests
         # sudo apt-get install xvfb firefox
         python3 -m pip install -r requirements.txt
+
     - name: Gecko setup
       run: |
         wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
@@ -20,6 +32,7 @@ jobs:
         sudo chmod +x /usr/bin/geckodriver
         rm geckodriver-v0.24.0-linux64.tar.gz
         export PATH=$PATH:/usr/bin/geckodriver
+
     - name: Test with pytest
       run: |
         cd unit_tests

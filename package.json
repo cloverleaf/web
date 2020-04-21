@@ -5,7 +5,7 @@
   "main": "jssource.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node config/webpack/config.js",
-    "start": "cross-env NODE_ENV=dev node config/webpack/config.development.js",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --inline --watch --config config/webpack/config.development.js",
     "server-test": "py -m http.server"
   },
   "repository": {

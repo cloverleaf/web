@@ -30,7 +30,6 @@ const defaultMaxLength = 512; // All
 let minLength = defaultMinLength; // Are,
 let maxLength = defaultMaxLength; // Really
 const defaultTheme = "Vanilla";
-const debugMode = false;
 const extension = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? ".html" : ""; // Fix links if running locally
 let mode;
 const possibleRequirements = {
@@ -90,74 +89,6 @@ function getStored (name) {
  */
 function setStored (name, value) {
 	localStorage.setItem(name, value);
-}
-
-function checkDebug () {
-	if (debugMode) {
-		document.title += ` - Debug ${new Date().getTime()}`;
-		console.debug("Enabling debug css");
-		const link = document.createElement("link");
-		link.setAttribute("rel", "stylesheet");
-		link.setAttribute("type", "text/css");
-		link.setAttribute("href", "debug.css");
-		document.getElementsByTagName("head")[0].appendChild(link);
-
-		// Add select option for an all #ff00ff theme
-
-		themeData.testTheme = {
-			"accent": "#ff00ff",
-			"lightAccent": "#ff00ff",
-			"text": "#ff00ff",
-			"background": "#ff00ff",
-			"internal": "#ff00ff",
-			"incorrect": "#ff00ff",
-			"correct": "#ff00ff",
-			"inputColor": "#ff00ff",
-			"linkColor": "#ff00ff",
-			"highlightColor": "#ff00ff",
-			"underlineColor": "#ff00ff"
-		};
-
-		const themeOption = document.createElement("option");
-		themeOption.onclick = "changeTheme('testTheme')";
-		themeOption.id = "testTheme";
-		themeOption.innerHTML = "testTheme";
-		document.querySelector("#options .input-field select").appendChild(themeOption);
-
-		const css = "a[id=testTheme]{background-color: #ff00ff !important; border: 1px ;}a[id=testTheme] i {color: #ff00ff";
-		const style = document.createElement("style");
-		style.type = "text/css";
-		if (style.styleSheet) {
-			// This is required for IE8 and below.
-			style.styleSheet.cssText = css;
-		} else {
-			style.appendChild(document.createTextNode(css));
-		}
-		document.getElementsByTagName("head")[0].appendChild(style);
-
-	}
-
-	// If running locally
-	if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-
-		// Change the page title so I can tell the tabs apart
-		document.title += " - LocalHost";
-
-		// Fix faq link
-		document.getElementById("faq").href += ".html";
-
-	// If the user is on the dev build
-	} else if(location.hostname === "dev.cloverleaf.app") {
-
-		// Change title
-		document.title += " - Dev Build";
-
-		// Change favicon
-		var link = document.createElement("link");
-		link.rel = "shortcut icon";
-		link.href = "dev.ico";
-		document.head.appendChild(link);
-	}
 }
 
 function getQueryStrings () {
@@ -737,7 +668,21 @@ window.onload = function () {
 		document.querySelector("label[for='pass']").classList.add("active");
 	}
 
-	checkDebug();
+	// If the user is on the dev build
+	if(location.hostname === "dev.cloverleaf.app") {
+
+		// Change title
+		document.title += " - Dev Build";
+
+		// Change favicon
+		var ico = document.createElement("link");
+		ico.rel = "shortcut icon";
+		ico.href = "dev.ico";
+		document.head.appendChild(ico);
+	}
+
+	if (process.env.NODE_ENV === "development") require("./debug");
+
 };
 
 
