@@ -44,10 +44,6 @@
 				"highlightColor": {
 					"type": "string",
 					"format": "color"
-				},
-				"underlineColor": {
-					"type": "string",
-					"format": "color"
 				}
 			},
 			"required": [
@@ -60,8 +56,7 @@
 				"correct",
 				"inputColor",
 				"linkColor",
-				"highlightColor",
-				"underlineColor"
+				"highlightColor"
 			]
 		}
 	},
