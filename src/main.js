@@ -191,7 +191,7 @@ window.changeLang = function (passedLang) {
 	const file = passedLang === "en-GB" ? "/" : "/" + passedLang + extension;
 
 	// If not on the chosen page
-	if (window.location.pathname !== file) {
+	if (window.location.pathname.toLowerCase() !== file.toLowerCase() ) {
 		window.location.pathname = file;
 	}
 };
