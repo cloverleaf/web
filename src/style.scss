@@ -8,7 +8,7 @@
 @import "node_modules/materialize-css/sass/components/color-variables";
 
 $accentColor: #3f51b5;
-$lightAccent: #6d78b5;
+$lightAccent: lighten($accentColor, 15%);
 $textColor: #535353;
 $backgroundColor: #fff;
 $internalColor: #fff;
@@ -17,7 +17,6 @@ $correctColor: #8fff66;
 $inputColor: #000;
 $linkColor: #00539b;
 $highlightColor: #eee;
-$underlineColor: #3f51b5;
 
 $secondary-color: $accentColor;
 
@@ -119,17 +118,16 @@ $link-color: $linkColor;
 }
 
 :root {
-  --accentColor: #3f51b5;
-  --lightAccent: #6d78b5;
-  --textColor: #535353;
-  --backgroundColor: #fff;
-  --internalColor: #fff;
-  --incorrectColor: #f44336;
-  --correctColor: #8fff66;
-  --inputColor: #000;
-  --linkColor: #00539b;
-  --highlightColor: #eee;
-  --underlineColor: #3f51b5;
+  --accentColor: #{$accentColor};
+  --lightAccent: #{$lightAccent};
+  --textColor: #{$textColor};
+  --backgroundColor: #{$backgroundColor};
+  --internalColor: #{$internalColor};
+  --incorrectColor: #{$incorrectColor};
+  --correctColor: #{$correctColor};
+  --inputColor: #{$inputColor};
+  --linkColor: #{$linkColor};
+  --highlightColor: #{$highlightColor};
 }
 
 html,
@@ -190,10 +188,10 @@ label,
 .input-field input[type=text]:focus,
 .input-field input[type=number]:focus,
 .input-field input[type=password]:focus {
-  border-bottom: 1px solid $underlineColor !important;
-  border-bottom: 1px solid var(--underlineColor) !important;
-  box-shadow: 0 1px 0 0 $underlineColor !important;
-  box-shadow: 0 1px 0 0 var(--underlineColor) !important;
+  border-bottom: 1px solid $accentColor !important;
+  border-bottom: 1px solid var(--accentColor) !important;
+  box-shadow: 0 1px 0 0 $accentColor !important;
+  box-shadow: 0 1px 0 0 var(--accentColor) !important;
 }
 
 input[type=text]:not(#result):not(.select-dropdown),

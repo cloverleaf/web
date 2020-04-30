@@ -86,5 +86,9 @@
 	"language": {
 		"message": "Sprache",
 		"description": "Label for the language selector"
+	},
+	"session": {
+		"message": "Saved locally on your device",
+		"description": "shown when hovering on the \"Remember my password\" toggle"
 	}
 }

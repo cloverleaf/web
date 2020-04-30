@@ -24,8 +24,7 @@ if (debug) {
 		"correct": "#ff00ff",
 		"inputColor": "#ff00ff",
 		"linkColor": "#ff00ff",
-		"highlightColor": "#ff00ff",
-		"underlineColor": "#ff00ff"
+		"highlightColor": "#ff00ff"
 	};
 
 	const themeOption = document.createElement("option");
