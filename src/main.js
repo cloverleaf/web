@@ -49,7 +49,8 @@ window.changeTheme = function (passedTheme) {
 
 	// Invalid theme
 	if (!themeData[passedTheme]) {
-		throw new Error(`Invalid theme "${passedTheme}" `);
+		console.error(`Invalid theme "${passedTheme}", defaulting to ${defaultTheme}`);
+		passedTheme = defaultTheme;
 	}
 
 	setStored("theme", passedTheme);
@@ -64,7 +65,6 @@ window.changeTheme = function (passedTheme) {
 	document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
 	document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
 	document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
-	document.documentElement.style.setProperty("--underlineColor", themeData[passedTheme].underlineColor);
 
 };
 
@@ -700,7 +700,7 @@ function colourUnderline () {
 		)}%, ${window.getRandomArbitrary(45, 80)}%)`;
 		document
 			.getElementById("pass")
-			.style.setProperty("--underlineColor", colour);
+			.style.setProperty("--accentColor", colour);
 	} else {
 		// If there's no password, reset the underline colour
 		document.getElementById("pass").removeAttribute("style");
