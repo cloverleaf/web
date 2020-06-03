@@ -5,6 +5,7 @@ const fs = require("fs");
 const rimraf = require("rimraf");
 const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
+const TerserPlugin = require("terser-webpack-plugin");
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -31,6 +32,31 @@ const configPromise = new Promise(function (resolve, reject) {
 			const config = {
 				mode: "production",
 				target: "web",
+
+				optimization: {
+					minimize: true,
+					minimizer: [new TerserPlugin({
+						terserOptions: {
+							compress: {
+								defaults: true
+							},
+							keep_classnames: false,
+							keep_fnames: false,
+							mangle: {
+								toplevel: true,
+								eval: true,
+								reserved: [
+									"minLength",
+									"defaultMinLength",
+									"maxLength",
+									"defaultMaxLength",
+								]
+							},
+						},
+						extractComments: {filename:"LICENSE.txt"},
+					}
+					)],
+				},
 
 				plugins: plugins.concat([
 					new MiniCssExtractPlugin({

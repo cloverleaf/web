@@ -64,6 +64,7 @@ function processTranslations () {
 	// Write langs to json
 	fs.writeFileSync(path.join(__dirname, "../../langs/langs.json"), JSON.stringify(langs));
 
+	console.log("Finished processing translations");
 
 	return pluginsStart;
 

@@ -102,6 +102,3 @@ def test_qs_no_preset(driver):
     assert logo.get_attribute("src") is None, "Query string incorrectly setting non-preset logo src"
     assert logo.get_attribute("title") == "", "Query string incorrectly setting non-preset logo title"
     assert logo.get_attribute("alt") == "", "Query string incorrectly setting non-preset logo alt"
-
-
-# def test_all_themes(driver):

@@ -63,7 +63,7 @@
       <div class="row">
           <ul class="tabs" id="engineTabs">
               <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="<%= securityWarning %>" tabindex="0">
-                <a onclick="setMode('old');" href="#old" id="old">
+                <a onclick="setMode('insecure');" href="#old" id="old">
                   <i class="material-icons">warning</i> <%= legacy %> <i class="material-icons">warning</i>
                 </a>
               </li>
@@ -145,7 +145,7 @@
 
         <div class="input-field">
           <label for="length"><%= length %></label>
-          <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="process();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
+          <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="fixLength();generate();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
         </div>
 
         <span class="hint"><%= hint %></span>

@@ -17,11 +17,11 @@ import "materialize-css/js/waves";
 
 import "./style.scss";
 
-import {keccak512} from "js-sha3";
 Math.seedrandom = require("seedrandom");
+const cloverleaf = require("cloverleaf");
 
 
-const jsonData = require("../data/sites.json");
+const jsonData = Object.assign(require("../data/logos.json"), cloverleaf.siteData);
 const themeData = require("../data/themes.json");
 const langData = require("../langs/langs.json");
 const autoCompleteData = {}; // Here for scope purposes
@@ -32,15 +32,20 @@ let maxLength = defaultMaxLength; // Really
 const defaultTheme = "Vanilla";
 const extension = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? ".html" : ""; // Fix links if running locally
 let mode;
-const possibleRequirements = {
-	cap: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-	low: "abcdefghijklmnopqrstuvwxyz",
-	num: "0123456789",
-	special: "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-};
 const targetLength = 16;
 // let select; // Theme selector
-let chosen = false; // Current preset (False if no preset)
+let presetInUse = false; // Flag true if a preset is selected
+
+window.generate = function () {
+	document.getElementById("result").value =
+	cloverleaf.process(
+		document.getElementById("app").value.trim(),
+		document.getElementById("pass").value,
+		Math.trunc(document.getElementById("length").value),
+		presetInUse,
+		mode
+	);
+};
 
 /**
  * @param  {String} passedTheme - Changes the theme and updates the cookie to match
@@ -196,161 +201,15 @@ window.changeLang = function (passedLang) {
 	}
 };
 
-// Take inputs and display a password. (The black box)
-window.process = function () {
-	let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"; // Defualt character set (Set here but overwritten if there's a custom one.)
-	const requirements = []; // By default we have no requirements but reset it so we don't carry them over
-	let regex; // Blank for the same reason
-	let appName = document.getElementById("app").value.trim();
-	const masterPass = document.getElementById("pass").value;
-	const length = Math.trunc(document.getElementById("length").value); // Get the desired length of a password and make sure it's an integer
-	let result = ""; // Has to be here, not in the loop for scope purposes
-
-	if (!(minLength <= length && length <= maxLength)) {
-		// if the length is invalid
-		if (length > maxLength) {
-			// Too long
-			document.getElementById("length").value = maxLength;
-		} else if (length < minLength) {
-			// Too short
-			document.getElementById("length").value = minLength;
-		} else {
-			// Should never be triggered but better safe than sorry
-			document.getElementById("length").value = 16;
-			throw new Error("This should never happen");
-		}
-
-		// Now we have a sensible value, restart the process
-		window.process();
-		return;
-	}
-
-	// If the appname or password or length are empty
-	if (appName === "" || masterPass === "" || length === "") {
-		// Empty the output field
-		document.getElementById("result").value = "";
-		// Stop function from generating new password
-		return;
-	}
-
-	// If there's a preset in use
-	if (chosen) {
-		// If it's a site with a preset
-		console.debug(`Found preset: ${appName}`);
-
-		// If it's an alias for another app
-		if (jsonData[appName].alias) {
-			// Change the name of the app we're using to its alias
-			appName = jsonData[appName].alias;
-		}
-
-		// If it has a custom character set
-		if ("chars" in jsonData[appName]) {
-			// Replace the default character set with the supplied one.
-			chars = jsonData[appName].chars;
-		}
-
-		// If it has a regex
-		if ("regex" in jsonData[appName]) {
-			// Set the regex to match
-			try {
-				regex = new RegExp(jsonData[appName].regex);
-			} catch (SyntaxError) {
-				throw new Error(`Invalid regex from ${appName} "${jsonData[appName].regex}"`);
-			}
-		}
-
-		if ("requirements" in jsonData[appName]) {
-			for (let i = 0; i < jsonData[appName].requirements.length; i++) {
-				requirements.push(
-					possibleRequirements[jsonData[appName].requirements[i]]
-				);
-			}
-		}
-	}
-
-	console.debug("Started generating password");
-
-	// Set the generation seed
-	if (mode === "new") {
-		Math.seedrandom(keccak512(appName.toLowerCase() + masterPass));
-	} else {
-		Math.seedrandom(appName.toLowerCase() + masterPass);
-	}
-
-	// password generation cycle
-	while (true) {
-		result = "";
-		while (result.length < length) {
-			// Add one seeded random character at a time
-			result += chars[Math.floor(Math.random() * chars.length)];
-		}
-
-		// If there's requirements to forfill
-		if (requirements.length !== 0 || regex) {
-			let nope = false;
-			for (let j = 0; j < requirements.length; j++) {
-				// For each requirement
-				for (let c = 0; c < requirements[j].length; c++) {
-					// For each character in the requirement group
-
-					// Check all characters
-					if (result.indexOf(requirements[j][c]) !== -1) {
-						// If that character is in the password
-						break;
-					}
-
-					// If we're on the last character
-					if (
-						requirements[j].indexOf(requirements[j][c]) === requirements[j].length - 1
-					) {
-						nope = true;
-						break;
-					}
-				}
-
-				// If it's already failed a requirement
-				if (nope) {
-					// Don't bother checking the rest
-					break;
-				}
-			}
-
-			// If there's a regex and we've not already failed
-			if (regex && !nope) {
-				// See if the generated password fails the regex
-				if (!regex.test(result)) {
-					console.log(regex.test(result), result);
-					nope = true;
-				}
-			}
-
-			if (!nope) {
-				// If all tests passed
-				break;
-				// Stop making new passwords
-			}
-		} else {
-			// No requirements, including regexes
-			break;
-		}
-	}
-
-	// The password has been generated
-
-	// Display password
-	document.getElementById("result").value = result;
-};
-
 /**
  * Changes the mode to either
- * @param  {string} setTo - Either "old" or "new", "old" being legacy mode and "new" being suggested mode
+ * @param  {string} setTo - Either "insecure" or "new", "insecure" being legacy mode and "new" being suggested mode
  * @returns {void}
  */
 window.setMode = function (setTo) {
 	mode = setTo;
 	setStored("mode", setTo);
-	window.process();
+	window.generate();
 };
 
 /**
@@ -400,6 +259,21 @@ function setLogo (appName) {
 	document.getElementById("logo").title = appName;
 }
 
+window.fixLength = function () {
+	const length = document.getElementById("length").value;
+
+	if (!(minLength <= length && length <= maxLength)) {
+		// if the length is invalid
+		if (length > maxLength) {
+			// Too long
+			document.getElementById("length").value = maxLength;
+		} else if (length < minLength) {
+			// Too short
+			document.getElementById("length").value = minLength;
+		}
+	}
+};
+
 /**
  * On page load
  */
@@ -414,28 +288,6 @@ window.onload = function () {
 		option.dataset.short = key;
 
 		document.querySelector("#lang").appendChild(option);
-	}
-
-	// Convert cookies into localstorage
-	const toConvert = ["password", "mode", "theme"];
-
-	for (let i = 0; i < toConvert.length; i++) {
-		const cookie = toConvert[i];
-
-		// Get cookie
-		const value = `; ${document.cookie}`;
-		const parts = value.split(`; ${cookie}=`);
-		let val;
-
-		if (parts.length === 2) {
-			val = parts.pop().split(";").shift();
-
-			// Store in local storage
-			setStored(cookie, val);
-
-			// Remove that cookie
-			document.cookie = cookie + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-		}
 	}
 
 	let usingLang;
@@ -575,10 +427,10 @@ window.onload = function () {
 			document.getElementById("length").max = maxLength;
 
 			// Set chosen var
-			chosen = val;
+			presetInUse = true;
 
 			// In case there's already a password (eg switching sites / presets) regen password
-			window.process();
+			window.generate();
 		},
 		// Minimum number of characters typed for the dialog to open
 		minLength: 0,
@@ -661,7 +513,7 @@ window.onload = function () {
 		}
 
 		// In case there's already a password
-		window.process();
+		window.generate();
 
 		// Move the cursor to the app field
 		document.getElementById("pass").focus();
@@ -723,7 +575,7 @@ window.appInput = function () {
 
 	document.getElementById("length").value = targetLength;
 
-	window.process();
+	window.generate();
 };
 
 window.passwordUp = function () {
@@ -743,7 +595,7 @@ window.passwordUp = function () {
 	}
 
 	// Regen the password
-	window.process();
+	window.generate();
 };
 
 window.addEventListener("beforeinstallprompt", e => {
@@ -756,7 +608,7 @@ window.addEventListener("beforeinstallprompt", e => {
 window.appDown = function (e) {
 
 	// Everytime the user types, it invalidates the preset
-	chosen = false;
+	presetInUse = false;
 
 	// Enter pressed and dropdown visible
 	if (

@@ -36,4 +36,4 @@ jobs:
     - name: Test with pytest
       run: |
         cd unit_tests
-        python3 -m pytest
+        python3 -m pytest -s
