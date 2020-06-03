@@ -5,6 +5,9 @@ from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import WebDriverException
 from meta import pass_vis
 from meta import get_var
+import json
+from urllib.parse import quote
+import deep_merge
 getVar = get_var.getVar
 
 address = "http://localhost:8080/"
@@ -12,6 +15,36 @@ address = "http://localhost:8080/"
 options = Options()
 options.headless = True
 
+sites = {}
+logos = {}
+
+with open("../node_modules/cloverleaf/data/sites.json", 'r') as json_file:
+    sites = json.load(json_file)
+
+with open("../data/logos.json", 'r') as json_file:
+    logos = json.load(json_file)
+
+sites = deep_merge.merge(sites, logos)
+
+def status_code(driver, url):
+    js = '''
+        let callback = arguments[0];
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', ''' + "'" + url.replace("'", "\\\'") + "'" + ''', true);
+        xhr.onload = function () {
+            if (this.readyState === 4) {
+                callback(this.status);
+            }
+        };
+        xhr.onerror = function () {
+            callback('error');
+        };
+        xhr.send(null);
+    '''
+
+    print(url, js)
+
+    return driver.execute_async_script(js)
 
 @pytest.fixture()
 def driver():
@@ -54,36 +87,76 @@ def test_enter_preset(driver):
     logo = driver.find_element_by_id("logo")
     label = driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/label")
 
-    label.click()
-    appElem.clear()
-    appElem.send_keys("Appl")
-    appElem.send_keys(Keys.ENTER)
+    for site in sites:
 
-    assert appElem.get_attribute("value") == "Apple", "Enter not setting preset name"
-    assert getVar(driver, "minLength") == 8, "Enter not setting preset minLength"
-    assert getVar(driver, "maxLength") == 32, "Enter not setting preset maxLength"
-    # Logo
-    assert logo.get_attribute("src") == address+"logos/Apple.svg", "Enter not setting preset logo src"
-    assert logo.get_attribute("title") == "Apple", "Enter not setting preset logo title"
-    assert logo.get_attribute("alt") == "Apple", "Enter not setting preset logo alt"
+        label.click()
+        appElem.clear()
+        appElem.send_keys(site)
+        appElem.send_keys(Keys.ENTER)
+
+        assert appElem.get_attribute("value") == site, "Enter not setting preset name - Preset: " + site
+
+        if "minLength" in sites[site]:
+            assert getVar(driver, "minLength") == sites[site]["minLength"], "Enter not setting preset minLength - Preset: " + site
+
+        if "maxLength" in sites[site]:
+            assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Enter not setting preset maxLength - Preset: " + site
+
+
+        # Logo
+        logoURL = ""
+        if "logo" in sites[site]:
+            logoURL = address + sites[site]["logo"]
+        else:
+            logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
+        if "mini" in sites[site]:
+            if sites[site]["mini"] == True:
+                logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
+
+
+        assert logo.get_attribute("src") == logoURL, "Enter not setting preset logo src - Preset: " + site
+        assert status_code(driver, logoURL) == 200, "Enter not setting preset logo src (404) - Preset: " + site
+
+        assert logo.get_attribute("title") == site, "Enter not setting preset logo title - Preset: " + site
+        assert logo.get_attribute("alt") == site, "Enter not setting preset logo alt - Preset: " + site
 
 
 # Tests to make sure that query strings presets are loaded properly
 def test_qs_preset(driver):
 
-    driver.get(address + "?app=Apple")
+    for site in sites:
 
-    appElem = driver.find_element_by_id("app")
-    logo = driver.find_element_by_id("logo")
+        driver.get(address + "?app="+quote(site))
 
-    assert appElem.get_attribute("value") == "Apple", "Query strings not setting preset name"
-    assert getVar(driver, "minLength") == 8, "Query strings not setting preset minLength"
-    assert getVar(driver, "maxLength") == 32, "Query strings not setting preset maxLength"
+        appElem = driver.find_element_by_id("app")
+        logo = driver.find_element_by_id("logo")
 
-    # Logo
-    assert logo.get_attribute("src") == address+"logos/Apple.svg", "Query strings not setting preset logo src"
-    assert logo.get_attribute("title") == "Apple", "Query strings not setting preset logo title"
-    assert logo.get_attribute("alt") == "Apple", "Query strings not setting preset logo alt"
+        assert appElem.get_attribute("value") == site, "Query strings not setting preset name - Preset: " + site
+
+        if "minLength" in sites[site]:
+            assert getVar(driver, "minLength") == sites[site]["minLength"], "Query strings not setting preset minLength - Preset: " + site
+
+        if "maxLength" in sites[site]:
+            assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Query strings not setting preset maxLength - Preset: " + site
+
+
+        # Logo
+        logoURL = ""
+        if "logo" in sites[site]:
+            logoURL = address + sites[site]["logo"]
+        else:
+            logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
+        if "mini" in sites[site]:
+            if sites[site]["mini"] == True:
+                logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
+
+
+        assert logo.get_attribute("src") == logoURL, "Query strings not setting preset logo src - Preset: " + site
+        assert status_code(driver, logoURL) == 200, "Query strings not setting preset logo src (404) - Preset: " + site
+
+        assert logo.get_attribute("title") == site, "Query strings not setting preset logo title - Preset: " + site
+        assert logo.get_attribute("alt") == site, "Query strings not setting preset logo alt - Preset: " + site
+
 
 
 # Tests to make sure that query strings without presets are loaded properly
