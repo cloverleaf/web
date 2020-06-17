@@ -9,6 +9,7 @@ jobs:
     - name: Get secrets
       run: |
         cd config
+        mkdir secrets
         echo "${{ secrets.crowdin_key }}" > secrets/crowdin_key.txt
         echo "${{ secrets.bundle_analyzer_token }}" > secrets/bundle_analyzer_token.txt
 
