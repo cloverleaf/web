@@ -5,7 +5,7 @@ desktop.ini
 
 node_modules/
 
-config/crowdin-key.txt
+config/secrets/
 
 __pycache__
 

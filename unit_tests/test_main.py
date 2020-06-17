@@ -42,8 +42,6 @@ def status_code(driver, url):
         xhr.send(null);
     '''
 
-    print(url, js)
-
     return driver.execute_async_script(js)
 
 @pytest.fixture()

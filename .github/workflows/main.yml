@@ -1,5 +1,5 @@
 name: CI
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
 
@@ -9,7 +9,8 @@ jobs:
     - name: Get secrets
       run: |
         cd config
-        echo "${{ secrets.crowdin_key }}" > crowdin-key.txt
+        echo "${{ secrets.crowdin_key }}" > secrets/crowdin_key.txt
+        echo "${{ secrets.bundle_analyzer_token }}" > secrets/bundle_analyzer_token.txt
 
     - name: Webpack build
       run: |
