@@ -5,6 +5,9 @@ const fs = require("fs");
 const rimraf = require("rimraf");
 const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
+const TerserPlugin = require("terser-webpack-plugin");
+const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
+const BUNDLE_ANALYZER_TOKEN = fs.readFileSync(path.join(__dirname, "../secrets/bundle_analyzer_token.txt"), "utf8");
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -32,6 +35,31 @@ const configPromise = new Promise(function (resolve, reject) {
 				mode: "production",
 				target: "web",
 
+				optimization: {
+					minimize: true,
+					minimizer: [new TerserPlugin({
+						terserOptions: {
+							compress: {
+								defaults: true
+							},
+							keep_classnames: false,
+							keep_fnames: false,
+							mangle: {
+								toplevel: true,
+								eval: true,
+								reserved: [
+									"minLength",
+									"defaultMinLength",
+									"maxLength",
+									"defaultMaxLength",
+								]
+							},
+						},
+						extractComments: {filename:"LICENSE.txt"},
+					}
+					)],
+				},
+
 				plugins: plugins.concat([
 					new MiniCssExtractPlugin({
 						filename: "bundle-[Contenthash:8].css",
@@ -40,7 +68,8 @@ const configPromise = new Promise(function (resolve, reject) {
 						hashFuncNames: ["sha256"],
 						enabled: process.env.NODE_ENV === "production",
 					}),
-					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"})
+					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
+					new BundleAnalyzerPlugin({ token: BUNDLE_ANALYZER_TOKEN })
 				]),
 
 				module: {

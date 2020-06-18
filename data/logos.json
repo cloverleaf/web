@@ -1,0 +1,178 @@
+{
+  "Airbnb": {
+    "mini": true
+  },
+  "Alipay": {
+    "alias": "AliExpress",
+    "mini": true
+  },
+  "Amazon": {
+    "mini": true
+  },
+  "Amino": {
+    "mini": true
+  },
+  "Artsy": {
+    "mini": true
+  },
+  "Baidu": {
+    "mini": true
+  },
+  "Behance": {
+    "alias": "Adobe",
+    "mini": true
+  },
+  "Bing": {
+    "alias": "Microsoft",
+    "mini": true
+  },
+  "Chrono.gg": {
+    "mini": true
+  },
+  "CodePen": {
+    "mini": true
+  },
+  "DeviantArt": {
+    "mini": true
+  },
+  "Discord": {
+    "mini": true
+  },
+  "Disqus": {
+    "mini": true
+  },
+  "Dribbble": {
+    "mini": true
+  },
+  "Dropbox": {
+    "mini": true
+  },
+  "Duolingo": {
+    "mini": true
+  },
+  "Etsy": {
+    "mini": true
+  },
+  "Evernote": {
+    "mini": true
+  },
+  "Facebook": {
+    "mini": true
+  },
+  "Fanatical": {
+    "mini": true
+  },
+  "FANDOM": {
+    "mini": true
+  },
+  "Firebox": {
+    "mini": true
+  },
+  "Firefox": {
+    "mini": true
+  },
+  "Flickr": {
+    "alias": "Yahoo",
+    "mini": true
+  },
+  "Freelancer": {
+    "mini": true
+  },
+  "Genius": {
+    "mini": true
+  },
+  "GeoGuessr": {
+    "mini": true
+  },
+  "Gfycat": {
+    "mini": true
+  },
+  "GIPHY": {
+    "mini": true
+  },
+  "GitLab": {
+    "mini": true
+  },
+  "Hi-Rez": {
+    "logo": "logos/Hi-Rez.png"
+  },
+  "imgur": {
+    "mini": true
+  },
+  "mailbox.org": {
+    "mini": true
+  },
+  "Messenger": {
+    "alias": "Facebook"
+  },
+  "Minecraft": {
+    "alias": "Mojang"
+  },
+  "MSN": {
+    "alias": "Microsoft"
+  },
+  "Nectar": {
+    "logo": "logos/Nectar.png"
+  },
+  "Netflix": {
+    "mini": true
+  },
+  "osu!": {
+    "logo": "logos/osu!.png"
+  },
+  "Pastebin": {
+    "logo": "logos/Pastebin.png"
+  },
+  "Patreon": {
+    "mini": true
+  },
+  "PayPal": {
+    "mini": true
+  },
+  "paysafecard": {
+    "mini": true
+  },
+  "Pinterest": {
+    "mini": true
+  },
+  "pixiv": {
+    "mini": true
+  },
+  "Riot Games": {
+    "mini": true
+  },
+  "Skype": {
+    "alias": "Microsoft"
+  },
+  "Spotify": {
+    "mini": true
+  },
+  "Square Enix": {
+    "mini": true
+  },
+  "StellarX": {
+    "mini": true
+  },
+  "Tumblr": {
+    "alias": "Yahoo",
+    "mini": true
+  },
+  "Twitch": {
+    "mini": true
+  },
+  "Uplay": {
+    "alias": "Ubisoft"
+  },
+  "WeChat": {
+    "alias": "QQ"
+  },
+  "Xbox": {
+    "alias": "Microsoft"
+  },
+  "Yahoo": {
+    "mini": true
+  },
+  "YouTube": {
+    "alias": "Google"
+  }
+}
