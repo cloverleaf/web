@@ -17,12 +17,20 @@ options.headless = True
 
 sites = {}
 logos = {}
+configs = {}
+results = {}
 
 with open("../node_modules/cloverleaf/data/sites.json", 'r') as json_file:
     sites = json.load(json_file)
 
 with open("../data/logos.json", 'r') as json_file:
     logos = json.load(json_file)
+
+with open("../node_modules/cloverleaf/unit_tests/configs.json", 'r') as json_file:
+    configs = json.load(json_file)
+
+with open("../node_modules/cloverleaf/unit_tests/results.json", 'r') as json_file:
+    results = json.load(json_file)
 
 sites = deep_merge.merge(sites, logos)
 
@@ -43,6 +51,14 @@ def status_code(driver, url):
     '''
 
     return driver.execute_async_script(js)
+
+def read_clipboard(driver):
+
+    box = driver.find_element_by_id("paste-box")
+    box.send_keys(Keys.CONTROL, "v")
+    toreturn = box.get_attribute("value")
+    box.clear()
+    return toreturn
 
 @pytest.fixture()
 def driver():
@@ -84,11 +100,20 @@ def test_enter_preset(driver):
     appElem = driver.find_element_by_id("app")
     logo = driver.find_element_by_id("logo")
     label = driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/label")
+    passElem = driver.find_element_by_id("pass")
+
+    # Add box for reading paste
+    driver.execute_script(
+    """body = document.querySelector('body');
+    element = document.createElement('textarea');
+    element.id = "paste-box"
+    body.append(element);""")
 
     for site in sites:
 
         label.click()
         appElem.clear()
+        passElem.clear()
         appElem.send_keys(site)
         appElem.send_keys(Keys.ENTER)
 
@@ -118,6 +143,18 @@ def test_enter_preset(driver):
         assert logo.get_attribute("title") == site, "Enter not setting preset logo title - Preset: " + site
         assert logo.get_attribute("alt") == site, "Enter not setting preset logo alt - Preset: " + site
 
+        passElem.send_keys(configs["default length"]["password"])
+
+        assert driver.find_element_by_id("result").get_attribute("value") == results["default length"][site]["result"], "Preset password incorrect - Preset: " + site
+
+        # Click the copy button
+        driver.find_element_by_id("copy").click()
+
+        assert read_clipboard(driver) == results["default length"][site]["result"], "Copy button not working - Preset: " + site
+
+    # Remove text box used for reading from the clipboard
+    driver.execute_script("""let elem = document.getElementById('paste-box');
+                          elem.parentNode.removeChild(elem)""")
 
 # Tests to make sure that query strings presets are loaded properly
 def test_qs_preset(driver):

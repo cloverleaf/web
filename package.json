@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/cloverleaf/web#readme",
   "dependencies": {
-    "cloverleaf": "^1.0.1",
+    "cloverleaf": "^1.0.2",
     "js-sha3": "^0.8.0",
     "material-design-icons-iconfont": "^5.0.1",
     "materialize-css": "^1.0.0",
