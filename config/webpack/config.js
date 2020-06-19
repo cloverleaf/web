@@ -6,8 +6,7 @@ const rimraf = require("rimraf");
 const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
 const TerserPlugin = require("terser-webpack-plugin");
-const BundleAnalyzerPlugin = require("@bundle-analyzer/webpack-plugin");
-const BUNDLE_ANALYZER_TOKEN = fs.readFileSync(path.join(__dirname, "../secrets/bundle_analyzer_token.txt"), "utf8");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -69,7 +68,7 @@ const configPromise = new Promise(function (resolve, reject) {
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new BundleAnalyzerPlugin({ token: BUNDLE_ANALYZER_TOKEN })
+					new HardSourceWebpackPlugin()
 				]),
 
 				module: {
