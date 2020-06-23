@@ -7,6 +7,7 @@ const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
 const TerserPlugin = require("terser-webpack-plugin");
 const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
+const SitemapPlugin = require("sitemap-webpack-plugin").default;
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -59,7 +60,7 @@ const configPromise = new Promise(function (resolve, reject) {
 					)],
 				},
 
-				plugins: plugins.concat([
+				plugins: plugins[0].concat([
 					new MiniCssExtractPlugin({
 						filename: "bundle-[Contenthash:8].css",
 					}),
@@ -68,7 +69,14 @@ const configPromise = new Promise(function (resolve, reject) {
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new HardSourceWebpackPlugin()
+					new HardSourceWebpackPlugin(),
+					// https://github.com/mzgoddard/hard-source-webpack-plugin/issues/517
+					new HardSourceWebpackPlugin.ExcludeModulePlugin([
+						{
+							test: /file-loader/,
+						}
+					]),
+					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true})
 				]),
 
 				module: {
