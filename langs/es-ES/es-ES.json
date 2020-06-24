@@ -88,7 +88,11 @@
 		"description": "Label for the language selector"
 	},
 	"session": {
-		"message": "Saved locally on your device",
+		"message": "Guardado localmente en el dispositivo",
 		"description": "shown when hovering on the \"Remember my password\" toggle"
+	},
+	"length_pref": {
+		"message": "Longitud de la contraseña predeterminada",
+		"description": "Shows"
 	}
 }

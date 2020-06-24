@@ -88,7 +88,11 @@
 		"description": "Label for the language selector"
 	},
 	"session": {
-		"message": "Saved locally on your device",
+		"message": "Savis loke sur via aparato",
 		"description": "shown when hovering on the \"Remember my password\" toggle"
+	},
+	"length_pref": {
+		"message": "Defaŭlta pasvorton longo",
+		"description": "Shows"
 	}
 }

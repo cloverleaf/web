@@ -5,6 +5,10 @@ const lc = require("locale-code");
 
 
 function processTranslations () {
+	const partsStart = [
+		"/",
+		"/faq"
+	];
 	const pluginsStart = [];
 	const langs = {};
 
@@ -58,6 +62,9 @@ function processTranslations () {
 				})
 			);
 
+			partsStart.push(
+				code
+			);
 		});
 	});
 
@@ -66,7 +73,7 @@ function processTranslations () {
 
 	console.log("Finished processing translations");
 
-	return pluginsStart;
+	return [pluginsStart, partsStart];
 
 }
 

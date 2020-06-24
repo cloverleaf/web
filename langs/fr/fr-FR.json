@@ -90,5 +90,9 @@
 	"session": {
 		"message": "Enregistré localement sur votre appareil",
 		"description": "shown when hovering on the \"Remember my password\" toggle"
+	},
+	"length_pref": {
+		"message": "Longueur du mot de passe par défaut",
+		"description": "Shows"
 	}
 }

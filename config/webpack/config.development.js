@@ -4,6 +4,7 @@ const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
 // Read json
 const json = JSON.parse(fs.readFileSync(path.join(__dirname, "../../src/strings.json"), "utf8"));
@@ -29,7 +30,8 @@ module.exports = {
 		}),
 		new webpack.ProvidePlugin({
 			Component: "exports-loader?Component!materialize-css/js/component.js"
-		})
+		}),
+		new HardSourceWebpackPlugin()
 	],
 
 	module: {
