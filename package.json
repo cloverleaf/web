@@ -63,7 +63,7 @@
     "postcss-preset-env": "^6.7.0",
     "rimraf": "^3.0.2",
     "sass": "^1.26.9",
-    "sass-loader": "^9.0.0",
+    "sass-loader": "^9.0.1",
     "sitemap-webpack-plugin": "^0.8.1",
     "source-map-loader": "^1.0.1",
     "style-loader": "^1.2.1",
