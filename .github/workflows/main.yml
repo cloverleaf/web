@@ -38,15 +38,3 @@ jobs:
       run: |
         cd unit_tests
         python3 -m pytest -s
-
-  audit:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Audit Netlify deploy preview
-      uses: jakejarvis/lighthouse-action@master
-      with:
-        netlify_site: 'https://deploy-preview-${PR_ID}--cloverleaf.netlify.com'
-    - uses: actions/upload-artifact@master
-      with:
-        name: report
-        path: './report'
