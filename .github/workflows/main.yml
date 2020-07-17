@@ -45,7 +45,7 @@ jobs:
     - name: Audit Netlify deploy preview
       uses: jakejarvis/lighthouse-action@master
       with:
-        netlify_site: 'https://deploy-preview-[[PR_NUMBER]]--cloverleaf.netlify.com'
+        netlify_site: 'https://deploy-preview-${PR_ID}--cloverleaf.netlify.com'
     - uses: actions/upload-artifact@master
       with:
         name: report
