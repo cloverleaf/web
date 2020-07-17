@@ -9,9 +9,9 @@
 
     <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
     <meta name="description" content="<%= description %>">
-    <meta name="robots" content="index, nofollow">
+    <meta name="robots" content="index, follow">
     <meta name="author" content="ChildishGiant">
-    <meta name="keywords" content="password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app">
+    <meta name="keywords" content="password, password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app, stateless, password storage, FOSS">
     <link rel="alternate" href="https://cloverleaf.app/" hreflang="en">
     <!-- Verifing ownership for Bing -->
     <meta name="msvalidate.01" content="22AEF740B887329DA98B4F687396B7C1">
@@ -99,6 +99,11 @@
           </div>
         </div>
 
+        <div class="input-field" id="length-pref-container">
+          <label for="length-pref" class="active"><%= length_pref %></label>
+          <input id="length-pref" type="number" onchange="lengthPref(this.value)" step="1" min="4" value="16" max="512">
+        </div>
+
         <div id="footer">
           <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
             <%= install %> <i class="material-icons" id="install-icon">add_to_home_screen</i>
@@ -123,7 +128,7 @@
 
         <div class="input-field">
           <label for="app"><%= app %></label>
-          <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);">
+          <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);" onkeyup="presetScroll();">
           <div id="logoContainer" class="input-group-addon suffix">
             <img id="logo" draggable="false">
           </div>

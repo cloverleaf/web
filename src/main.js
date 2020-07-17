@@ -63,7 +63,7 @@ let maxLength = defaultMaxLength; // Really
 const defaultTheme = "Vanilla";
 const extension = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? ".html" : ""; // Fix links if running locally
 let mode;
-const targetLength = 16;
+let targetLength = 16;
 // let select; // Theme selector
 let presetInUse = false; // Flag true if a preset is selected
 
@@ -407,6 +407,16 @@ window.onload = function () {
 		document.getElementById("session-toggle").click();
 	}
 
+
+	if (getStored("length")) {
+
+		targetLength = getStored("length");
+
+		document.getElementById("length-pref").value = targetLength;
+		document.getElementById("length").value = targetLength;
+	}
+
+
 	// Process the sites.json for the autocomplete structure
 	for (const key in jsonData) {
 		// If the preset has a custom logo url
@@ -457,6 +467,8 @@ window.onload = function () {
 
 			document.getElementById("length").max = maxLength;
 
+			window.fixLength();
+
 			// Set chosen var
 			presetInUse = true;
 
@@ -494,32 +506,6 @@ window.onload = function () {
 			return 0;
 		}
 	});
-
-	// TODO Scroll to selected
-
-	// const auto = this.document.getElementById("app");
-
-
-	// const old = auto.onkeydown;
-	// console.log(old);
-	// auto.onkeydown = function (t) {
-
-	// 	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
-	// 	// console.log(selected.children[1].innerText);
-
-	// 	// old(t);
-
-	// 	// selected = document.querySelector(".autocomplete-content.dropdown-content .active");
-	// 	selected.scrollIntoView();
-
-	// 	// console.log(selected);
-	// 	console.log(selected.children[1].innerText);
-
-	// 	// document.querySelector(".autocomplete-content.dropdown-content").scrollTo(selected.x, selected.y);
-	// };
-
-	// console.log(document.getElementById("app").M_Autocomplete._handleInputKeydown);
-
 
 	// Autocomplete has been setup
 	// Move the cursor to the app field
@@ -592,6 +578,10 @@ function colourUnderline () {
 
 
 window.appInput = function () {
+
+	// Everytime the user types, it invalidates the preset
+	presetInUse = false;
+
 	// Clear logo
 	document.getElementById("logoContainer").style.display = "none";
 	document.getElementById("logo").removeAttribute("src");
@@ -638,9 +628,6 @@ window.addEventListener("beforeinstallprompt", e => {
 
 window.appDown = function (e) {
 
-	// Everytime the user types, it invalidates the preset
-	presetInUse = false;
-
 	// Enter pressed and dropdown visible
 	if (
 		(e.key === "Enter" || e.code === "Enter" || e.keyCode === 13) &&
@@ -685,4 +672,31 @@ window.sessionToggle = function () {
 
 window.getVar = function (varName) {
 	return eval(varName);
+};
+
+window.lengthPref = function (passedLength) {
+
+	if (!(defaultMinLength <= passedLength && passedLength <= defaultMaxLength)) {
+		// if the length is invalid
+		if (passedLength > defaultMaxLength) {
+			// Too long
+			passedLength = defaultMaxLength;
+		} else if (passedLength < defaultMinLength) {
+			// Too short
+			passedLength = defaultMinLength;
+		}
+
+		document.getElementById("length-pref").value = passedLength;
+	}
+
+	targetLength = passedLength;
+	setStored("length", passedLength);
+
+	document.getElementById("length").value = passedLength;
+
+};
+
+window.presetScroll = function () {
+	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
+	if (selected)	selected.scrollIntoView({behavior: "auto", block: "nearest", inline: "nearest"});
 };
