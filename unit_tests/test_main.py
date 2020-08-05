@@ -10,7 +10,7 @@ from urllib.parse import quote
 import deep_merge
 getVar = get_var.getVar
 
-address = "http://localhost:8080/"
+address = "http://localhost:8000/"
 defaultMinLength = 4
 defaultMaxLength = 512
 
@@ -223,15 +223,14 @@ def test_lengths(driver):
     appElem.send_keys("a")
     passElem.send_keys("a")
 
-    for length in range(defaultMinLength, defaultMaxLength):
+    for length in range(defaultMinLength, defaultMaxLength+1):
 
-        print(length, lengthElem.get_attribute("value"))
 
         # lengthElem.clear()
         # lengthElem.send_keys(length)
         driver.execute_script("document.getElementById('length').value = " + str(length))
 
-        print(length, lengthElem.get_attribute("value"))
+        driver.execute_script("generate()")
 
 
         assert len(driver.find_element_by_id("result").get_attribute("value")) == length
