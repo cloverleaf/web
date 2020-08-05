@@ -10,7 +10,7 @@ from urllib.parse import quote
 import deep_merge
 getVar = get_var.getVar
 
-address = "http://localhost:8000/"
+address = "http://localhost:8080/"
 defaultMinLength = 4
 defaultMaxLength = 512
 
@@ -36,6 +36,7 @@ with open("../node_modules/cloverleaf/unit_tests/results.json", 'r') as json_fil
 
 sites = deep_merge.merge(sites, logos)
 
+
 def status_code(driver, url):
     js = '''
         let callback = arguments[0];
@@ -54,6 +55,7 @@ def status_code(driver, url):
 
     return driver.execute_async_script(js)
 
+
 def read_clipboard(driver):
 
     box = driver.find_element_by_id("paste-box")
@@ -61,6 +63,7 @@ def read_clipboard(driver):
     toreturn = box.get_attribute("value")
     box.clear()
     return toreturn
+
 
 @pytest.fixture()
 def driver():
@@ -106,10 +109,10 @@ def test_enter_preset(driver):
 
     # Add box for reading paste
     driver.execute_script(
-    """body = document.querySelector('body');
-    element = document.createElement('textarea');
-    element.id = "paste-box"
-    body.append(element);""")
+        """body = document.querySelector('body');
+        element = document.createElement('textarea');
+        element.id = "paste-box"
+        body.append(element);""")
 
     for site in sites:
 
@@ -127,7 +130,6 @@ def test_enter_preset(driver):
         if "maxLength" in sites[site]:
             assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Enter not setting preset maxLength - Preset: " + site
 
-
         # Logo
         logoURL = ""
         if "logo" in sites[site]:
@@ -135,9 +137,8 @@ def test_enter_preset(driver):
         else:
             logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
         if "mini" in sites[site]:
-            if sites[site]["mini"] == True:
+            if sites[site]["mini"]:
                 logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
-
 
         assert logo.get_attribute("src") == logoURL, "Enter not setting preset logo src - Preset: " + site
         assert status_code(driver, logoURL) == 200, "Enter not setting preset logo src (404) - Preset: " + site
@@ -158,6 +159,7 @@ def test_enter_preset(driver):
     driver.execute_script("""let elem = document.getElementById('paste-box');
                           elem.parentNode.removeChild(elem)""")
 
+
 # Tests to make sure that query strings presets are loaded properly
 def test_qs_preset(driver):
 
@@ -176,7 +178,6 @@ def test_qs_preset(driver):
         if "maxLength" in sites[site]:
             assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Query strings not setting preset maxLength - Preset: " + site
 
-
         # Logo
         logoURL = ""
         if "logo" in sites[site]:
@@ -184,16 +185,14 @@ def test_qs_preset(driver):
         else:
             logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
         if "mini" in sites[site]:
-            if sites[site]["mini"] == True:
+            if sites[site]["mini"]:
                 logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
-
 
         assert logo.get_attribute("src") == logoURL, "Query strings not setting preset logo src - Preset: " + site
         assert status_code(driver, logoURL) == 200, "Query strings not setting preset logo src (404) - Preset: " + site
 
         assert logo.get_attribute("title") == site, "Query strings not setting preset logo title - Preset: " + site
         assert logo.get_attribute("alt") == site, "Query strings not setting preset logo alt - Preset: " + site
-
 
 
 # Tests to make sure that query strings without presets are loaded properly
@@ -213,6 +212,7 @@ def test_qs_no_preset(driver):
     assert logo.get_attribute("title") == "", "Query string incorrectly setting non-preset logo title"
     assert logo.get_attribute("alt") == "", "Query string incorrectly setting non-preset logo alt"
 
+
 # Tests to make sure passwords generated are the right length
 def test_lengths(driver):
 
@@ -225,12 +225,10 @@ def test_lengths(driver):
 
     for length in range(defaultMinLength, defaultMaxLength+1):
 
-
         # lengthElem.clear()
         # lengthElem.send_keys(length)
         driver.execute_script("document.getElementById('length').value = " + str(length))
 
         driver.execute_script("generate()")
-
 
         assert len(driver.find_element_by_id("result").get_attribute("value")) == length
