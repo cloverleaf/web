@@ -693,10 +693,10 @@ window.lengthPref = function (passedLength) {
 	setStored("length", passedLength);
 
 	document.getElementById("length").value = passedLength;
-
+	window.generate();
 };
 
 window.presetScroll = function () {
 	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
-	if (selected)	selected.scrollIntoView({behavior: "auto", block: "nearest", inline: "nearest"});
+	if (selected)	selected.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
 };

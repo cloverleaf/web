@@ -11,6 +11,8 @@ import deep_merge
 getVar = get_var.getVar
 
 address = "http://localhost:8080/"
+defaultMinLength = 4
+defaultMaxLength = 512
 
 options = Options()
 options.headless = True
@@ -210,3 +212,26 @@ def test_qs_no_preset(driver):
     assert logo.get_attribute("src") is None, "Query string incorrectly setting non-preset logo src"
     assert logo.get_attribute("title") == "", "Query string incorrectly setting non-preset logo title"
     assert logo.get_attribute("alt") == "", "Query string incorrectly setting non-preset logo alt"
+
+# Tests to make sure passwords generated are the right length
+def test_lengths(driver):
+
+    appElem = driver.find_element_by_id("app")
+    passElem = driver.find_element_by_id("pass")
+    lengthElem = driver.find_element_by_id("length")
+
+    appElem.send_keys("a")
+    passElem.send_keys("a")
+
+    for length in range(defaultMinLength, defaultMaxLength):
+
+        print(length, lengthElem.get_attribute("value"))
+
+        # lengthElem.clear()
+        # lengthElem.send_keys(length)
+        driver.execute_script("document.getElementById('length').value = " + str(length))
+
+        print(length, lengthElem.get_attribute("value"))
+
+
+        assert len(driver.find_element_by_id("result").get_attribute("value")) == length
