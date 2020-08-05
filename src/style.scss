@@ -63,6 +63,7 @@ $link-color: $linkColor;
     url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
     url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
     url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
+  font-display: swap;
 }
 
 .material-icons {
@@ -94,6 +95,7 @@ $link-color: $linkColor;
   font-style: normal;
   font-weight: 400;
   src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -101,6 +103,7 @@ $link-color: $linkColor;
   font-style: normal;
   font-weight: 300;
   src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -108,6 +111,7 @@ $link-color: $linkColor;
   font-style: normal;
   font-weight: 400;
   src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -115,6 +119,7 @@ $link-color: $linkColor;
   font-style: normal;
   font-weight: 500;
   src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
+  font-display: swap;
 }
 
 :root {
@@ -195,7 +200,7 @@ label,
 }
 
 input[type=text]:not(#result):not(.select-dropdown),
-input[type=number],
+input[type=number]:not(#length-pref),
 input[type=password]:not(#result) {
   font-size: 3rem !important;
   height: 1.2em !important;
@@ -828,7 +833,7 @@ ul.tabs li.tab a i.material-icons {
   color: var(--textColor);
 }
 
-.sidenav label {
+.sidenav label:not([for=length-pref]) {
   font-size: 1rem;
   top: -33px;
 }
@@ -900,6 +905,7 @@ select:focus {
 
 #session-container {
   grid-row: 3;
+  padding-bottom: 0;
 }
 
 #footer {
@@ -927,6 +933,7 @@ a {
   text-overflow: clip;
 }
 
-// #new:lang(de) {
-//   background: red;
-// }
+#length-pref {
+  font-size: 2em;
+  font-weight: 300;
+}

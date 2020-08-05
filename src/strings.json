@@ -90,5 +90,9 @@
 	"session": {
 		"message": "Saved locally on your device",
 		"description": "shown when hovering on the \"Remember my password\" toggle"
+	},
+	"length_pref": {
+		"message": "Default password length",
+		"description": "Shows "
 	}
 }

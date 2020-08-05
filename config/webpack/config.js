@@ -6,8 +6,8 @@ const rimraf = require("rimraf");
 const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
 const TerserPlugin = require("terser-webpack-plugin");
-const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -62,21 +62,15 @@ const configPromise = new Promise(function (resolve, reject) {
 
 				plugins: plugins[0].concat([
 					new MiniCssExtractPlugin({
-						filename: "bundle-[Contenthash:8].css",
+						filename: "bundle-[contenthash:8].css",
 					}),
 					new SriPlugin({
 						hashFuncNames: ["sha256"],
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new HardSourceWebpackPlugin(),
-					// https://github.com/mzgoddard/hard-source-webpack-plugin/issues/517
-					new HardSourceWebpackPlugin.ExcludeModulePlugin([
-						{
-							test: /file-loader/,
-						}
-					]),
-					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true})
+					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true}),
+					new ProgressBarPlugin()
 				]),
 
 				module: {
@@ -140,7 +134,7 @@ const configPromise = new Promise(function (resolve, reject) {
 				entry: "./src/main.js",
 				output: {
 					crossOriginLoading: "anonymous",
-					filename: "bundle-[Contenthash:8].js",
+					filename: "bundle-[contenthash:8].js",
 					path: path.resolve(__dirname, "../../bundles")
 				}
 			};

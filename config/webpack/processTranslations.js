@@ -62,9 +62,12 @@ function processTranslations () {
 				})
 			);
 
-			partsStart.push(
-				code
-			);
+			if (code !== "en-GB") {
+				partsStart.push(
+					code
+				);
+			}
+
 		});
 	});
 
