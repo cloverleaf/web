@@ -71,7 +71,7 @@ def driver():
     try:
         driverInternal.get(address)
     except WebDriverException:
-        print("You need to host the localhost before you can run a unit test on it")
+        assert False, "You need to host the localhost before you can run a unit test on it"
     yield driverInternal
     # Close procedures
     driverInternal.close()

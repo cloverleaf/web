@@ -537,8 +537,10 @@ window.onload = function () {
 		document.querySelector("label[for='pass']").classList.add("active");
 	}
 
+	switch (location.hostname) {
+
 	// If the user is on the dev build
-	if(location.hostname === "dev.cloverleaf.app") {
+	case "dev.cloverleaf.app":
 
 		// Change title
 		document.title += " - Dev Build";
@@ -548,6 +550,14 @@ window.onload = function () {
 		ico.rel = "shortcut icon";
 		ico.href = "dev.ico";
 		document.head.appendChild(ico);
+		break;
+
+	case "cloverleaf.app":
+		break;
+
+	default:
+		document.title += " - localhost";
+		break;
 	}
 
 	if (process.env.NODE_ENV === "development") require("./debug");

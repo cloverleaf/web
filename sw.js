@@ -43,26 +43,32 @@ self.addEventListener("fetch", event => {
 });
 
 self.addEventListener("message", event => {
-	caches.open("cloverleaf").then(cloverleaf => {
-		// Get all cached files
-		cloverleaf.matchAll().then(res => {
-			res.filter(function (cacheName) {
-				// If the item is a bundle but not currently being used
-				if (cacheName.url.indexOf("bundles/bundle-") > -1 &&
-						event.data.indexOf(cacheName.url) === -1) {
-					// Mark for deletion
-					return true;
-				} else {
-					// Keep it
-					const keep = new Request(cacheName.url);
-					return false;
-				}
-			}).map(function (mapItem) {
-				const toDelete = new Request(mapItem.url);
-				cloverleaf.delete(toDelete).then(e =>
-					e ? console.debug("Removed unused bundle", toDelete) : console.warn("Failed to remove bundle", toDelete)
-				);
+
+	if (location.origin === event.origin) {
+
+		caches.open("cloverleaf").then(cloverleaf => {
+			// Get all cached files
+			cloverleaf.matchAll().then(res => {
+				res.filter(function (cacheName) {
+					// If the item is a bundle but not currently being used
+					if (cacheName.url.indexOf("bundles/bundle-") > -1 &&
+							event.data.indexOf(cacheName.url) === -1) {
+						// Mark for deletion
+						return true;
+					} else {
+						// Keep it
+						return false;
+					}
+				}).map(function (mapItem) {
+					const toDelete = new Request(mapItem.url);
+					cloverleaf.delete(toDelete).then(e =>
+						e ? console.debug("Removed unused bundle", toDelete) : console.warn("Failed to remove bundle", toDelete)
+					);
+				});
 			});
 		});
-	});
+
+	} else {
+		throw new Error("Lisa, in this house we obey the laws of CORS!");
+	}
 });

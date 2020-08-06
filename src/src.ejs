@@ -200,7 +200,7 @@
       const scriptTag = document.querySelector("script[src^=bundles\\/bundle-]");
 			const cssTag = document.querySelector("link[href^=bundles\\/bundle-]");
 
-			const inUse = [scriptTag.src, cssTag.href];
+      const inUse = scriptTag && cssTag ? [scriptTag.src, cssTag.href] : [];
 
       //This is the "Offline copy of pages" service worker
       // Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
