@@ -730,14 +730,15 @@ ul.tabs li.tab a i.material-icons {
     /* Ditch loads of padding */
     margin: 0;
     box-shadow: none;
+
+    height: 100Vh;
+    max-height: 100Vh;
+    border-radius: 0;
   }
 
   #box {
     width: 100VW;
     max-width: 100VW;
-
-    height: 100Vh;
-    max-height: 100Vh;
   }
 
   /* Install icon */
@@ -770,7 +771,7 @@ ul.tabs li.tab a i.material-icons {
 }
 
 /* If it won't fit vertically */
-@media only all and (max-height:600px) {
+@media only all and (max-height:600px ) and (min-width:40em) {
   html {
     /* Drop the font size */
     font-size: 2vh;
