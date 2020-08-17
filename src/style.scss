@@ -545,7 +545,8 @@ label:focus {
 .github-corner {
   fill: $accentColor;
   fill: var(--accentColor);
-  color:#fff;
+  color: $backgroundColor;
+  color: var(--backgroundColor);
   position: absolute;
   top: 0;
   border: 0;
@@ -713,32 +714,26 @@ ul.tabs li.tab a i.material-icons {
   line-height: 4rem;
 }
 
-/* Media Queries */
-@media (max-width: 500px) {
-  .github-corner:hover .octo-arm {
-    animation: none;
-  }
-
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
-  }
-}
-
 /* If we're on a small/mobile device */
 @media only all and (max-width:40em) {
+
+  body {
+    background-color: var(--internalColor);
+  }
+
   #back {
     /* Ditch loads of padding */
     margin: 0;
     box-shadow: none;
 
-    height: 100Vh;
-    max-height: 100Vh;
+    min-height: 100%;
     border-radius: 0;
   }
 
   #box {
     width: 100VW;
     max-width: 100VW;
+    min-height: 100%;
   }
 
   /* Install icon */
@@ -768,6 +763,10 @@ ul.tabs li.tab a i.material-icons {
     line-height: 15vw;
   }
 
+  .github-corner {
+    color: $internalColor;
+    color: var(--internalColor);
+  }
 }
 
 /* If it won't fit vertically */
@@ -823,7 +822,7 @@ ul.tabs li.tab a i.material-icons {
   padding: 10px;
   padding-top: 0;
   display: grid;
-  height: calc(100vh - 68px);
+  height: calc(100% - 8px);
   grid-template-rows: repeat(12, 1fr);
   // grid-template-rows: repeat(auto-fill, minmax(70px, 1fr))
   // grid-auto-rows: repeat(min-content, 60px) ;

@@ -5,7 +5,7 @@
   "main": "jssource.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node --no-deprecation config/webpack/config.js",
-    "start": "cross-env NODE_ENV=dev webpack-dev-server --inline --watch --config config/webpack/config.development.js",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --inline --watch --config config/webpack/config.development.js --host 192.168.1.87",
     "server-test": "npx http-server",
     "pytest": "cd unit_tests && py -3 -m pytest -s",
     "pytest-first": "cd unit_tests && py -3 -m pytest -s -x"
