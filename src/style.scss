@@ -689,20 +689,6 @@ ul.tabs li.tab a i.material-icons {
   color: var(--incorrectColor);
 }
 
-/* Theme selectors */
-.fixed-action-btn ul a.btn-floating {
-  opacity: 1;
-}
-
-.fixed-action-btn.direction-left ul,
-.fixed-action-btn.direction-right ul {
-  right: 55px
-}
-
-.fixed-action-btn.direction-right ul li {
-  margin: 7.5px 1vw 0 0;
-}
-
 /* Normal size */
 .btn-floating {
   width: 2.86rem;
@@ -743,21 +729,15 @@ ul.tabs li.tab a i.material-icons {
   #back {
     /* Ditch loads of padding */
     margin: 0;
+    box-shadow: none;
   }
 
   #box {
-    max-width: calc(100% - 25px);
-  }
+    width: 100VW;
+    max-width: 100VW;
 
-  /* Theme selectors */
-  .fixed-action-btn.direction-left ul,
-  .fixed-action-btn.direction-right ul {
-    right: 15vw;
-  }
-
-  .fixed-action-btn.direction-left ul li,
-  .fixed-action-btn.direction-right ul li {
-    margin: 2.4vw 1vw 0 0;
+    height: 100Vh;
+    max-height: 100Vh;
   }
 
   /* Install icon */
