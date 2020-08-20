@@ -67,7 +67,7 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "sitemap-webpack-plugin": "^0.8.1",
-    "source-map-loader": "^1.0.1",
+    "source-map-loader": "^1.0.2",
     "style-loader": "^1.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "unzipper": "^0.10.11",
