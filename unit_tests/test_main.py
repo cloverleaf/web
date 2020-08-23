@@ -71,7 +71,7 @@ def driver():
     try:
         driverInternal.get(address)
     except WebDriverException:
-        print("You need to host the localhost before you can run a unit test on it")
+        assert False, "You need to host the localhost before you can run a unit test on it"
     yield driverInternal
     # Close procedures
     driverInternal.close()
@@ -218,7 +218,7 @@ def test_lengths(driver):
 
     appElem = driver.find_element_by_id("app")
     passElem = driver.find_element_by_id("pass")
-    lengthElem = driver.find_element_by_id("length")
+    # lengthElem = driver.find_element_by_id("length")
 
     appElem.send_keys("a")
     passElem.send_keys("a")

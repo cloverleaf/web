@@ -20,10 +20,19 @@
 	],
 	"git.ignoreLimitWarning": true,
 
-	// Python testing
-	"python.linting.pylintEnabled": true,
-	"python.analysis.disabled": [
-		"unresolved-import"
-	],
-	}
+	// // Python testing
+	// "python.linting.pylintEnabled": true,
+	// "python.analysis.disabled": [
+	// 	"unresolved-import"
+	// ],
+
+	// "python.testing.unittestEnabled":true,
+	// "python.testing.unittestArgs": [
+	// 	"/unit_tests/",
+	// 	// "--ignore-glob=path"
+	// ],
+	// "python.testing.cwd": "./unit_tests/"
+	// }
+	"python.testing.cwd": "${workspaceFolder}/unit_tests",
+  "python.testing.pytestEnabled": true
 }

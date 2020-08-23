@@ -5,9 +5,10 @@
   "main": "jssource.js",
   "scripts": {
     "build": "cross-env NODE_ENV=production node --no-deprecation config/webpack/config.js",
-    "start": "cross-env NODE_ENV=dev webpack-dev-server --inline --watch --config config/webpack/config.development.js",
+    "start": "cross-env NODE_ENV=dev webpack-dev-server --inline --watch --config config/webpack/config.development.js --host 192.168.1.87",
     "server-test": "npx http-server",
-    "pytest": "cd unit_tests && py -3 -m pytest -s"
+    "pytest": "cd unit_tests && py -3 -m pytest -s",
+    "pytest-first": "cd unit_tests && py -3 -m pytest -s -x"
   },
   "repository": {
     "type": "git",
@@ -37,16 +38,16 @@
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/plugin-transform-runtime": "^7.11.0",
     "@babel/preset-env": "^7.11.0",
     "@bundle-analyzer/webpack-plugin": "^0.5.1",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",
-    "css-loader": "^4.2.0",
+    "css-loader": "^4.2.1",
     "cssnano": "^4.1.10",
-    "eslint": "^7.6.0",
+    "eslint": "^7.7.0",
     "eslint-loader": "^4.0.2",
     "exports-loader": "0.7.0",
     "fibers": "^5.0.0",
@@ -55,7 +56,7 @@
     "hard-source-webpack-plugin": "^0.13.1",
     "html-webpack-plugin": "^4.3.0",
     "locale-code": "^2.0.2",
-    "mini-css-extract-plugin": "^0.9.0",
+    "mini-css-extract-plugin": "^0.10.0",
     "node-fetch": "^2.6.0",
     "node-sass": "^4.14.1",
     "postcss-import": "^12.0.1",
@@ -64,15 +65,15 @@
     "progress-bar-webpack-plugin": "^2.1.0",
     "rimraf": "^3.0.2",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^9.0.3",
     "sitemap-webpack-plugin": "^0.8.1",
-    "source-map-loader": "^1.0.1",
+    "source-map-loader": "^1.0.2",
     "style-loader": "^1.2.1",
-    "terser-webpack-plugin": "^4.0.0",
+    "terser-webpack-plugin": "^4.1.0",
     "unzipper": "^0.10.11",
-    "webpack": "^5.0.0-beta.23",
+    "webpack": "^5.0.0-beta.28",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
-    "webpack-subresource-integrity": "^1.4.1"
+    "webpack-subresource-integrity": "git://github.com/waysact/webpack-subresource-integrity.git#webpack-5"
   }
 }

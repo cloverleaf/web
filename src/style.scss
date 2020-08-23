@@ -545,7 +545,8 @@ label:focus {
 .github-corner {
   fill: $accentColor;
   fill: var(--accentColor);
-  color:#fff;
+  color: $backgroundColor;
+  color: var(--backgroundColor);
   position: absolute;
   top: 0;
   border: 0;
@@ -689,20 +690,6 @@ ul.tabs li.tab a i.material-icons {
   color: var(--incorrectColor);
 }
 
-/* Theme selectors */
-.fixed-action-btn ul a.btn-floating {
-  opacity: 1;
-}
-
-.fixed-action-btn.direction-left ul,
-.fixed-action-btn.direction-right ul {
-  right: 55px
-}
-
-.fixed-action-btn.direction-right ul li {
-  margin: 7.5px 1vw 0 0;
-}
-
 /* Normal size */
 .btn-floating {
   width: 2.86rem;
@@ -727,37 +714,26 @@ ul.tabs li.tab a i.material-icons {
   line-height: 4rem;
 }
 
-/* Media Queries */
-@media (max-width: 500px) {
-  .github-corner:hover .octo-arm {
-    animation: none;
-  }
-
-  .github-corner .octo-arm {
-    animation: octocat-wave 560ms ease-in-out;
-  }
-}
-
 /* If we're on a small/mobile device */
 @media only all and (max-width:40em) {
+
+  body {
+    background-color: var(--internalColor);
+  }
+
   #back {
     /* Ditch loads of padding */
     margin: 0;
+    box-shadow: none;
+
+    min-height: 100%;
+    border-radius: 0;
   }
 
   #box {
-    max-width: calc(100% - 25px);
-  }
-
-  /* Theme selectors */
-  .fixed-action-btn.direction-left ul,
-  .fixed-action-btn.direction-right ul {
-    right: 15vw;
-  }
-
-  .fixed-action-btn.direction-left ul li,
-  .fixed-action-btn.direction-right ul li {
-    margin: 2.4vw 1vw 0 0;
+    width: 100VW;
+    max-width: 100VW;
+    min-height: 100%;
   }
 
   /* Install icon */
@@ -787,10 +763,14 @@ ul.tabs li.tab a i.material-icons {
     line-height: 15vw;
   }
 
+  .github-corner {
+    color: $internalColor;
+    color: var(--internalColor);
+  }
 }
 
 /* If it won't fit vertically */
-@media only all and (max-height:600px) {
+@media only all and (max-height:600px ) and (min-width:40em) {
   html {
     /* Drop the font size */
     font-size: 2vh;
@@ -842,7 +822,7 @@ ul.tabs li.tab a i.material-icons {
   padding: 10px;
   padding-top: 0;
   display: grid;
-  height: calc(100vh - 68px);
+  height: calc(100% - 8px);
   grid-template-rows: repeat(12, 1fr);
   // grid-template-rows: repeat(auto-fill, minmax(70px, 1fr))
   // grid-auto-rows: repeat(min-content, 60px) ;
