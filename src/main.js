@@ -650,6 +650,14 @@ window.appDown = function (e) {
 			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
 		}
 
+	// If Ctrl + C is pressed
+	} else if (e.ctrlKey && e.code === "KeyC") {
+
+		// If the user isn't selecting anything
+		if (window.getSelection().toString() === "") {
+			// Run existing copy command
+			window.copy();
+		}
 	}
 
 };
