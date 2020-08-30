@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.action_chains import ActionChains
 from meta import pass_vis
 from meta import get_var
 import json
@@ -232,3 +233,38 @@ def test_lengths(driver):
         driver.execute_script("generate()")
 
         assert len(driver.find_element_by_id("result").get_attribute("value")) == length
+
+
+def test_copy_shortcut(driver):
+
+    # Add box for reading paste
+    driver.execute_script(
+        """body = document.querySelector('body');
+        element = document.createElement('textarea');
+        element.id = "paste-box"
+        body.append(element);""")
+
+    appElem = driver.find_element_by_id("app")
+    passElem = driver.find_element_by_id("pass")
+
+    appElem.send_keys("FAKE APP NAME")
+    passElem.send_keys("DO NOT USE THIS PASSWORD - Your security is at stake")
+
+    # Copy app name
+    appElem.send_keys(Keys.CONTROL, "a")
+    driver.execute_script("document.execCommand('copy')")
+    # Deselect text
+    passElem.click()
+
+    # Make sure normal copying still works
+    assert read_clipboard(driver) == "FAKE APP NAME", "Copy shortcut not working - interfering with normal shortcut"
+
+    # Try using copy shortcut
+    action = ActionChains(driver)
+    action.key_down(Keys.CONTROL).send_keys('c').key_up(Keys.CONTROL).perform()
+
+    assert read_clipboard(driver) == "sZ1\"\\B<]X<6|m}6q", "Copy shortcut not working"
+
+    # Remove text box used for reading from the clipboard
+    driver.execute_script("""let elem = document.getElementById('paste-box');
+                          elem.parentNode.removeChild(elem)""")

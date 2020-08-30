@@ -537,6 +537,21 @@ window.onload = function () {
 		document.querySelector("label[for='pass']").classList.add("active");
 	}
 
+	// Setup copy shortcut
+	document.body.addEventListener("keydown", e => {
+
+		// If Ctrl + C is pressed
+		if (e.ctrlKey && e.code === "KeyC") {
+
+			// If the user isn't selecting anything
+			if (window.getSelection().toString() === "") {
+				// Run existing copy command
+				window.copy();
+			}
+		}
+	});
+
+	// Dev studd
 	switch (location.hostname) {
 
 	// If the user is on the dev build
@@ -649,7 +664,6 @@ window.appDown = function (e) {
 			// Click the first preset
 			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
 		}
-
 	}
 
 };
