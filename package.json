@@ -71,7 +71,7 @@
     "style-loader": "^1.3.0",
     "terser-webpack-plugin": "^4.2.3",
     "unzipper": "^0.10.11",
-    "webpack": "^5.0.0-beta.28",
+    "webpack": "^5.0.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-subresource-integrity": "git://github.com/waysact/webpack-subresource-integrity.git#webpack-5"
