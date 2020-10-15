@@ -40,7 +40,7 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/plugin-transform-runtime": "^7.11.5",
-    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-env": "^7.12.0",
     "@bundle-analyzer/webpack-plugin": "^0.5.1",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
