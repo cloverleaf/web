@@ -18,5 +18,9 @@
     "theme_color": "#87b2de",
     "background_color": "#ffffff",
     "display":"standalone",
-    "start_url": "index.html?utm_source=a2hs"
+    "start_url": "index.html?utm_source=a2hs",
+    "related_applications": [{
+        "platform": "webapp",
+        "url": "https://cloverleaf.app/manifest.json"
+    }]
 }

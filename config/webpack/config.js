@@ -9,6 +9,9 @@ const TerserPlugin = require("terser-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
 const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
+// Try the environment variable, otherwise use root
+const ASSET_PATH = process.env.ASSET_PATH || "/bundles/";
+
 // Wipe old bundles
 rimraf.sync("bundles/");
 
@@ -135,11 +138,13 @@ const configPromise = new Promise(function (resolve, reject) {
 				output: {
 					crossOriginLoading: "anonymous",
 					filename: "bundle-[contenthash:8].js",
-					path: path.resolve(__dirname, "../../bundles")
+					path: path.resolve(__dirname, "../../bundles"),
+					publicPath: ASSET_PATH
 				}
 			};
 
 			resolve(config);
+			reject("Oopsies");
 
 		});}
 	, 1000);
