@@ -66,6 +66,7 @@ let mode;
 let targetLength = 16;
 // let select; // Theme selector
 let presetInUse = false; // Flag true if a preset is selected
+let installPromptEvent;
 
 window.generate = function () {
 	document.getElementById("result").value =
@@ -645,10 +646,20 @@ window.passwordUp = function () {
 };
 
 window.addEventListener("beforeinstallprompt", e => {
-	window.installPromptEvent = e;
+
+	installPromptEvent = e;
 	// Prevent Chrome 67 and earlier from automatically showing the prompt
 	e.preventDefault();
-	// Show the prompt on later versions
+
+	// Show install button
+	document.getElementById("install").style = "";
+
+	// Alert the user that the app can be installed.
+	M.toast({
+		html: "Web app ready to install.",
+		displayLength: 4000,
+		classes: "success"
+	});
 });
 
 window.appDown = function (e) {
@@ -723,4 +734,18 @@ window.lengthPref = function (passedLength) {
 window.presetScroll = function () {
 	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
 	if (selected)	selected.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+};
+
+window.install = function () {
+
+	try {
+		installPromptEvent.prompt();
+	} catch (TypeError) {
+		M.toast({
+			html: "Failed to install app.",
+			displayLength: 4000,
+			classes: "warning"
+		});
+	}
+
 };
