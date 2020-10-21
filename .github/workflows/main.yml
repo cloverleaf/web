@@ -46,6 +46,3 @@ jobs:
       run: |
         cd unit_tests
         python3 -m pytest -s --cov=./ --cov-report=xml
-        
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
