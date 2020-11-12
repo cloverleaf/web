@@ -654,12 +654,6 @@ window.addEventListener("beforeinstallprompt", e => {
 	// Show install button
 	document.getElementById("install").style = "";
 
-	// Alert the user that the app can be installed.
-	M.toast({
-		html: "Web app ready to install.",
-		displayLength: 4000,
-		classes: "success"
-	});
 });
 
 window.appDown = function (e) {

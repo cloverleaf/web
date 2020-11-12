@@ -1,6 +1,5 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
@@ -19,7 +18,6 @@ module.exports = {
 	target: "web",
 
 	plugins: [
-		new FriendlyErrorsWebpackPlugin(),
 		new MiniCssExtractPlugin(),
 		new HtmlWebpackPlugin({
 			template: "src/src.ejs",

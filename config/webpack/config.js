@@ -7,7 +7,6 @@ const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
 const TerserPlugin = require("terser-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 
 // Try the environment variable, otherwise use root
 const ASSET_PATH = process.env.ASSET_PATH || "/bundles/";
@@ -72,8 +71,7 @@ const configPromise = new Promise(function (resolve, reject) {
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true}),
-					new ProgressBarPlugin()
+					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true})
 				]),
 
 				module: {

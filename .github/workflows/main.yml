@@ -45,4 +45,4 @@ jobs:
     - name: Test with pytest
       run: |
         cd unit_tests
-        python3 -m pytest -s --cov=./ --cov-report=xml
+        python3 -m pytest -s
