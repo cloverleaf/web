@@ -41,7 +41,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.3",
     "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
     "autoprefixer": "^10.0.2",
     "babel-loader": "^8.2.1",
     "cross-env": "^7.0.2",
