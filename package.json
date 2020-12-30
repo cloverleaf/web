@@ -72,7 +72,7 @@
     "unzipper": "^0.10.11",
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.0",
-    "webpack-dev-server": "^3.11.0",
+    "webpack-dev-server": "^3.11.1",
     "webpack-subresource-integrity": "^1.5.2"
   }
 }
