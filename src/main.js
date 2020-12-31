@@ -67,6 +67,18 @@ let targetLength = 16;
 // let select; // Theme selector
 let presetInUse = false; // Flag true if a preset is selected
 let installPromptEvent;
+let usingLang;
+const currentLang = location.pathname === "/" ? "en-GB" : location.pathname.substring(1, location.pathname.length - 5);
+
+const storedValues = {
+	"password": getStored("password"),
+	"length": getStored("length"),
+	"lang": getStored("lang"),
+	"theme": getStored("theme"),
+	"mode": getStored("mode"),
+	"store": getStored("store"),
+	"redirected": getStored("redirected")
+};
 
 window.generate = function () {
 	document.getElementById("result").value =
@@ -106,7 +118,7 @@ window.changeTheme = function (passedTheme) {
 };
 
 // Change theme to stored before the page loads to avoid flicker.
-window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
+window.changeTheme(storedValues.theme ? storedValues.theme : defaultTheme);
 
 
 /**
@@ -115,7 +127,9 @@ window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
  */
 function getStored (name) {
-	return localStorage.getItem(name);
+	const result = localStorage.getItem(name);
+	console.debug(`attempted to get stored "${name}" returned "${result}"`);
+	return result;
 }
 
 /**
@@ -214,7 +228,7 @@ window.getRandomArbitrary = function (min, max) {
 /**
  * @param  {String} passedLang - Changes the language and updates the cookie to match
  */
-window.changeLang = function (passedLang) {
+window.changeLang = function (passedLang, redirected) {
 
 
 	// Invalid language code
@@ -229,6 +243,12 @@ window.changeLang = function (passedLang) {
 
 	// If not on the chosen page
 	if (window.location.pathname.toLowerCase() !== file.toLowerCase() ) {
+
+
+		// if (redirected) {
+		// 	setStored("redirected", langData[currentLang].native);
+		// }
+
 		window.location.pathname = file;
 	}
 };
@@ -322,14 +342,12 @@ window.onload = function () {
 		document.querySelector("#lang").appendChild(option);
 	}
 
-	let usingLang;
-
 	// If the user has a language cookie
-	if (getStored("lang") !== null) {
+	if (storedValues.lang !== null) {
 
 		// Select the correct selection
-		document.getElementById("lang").value = langData[getStored("lang")].native;
-		usingLang = getStored("lang");
+		document.getElementById("lang").value = langData[storedValues.lang].native;
+		usingLang = storedValues.lang;
 	} else {
 		// If no lang cookie exists
 		// Check navigator language
@@ -353,7 +371,7 @@ window.onload = function () {
 
 	}
 
-	window.changeLang(usingLang);
+	window.changeLang(usingLang, true);
 
 
 	// Themes have already been set, now we handle the options
@@ -369,7 +387,7 @@ window.onload = function () {
 	}
 
 	// Set the select to chosen theme or vanilla as a backup
-	document.getElementById("theme").value = getStored("theme") ? getStored("theme") : defaultTheme;
+	document.getElementById("theme").value = storedValues.theme ? storedValues.theme : defaultTheme;
 
 	// Initialize tooltips
 	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
@@ -385,21 +403,21 @@ window.onload = function () {
 
 
 	// Set the mode cookie if we haven't before
-	if (getStored("mode") === null) {
+	if (storedValues.mode === null) {
 		mode = "new";
 	} else {
-		mode = getStored("mode");
+		mode = storedValues.mode;
 	}
 
 	tabs.select(mode);
 
 	// If user hasn't opted out of storing passwords
-	if (getStored("store") !== "false") {
+	if (storedValues.store !== "false") {
 
 		// If there's a stored password
-		if (getStored("password")) {
+		if (storedValues.store) {
 			// Fill the password input with the correct password
-			document.getElementById("pass").value = getStored("password");
+			document.getElementById("pass").value = storedValues.password;
 			// Raise the text on the input
 			document.querySelector("label[for='pass']").classList.add("active");
 		}
@@ -408,10 +426,9 @@ window.onload = function () {
 		document.getElementById("session-toggle").click();
 	}
 
+	if (storedValues.length) {
 
-	if (getStored("length")) {
-
-		targetLength = getStored("length");
+		targetLength = storedValues.length;
 
 		document.getElementById("length-pref").value = targetLength;
 		document.getElementById("length").value = targetLength;
@@ -552,7 +569,16 @@ window.onload = function () {
 		}
 	});
 
-	// Dev studd
+	// if (storedValues.redirected !== "false") {
+
+	// M.toast({
+	// 	"html": `Redirected from ${storedValues.redirected} <button class='btn-flat toast-action'>Go back</button>`,
+	// });
+
+	// setStored("redirected", false);
+	// }
+
+	// Dev stuff
 	switch (location.hostname) {
 
 	// If the user is on the dev build

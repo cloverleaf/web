@@ -33,6 +33,11 @@ $link-color: $linkColor;
 // Variables;
 @import "node_modules/materialize-css/sass/components/variables";
 
+$toast-action-color: $link-color;
+$toast-action-color: var(--linkColor);
+$toast-color: $internalColor;
+$toast-color: var(--internalColor);
+
 // Components
 @import "node_modules/materialize-css/sass/components/global";
 @import "node_modules/materialize-css/sass/components/grid";
