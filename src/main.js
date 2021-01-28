@@ -560,7 +560,7 @@ window.onload = function () {
 	document.body.addEventListener("keydown", e => {
 
 		// If Ctrl + C is pressed
-		if (e.ctrlKey && e.code === "KeyC") {
+		if ((e.ctrlKey || e.metaKey) && e.code === "KeyC") {
 
 			// If the user isn't selecting anything
 			if (window.getSelection().toString() === "") {
