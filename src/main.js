@@ -140,6 +140,7 @@ function getStored (name) {
  */
 function setStored (name, value) {
 	localStorage.setItem(name, value);
+	storedValues[name] = value;
 }
 
 function getQueryStrings () {
@@ -181,7 +182,6 @@ window.copy = function () {
 	if (pass === "") {
 		M.toast({
 			html: "You have no password to copy.",
-			displayLength: 4000,
 			classes: "warning"
 		});
 	} else {
@@ -230,7 +230,6 @@ window.getRandomArbitrary = function (min, max) {
  */
 window.changeLang = function (passedLang, redirected) {
 
-
 	// Invalid language code
 	if (!langData[passedLang]) {
 		throw new Error(`Invalid language "${passedLang}"`);
@@ -241,16 +240,18 @@ window.changeLang = function (passedLang, redirected) {
 	// Ensure the correct language is loaded
 	const file = passedLang === "en-GB" ? "/" : "/" + passedLang + extension;
 
-	// If not on the chosen page
-	if (window.location.pathname.toLowerCase() !== file.toLowerCase() ) {
+	const wrong = window.location.pathname.toLowerCase() !== file.toLowerCase();
 
+	const toSet = wrong && redirected ? JSON.stringify([langData[currentLang].native, currentLang]) : false;
 
-		// if (redirected) {
-		// 	setStored("redirected", langData[currentLang].native);
-		// }
-
+	// If on wrong page
+	if (wrong) {
+		// Set redirected marker
+		setStored("redirected", toSet);
+		// Change page
 		window.location.pathname = file;
 	}
+
 };
 
 /**
@@ -569,14 +570,18 @@ window.onload = function () {
 		}
 	});
 
-	// if (storedValues.redirected !== "false") {
+	const redirected = JSON.parse(storedValues.redirected);
 
-	// M.toast({
-	// 	"html": `Redirected from ${storedValues.redirected} <button class='btn-flat toast-action'>Go back</button>`,
-	// });
+	if (redirected !== false && redirected[1] !== currentLang) {
 
-	// setStored("redirected", false);
-	// }
+		const html = `Redirected from ${redirected[0]} <button class='btn-flat toast-action' onclick='changeLang("${redirected[1]}", false)'>Go back</button>`;
+
+		M.toast({
+			html: html
+		});
+
+		setStored("redirected", false);
+	}
 
 	// Dev stuff
 	switch (location.hostname) {
