@@ -66,6 +66,19 @@ let mode;
 let targetLength = 16;
 // let select; // Theme selector
 let presetInUse = false; // Flag true if a preset is selected
+let installPromptEvent;
+let usingLang;
+const currentLang = location.pathname === "/" ? "en-GB" : location.pathname.substring(1, location.pathname.length - 5);
+
+const storedValues = {
+	"password": getStored("password"),
+	"length": getStored("length"),
+	"lang": getStored("lang"),
+	"theme": getStored("theme"),
+	"mode": getStored("mode"),
+	"store": getStored("store"),
+	"redirected": getStored("redirected")
+};
 
 window.generate = function () {
 	document.getElementById("result").value =
@@ -105,7 +118,7 @@ window.changeTheme = function (passedTheme) {
 };
 
 // Change theme to stored before the page loads to avoid flicker.
-window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
+window.changeTheme(storedValues.theme ? storedValues.theme : defaultTheme);
 
 
 /**
@@ -114,7 +127,9 @@ window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
  */
 function getStored (name) {
-	return localStorage.getItem(name);
+	const result = localStorage.getItem(name);
+	console.debug(`attempted to get stored "${name}" returned "${result}"`);
+	return result;
 }
 
 /**
@@ -125,6 +140,7 @@ function getStored (name) {
  */
 function setStored (name, value) {
 	localStorage.setItem(name, value);
+	storedValues[name] = value;
 }
 
 function getQueryStrings () {
@@ -166,7 +182,6 @@ window.copy = function () {
 	if (pass === "") {
 		M.toast({
 			html: "You have no password to copy.",
-			displayLength: 4000,
 			classes: "warning"
 		});
 	} else {
@@ -213,8 +228,7 @@ window.getRandomArbitrary = function (min, max) {
 /**
  * @param  {String} passedLang - Changes the language and updates the cookie to match
  */
-window.changeLang = function (passedLang) {
-
+window.changeLang = function (passedLang, redirected) {
 
 	// Invalid language code
 	if (!langData[passedLang]) {
@@ -226,10 +240,18 @@ window.changeLang = function (passedLang) {
 	// Ensure the correct language is loaded
 	const file = passedLang === "en-GB" ? "/" : "/" + passedLang + extension;
 
-	// If not on the chosen page
-	if (window.location.pathname.toLowerCase() !== file.toLowerCase() ) {
+	const wrong = window.location.pathname.toLowerCase() !== file.toLowerCase();
+
+	const toSet = wrong && redirected ? JSON.stringify([langData[currentLang].native, currentLang]) : false;
+
+	// If on wrong page
+	if (wrong) {
+		// Set redirected marker
+		setStored("redirected", toSet);
+		// Change page
 		window.location.pathname = file;
 	}
+
 };
 
 /**
@@ -321,14 +343,12 @@ window.onload = function () {
 		document.querySelector("#lang").appendChild(option);
 	}
 
-	let usingLang;
-
 	// If the user has a language cookie
-	if (getStored("lang") !== null) {
+	if (storedValues.lang !== null) {
 
 		// Select the correct selection
-		document.getElementById("lang").value = langData[getStored("lang")].native;
-		usingLang = getStored("lang");
+		document.getElementById("lang").value = langData[storedValues.lang].native;
+		usingLang = storedValues.lang;
 	} else {
 		// If no lang cookie exists
 		// Check navigator language
@@ -352,7 +372,7 @@ window.onload = function () {
 
 	}
 
-	window.changeLang(usingLang);
+	window.changeLang(usingLang, true);
 
 
 	// Themes have already been set, now we handle the options
@@ -368,7 +388,7 @@ window.onload = function () {
 	}
 
 	// Set the select to chosen theme or vanilla as a backup
-	document.getElementById("theme").value = getStored("theme") ? getStored("theme") : defaultTheme;
+	document.getElementById("theme").value = storedValues.theme ? storedValues.theme : defaultTheme;
 
 	// Initialize tooltips
 	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
@@ -384,21 +404,21 @@ window.onload = function () {
 
 
 	// Set the mode cookie if we haven't before
-	if (getStored("mode") === null) {
+	if (storedValues.mode === null) {
 		mode = "new";
 	} else {
-		mode = getStored("mode");
+		mode = storedValues.mode;
 	}
 
 	tabs.select(mode);
 
 	// If user hasn't opted out of storing passwords
-	if (getStored("store") !== "false") {
+	if (storedValues.store !== "false") {
 
 		// If there's a stored password
-		if (getStored("password")) {
+		if (storedValues.store) {
 			// Fill the password input with the correct password
-			document.getElementById("pass").value = getStored("password");
+			document.getElementById("pass").value = storedValues.password;
 			// Raise the text on the input
 			document.querySelector("label[for='pass']").classList.add("active");
 		}
@@ -407,10 +427,9 @@ window.onload = function () {
 		document.getElementById("session-toggle").click();
 	}
 
+	if (storedValues.length) {
 
-	if (getStored("length")) {
-
-		targetLength = getStored("length");
+		targetLength = storedValues.length;
 
 		document.getElementById("length-pref").value = targetLength;
 		document.getElementById("length").value = targetLength;
@@ -541,7 +560,7 @@ window.onload = function () {
 	document.body.addEventListener("keydown", e => {
 
 		// If Ctrl + C is pressed
-		if (e.ctrlKey && e.code === "KeyC") {
+		if ((e.ctrlKey || e.metaKey) && e.code === "KeyC") {
 
 			// If the user isn't selecting anything
 			if (window.getSelection().toString() === "") {
@@ -551,7 +570,20 @@ window.onload = function () {
 		}
 	});
 
-	// Dev studd
+	const redirected = JSON.parse(storedValues.redirected);
+
+	if (redirected !== false && redirected[1] !== currentLang) {
+
+		const html = `Redirected from ${redirected[0]} <button class='btn-flat toast-action' onclick='changeLang("${redirected[1]}", false)'>Go back</button>`;
+
+		M.toast({
+			html: html
+		});
+
+		setStored("redirected", false);
+	}
+
+	// Dev stuff
 	switch (location.hostname) {
 
 	// If the user is on the dev build
@@ -645,10 +677,14 @@ window.passwordUp = function () {
 };
 
 window.addEventListener("beforeinstallprompt", e => {
-	window.installPromptEvent = e;
+
+	installPromptEvent = e;
 	// Prevent Chrome 67 and earlier from automatically showing the prompt
 	e.preventDefault();
-	// Show the prompt on later versions
+
+	// Show install button
+	document.getElementById("install").style = "";
+
 });
 
 window.appDown = function (e) {
@@ -723,4 +759,18 @@ window.lengthPref = function (passedLength) {
 window.presetScroll = function () {
 	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
 	if (selected)	selected.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
+};
+
+window.install = function () {
+
+	try {
+		installPromptEvent.prompt();
+	} catch (TypeError) {
+		M.toast({
+			html: "Failed to install app.",
+			displayLength: 4000,
+			classes: "warning"
+		});
+	}
+
 };

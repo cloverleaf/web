@@ -1,31 +1,45 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const FriendlyErrorsWebpackPlugin = require("friendly-errors-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require("fs");
 const webpack = require("webpack");
 
-// Read json
+// Read strings json
 const json = JSON.parse(fs.readFileSync(path.join(__dirname, "../../src/strings.json"), "utf8"));
 
-const replacements = {};
+//
+const eo = JSON.parse(fs.readFileSync(path.join(__dirname, "../../langs/eo/eo-UY.json"), "utf8"));
 
-for (var k in json) {
+
+const replacements = {};
+const eoReplacements = {};
+
+for (const k in json) {
 	replacements[k] = json[k].message;
+}
+
+for (const k in json) {
+	eoReplacements[k] = eo[k].message;
 }
 
 module.exports = {
 	mode: "development",
 	target: "web",
+	// amd: true,
 
 	plugins: [
-		new FriendlyErrorsWebpackPlugin(),
 		new MiniCssExtractPlugin(),
 		new HtmlWebpackPlugin({
 			template: "src/src.ejs",
 			filename: "index.html",
 			inject: "head",
 			templateParameters: replacements
+		}),
+		new HtmlWebpackPlugin({
+			template: "src/src.ejs",
+			filename: "eo-UY.html",
+			inject: "head",
+			templateParameters: eoReplacements
 		}),
 		new webpack.ProvidePlugin({
 			Component: "exports-loader?Component!materialize-css/js/component.js"
@@ -43,17 +57,7 @@ module.exports = {
 				test: /\.(s*)css$/,
 				use: [
 					"style-loader",
-					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {hmr: true}
-					},
 					"css-loader",
-					{
-						loader: "postcss-loader",
-						options: {
-							plugins: () => [require("autoprefixer")]
-						}
-					},
 					"sass-loader"
 				]
 			},
@@ -79,11 +83,10 @@ module.exports = {
 	devtool: "source-map",
 	devServer: {
 		compress: true,
-		contentBase: "./",
+		// static: "./",
 		port: 8080,
 		open: true,
-		// For FriendlyErrorsWebpackPlugin
-		quiet: true,
+		host: "localhost"
 	}
 
 };

@@ -7,7 +7,9 @@ const translation = require("./translation.js");
 const SriPlugin = require("webpack-subresource-integrity");
 const TerserPlugin = require("terser-webpack-plugin");
 const SitemapPlugin = require("sitemap-webpack-plugin").default;
-const ProgressBarPlugin = require("progress-bar-webpack-plugin");
+
+// Try the environment variable, otherwise use root
+const ASSET_PATH = process.env.ASSET_PATH || "/bundles/";
 
 // Wipe old bundles
 rimraf.sync("bundles/");
@@ -69,8 +71,7 @@ const configPromise = new Promise(function (resolve, reject) {
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true}),
-					new ProgressBarPlugin()
+					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true})
 				]),
 
 				module: {
@@ -88,7 +89,7 @@ const configPromise = new Promise(function (resolve, reject) {
 					},
 					{
 						test: /\.m?js$/,
-						exclude: /(node_modules|bower_components)/,
+						exclude: /node_modules/,
 						use: {
 							loader: "babel-loader",
 							options: {
@@ -135,11 +136,13 @@ const configPromise = new Promise(function (resolve, reject) {
 				output: {
 					crossOriginLoading: "anonymous",
 					filename: "bundle-[contenthash:8].js",
-					path: path.resolve(__dirname, "../../bundles")
+					path: path.resolve(__dirname, "../../bundles"),
+					publicPath: ASSET_PATH
 				}
 			};
 
 			resolve(config);
+			reject("Oopsies");
 
 		});}
 	, 1000);
