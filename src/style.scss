@@ -37,8 +37,6 @@ $toast-action-color: $link-color;
 $toast-action-color: var(--linkColor);
 $toast-color: $internalColor;
 $toast-color: var(--internalColor);
-$toast-text-color: $textColor;
-$toast-text-color: var(--textColor);
 
 // Components
 @import "node_modules/materialize-css/sass/components/global";
@@ -458,8 +456,6 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 /* Negative toasts get this */
 .warning {
-  color: $inputColor;
-  color: var(--inputColor);
   background-color: $incorrectColor;
   background-color: var(--incorrectColor);
 }

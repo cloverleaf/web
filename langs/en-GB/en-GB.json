@@ -21,7 +21,7 @@
 	},
 	"on": {
 		"message": "On",
-		"description": ""
+		"description": "Shows the state of an option"
 	},
 	"install": {
 		"message": "Install as a native app",
@@ -93,6 +93,26 @@
 	},
 	"length_pref": {
 		"message": "Default password length",
-		"description": "Shows"
+		"description": "Label"
+	},
+	"failed": {
+		"message": "Failed to install app.",
+		"description": "Shown in a toast when PWA fails to install"
+	},
+	"notCopied": {
+		"message": "You have no password to copy.",
+		"description": "Shown when the user tries to copy when no password is generated"
+	},
+	"copied": {
+		"message": "Successfully copied!",
+		"description": "Shown when the password is successfully copied."
+	},
+	"redirected": {
+		"message": "Redirected from __LANGAUGE__",
+		"description": "Used when a user is redirected (EG: 'Redirected from Esperanto')"
+	},
+	"goBack": {
+		"message": "Go back",
+		"description": "Used on a back button"
 	}
 }

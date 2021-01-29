@@ -68,7 +68,7 @@ let targetLength = 16;
 let presetInUse = false; // Flag true if a preset is selected
 let installPromptEvent;
 let usingLang;
-const currentLang = location.pathname === "/" ? "en-GB" : location.pathname.substring(1, location.pathname.length - 5);
+// const currentLang = location.pathname === "/" ? "en-GB" : location.pathname.substring(1, location.pathname.length - 5);
 
 const storedValues = {
 	"password": getStored("password"),
@@ -77,7 +77,7 @@ const storedValues = {
 	"theme": getStored("theme"),
 	"mode": getStored("mode"),
 	"store": getStored("store"),
-	"redirected": getStored("redirected")
+	"redirected": getStored("redirected") === null ? false : getStored("redirected")
 };
 
 window.generate = function () {
@@ -140,6 +140,7 @@ function getStored (name) {
  */
 function setStored (name, value) {
 	localStorage.setItem(name, value);
+	console.debug(`attempted to get set "${name}" to "${value}"`);
 	storedValues[name] = value;
 }
 
@@ -228,30 +229,32 @@ window.getRandomArbitrary = function (min, max) {
 /**
  * @param  {String} passedLang - Changes the language and updates the cookie to match
  */
-window.changeLang = function (passedLang, redirected) {
+window.changeLang = function (passedLang, set, back) {
 
 	// Invalid language code
 	if (!langData[passedLang]) {
 		throw new Error(`Invalid language "${passedLang}"`);
 	}
 
-	setStored("lang", passedLang);
+	if (set) {
+		setStored("lang", passedLang);
+	}
 
 	// Ensure the correct language is loaded
 	const file = passedLang === "en-GB" ? "/" : "/" + passedLang + extension;
 
 	const wrong = window.location.pathname.toLowerCase() !== file.toLowerCase();
+	// let toSet = storedValues.redirected === false  ? JSON.stringify([langData[currentLang].native, currentLang]) : false;
 
-	const toSet = wrong && redirected ? JSON.stringify([langData[currentLang].native, currentLang]) : false;
+	// if (back) toSet = true;
 
 	// If on wrong page
 	if (wrong) {
 		// Set redirected marker
-		setStored("redirected", toSet);
+		// setStored("redirected", toSet);
 		// Change page
 		window.location.pathname = file;
 	}
-
 };
 
 /**
@@ -372,7 +375,11 @@ window.onload = function () {
 
 	}
 
-	window.changeLang(usingLang, true);
+	if (storedValues.redirected !== "true") {
+		window.changeLang(usingLang, false, false);
+	} else {
+		setStored("redirected", false);
+	}
 
 
 	// Themes have already been set, now we handle the options
@@ -570,18 +577,18 @@ window.onload = function () {
 		}
 	});
 
-	const redirected = JSON.parse(storedValues.redirected);
+	// const redirected = JSON.parse(storedValues.redirected);
 
-	if (redirected !== false && redirected[1] !== currentLang) {
+	// if (redirected !== false && redirected[1] !== currentLang) {
 
-		const html = `Redirected from ${redirected[0]} <button class='btn-flat toast-action' onclick='changeLang("${redirected[1]}", false)'>Go back</button>`;
+	// 	const html = `Redirected from ${redirected[0]} <button class='btn-flat toast-action' onclick='changeLang("${redirected[1]}", false, true)'>Go back</button>`;
 
-		M.toast({
-			html: html
-		});
+	// 	M.toast({
+	// 		html: html
+	// 	});
 
-		setStored("redirected", false);
-	}
+	// 	setStored("redirected", false);
+	// }
 
 	// Dev stuff
 	switch (location.hostname) {
@@ -660,7 +667,7 @@ window.passwordUp = function () {
 	colourUnderline();
 
 	// If the user is opted into saving the master password
-	if (getStored("store") === "true") {
+	if (storedValues.store === "true") {
 
 		// If there's a password
 		if (document.getElementById("pass").value) {
