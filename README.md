@@ -58,6 +58,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- markdownlint-disable -->
 <table>
   <tr>
+    <td align="center"><a href="https://github.com/ChildishGiant"><img src="https://avatars.githubusercontent.com/u/13716824?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allie</b></sub></a><br /><a href="#design-ChildishGiant" title="Design">🎨</a> <a href="https://github.com/cloverleaf/web/commits?author=ChildishGiant" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/matthew-law"><img src="https://avatars.githubusercontent.com/u/18603830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matthew Law</b></sub></a><br /><a href="#translation-matthew-law" title="Translation">🌍</a></td>
   </tr>
 </table>
