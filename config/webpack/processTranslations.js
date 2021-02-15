@@ -6,9 +6,9 @@ const lc = require("locale-code");
 
 function processTranslations () {
 	const partsStart = [
-		"/",
-		"/faq"
-	];
+		{path:"/"},
+		{path:"/faq"}
+	]
 	const pluginsStart = [];
 	const langs = {};
 
@@ -63,9 +63,7 @@ function processTranslations () {
 			);
 
 			if (code !== "en-GB") {
-				partsStart.push(
-					code
-				);
+				partsStart.push({path:code});
 			}
 
 		});

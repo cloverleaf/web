@@ -72,7 +72,9 @@ const configPromise = new Promise(function (resolve, reject) {
 						enabled: process.env.NODE_ENV === "production",
 					}),
 					new webpack.ProvidePlugin({Component: "exports-loader?Component!materialize-css/js/component.js"}),
-					new SitemapPlugin("https://cloverleaf.app", plugins[1], {lastmod: true})
+					new SitemapPlugin({
+						base:"https://cloverleaf.app", paths:plugins[1], options: {lastmod: true}
+					})
 				]),
 
 				module: {
