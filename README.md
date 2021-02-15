@@ -1,8 +1,6 @@
 # [Cloverleaf](https://cloverleaf.app/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)<!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![CI](https://github.com/cloverleaf/web/workflows/CI/badge.svg)
 ![Last commit label](https://img.shields.io/github/last-commit/cloverleaf/web.svg)
 [![Up or down indicator](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
