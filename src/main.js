@@ -127,8 +127,13 @@ window.changeTheme(storedValues.theme ? storedValues.theme : defaultTheme);
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
  */
 function getStored (name) {
-	const result = localStorage.getItem(name);
-	console.debug(`attempted to get stored "${name}" returned "${result}"`);
+	let result;
+	try {
+		result = JSON.parse(localStorage.getItem(name));
+	} catch (SyntaxError) {
+		result = null;
+	}
+	console.debug(`attempted to get stored "${name}" returned "${result}", type ${typeof result}`);
 	return result;
 }
 
@@ -139,7 +144,7 @@ function getStored (name) {
  * @returns {void}
  */
 function setStored (name, value) {
-	localStorage.setItem(name, value);
+	localStorage.setItem(name, JSON.stringify(value));
 	console.debug(`attempted to get set "${name}" to "${value}"`);
 	storedValues[name] = value;
 }
@@ -375,7 +380,7 @@ window.onload = function () {
 
 	}
 
-	if (storedValues.redirected !== "true") {
+	if (storedValues.redirected !== true) {
 		window.changeLang(usingLang, false, false);
 	} else {
 		setStored("redirected", false);
@@ -420,7 +425,7 @@ window.onload = function () {
 	tabs.select(mode);
 
 	// If user hasn't opted out of storing passwords
-	if (storedValues.store !== "false") {
+	if (storedValues.store !== false) {
 
 		// If there's a stored password
 		if (storedValues.store) {
@@ -606,11 +611,7 @@ window.onload = function () {
 		document.head.appendChild(ico);
 		break;
 
-	case "cloverleaf.app":
-		break;
-
 	default:
-		document.title += " - localhost";
 		break;
 	}
 
@@ -667,7 +668,7 @@ window.passwordUp = function () {
 	colourUnderline();
 
 	// If the user is opted into saving the master password
-	if (storedValues.store === "true") {
+	if (storedValues.store === true) {
 
 		// If there's a password
 		if (document.getElementById("pass").value) {
