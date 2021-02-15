@@ -36,6 +36,7 @@ const configPromise = new Promise(function (resolve, reject) {
 			const config = {
 				mode: "production",
 				target: "web",
+				bail: true,
 
 				optimization: {
 					minimize: true,
