@@ -1,0 +1,5 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "app.cloverleaf.twa",
+                   "sha256_cert_fingerprints": ["B9:27:84:9F:C6:99:2E:22:F1:47:EA:68:F4:5A:EC:D9:14:39:8C:71:D0:08:A1:EC:6F:AD:05:86:4A:08:DD:15"] }
+    }]
