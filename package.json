@@ -39,7 +39,7 @@
     "seedrandom": "^3.0.5"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.1",
+    "@babel/core": "^7.13.8",
     "@babel/plugin-transform-runtime": "^7.13.8",
     "@babel/preset-env": "^7.13.8",
     "autoprefixer": "^10.2.4",
