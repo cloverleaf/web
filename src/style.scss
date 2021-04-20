@@ -297,14 +297,6 @@ input#length {
   clear: both;
 }
 
-/*
-For IE 6/7 only
-Include this rule to trigger hasLayout and contain floats.
-*/
-.cf {
-  *zoom: 1;
-}
-
 ul.autocomplete-content.dropdown-content {
   background: $backgroundColor;
   background: var(--backgroundColor);
@@ -791,7 +783,6 @@ ul.tabs li.tab a i.material-icons {
   background-color: var(--backgroundColor);
   width: 350px;
   max-width: 100%;
-  max-height: 100%;
   overflow-y: hidden;
 }
 
@@ -829,7 +820,7 @@ ul.tabs li.tab a i.material-icons {
 
 #options {
   padding: 10px;
-  padding-top: 0;
+  // padding-top: 0;
   display: grid;
   height: calc(100% - 8px);
   grid-template-rows: repeat(12, 1fr);
@@ -868,8 +859,7 @@ select:focus {
 }
 
 .sidenav .input-field {
-  // margin-top: 2.4rem;
-  padding-bottom: 1.5rem;
+  margin-top: 2.5rem;
 }
 
 .btn i {
