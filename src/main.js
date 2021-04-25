@@ -1,24 +1,27 @@
 /* global M */
 
 // Import what we need from materialize
-import "materialize-css/js/cash.js";
-import "materialize-css/js/component.js";
-import "materialize-css/js/global.js";
-import "materialize-css/js/anime.min.js";
-import "materialize-css/js/tooltip.js";
-import "materialize-css/js/forms.js";
-import "materialize-css/js/autocomplete.js";
-import "materialize-css/js/tabs.js";
-import "materialize-css/js/sidenav.js";
-import "materialize-css/js/toasts.js";
-import "materialize-css/js/buttons";
-import "materialize-css/js/dropdown";
-import "materialize-css/js/waves";
+// import 'materialize-css/js/cash.js'
+// import 'materialize-css/js/component.js'
+// import 'materialize-css/js/global.js'
+// import 'materialize-css/js/anime.min.js'
+// import 'materialize-css/js/tooltip.js'
+// import 'materialize-css/js/forms.js'
+// import 'materialize-css/js/autocomplete.js'
+// import 'materialize-css/js/tabs.js'
+// import 'materialize-css/js/sidenav.js'
+// import 'materialize-css/js/toasts.js'
+// import 'materialize-css/js/buttons'
+// import 'materialize-css/js/dropdown'
+// import 'materialize-css/js/waves'
+import 'materialize-css/dist/js/materialize.min.js'
 
-import "./style.scss";
+import './sw.js'
 
-Math.seedrandom = require("seedrandom");
-const cloverleaf = require("cloverleaf");
+import './style.scss'
+
+Math.seedrandom = require('seedrandom')
+const cloverleaf = require('cloverleaf')
 
 /**
  * Simple object check.
@@ -26,7 +29,7 @@ const cloverleaf = require("cloverleaf");
  * @returns {boolean}
  */
 function isObject (item) {
-	return (item && typeof item === "object" && !Array.isArray(item));
+  return (item && typeof item === 'object' && !Array.isArray(item))
 }
 
 /**
@@ -35,78 +38,73 @@ function isObject (item) {
  * @param ...sources
  */
 function mergeDeep (target, ...sources) {
-	if (!sources.length) return target;
-	const source = sources.shift();
+  if (!sources.length) return target
+  const source = sources.shift()
 
-	if (isObject(target) && isObject(source)) {
-		for (const key in source) {
-			if (isObject(source[key])) {
-				if (!target[key]) Object.assign(target, { [key]: {} });
-				mergeDeep(target[key], source[key]);
-			} else {
-				Object.assign(target, { [key]: source[key] });
-			}
-		}
-	}
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (isObject(source[key])) {
+        if (!target[key]) Object.assign(target, { [key]: {} })
+        mergeDeep(target[key], source[key])
+      } else {
+        Object.assign(target, { [key]: source[key] })
+      }
+    }
+  }
 
-	return mergeDeep(target, ...sources);
+  return mergeDeep(target, ...sources)
 }
 
-const jsonData = mergeDeep(require("../data/logos.json"), cloverleaf.siteData);
-const themeData = require("../data/themes.json");
-const langData = require("../langs/langs.json");
-const autoCompleteData = {}; // Here for scope purposes
-const defaultMinLength = 4; // We
-const defaultMaxLength = 512; // All
-let minLength = defaultMinLength; // Are,
-let maxLength = defaultMaxLength; // Really
-const defaultTheme = "Vanilla";
-const extension = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? ".html" : ""; // Fix links if running locally
-let mode;
-let targetLength = 16;
+const jsonData = mergeDeep(require('../data/logos.json'), cloverleaf.siteData)
+const themeData = require('../data/themes.json')
+const langData = require('../langs/langs.json')
+const autoCompleteData = {} // Here for scope purposes
+window.defaultMinLength = 4 // We
+window.defaultMaxLength = 512 // All
+window.minLength = window.defaultMinLength // Are,
+window.maxLength = window.defaultMaxLength // Really
+const defaultTheme = 'Vanilla'
+const extension = location.hostname === 'localhost' || location.hostname === '127.0.0.1' ? '.html' : '' // Fix links if running locally
+let targetLength = 16
 // let select; // Theme selector
-let presetInUse = false; // Flag true if a preset is selected
+let presetInUse = false // Flag true if a preset is selected
 
 window.generate = function () {
-	document.getElementById("result").value =
-	cloverleaf.process(
-		document.getElementById("app").value.trim(),
-		document.getElementById("pass").value,
-		Math.trunc(document.getElementById("length").value),
-		presetInUse,
-		mode
-	);
-};
+  document.getElementById('result').value =
+  cloverleaf.process(
+    document.getElementById('app').value,
+    document.getElementById('pass').value,
+    presetInUse,
+    document.getElementById('length').value
+  )
+}
 
 /**
  * @param  {String} passedTheme - Changes the theme and updates the cookie to match
  */
 window.changeTheme = function (passedTheme) {
+  // Invalid theme
+  if (!themeData[passedTheme]) {
+    console.error(`Invalid theme "${passedTheme}", defaulting to ${defaultTheme}`)
+    passedTheme = defaultTheme
+  }
 
-	// Invalid theme
-	if (!themeData[passedTheme]) {
-		console.error(`Invalid theme "${passedTheme}", defaulting to ${defaultTheme}`);
-		passedTheme = defaultTheme;
-	}
+  setStored('theme', passedTheme)
 
-	setStored("theme", passedTheme);
-
-	document.documentElement.style.setProperty("--accentColor", themeData[passedTheme].accent);
-	document.documentElement.style.setProperty("--lightAccent", themeData[passedTheme].lightAccent);
-	document.documentElement.style.setProperty("--textColor", themeData[passedTheme].text);
-	document.documentElement.style.setProperty("--backgroundColor", themeData[passedTheme].background);
-	document.documentElement.style.setProperty("--internalColor", themeData[passedTheme].internal);
-	document.documentElement.style.setProperty("--incorrectColor", themeData[passedTheme].incorrect);
-	document.documentElement.style.setProperty("--correctColor", themeData[passedTheme].correct);
-	document.documentElement.style.setProperty("--inputColor", themeData[passedTheme].inputColor);
-	document.documentElement.style.setProperty("--linkColor", themeData[passedTheme].linkColor);
-	document.documentElement.style.setProperty("--highlightColor", themeData[passedTheme].highlightColor);
-
-};
+  document.documentElement.style.setProperty('--accentColor', themeData[passedTheme].accent)
+  document.documentElement.style.setProperty('--lightAccent', themeData[passedTheme].lightAccent)
+  document.documentElement.style.setProperty('--textColor', themeData[passedTheme].text)
+  document.documentElement.style.setProperty('--backgroundColor', themeData[passedTheme].background)
+  document.documentElement.style.setProperty('--internalColor', themeData[passedTheme].internal)
+  document.documentElement.style.setProperty('--incorrectColor', themeData[passedTheme].incorrect)
+  document.documentElement.style.setProperty('--correctColor', themeData[passedTheme].correct)
+  document.documentElement.style.setProperty('--inputColor', themeData[passedTheme].inputColor)
+  document.documentElement.style.setProperty('--linkColor', themeData[passedTheme].linkColor)
+  document.documentElement.style.setProperty('--highlightColor', themeData[passedTheme].highlightColor)
+}
 
 // Change theme to stored before the page loads to avoid flicker.
-window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
-
+window.changeTheme(getStored('theme') ? getStored('theme') : defaultTheme)
 
 /**
  * Gets a cookie
@@ -114,7 +112,7 @@ window.changeTheme(getStored("theme") ? getStored("theme") : defaultTheme);
  * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
  */
 function getStored (name) {
-	return localStorage.getItem(name);
+  return localStorage.getItem(name)
 }
 
 /**
@@ -124,82 +122,78 @@ function getStored (name) {
  * @returns {void}
  */
 function setStored (name, value) {
-	localStorage.setItem(name, value);
+  localStorage.setItem(name, value)
 }
 
 function getQueryStrings () {
-	const assoc = {};
-	const decode = function (s) {
-		return decodeURIComponent(s.replace(/\+/g, " "));
-	};
-	const queryString = location.search.substring(1);
-	const keyValues = queryString.split("&");
+  const assoc = {}
+  const decode = function (s) {
+    return decodeURIComponent(s.replace(/\+/g, ' '))
+  }
+  const queryString = location.search.substring(1)
+  const keyValues = queryString.split('&')
 
-	keyValues.forEach(product => {
-		const key = product.split("=");
-		if (key.length > 1) {
-			assoc[decode(key[0])] = decode(key[1]);
-		}
-	});
+  keyValues.forEach(product => {
+    const key = product.split('=')
+    if (key.length > 1) {
+      assoc[decode(key[0])] = decode(key[1])
+    }
+  })
 
-	return assoc;
+  return assoc
 }
-
 
 // For showing / hiding the master password
 window.passwordToggle = function () {
-	// If the switch is on / to the right / "Hide"
-	if (document.getElementById("passwordToggle").checked) {
-		// Make the password field use blobs
-		document.getElementById("pass").type = "password";
-	} else {
-		// If it's off
-		// Make the password field use actual text so you can see/copy it.
-		document.getElementById("pass").type = "text";
-	}
-};
+  // If the switch is on / to the right / "Hide"
+  if (document.getElementById('passwordToggle').checked) {
+    // Make the password field use blobs
+    document.getElementById('pass').type = 'password'
+  } else {
+    // If it's off
+    // Make the password field use actual text so you can see/copy it.
+    document.getElementById('pass').type = 'text'
+  }
+}
 
 window.copy = function () {
+  const pass = document.getElementById('result').value
 
-	const pass = document.getElementById("result").value;
+  if (pass === '') {
+    M.toast({
+      html: 'You have no password to copy.',
+      displayLength: 4000,
+      classes: 'warning'
+    })
+  } else {
+    let copyElement = document.createElement('input')
+    copyElement.setAttribute('type', 'text')
+    copyElement.setAttribute('value', pass)
+    copyElement = document.body.appendChild(copyElement)
+    copyElement.select()
+    document.execCommand('copy')
+    copyElement.remove()
 
-	if (pass === "") {
-		M.toast({
-			html: "You have no password to copy.",
-			displayLength: 4000,
-			classes: "warning"
-		});
-	} else {
-
-		let copyElement = document.createElement("input");
-		copyElement.setAttribute("type", "text");
-		copyElement.setAttribute("value", pass);
-		copyElement = document.body.appendChild(copyElement);
-		copyElement.select();
-		document.execCommand("copy");
-		copyElement.remove();
-
-		M.toast({
-			html: "Successfully copied!",
-			displayLength: 4000,
-			classes: "success"
-		});
-	}
-
-};
+    M.toast({
+      html: 'Successfully copied!',
+      displayLength: 4000,
+      classes: 'success'
+    })
+  }
+}
 
 // For showing / hiding the generated password
 window.resultToggle = function () {
-	// If the switch is on / to the right / "Hide"
-	if (document.getElementById("resultToggle").checked) {
-		// Make the password field use blobs
-		document.getElementById("result").type = "password";
-	} else {
-		// If it's off
-		// Make the password field use actual text so you can see/copy it.
-		document.getElementById("result").type = "text";
-	}
-};
+  // If the switch is on / to the right / "Hide"
+  if (document.getElementById('resultToggle').checked) {
+    // Make the password field use blobs
+    document.getElementById('result').type = 'password'
+  } else {
+    // If it's off
+    // Make the password field use actual text so you can see/copy it.
+    document.getElementById('result').type = 'text'
+  }
+}
 
 /**
  * A random int between two values
@@ -207,520 +201,468 @@ window.resultToggle = function () {
  * @param  {Number} max - Highest value possible, exclusive
  */
 window.getRandomArbitrary = function (min, max) {
-	return Math.trunc(Math.random() * (max - min) + min);
-};
+  return Math.trunc(Math.random() * (max - min) + min)
+}
 
 /**
  * @param  {String} passedLang - Changes the language and updates the cookie to match
  */
 window.changeLang = function (passedLang) {
+  // Invalid language code
+  if (!langData[passedLang]) {
+    throw new Error(`Invalid language "${passedLang}"`)
+  }
 
+  setStored('lang', passedLang)
 
-	// Invalid language code
-	if (!langData[passedLang]) {
-		throw new Error(`Invalid language "${passedLang}"`);
-	}
+  // Ensure the correct language is loaded
+  const file = passedLang === 'en-GB' ? '/' : '/' + passedLang + extension
 
-	setStored("lang", passedLang);
-
-	// Ensure the correct language is loaded
-	const file = passedLang === "en-GB" ? "/" : "/" + passedLang + extension;
-
-	// If not on the chosen page
-	if (window.location.pathname.toLowerCase() !== file.toLowerCase() ) {
-		window.location.pathname = file;
-	}
-};
-
-/**
- * Changes the mode to either
- * @param  {string} setTo - Either "insecure" or "new", "insecure" being legacy mode and "new" being suggested mode
- * @returns {void}
- */
-window.setMode = function (setTo) {
-	mode = setTo;
-	setStored("mode", setTo);
-	window.generate();
-};
+  // If not on the chosen page
+  if (window.location.pathname.toLowerCase() !== file.toLowerCase()) {
+    window.location.pathname = file
+  }
+}
 
 /**
  * Sets the small logo based off an app name
  * @param  {string} appName
  */
 function setLogo (appName) {
-	let logo;
+  let logo
 
-	switch (typeof jsonData[appName].mini) {
+  switch (typeof jsonData[appName].mini) {
+    case 'string':
+      logo = jsonData[appName].mini
+      break
 
-	case "string":
-		logo = jsonData[appName].mini;
-		break;
+    case 'boolean':
+      if (jsonData[appName].mini) {
+        logo = `logos/${appName}-MINI.svg`
+      } else {
+        if (jsonData[appName].logo) {
+          logo = jsonData[appName].logo
+        } else {
+          logo = `logos/${appName}.svg`
+        }
+      }
+      break
 
-	case "boolean":
-		if (jsonData[appName].mini) {
-			logo = `logos/${appName}-MINI.svg`;
-		} else {
-			if (jsonData[appName].logo) {
-				logo = jsonData[appName].logo;
-			} else {
-				logo = `logos/${appName}.svg`;
-			}
-		}
-		break;
+    case 'undefined':
 
-	case "undefined":
+      if (jsonData[appName].logo) {
+        logo = jsonData[appName].logo
+      } else {
+        logo = `logos/${appName}.svg`
+      }
 
-		if (jsonData[appName].logo) {
-			logo = jsonData[appName].logo;
-		} else {
-			logo = `logos/${appName}.svg`;
-		}
+      break
 
-		break;
+    default:
+      throw new Error(`Invalid mini value "${typeof jsonData[appName].mini}" for ${jsonData[appName]} preset`)
+  }
 
-	default:
-		throw new Error(`Invalid mini value "${typeof jsonData[appName].mini}" for ${jsonData[appName]} preset`);
-
-	}
-
-	// Set image
-	document.getElementById("logoContainer").style.display = "flex";
-	document.getElementById("logo").src = logo;
-	document.getElementById("logo").alt = appName;
-	document.getElementById("logo").title = appName;
+  // Set image
+  document.getElementById('logoContainer').style.display = 'flex'
+  document.getElementById('logo').src = logo
+  document.getElementById('logo').alt = appName
+  document.getElementById('logo').title = appName
 }
 
 window.fixLength = function () {
-	const length = document.getElementById("length").value;
+  const length = document.getElementById('length').value
 
-	if (!(minLength <= length && length <= maxLength)) {
-		// if the length is invalid
-		if (length > maxLength) {
-			// Too long
-			document.getElementById("length").value = maxLength;
-		} else if (length < minLength) {
-			// Too short
-			document.getElementById("length").value = minLength;
-		}
-	}
-};
+  if (!(window.minLength <= length && length <= window.maxLength)) {
+    // if the length is invalid
+    if (length > window.maxLength) {
+      // Too long
+      document.getElementById('length').value = window.maxLength
+    } else if (length < window.minLength) {
+      // Too short
+      document.getElementById('length').value = window.minLength
+    }
+  }
+}
 
 /**
  * On page load
  */
 window.onload = function () {
+  // Process langs.json
+  for (const key in langData) {
+    // Add select option for language
+    const option = document.createElement('option')
+    option.innerHTML = langData[key].native
+    option.dataset.short = key
 
-	// Process langs.json
-	for (const key in langData) {
+    document.querySelector('#lang').appendChild(option)
+  }
 
-		// Add select option for language
-		const option = document.createElement("option");
-		option.innerHTML = langData[key].native;
-		option.dataset.short = key;
+  let usingLang
 
-		document.querySelector("#lang").appendChild(option);
-	}
+  // If the user has a language cookie
+  if (getStored('lang') !== null) {
+    // Select the correct selection
+    document.getElementById('lang').value = langData[getStored('lang')].native
+    usingLang = getStored('lang')
+  } else {
+    // If no lang cookie exists
+    // Check navigator language
+    const lang = navigator.language || navigator.userLanguage
+    const first = lang.split('-')[0]
+    const matches = Object.keys(langData).filter(x => x.startsWith(first))
 
-	let usingLang;
+    // If there's a translation for the user's language
+    if (matches.length !== 0) {
+      // Pick it
+      document.getElementById('lang').value = langData[matches[0]].native
+      setStored('lang', matches[0])
+      usingLang = matches[0]
+    } else {
+      // Pick english
+      document.getElementById('lang').value = 'English'
+      setStored('lang', 'en-GB')
+      usingLang = 'en-GB'
+    }
+  }
 
-	// If the user has a language cookie
-	if (getStored("lang") !== null) {
+  window.changeLang(usingLang)
 
-		// Select the correct selection
-		document.getElementById("lang").value = langData[getStored("lang")].native;
-		usingLang = getStored("lang");
-	} else {
-		// If no lang cookie exists
-		// Check navigator language
-		const lang = navigator.language || navigator.userLanguage;
-		const first = lang.split("-")[0];
-		const matches = Object.keys(langData).filter(x => x.startsWith(first));
+  // Themes have already been set, now we handle the options
+  // Process themes.json
+  for (const key in themeData) {
+    // Add select option for the theme
+    const themeOption = document.createElement('option')
+    themeOption.id = key
+    themeOption.innerHTML = key
+    document.querySelector('#theme').appendChild(themeOption)
+  }
 
-		// If there's a translation for the user's language
-		if (matches.length !== 0) {
-			// Pick it
-			document.getElementById("lang").value = langData[matches[0]].native;
-			setStored("lang", matches[0]);
-			usingLang = matches[0];
+  // Set the select to chosen theme or vanilla as a backup
+  document.getElementById('theme').value = getStored('theme') ? getStored('theme') : defaultTheme
 
-		} else {
-			// Pick english
-			document.getElementById("lang").value = "English";
-			setStored("lang", "en-GB");
-			usingLang = "en-GB";
-		}
+  // Initialize tooltips
+  M.Tooltip.init(document.querySelectorAll('.tooltipped'))
 
-	}
+  // Initialise the side nav
+  M.Sidenav.init(document.querySelectorAll('.sidenav'), { edge: 'left' })
+  window.side = M.Sidenav.getInstance(document.getElementById('slide-out'))
+  // Initalise the theme selection
+  // Or not since materialize styled select is terrible.
+  // select = M.FormSelect.init(document.querySelectorAll("select"))[0];
 
-	window.changeLang(usingLang);
+  // If user hasn't opted out of storing passwords
+  if (getStored('store') !== 'false') {
+    // If there's a stored password
+    if (getStored('password')) {
+      // Fill the password input with the correct password
+      document.getElementById('pass').value = getStored('password')
+      // Raise the text on the input
+      document.querySelector("label[for='pass']").classList.add('active')
+      // Colour the underline
+      colourUnderline()
+    }
 
+    // Toggle session switch
+    document.getElementById('session-toggle').click()
+  }
 
-	// Themes have already been set, now we handle the options
-	// Process themes.json
-	for (const key in themeData) {
+  if (getStored('length')) {
+    targetLength = getStored('length')
 
-		// Add select option for the theme
-		const themeOption = document.createElement("option");
-		themeOption.id = key;
-		themeOption.innerHTML = key;
-		document.querySelector("#theme").appendChild(themeOption);
+    document.getElementById('length-pref').value = targetLength
+    document.getElementById('length').value = targetLength
+  }
 
-	}
+  // Process the sites.json for the autocomplete structure
+  for (const key in jsonData) {
+    // If the preset has a custom logo url
+    if (jsonData[key].logo) {
+      autoCompleteData[key] = jsonData[key].logo
+    } else {
+      // Set the logo url to the default
+      autoCompleteData[key] = `logos/${key}.svg`
+    }
+  }
 
-	// Set the select to chosen theme or vanilla as a backup
-	document.getElementById("theme").value = getStored("theme") ? getStored("theme") : defaultTheme;
+  // Setup possible autocomplete sites
+  M.Autocomplete.init(document.getElementById('app'), {
+    data: autoCompleteData,
 
-	// Initialize tooltips
-	M.Tooltip.init(document.querySelectorAll(".tooltipped"));
-	// Initialize the tabs
-	const tabs = M.Tabs.init(document.querySelectorAll(".tabs"))[0];
+    // called when an autocomplete is used.
+    onAutocomplete (val) {
+      // Set image
+      setLogo(val)
+      let length = targetLength
 
-	// Initialise the side nav
-	M.Sidenav.init(document.querySelectorAll(".sidenav"), { edge: "left" })[0];
-	window.side = M.Sidenav.getInstance(document.getElementById("slide-out"));
-	// Initalise the theme selection
-	// Or not since materialize styled select is terrible.
-	// select = M.FormSelect.init(document.querySelectorAll("select"))[0];
+      // If it's an alias for another app
+      if (jsonData[val].alias) {
+        // Change the name of the app we're using to its alias
+        val = jsonData[val].alias
+        console.debug(`Using alias: ${val}`)
+      }
 
+      if (jsonData[val].minLength) {
+        window.minLength = jsonData[val].minLength
+      } else {
+        window.minLength = window.defaultMinLength
+      }
+      document.getElementById('length').min = window.minLength
 
-	// Set the mode cookie if we haven't before
-	if (getStored("mode") === null) {
-		mode = "new";
-	} else {
-		mode = getStored("mode");
-	}
+      if (jsonData[val].maxLength) {
+        window.maxLength = jsonData[val].maxLength
+      } else {
+        window.maxLength = window.defaultMaxLength
+      }
 
-	tabs.select(mode);
+      document.getElementById('length').max = window.maxLength
 
-	// If user hasn't opted out of storing passwords
-	if (getStored("store") !== "false") {
+      if (!(window.minLength <= length && length <= window.maxLength)) {
+        length = window.maxLength
+      }
 
-		// If there's a stored password
-		if (getStored("password")) {
-			// Fill the password input with the correct password
-			document.getElementById("pass").value = getStored("password");
-			// Raise the text on the input
-			document.querySelector("label[for='pass']").classList.add("active");
-		}
+      document.getElementById('length').max = window.maxLength
 
-		// Toggle session switch
-		document.getElementById("session-toggle").click();
-	}
+      window.fixLength()
 
+      // Set chosen var
+      presetInUse = true
 
-	if (getStored("length")) {
+      // In case there's already a password (eg switching sites / presets) regen password
+      window.generate()
+    },
+    // Minimum number of characters typed for the dialog to open
+    minLength: 0,
+    // For deciding the order of options.
+    sortFunction (a, b, inputString) {
+      // inputString will always be in both a and b if present
 
-		targetLength = getStored("length");
+      // if there's a given inputString
+      if (inputString) {
+        // If only "a" starts with inputString
+        if (a.startsWith(inputString) && !b.startsWith(inputString)) {
+          return -1
+        }
 
-		document.getElementById("length-pref").value = targetLength;
-		document.getElementById("length").value = targetLength;
-	}
+        // If only "b" starts with inputString
+        if (!a.startsWith(inputString) && b.startsWith(inputString)) {
+          return 1
+        }
+        // If both "a" and "b" start with inputString we do the same as always so
+      }
 
+      if (a < b) {
+        return -1
+      }
+      // No need for else if as if the prior condition was true, we'd return so wouldn't run this line
+      if (a > b) {
+        return 1
+      }
+      // a must be equal to b
+      return 0
+    }
+  })
 
-	// Process the sites.json for the autocomplete structure
-	for (const key in jsonData) {
-		// If the preset has a custom logo url
-		if (jsonData[key].logo) {
-			autoCompleteData[key] = jsonData[key].logo;
-		} else {
-			// Set the logo url to the default
-			autoCompleteData[key] = `logos/${key}.svg`;
-		}
-	}
+  // Autocomplete has been setup
+  // Move the cursor to the app field
+  document.getElementById('app').focus()
+  document.querySelector("label[for='app']").classList.add('active')
 
-	// Setup possible autocomplete sites
-	M.Autocomplete.init(document.getElementById("app"), {
-		data: autoCompleteData,
+  const qs = getQueryStrings()
 
-		// called when an autocomplete is used.
-		onAutocomplete (val) {
+  // If an app has been passed by query string
+  if (qs.app) {
+    const appName = String(qs.app)
 
-			// Set image
-			setLogo(val);
-			let length = targetLength;
+    // Set the app name
+    document.getElementById('app').value = appName
 
-			// If it's an alias for another app
-			if (jsonData[val].alias) {
-				// Change the name of the app we're using to its alias
-				val = jsonData[val].alias;
-				console.debug(`Using alias: ${val}`);
-			}
+    // If it's a preset
+    if (jsonData[appName]) {
+      // Click into the app field to open the dropdown
+      document.getElementById('app').click()
+      // Click the first result
+      document.querySelector('.autocomplete-content.dropdown-content :first-child').click()
+    }
 
-			if (jsonData[val].minLength) {
-				minLength = jsonData[val].minLength;
-			} else {
-				minLength = defaultMinLength;
-			}
-			document.getElementById("length").min = minLength;
+    // In case there's already a password
+    window.generate()
 
-			if (jsonData[val].maxLength) {
-				maxLength = jsonData[val].maxLength;
-			} else {
-				maxLength = defaultMaxLength;
-			}
+    // Move the cursor to the app field
+    document.getElementById('pass').focus()
+    document.querySelector("label[for='pass']").classList.add('active')
+  }
 
-			document.getElementById("length").max = maxLength;
+  // Setup copy shortcut
+  document.body.addEventListener('keydown', e => {
+    // If Ctrl + C is pressed
+    if (e.ctrlKey && e.code === 'KeyC') {
+      // If the user isn't selecting anything
+      if (window.getSelection().toString() === '') {
+        // Run existing copy command
+        window.copy()
+      }
+    }
+  })
 
-			if (!(minLength <= length && length <= maxLength)) {
-				length = maxLength;
-			}
+  // Dev studd
+  switch (location.hostname) {
+    // If the user is on the dev build
+    case 'dev.cloverleaf.app': {
+      // Change title
+      document.title += ' - Dev Build'
 
-			document.getElementById("length").max = maxLength;
+      // Change favicon
+      const ico = document.createElement('link')
+      ico.rel = 'shortcut icon'
+      ico.href = 'dev.ico'
+      document.head.appendChild(ico)
+      break
+    }
 
-			window.fixLength();
+    case 'cloverleaf.app':
+      break
 
-			// Set chosen var
-			presetInUse = true;
+    default:
+      document.title += ' - localhost'
+      break
+  }
 
-			// In case there's already a password (eg switching sites / presets) regen password
-			window.generate();
-		},
-		// Minimum number of characters typed for the dialog to open
-		minLength: 0,
-		// For deciding the order of options.
-		sortFunction (a, b, inputString) {
-			// inputString will always be in both a and b if present
-
-			// if there's a given inputString
-			if (inputString) {
-				// If only "a" starts with inputString
-				if (a.startsWith(inputString) && !b.startsWith(inputString)) {
-					return -1;
-				}
-
-				// If only "b" starts with inputString
-				if (!a.startsWith(inputString) && b.startsWith(inputString)) {
-					return 1;
-				}
-				// If both "a" and "b" start with inputString we do the same as always so
-			}
-
-			if (a < b) {
-				return -1;
-			}
-			// No need for else if as if the prior condition was true, we'd return so wouldn't run this line
-			if (a > b) {
-				return 1;
-			}
-			// a must be equal to b
-			return 0;
-		}
-	});
-
-	// Autocomplete has been setup
-	// Move the cursor to the app field
-	document.getElementById("app").focus();
-	document.querySelector("label[for='app']").classList.add("active");
-
-	const qs = getQueryStrings();
-
-	// If an app has been passed by query string
-	if (qs.app) {
-		const appName = String(qs.app);
-
-		// Set the app name
-		document.getElementById("app").value = appName;
-
-		// If it's a preset
-		if (jsonData[appName]) {
-			// Click into the app field to open the dropdown
-			document.getElementById("app").click();
-			// Click the first result
-			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
-		}
-
-		// In case there's already a password
-		window.generate();
-
-		// Move the cursor to the app field
-		document.getElementById("pass").focus();
-		document.querySelector("label[for='pass']").classList.add("active");
-	}
-
-	// Setup copy shortcut
-	document.body.addEventListener("keydown", e => {
-
-		// If Ctrl + C is pressed
-		if (e.ctrlKey && e.code === "KeyC") {
-
-			// If the user isn't selecting anything
-			if (window.getSelection().toString() === "") {
-				// Run existing copy command
-				window.copy();
-			}
-		}
-	});
-
-	// Dev studd
-	switch (location.hostname) {
-
-	// If the user is on the dev build
-	case "dev.cloverleaf.app":
-
-		// Change title
-		document.title += " - Dev Build";
-
-		// Change favicon
-		var ico = document.createElement("link");
-		ico.rel = "shortcut icon";
-		ico.href = "dev.ico";
-		document.head.appendChild(ico);
-		break;
-
-	case "cloverleaf.app":
-		break;
-
-	default:
-		document.title += " - localhost";
-		break;
-	}
-
-	if (process.env.NODE_ENV === "development") require("./debug");
-
-};
-
+  if (process.env.NODE_ENV === 'development') require('./debug')
+}
 
 /**
  * Use the current password as a seed to colour the underline of the field
  */
 function colourUnderline () {
-	// If there's a password
-	if (document.getElementById("pass").value) {
-		// Seed the
-		Math.seedrandom(document.getElementById("pass").value);
-		const colour = `HSL(${window.getRandomArbitrary(0, 360)}, ${window.getRandomArbitrary(
-			60,
-			100
-		)}%, ${window.getRandomArbitrary(45, 80)}%)`;
-		document
-			.getElementById("pass")
-			.style.setProperty("--accentColor", colour);
-	} else {
-		// If there's no password, reset the underline colour
-		document.getElementById("pass").removeAttribute("style");
-	}
+  // If there's a password
+  if (document.getElementById('pass').value) {
+    // Seed the
+    Math.seedrandom(document.getElementById('pass').value)
+    const colour = `HSL(${window.getRandomArbitrary(0, 360)}, ${window.getRandomArbitrary(
+      60,
+      100
+    )}%, ${window.getRandomArbitrary(45, 80)}%)`
+    document
+      .getElementById('pass')
+      .style.setProperty('--accentColor', colour)
+  } else {
+    // If there's no password, reset the underline colour
+    document.getElementById('pass').removeAttribute('style')
+  }
 }
 
-
 window.appInput = function () {
+  // Everytime the user types, it invalidates the preset
+  presetInUse = false
 
-	// Everytime the user types, it invalidates the preset
-	presetInUse = false;
+  // Clear logo
+  document.getElementById('logoContainer').style.display = 'none'
+  document.getElementById('logo').removeAttribute('src')
+  document.getElementById('logo').removeAttribute('alt')
+  document.getElementById('logo').removeAttribute('title')
 
-	// Clear logo
-	document.getElementById("logoContainer").style.display = "none";
-	document.getElementById("logo").removeAttribute("src");
-	document.getElementById("logo").removeAttribute("alt");
-	document.getElementById("logo").removeAttribute("title");
+  // Reset the mins and maxes for length
+  window.minLength = window.defaultMinLength
+  window.maxLength = window.defaultMaxLength
+  document.getElementById('length').max = window.maxLength
+  document.getElementById('length').min = window.minLength
 
-	// Reset the mins and maxes for length
-	minLength = defaultMinLength;
-	maxLength = defaultMaxLength;
-	document.getElementById("length").max = maxLength;
-	document.getElementById("length").min = minLength;
+  document.getElementById('length').value = targetLength
 
-	document.getElementById("length").value = targetLength;
-
-	window.generate();
-};
+  window.generate()
+}
 
 window.passwordUp = function () {
-	colourUnderline();
+  colourUnderline()
 
-	// If the user is opted into saving the master password
-	if (getStored("store") === "true") {
+  // If the user is opted into saving the master password
+  if (getStored('store') === 'true') {
+    // If there's a password
+    if (document.getElementById('pass').value) {
+      // Store it
+      setStored('password', document.getElementById('pass').value)
+    } else {
+      // Otherwise, delete the value
+      localStorage.removeItem('password')
+    }
+  }
 
-		// If there's a password
-		if (document.getElementById("pass").value) {
-			// Store it
-			setStored("password", document.getElementById("pass").value);
-		} else {
-			// Otherwise, delete the value
-			localStorage.removeItem("password");
-		}
-	}
-
-	// Regen the password
-	window.generate();
-};
-
-window.addEventListener("beforeinstallprompt", e => {
-	window.installPromptEvent = e;
-	// Prevent Chrome 67 and earlier from automatically showing the prompt
-	e.preventDefault();
-	// Show the prompt on later versions
-});
+  // Regen the password
+  window.generate()
+}
 
 window.appDown = function (e) {
-
-	// Enter pressed and dropdown visible
-	if (
-		(e.key === "Enter" || e.code === "Enter" || e.keyCode === 13) &&
-		document.querySelector(".autocomplete-content.dropdown-content").offsetHeight > 0
-	) {
-
-		// If no entry is selected
-		if (document.querySelector(".autocomplete-content.dropdown-content .active") === null) {
-			// Click the first preset
-			document.querySelector(".autocomplete-content.dropdown-content :first-child").click();
-		}
-	}
-
-};
+  // Enter pressed and dropdown visible
+  if (
+    (e.key === 'Enter' || e.code === 'Enter' || e.keyCode === 13) &&
+    document.querySelector('.autocomplete-content.dropdown-content').offsetHeight > 0
+  ) {
+    // If no entry is selected
+    if (document.querySelector('.autocomplete-content.dropdown-content .active') === null) {
+      // Click the first preset
+      document.querySelector('.autocomplete-content.dropdown-content :first-child').click()
+    }
+  }
+}
 
 // For disabling/enabling password saving
 window.sessionToggle = function () {
-	// If the switch is on / to the right
-	if (document.getElementById("session-toggle").checked) {
+  // If the switch is on / to the right
+  if (document.getElementById('session-toggle').checked) {
+    // Set session cookie cookie
+    setStored('store', true)
 
-		// Set session cookie cookie
-		setStored("store", true);
-
-		// If there's a password
-		if (document.getElementById("pass").value) {
-			// Store it
-			setStored("password", document.getElementById("pass").value);
-		} else {
-			// Otherwise, delete the value
-			localStorage.removeItem("password");
-		}
-
-
-	} else {
-		// Stop saving password
-		setStored("store", false);
-		// Delete any exist stored password
-		localStorage.removeItem("password");
-	}
-};
-
-window.getVar = function (varName) {
-	return eval(varName);
-};
+    // If there's a password
+    if (document.getElementById('pass').value) {
+      // Store it
+      setStored('password', document.getElementById('pass').value)
+    } else {
+      // Otherwise, delete the value
+      localStorage.removeItem('password')
+    }
+  } else {
+    // Stop saving password
+    setStored('store', false)
+    // Delete any exist stored password
+    localStorage.removeItem('password')
+  }
+}
 
 window.lengthPref = function (passedLength) {
+  if (!(window.defaultMinLength <= passedLength && passedLength <= window.defaultMaxLength)) {
+    // if the length is invalid
+    if (passedLength > window.defaultMaxLength) {
+      // Too long
+      passedLength = window.defaultMaxLength
+    } else if (passedLength < window.defaultMinLength) {
+      // Too short
+      passedLength = window.defaultMinLength
+    }
 
-	if (!(defaultMinLength <= passedLength && passedLength <= defaultMaxLength)) {
-		// if the length is invalid
-		if (passedLength > defaultMaxLength) {
-			// Too long
-			passedLength = defaultMaxLength;
-		} else if (passedLength < defaultMinLength) {
-			// Too short
-			passedLength = defaultMinLength;
-		}
+    document.getElementById('length-pref').value = passedLength
+  }
 
-		document.getElementById("length-pref").value = passedLength;
-	}
+  targetLength = passedLength
+  setStored('length', passedLength)
 
-	targetLength = passedLength;
-	setStored("length", passedLength);
-
-	document.getElementById("length").value = passedLength;
-	window.generate();
-};
+  document.getElementById('length').value = passedLength
+  window.generate()
+}
 
 window.presetScroll = function () {
-	const selected = document.querySelector(".autocomplete-content.dropdown-content .active");
-	if (selected)	selected.scrollIntoView({behavior: "smooth", block: "nearest", inline: "nearest"});
-};
+  const selected = document.querySelector('.autocomplete-content.dropdown-content .active')
+  if (selected) selected.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
+}
+
+window.install = function () {
+  try {
+    window.installPromptEvent.prompt()
+  } catch (TypeError) {
+    M.toast({
+      html: 'Failed to install app.',
+      displayLength: 4000,
+      classes: 'warning'
+    })
+  }
+}

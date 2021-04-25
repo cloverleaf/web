@@ -12,7 +12,8 @@
     <meta name="robots" content="index, follow">
     <meta name="author" content="ChildishGiant">
     <meta name="keywords" content="password, password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app, stateless, password storage, FOSS">
-    <link rel="alternate" href="https://cloverleaf.app/" hreflang="en">
+    <link rel="alternate" href="https://cloverleaf.app" hreflang="en">
+    <link rel="canonical" href="https://cloverleaf.app">
     <!-- Verifing ownership for Bing -->
     <meta name="msvalidate.01" content="22AEF740B887329DA98B4F687396B7C1">
     <!-- Allowing adding as webapp -->
@@ -49,6 +50,8 @@
     <meta name="msapplication-TileColor" content="#8c97ce">
     <meta name="theme-color" content="#ffffff">
 
+    <script src="<%= jsSrc %>" integrity="<%= jsIntegrity %>" crossorigin="use-credentials"></script>
+    <link rel="stylesheet" href="<%= cssSrc %>" integrity="<%= cssIntegrity %>" crossorigin="use-credentials">
 
     <script>
       // Clear the console on reload for easier debugging
@@ -60,17 +63,6 @@
 
 
     <ul id="slide-out" class="sidenav">
-      <div class="row">
-          <ul class="tabs" id="engineTabs">
-              <li class="tab col s6 tooltipped" data-position="bottom" data-delay="500" data-tooltip="<%= securityWarning %>" tabindex="0">
-                <a onclick="setMode('insecure');" href="#old" id="old">
-                  <i class="material-icons">warning</i> <%= legacy %> <i class="material-icons">warning</i>
-                </a>
-              </li>
-              <li class="tab col s6"><a onclick="setMode('new');" href="#new"><%= suggested %></a></li>
-          </ul>
-      </div>
-
       <div id="options">
         <div class="input-field" id="theme-container">
           <select id="theme" onchange="changeTheme(this.value)" class="browser-default">
@@ -80,7 +72,7 @@
 
 
         <div class="input-field" id="lang-container">
-          <select id="lang" onchange="changeLang(this.selectedOptions[0].dataset.short)" class="browser-default">
+          <select id="lang" onchange="changeLang(this.selectedOptions[0].dataset.short, true)" class="browser-default">
           </select>
           <label for="lang"><%= language %></label>
         </div>
@@ -105,7 +97,7 @@
         </div>
 
         <div id="footer">
-          <a class="btn waves-effect waves-light" onclick="installPromptEvent.prompt();" id="install">
+          <a class="btn waves-effect waves-light" onclick="install()">
             <%= install %> <i class="material-icons" id="install-icon">add_to_home_screen</i>
           </a>
           <i class="material-icons" id="close" onclick="side.close();">close</i>
@@ -192,24 +184,23 @@
 
     <script>
 
-      const scriptTag = document.querySelector("script[src^=bundles\\/bundle-]");
-			const cssTag = document.querySelector("link[href^=bundles\\/bundle-]");
-
-      const inUse = scriptTag && cssTag ? [scriptTag.src, cssTag.href] : [];
-
-      //This is the "Offline copy of pages" service worker
-      // Template from PWA Builder (https://www.pwabuilder.com/serviceworker)
-      if (navigator.serviceWorker.controller) {
-        console.log('Active service worker found, no need to register')
-        navigator.serviceWorker.controller.postMessage(inUse);
-      } else {
-        //Register the ServiceWorker
-        navigator.serviceWorker.register('sw.js', {
-          scope: './'
-        }).then(function(reg) {
-          console.log('Service worker has been registered for scope:'+ reg.scope);
-        });
-      }
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').then(swr => {
+          // If installed the service worker
+          if (swr.installing !== null) {
+            // Show a popup
+            M.toast({
+              html: 'Ready to work offline',
+              displayLength: 4000,
+              classes: 'success'
+            })
+          }
+        })
+      })
+    }
 
     </script>
 

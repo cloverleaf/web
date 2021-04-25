@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="45.530289"
+   width="140.87"
+   version="1.1"
+   viewBox="0 0 140.86999 45.53029"
+   data-name="Layer 1"
+   id="Layer_1">
+  <metadata
+     id="metadata29">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Visa Checkout</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs4">
+    <style
+       id="style2">.cls-1{fill:#1a1f71;}</style>
+  </defs>
+  <title
+     id="title6">Visa Checkout</title>
+  <path
+     style="fill:#1a1f71"
+     id="path24"
+     d="m 53.46,0.81 -18.45,44 h -12 L 13.94,9.68 c -0.55,-2.16 -1,-3 -2.71,-3.86 A 48,48 0 0 0 0,2.07 L 0.26,0.8 h 19.37 a 5.32,5.32 0 0 1 5.26,4.49 l 4.76,25.52 11.88,-30 h 12 m 47.16,29.64 c 0,-11.61 -16.06,-12.25 -16,-17.45 0,-1.57 1.54,-3.25 4.83,-3.68 a 21.47,21.47 0 0 1 11.23,2 l 2,-9.32 A 30.45,30.45 0 0 0 92.1,0 C 80.84,0 72.92,6 72.85,14.55 c -0.07,6.34 5.66,9.87 10,12 4.34,2.13 5.92,3.54 5.9,5.47 0,2.95 -3.53,4.25 -6.81,4.3 a 23.84,23.84 0 0 1 -11.7,-2.78 l -2.05,9.65 a 34.65,34.65 0 0 0 12.66,2.34 c 12,0 19.79,-5.9 19.83,-15.06 m 29.65,14.34 h 10.54 l -9.2,-44 h -9.71 a 5.17,5.17 0 0 0 -4.85,3.23 l -17.09,40.77 h 12 l 2.38,-6.58 H 129 Z m -12.7,-15.59 6,-16.53 3.45,16.53 z m -47.9,-28.41 -9.42,44 H 48.92 l 9.42,-44 z"
+     class="cls-1" />
+</svg>

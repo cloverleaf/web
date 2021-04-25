@@ -3,13 +3,11 @@
 		"path": "."
 	}],
 	"settings": {
-		"eslint.options": { "configFile": "config/.eslintrc.json" },
-		"json.schemas": [
-			{
-			"fileMatch": [
-				"data/themes.json"
-			],
-			"url": "/data/themes_schema.json"
+		"json.schemas": [{
+				"fileMatch": [
+					"data/themes.json"
+				],
+				"url": "/data/themes_schema.json"
 			},
 			{
 				"fileMatch": [
@@ -17,22 +15,9 @@
 				],
 				"url": "/data/sites_schema.json"
 			},
-	],
-	"git.ignoreLimitWarning": true,
-
-	// // Python testing
-	// "python.linting.pylintEnabled": true,
-	// "python.analysis.disabled": [
-	// 	"unresolved-import"
-	// ],
-
-	// "python.testing.unittestEnabled":true,
-	// "python.testing.unittestArgs": [
-	// 	"/unit_tests/",
-	// 	// "--ignore-glob=path"
-	// ],
-	// "python.testing.cwd": "./unit_tests/"
-	// }
-	"python.testing.cwd": "${workspaceFolder}/unit_tests",
-  "python.testing.pytestEnabled": true
+		],
+		"git.ignoreLimitWarning": true,
+		"python.testing.pytestEnabled": true,
+		"python.testing.pytestArgs": ["--rootdir","${workspaceFolder}/unit_tests"]
+	}
 }
