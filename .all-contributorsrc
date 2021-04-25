@@ -1,0 +1,35 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+
+      "login": "ChildishGiant",
+      "name": "Allie",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13716824?v=4",
+      "profile": "https://github.com/ChildishGiant",
+      "contributions": [
+        "design",
+        "code"
+      ]
+    },
+    {
+      "login": "matthew-law",
+      "name": "Matthew Law",
+      "avatar_url": "https://avatars.githubusercontent.com/u/18603830?v=4",
+      "profile": "https://github.com/matthew-law",
+      "contributions": [
+        "translation"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "web",
+  "projectOwner": "cloverleaf",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
