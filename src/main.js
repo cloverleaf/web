@@ -301,7 +301,7 @@ window.onload = function () {
   let usingLang
 
   // If the user has a language cookie
-  if (getStored('lang') !== null) {
+  if (getStored('lang') !== null && langData[getStored('lang')] !== undefined) {
     // Select the correct selection
     document.getElementById('lang').value = langData[getStored('lang')].native
     usingLang = getStored('lang')
