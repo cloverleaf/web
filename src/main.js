@@ -16,8 +16,6 @@
 // import 'materialize-css/js/waves'
 import 'materialize-css/dist/js/materialize.min.js'
 
-import './sw.js'
-
 import './style.scss'
 
 Math.seedrandom = require('seedrandom')

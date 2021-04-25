@@ -4,7 +4,7 @@ const liveServer = require('live-server')
 const fs = require('fs-extra')
 
 esbuild.build({
-  entryPoints: ['src/main.js'],
+  entryPoints: ['src/main.js', 'src/sw.js'],
   bundle: true,
   outdir: 'public',
   sourcemap: true,

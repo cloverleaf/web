@@ -2,12 +2,14 @@ const esbuild = require('esbuild')
 const essass = require('essass')
 const translation = require('./translation.js')
 const fs = require('fs-extra')
+const rimraf = require('rimraf')
 
+rimraf.sync('public/*')
 translation.then(() => {
   // Copy all static files
   fs.copy('static/', 'public/').then(() => {
     esbuild.build({
-      entryPoints: ['src/main.js'],
+      entryPoints: ['src/main.js', 'src/sw.js'],
       bundle: true,
       minify: true,
       outdir: 'public',
