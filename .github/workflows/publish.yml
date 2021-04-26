@@ -1,10 +1,12 @@
 name: Publish
 on:
-  push:
-    branches:
-      - master
+  workflow_run:
+    workflows: ["Test"]
+    types:
+      - completed
 jobs:
   publish:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
@@ -20,38 +22,6 @@ jobs:
         npm run-script build
         # Remove gitignore rule for public folder
         sed -i 's/public\///' .gitignore
-
-    - name: Start server
-      run: |
-        cd public
-        npx http-server --port 8080 &
-
-    - name: Audit URLs using Lighthouse
-      uses: treosh/lighthouse-ci-action@v3
-      with:
-        urls: http://localhost:8080/
-        uploadArtifacts: true # save results as an action artifacts
-        temporaryPublicStorage: true # upload lighthouse report to the temporary storage
-        runs: 3 # Asserting against a single run can lead to flaky performance assertions
-
-    - name: Install dependencies
-      run: |
-        cd unit_tests
-        # sudo apt-get install xvfb firefox
-        python3 -m pip install -r requirements.txt
-
-    - name: Gecko setup
-      run: |
-        wget https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz
-        sudo sh -c 'tar -x geckodriver -zf geckodriver-v0.24.0-linux64.tar.gz -O > /usr/bin/geckodriver'
-        sudo chmod +x /usr/bin/geckodriver
-        rm geckodriver-v0.24.0-linux64.tar.gz
-        export PATH=$PATH:/usr/bin/geckodriver
-
-    - name: Test with pytest
-      run: |
-        cd unit_tests
-        python3 -m pytest -s
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
