@@ -138,6 +138,15 @@
   "pixiv": {
     "mini": true
   },
+  "Protonmail": {
+    "mini": true
+  },
+  "Quora":{
+    "mini": true
+  },
+  "Rotten Tomatoes": {
+    "mini": true
+  },
   "Riot Games": {
     "mini": true
   },
@@ -175,7 +184,13 @@
   "Yahoo": {
     "mini": true
   },
+  "Yelp": {
+    "mini": true
+  },
   "YouTube": {
     "alias": "Google"
+  },
+  "Zoom": {
+    "mini": "logos/Zoom-MINI.png"
   }
 }
