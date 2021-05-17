@@ -6,6 +6,17 @@ const ssri = require('ssri')
 module.exports = fs.readFile(path.join(__dirname, '../../langs/langs.json'), 'utf8', function (err, data) {
   if (err) console.error(err)
 
+  const git_hash = () => {
+    const rev = fs.readFileSync('.git/HEAD').toString().trim().split(/.*[: ]/).slice(-1)[0]
+    if (rev.indexOf('/') === -1) {
+      return rev
+    } else {
+      return fs.readFileSync('.git/' + rev).toString().trim()
+    }
+  }
+
+  const gitHash = git_hash()
+
   const folders = fs.readdirSync(path.join(__dirname, '../../langs/'), { withFileTypes: true })
 
   const js = fs.readFileSync(path.join(__dirname, '../../public/main.js'))
@@ -29,6 +40,8 @@ module.exports = fs.readFile(path.join(__dirname, '../../langs/langs.json'), 'ut
         const json = JSON.parse(fs.readFileSync(path.join(__dirname, `../../langs/${folder}/${file}`), 'utf8'))
 
         const replacements = {
+          timestamp: new Date(),
+          gitHash: gitHash,
           jsSrc: 'main.js',
           jsIntegrity: jsIntegrity,
           cssSrc: 'main.css',
