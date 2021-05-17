@@ -15,7 +15,7 @@ A smart solution to the problem of passwords. Cloverleaf generates passwords on 
 
 Microsoft's [VS Code](https://code.visualstudio.com/) is my text editor of choice.
 
-All minimization is done using [Webpack](https://webpack.js.org/).
+All minimization is done using [esbuild](https://esbuild.github.io/).
 
 I use [GitKraken](https://www.gitkraken.com/) as my git GUI.
 

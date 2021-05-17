@@ -7,17 +7,25 @@
 				"fileMatch": [
 					"data/themes.json"
 				],
-				"url": "/data/themes_schema.json"
+				"url": "./data/themes_schema.json"
 			},
 			{
 				"fileMatch": [
-					"data/sites.json"
+					"data/logos.json"
 				],
-				"url": "/data/sites_schema.json"
+				"url": "./data/logos_schema.json"
 			},
 		],
 		"git.ignoreLimitWarning": true,
 		"python.testing.pytestEnabled": true,
-		"python.testing.pytestArgs": ["--rootdir","${workspaceFolder}/unit_tests"]
+		"python.testing.pytestArgs": [
+			"--rootdir",
+			"${workspaceFolder}/unit_tests"
+		],
+		"conventionalCommits.scopes": [
+			"faq",
+			"presets",
+			"deps"
+		]
 	}
 }

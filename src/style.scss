@@ -2,10 +2,10 @@
 
 // Import only what you need from Materialize
 
-@import "node_modules/materialize-css/sass/components/normalize";
+@import "node_modules/@materializecss/materialize/sass/components/normalize";
 
 // Color
-@import "node_modules/materialize-css/sass/components/color-variables";
+@import "node_modules/@materializecss/materialize/sass/components/color-variables";
 
 $accentColor: #3f51b5;
 $lightAccent: lighten($accentColor, 15%);
@@ -31,7 +31,7 @@ $input-border-color: $textColor;
 $link-color: $linkColor;
 
 // Variables;
-@import "node_modules/materialize-css/sass/components/variables";
+@import "node_modules/@materializecss/materialize/sass/components/variables";
 
 $toast-action-color: $link-color;
 $toast-action-color: var(--linkColor);
@@ -41,20 +41,20 @@ $toast-text-color: $textColor;
 $toast-text-color: var(--textColor);
 
 // Components
-@import "node_modules/materialize-css/sass/components/global";
-@import "node_modules/materialize-css/sass/components/grid";
-@import "node_modules/materialize-css/sass/components/typography";
-@import "node_modules/materialize-css/sass/components/toast";
-@import "node_modules/materialize-css/sass/components/tabs";
-@import "node_modules/materialize-css/sass/components/tooltip";
-@import "node_modules/materialize-css/sass/components/buttons";
-@import "node_modules/materialize-css/sass/components/dropdown";
-@import "node_modules/materialize-css/sass/components/waves";
-@import "node_modules/materialize-css/sass/components/sidenav";
+@import "node_modules/@materializecss/materialize/sass/components/global";
+@import "node_modules/@materializecss/materialize/sass/components/grid";
+@import "node_modules/@materializecss/materialize/sass/components/typography";
+@import "node_modules/@materializecss/materialize/sass/components/toast";
+@import "node_modules/@materializecss/materialize/sass/components/tabs";
+@import "node_modules/@materializecss/materialize/sass/components/tooltip";
+@import "node_modules/@materializecss/materialize/sass/components/buttons";
+@import "node_modules/@materializecss/materialize/sass/components/dropdown";
+@import "node_modules/@materializecss/materialize/sass/components/waves";
+@import "node_modules/@materializecss/materialize/sass/components/sidenav";
 // Form parts
-@import "node_modules/materialize-css/sass/components/forms/switches.scss";
-@import "node_modules/materialize-css/sass/components/forms/select.scss";
-@import "node_modules/materialize-css/sass/components/forms/input-fields.scss";
+@import "node_modules/@materializecss/materialize/sass/components/forms/switches.scss";
+@import "node_modules/@materializecss/materialize/sass/components/forms/select.scss";
+@import "node_modules/@materializecss/materialize/sass/components/forms/input-fields.scss";
 
 
 
@@ -411,14 +411,6 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   left: -4px; /* Centering the toggle */
 }
 
-.input-group-addon {
-  position: absolute;
-  width: calc(3rem + 0.1em);
-  font-size: 2rem;
-  top: 0;
-  right: -5px;
-}
-
 .icon {
   font-size: 1.4em !important;
   color: $textColor;
@@ -525,6 +517,7 @@ ul:empty {
   display: none;
   justify-content: center;
   align-items: center;
+  top: 0;
 }
 
 input[type="radio"] {
@@ -784,6 +777,7 @@ ul.tabs li.tab a i.material-icons {
   width: 350px;
   max-width: 100%;
   overflow-y: hidden;
+  padding-bottom: 0;
 }
 
 .sidenav li>a {

@@ -1,20 +1,9 @@
 /* global M */
 
-// Import what we need from materialize
-// import 'materialize-css/js/cash.js'
-// import 'materialize-css/js/component.js'
-// import 'materialize-css/js/global.js'
-// import 'materialize-css/js/anime.min.js'
-// import 'materialize-css/js/tooltip.js'
-// import 'materialize-css/js/forms.js'
-// import 'materialize-css/js/autocomplete.js'
-// import 'materialize-css/js/tabs.js'
-// import 'materialize-css/js/sidenav.js'
-// import 'materialize-css/js/toasts.js'
-// import 'materialize-css/js/buttons'
-// import 'materialize-css/js/dropdown'
-// import 'materialize-css/js/waves'
-import 'materialize-css/dist/js/materialize.min.js'
+// Using a custom flavour of materialize to allow for fuzzy searching
+// https://github.com/ChildishGiant/materialize/tree/custom-sort
+import './materialize'
+import Fuse from 'fuse.js'
 
 import './style.scss'
 
@@ -54,6 +43,7 @@ function mergeDeep (target, ...sources) {
 }
 
 const jsonData = mergeDeep(require('../data/logos.json'), cloverleaf.siteData)
+const fuse = new Fuse(Object.keys(jsonData))
 const themeData = require('../data/themes.json')
 const langData = require('../langs/langs.json')
 const autoCompleteData = {} // Here for scope purposes
@@ -68,13 +58,15 @@ let targetLength = 16
 let presetInUse = false // Flag true if a preset is selected
 
 window.generate = function () {
-  document.getElementById('result').value =
-  cloverleaf.process(
-    document.getElementById('app').value,
-    document.getElementById('pass').value,
-    presetInUse,
-    document.getElementById('length').value
-  )
+  if (document.getElementById('app').value && document.getElementById('pass').value) {
+    document.getElementById('result').value =
+    cloverleaf.process(
+      document.getElementById('app').value,
+      document.getElementById('pass').value,
+      presetInUse,
+      Number(document.getElementById('length').value)
+    )
+  }
 }
 
 /**
@@ -430,35 +422,20 @@ window.onload = function () {
       window.generate()
     },
     // Minimum number of characters typed for the dialog to open
-    minLength: 0,
+    minLength: 1,
     // For deciding the order of options.
-    sortFunction (a, b, inputString) {
-      // inputString will always be in both a and b if present
+    customSort (list, search) {
+      // TODO: most commonly used
 
-      // if there's a given inputString
-      if (inputString) {
-        // If only "a" starts with inputString
-        if (a.startsWith(inputString) && !b.startsWith(inputString)) {
-          return -1
-        }
+      const toDraw = []
+      const results = fuse.search(search)
 
-        // If only "b" starts with inputString
-        if (!a.startsWith(inputString) && b.startsWith(inputString)) {
-          return 1
-        }
-        // If both "a" and "b" start with inputString we do the same as always so
+      for (const key in results) {
+        toDraw.push({ data: list[results[key].item], key: results[key].item })
       }
-
-      if (a < b) {
-        return -1
-      }
-      // No need for else if as if the prior condition was true, we'd return so wouldn't run this line
-      if (a > b) {
-        return 1
-      }
-      // a must be equal to b
-      return 0
+      return toDraw
     }
+
   })
 
   // Autocomplete has been setup
@@ -502,29 +479,6 @@ window.onload = function () {
       }
     }
   })
-
-  // Dev studd
-  switch (location.hostname) {
-    // If the user is on the dev build
-    case 'dev.cloverleaf.app': {
-      // Change title
-      document.title += ' - Dev Build'
-
-      // Change favicon
-      const ico = document.createElement('link')
-      ico.rel = 'shortcut icon'
-      ico.href = 'dev.ico'
-      document.head.appendChild(ico)
-      break
-    }
-
-    case 'cloverleaf.app':
-      break
-
-    default:
-      document.title += ' - localhost'
-      break
-  }
 
   if (process.env.NODE_ENV === 'development') require('./debug')
 }
