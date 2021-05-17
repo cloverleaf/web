@@ -29,6 +29,9 @@
   "Chrono.gg": {
     "mini": true
   },
+  "Club Penguin Rewritten": {
+    "logo": "logos/Club_Penguin_Rewritten.png"
+  },
   "CodePen": {
     "mini": true
   },
@@ -106,6 +109,7 @@
     "alias": "Facebook"
   },
   "Minecraft": {
+    "logo": "logos/Minecraft.jpg",
     "alias": "Mojang"
   },
   "MSN": {
