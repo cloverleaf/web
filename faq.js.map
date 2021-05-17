@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/faq.js"],
+  "sourcesContent": ["import markdownFile from './faq.md'\n\nconst myDiv = document.createElement('div')\n\nmyDiv.innerHTML = markdownFile.html\n\ndocument.body.appendChild(myDiv)\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;yCAEA,GAAM,GAAQ,SAAS,cAAc,OAErC,EAAM,UAAY,EAAa,KAE/B,SAAS,KAAK,YAAY",
+  "names": []
+}
