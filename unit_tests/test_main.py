@@ -137,11 +137,13 @@ def test_enter_preset(driver):
             logoURL = address + sites[site]["logo"]
         else:
             logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
+
+        #  Mini logo
         if "mini" in sites[site]:
             if sites[site]["mini"] == True:
                 logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
             else:
-                logoURL = sites[site]["mini"]
+                logoURL = address + sites[site]["mini"]
 
 
         assert logo.get_attribute("src") == logoURL, "Enter not setting preset logo src - Preset: " + site
@@ -188,9 +190,13 @@ def test_qs_preset(driver):
             logoURL = address + sites[site]["logo"]
         else:
             logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
+
+        #  Mini logo
         if "mini" in sites[site]:
-            if sites[site]["mini"]:
+            if sites[site]["mini"] == True:
                 logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
+            else:
+                logoURL = address + sites[site]["mini"]
 
         assert logo.get_attribute("src") == logoURL, "Query strings not setting preset logo src - Preset: " + site
         assert status_code(driver, logoURL) == 200, "Query strings not setting preset logo src (404) - Preset: " + site
