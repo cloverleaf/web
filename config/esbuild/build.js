@@ -3,18 +3,19 @@ const essass = require('essass')
 const translation = require('./translation.js')
 const fs = require('fs-extra')
 const rimraf = require('rimraf')
+const { markdownPlugin } = require('esbuild-plugin-markdown')
 
 rimraf.sync('public/*')
 translation.then(() => {
   // Copy all static files
   fs.copy('static/', 'public/').then(() => {
     esbuild.build({
-      entryPoints: ['src/main.js', 'src/sw.js'],
+      entryPoints: ['src/main.js', 'src/sw.js', 'src/faq.js'],
       bundle: true,
       minify: true,
       outdir: 'public',
       sourcemap: true,
-      plugins: [essass],
+      plugins: [essass, markdownPlugin()],
       loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file' },
       define: {
         'process.env.NODE_ENV': '"production"'

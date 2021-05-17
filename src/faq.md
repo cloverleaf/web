@@ -8,7 +8,7 @@
 
 **Q:** How do I know you're not looking at my passwords?:
 
-**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/cloverleaf/web) for the website, smash your router and run Cloverleaf offline (Not that I'd recommend smashing your router.)
+**A:** When you type, your computer takes the app name and your master password and using them makes a new password. Nothing is ever sent across the internet, other than the code for the website itself. If you really want, you can [download the files](https://github.com/cloverleaf/web/archive/refs/heads/master.zip) for the website, smash your router and run Cloverleaf offline (Not that I'd recommend smashing your router.)
 
 <br/>
 
@@ -32,48 +32,4 @@
 
 **Q:** What if I have a question that's not listed here?
 
-**A:** [Ask your question here](https://github.com/cloverleaf/web/issues/new?assignees=&labels=Question&template=question.md&title=)
-
-<title>Frequently Asked Questions - Cloverleaf</title>
-<style
-  type="text/css">
-  @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-
-  body {
-    color: #444;
-    font-family: 'Open Sans', sans-serif;
-    max-width: 75%;
-    text-align: center;
-    margin:auto;
-    margin-top:2em;
-    margin-bottom: 5em;
-  }
-
-  a[href],
-  a[href]:visited {
-    color: #3498db;
-  }
-
-  a[href]:hover,
-  a[href]:focus,
-  a[href]:active {
-    color: #2980b9;
-  }
-  em{
-    font-style: normal;
-    background-color: #ffff87;
-    box-shadow:3px 0 0 #ffff87, -3px 0 0 #ffff87;
-
-  }
-
-  a:target {
-    text-decoration: underline;
-    font-weight: bold;
-  }
-
-  code{
-    background-color: #eee;
-    box-shadow: 3px 0 0 #eee, -3px 0 0 #eee;
-    border-radius: 3px;
-  }
-</style>
+**A:** [Ask your question here](https://github.com/cloverleaf/web/issues/new?assignees=&labels=Question&template=question.md)
