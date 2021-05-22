@@ -442,7 +442,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 }
 
 /* Negative toasts get this */
-.warning {
+.toast.warning {
   color: $inputColor;
   color: var(--inputColor);
   background-color: $incorrectColor;
@@ -450,7 +450,7 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 }
 
 /* Positive toasts get this */
-.success {
+.toast.success {
   background-color: $correctColor;
   background-color: var(--correctColor);
   color: #000;
