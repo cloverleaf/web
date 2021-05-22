@@ -152,7 +152,7 @@ window.copy = function () {
 
   if (pass === '') {
     M.toast({
-      html: 'You have no password to copy.',
+      text: 'You have no password to copy.',
       displayLength: 4000,
       classes: 'warning'
     })
@@ -166,7 +166,7 @@ window.copy = function () {
     copyElement.remove()
 
     M.toast({
-      html: 'Successfully copied!',
+      text: 'Successfully copied!',
       displayLength: 4000,
       classes: 'success'
     })
@@ -613,7 +613,7 @@ window.install = function () {
     window.installPromptEvent.prompt()
   } catch (TypeError) {
     M.toast({
-      html: 'Failed to install app.',
+      text: 'Failed to install app.',
       displayLength: 4000,
       classes: 'warning'
     })
