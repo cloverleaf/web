@@ -56,9 +56,8 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         external_repository: cloverleaf/dev
         publish_dir: ./public
-        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        deploy_key: ${{ secrets.PERSONAL_TOKEN }}
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'
