@@ -1,6 +1,7 @@
 {
   "Vanilla":{
     "accent": "#3f51b5",
+    "accentRGBs": [63, 81, 181],
     "lightAccent": "#7280ce",
     "text": "#535353",
     "background": "#fff",
@@ -13,6 +14,7 @@
   },
   "Discord":{
     "accent": "#7289da",
+    "accentRGBs": [114, 137, 218],
     "lightAccent": "#9aabe5",
     "text": "#dcddde",
     "background": "#2f3136",
@@ -25,6 +27,7 @@
   },
   "Solarized Dark":{
     "accent": "#6c71c4",
+    "accentRGBs": [108, 113, 196],
     "lightAccent": "#9094d3",
     "text": "#93a1a1",
     "background": "#073642",
@@ -37,6 +40,7 @@
   },
   "OLED":{
     "accent": "#3f51b5",
+    "accentRGBs": [63, 81, 181],
     "lightAccent": "#6d78b5",
     "text": "#d4d4d4",
     "background": "#000",
@@ -49,6 +53,7 @@
   },
   "Dracula":{
     "accent": "#3f51b5",
+    "accentRGBs": [63, 81, 181],
     "lightAccent": "#6272a4",
     "text": "#bcc2cd",
     "background": "#282a36",

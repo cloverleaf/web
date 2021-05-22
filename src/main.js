@@ -91,6 +91,7 @@ window.changeTheme = function (passedTheme) {
   document.documentElement.style.setProperty('--inputColor', themeData[passedTheme].inputColor)
   document.documentElement.style.setProperty('--linkColor', themeData[passedTheme].linkColor)
   document.documentElement.style.setProperty('--highlightColor', themeData[passedTheme].highlightColor)
+  document.documentElement.style.setProperty('--accentRGBs', themeData[passedTheme].accentRGBs)
 }
 
 // Change theme to stored before the page loads to avoid flicker.

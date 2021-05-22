@@ -392,7 +392,8 @@ ul.autocomplete-content.dropdown-content span .highlight {
 input[type=checkbox]:checked:not(:disabled)~.lever:active::before,
 input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   transform: scale(2.4);
-  background-color: rgba(63, 81, 181, 0.3);
+  background-color: rgba($accentColor, 0.3);
+  background-color: rgba(var(--accentRGBs), 0.3);
 }
 
 /*Switch knob*/

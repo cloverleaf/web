@@ -44,6 +44,16 @@
 				"highlightColor": {
 					"type": "string",
 					"format": "color"
+				},
+				"accentRGBs": {
+					"type": "array",
+					"maxItems": 3,
+					"minItems": 3,
+					"items": {
+						"type": "number",
+						"maximum": 255,
+						"minimum": 0
+					}
 				}
 			},
 			"required": [
