@@ -63,5 +63,18 @@
     "inputColor": "#f8f8f2",
     "linkColor": "#6272a4",
     "highlightColor": "#343746"
+  },
+  "Monokai":{
+    "accent": "#e43265",
+    "accentRGBs": [228, 50, 101],
+    "lightAccent": "#292c3f",
+    "text": "#979bb0",
+    "background": "#11121d",
+    "internal": "#171926",
+    "incorrect": "#f5680a",
+    "correct": "#2fd6b5",
+    "inputColor": "#fff",
+    "linkColor": "#e53265",
+    "highlightColor": "#171926"
   }
 }

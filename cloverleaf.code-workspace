@@ -25,7 +25,8 @@
 		"conventionalCommits.scopes": [
 			"faq",
 			"presets",
-			"deps"
+			"deps",
+			"themes"
 		]
 	}
 }
