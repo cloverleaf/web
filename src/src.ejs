@@ -81,7 +81,7 @@
 
           <label for="session" class="tooltipped" data-position="right" data-tooltip="<%= session %>"><%= remember %></label>
 
-          <div class="switch" id="session" onclick="sessionToggle();">
+          <div class="switch" id="session" onclick="sessionToggle()">
             <label>
               <%= off %>
               <input type="checkbox" id="session-toggle">
@@ -96,11 +96,15 @@
           <input id="length-pref" type="number" onchange="lengthPref(this.value)" step="1" min="4" value="16" max="512">
         </div>
 
+        <a class="btn waves-effect waves-light" onclick="reset()" id="reset">Reset preset usage</a>
+
         <div id="footer">
-          <a class="btn waves-effect waves-light" onclick="install()">
-            <%= install %> <i class="material-icons" id="install-icon">add_to_home_screen</i>
-          </a>
-          <i class="material-icons" id="close" onclick="side.close();">close</i>
+          <div id="install-container">
+            <a class="btn waves-effect waves-light" onclick="install()">
+              <%= install %> <i class="material-icons" id="install-icon">add_to_home_screen</i>
+            </a>
+            <i class="material-icons" id="close" onclick="side.close();">close</i>
+          </div>
         </div>
 
       </div>

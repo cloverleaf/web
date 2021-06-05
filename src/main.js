@@ -43,7 +43,12 @@ function mergeDeep (target, ...sources) {
 }
 
 const jsonData = mergeDeep(require('../data/logos.json'), cloverleaf.siteData)
-const fuse = new Fuse(Object.keys(jsonData))
+const fuse = new Fuse(Object.keys(jsonData), {
+  // Include the score so we can weight it
+  includeScore: true,
+  // Don't bother sorting as we will sort again
+  shouldSort: false
+})
 const themeData = require('../data/themes.json')
 const langData = require('../langs/langs.json')
 const autoCompleteData = {} // Here for scope purposes
@@ -56,6 +61,9 @@ const extension = location.hostname === 'localhost' || location.hostname === '12
 let targetLength = 16
 // let select; // Theme selector
 let presetInUse = false // Flag true if a preset is selected
+// Get weights or use an empty object
+let weights = JSON.parse(localStorage.getItem('weights')) || {}
+let weightsMax = JSON.parse(localStorage.getItem('weightsMax')) || 1
 
 window.generate = function () {
   if (document.getElementById('app').value && document.getElementById('pass').value) {
@@ -79,7 +87,7 @@ window.changeTheme = function (passedTheme) {
     passedTheme = defaultTheme
   }
 
-  setStored('theme', passedTheme)
+  localStorage.setItem('theme', passedTheme)
 
   document.documentElement.style.setProperty('--accentColor', themeData[passedTheme].accent)
   document.documentElement.style.setProperty('--lightAccent', themeData[passedTheme].lightAccent)
@@ -95,26 +103,7 @@ window.changeTheme = function (passedTheme) {
 }
 
 // Change theme to stored before the page loads to avoid flicker.
-window.changeTheme(getStored('theme') ? getStored('theme') : defaultTheme)
-
-/**
- * Gets a cookie
- * @param  {string} name - The name of the cookie to retrieve
- * @returns {(string|undefined)} - Value of the cookie | If there is no cookie, undefined
- */
-function getStored (name) {
-  return localStorage.getItem(name)
-}
-
-/**
- * Sets a cookie to a certain value
- * @param  {string} name - The name of the cookie to set
- * @param  {string} value -  The value to set that cookie to
- * @returns {void}
- */
-function setStored (name, value) {
-  localStorage.setItem(name, value)
-}
+window.changeTheme(localStorage.getItem('theme') ? localStorage.getItem('theme') : defaultTheme)
 
 function getQueryStrings () {
   const assoc = {}
@@ -133,6 +122,8 @@ function getQueryStrings () {
 
   return assoc
 }
+
+function normalise (val, max, min) { return (val - min) / (max - min) }
 
 // For showing / hiding the master password
 window.passwordToggle = function () {
@@ -204,7 +195,7 @@ window.changeLang = function (passedLang) {
     throw new Error(`Invalid language "${passedLang}"`)
   }
 
-  setStored('lang', passedLang)
+  localStorage.setItem('lang', passedLang)
 
   // Ensure the correct language is loaded
   const file = passedLang === 'en-GB' ? '/' : '/' + passedLang + extension
@@ -292,10 +283,10 @@ window.onload = function () {
   let usingLang
 
   // If the user has a language cookie
-  if (getStored('lang') !== null && langData[getStored('lang')] !== undefined) {
+  if (localStorage.getItem('lang') !== null && langData[localStorage.getItem('lang')] !== undefined) {
     // Select the correct selection
-    document.getElementById('lang').value = langData[getStored('lang')].native
-    usingLang = getStored('lang')
+    document.getElementById('lang').value = langData[localStorage.getItem('lang')].native
+    usingLang = localStorage.getItem('lang')
   } else {
     // If no lang cookie exists
     // Check navigator language
@@ -307,12 +298,12 @@ window.onload = function () {
     if (matches.length !== 0) {
       // Pick it
       document.getElementById('lang').value = langData[matches[0]].native
-      setStored('lang', matches[0])
+      localStorage.setItem('lang', matches[0])
       usingLang = matches[0]
     } else {
       // Pick english
       document.getElementById('lang').value = 'English'
-      setStored('lang', 'en-GB')
+      localStorage.setItem('lang', 'en-GB')
       usingLang = 'en-GB'
     }
   }
@@ -330,7 +321,7 @@ window.onload = function () {
   }
 
   // Set the select to chosen theme or vanilla as a backup
-  document.getElementById('theme').value = getStored('theme') ? getStored('theme') : defaultTheme
+  document.getElementById('theme').value = localStorage.getItem('theme') ? localStorage.getItem('theme') : defaultTheme
 
   // Initialize tooltips
   M.Tooltip.init(document.querySelectorAll('.tooltipped'))
@@ -343,11 +334,11 @@ window.onload = function () {
   // select = M.FormSelect.init(document.querySelectorAll("select"))[0];
 
   // If user hasn't opted out of storing passwords
-  if (getStored('store') !== 'false') {
+  if (localStorage.getItem('store') !== 'false') {
     // If there's a stored password
-    if (getStored('password')) {
+    if (localStorage.getItem('password')) {
       // Fill the password input with the correct password
-      document.getElementById('pass').value = getStored('password')
+      document.getElementById('pass').value = localStorage.getItem('password')
       // Raise the text on the input
       document.querySelector("label[for='pass']").classList.add('active')
       // Colour the underline
@@ -358,8 +349,8 @@ window.onload = function () {
     document.getElementById('session-toggle').checked = true
   }
 
-  if (getStored('length')) {
-    targetLength = getStored('length')
+  if (localStorage.getItem('length')) {
+    targetLength = localStorage.getItem('length')
 
     document.getElementById('length-pref').value = targetLength
     document.getElementById('length').value = targetLength
@@ -385,6 +376,25 @@ window.onload = function () {
       // Set image
       setLogo(val)
       let length = targetLength
+
+      // Update weights before aliases
+      // If there's no key for that preset
+      if (!(val in weights)) {
+        // Make one
+        // It's set to two because the default weight is 1
+        weights[val] = 2
+      } else {
+        // There is a key for the preset
+        weights[val] += 1
+      }
+
+      // Save weights
+      localStorage.setItem('weights', JSON.stringify(weights))
+      // Save weights max
+      if (weights[val] > weightsMax) {
+        weightsMax = weights[val]
+        localStorage.setItem('weightsMax', JSON.stringify(weightsMax))
+      }
 
       // If it's an alias for another app
       if (jsonData[val].alias) {
@@ -422,18 +432,52 @@ window.onload = function () {
       // In case there's already a password (eg switching sites / presets) regen password
       window.generate()
     },
+
     // Minimum number of characters typed for the dialog to open
-    minLength: 1,
+    minLength: 0,
     // For deciding the order of options.
     customSort (list, search) {
-      // TODO: most commonly used
-
       const toDraw = []
       const results = fuse.search(search)
 
-      for (const key in results) {
-        toDraw.push({ data: list[results[key].item], key: results[key].item })
+      // If there are no results
+      if (results.length === 0) {
+        // If there are used presets
+        if (Object.keys(weights).length !== 0) {
+          for (const preset in weights) {
+            results.push({ item: preset, score: 1 })
+          }
+        } else {
+          // If there aren't, use whole list
+          for (const preset in jsonData) {
+            results.push({ item: preset, score: 1 })
+          }
+        }
       }
+
+      for (const key in results) {
+        const weight = normalise(
+          weights[results[key].item] || 0,
+          weightsMax,
+          0
+        )
+
+        toDraw.push({
+          data: list[results[key].item],
+          key: results[key].item,
+          score: results[key].score * (1 - weight)
+        })
+      }
+
+      // Sort by weighted score
+      toDraw.sort(function (a, b) {
+        if (a.score > b.score) { return 1 } else if (a.score < b.score) { return -1 }
+        // Scores equal, sort by alphabetical
+        if (a.key > b.key) { return 1 } else if (a.key < b.key) { return -1 }
+        // If all is equal
+        return 0
+      })
+
       return toDraw
     }
 
@@ -530,11 +574,11 @@ window.passwordUp = function () {
   colourUnderline()
 
   // If the user is opted into saving the master password
-  if (getStored('store') === 'true') {
+  if (localStorage.getItem('store') === 'true') {
     // If there's a password
     if (document.getElementById('pass').value) {
       // Store it
-      setStored('password', document.getElementById('pass').value)
+      localStorage.setItem('password', document.getElementById('pass').value)
     } else {
       // Otherwise, delete the value
       localStorage.removeItem('password')
@@ -564,19 +608,19 @@ window.sessionToggle = function () {
   // If the switch is on / to the right
   if (document.getElementById('session-toggle').checked) {
     // Set session cookie cookie
-    setStored('store', true)
+    localStorage.setItem('store', true)
 
     // If there's a password
     if (document.getElementById('pass').value) {
       // Store it
-      setStored('password', document.getElementById('pass').value)
+      localStorage.setItem('password', document.getElementById('pass').value)
     } else {
       // Otherwise, delete the value
       localStorage.removeItem('password')
     }
   } else {
     // Stop saving password
-    setStored('store', false)
+    localStorage.setItem('store', false)
     // Delete any exist stored password
     localStorage.removeItem('password')
   }
@@ -597,7 +641,7 @@ window.lengthPref = function (passedLength) {
   }
 
   targetLength = passedLength
-  setStored('length', passedLength)
+  localStorage.setItem('length', passedLength)
 
   document.getElementById('length').value = passedLength
   window.generate()
@@ -616,6 +660,26 @@ window.install = function () {
       text: 'Failed to install app.',
       displayLength: 4000,
       classes: 'warning'
+    })
+  }
+}
+
+window.reset = function () {
+  weights = {}
+  localStorage.removeItem('weights')
+  localStorage.removeItem('weightsMax')
+
+  if (localStorage.getItem('weights') === null && localStorage.getItem('weightsMax') === null) {
+    M.toast({
+      text: 'Wiped stored preset usage',
+      displayLength: 4000,
+      classes: 'success'
+    })
+  } else {
+    M.toast({
+      text: 'Failed to wipe stored preset usage',
+      displayLength: 4000,
+      classes: 'error'
     })
   }
 }

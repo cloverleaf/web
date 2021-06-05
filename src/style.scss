@@ -64,12 +64,12 @@ $toast-text-color: var(--textColor);
   font-style: normal;
   font-weight: 400;
   /* For IE6-8 */
-  src: url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot);
+  src: url(material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.eot);
   src: local('Material Icons'),
     local('MaterialIcons-Regular'),
-    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
-    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
-    url(../node_modules/material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
+    url(material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff2) format('woff2'),
+    url(material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.woff) format('woff'),
+    url(material-design-icons-iconfont/dist/fonts/MaterialIcons-Regular.ttf) format('truetype');
   font-display: swap;
 }
 
@@ -849,12 +849,15 @@ select {
 select:focus {
   border: 1px solid $lightAccent;
   border: 1px solid var(--lightAccent);
-
   outline: none;
 }
 
-.sidenav .input-field {
+#options div.input-field {
   margin-top: 2.5rem;
+}
+
+#options a {
+  margin-top: 1rem;
 }
 
 .btn i {
@@ -883,10 +886,13 @@ select:focus {
 }
 
 #footer {
+  grid-row: last-line;
+}
+
+#install-container {
   display: grid;
   grid-template-columns: 1fr calc(2.4em + 10px);
   align-content: stretch;
-  grid-row: last-line;
 }
 
 #close {
@@ -901,10 +907,6 @@ select:focus {
 a {
   color: $linkColor;
   color: var(--linkColor);
-}
-
-#old {
-  text-overflow: clip;
 }
 
 #length-pref {
