@@ -354,8 +354,8 @@ window.onload = function () {
       colourUnderline()
     }
 
-    // Toggle session switch
-    document.getElementById('session-toggle').click()
+    // Ensure session switch is true
+    document.getElementById('session-toggle').checked = true
   }
 
   if (getStored('length')) {
