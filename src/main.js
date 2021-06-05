@@ -465,7 +465,8 @@ window.onload = function () {
         toDraw.push({
           data: list[results[key].item],
           key: results[key].item,
-          score: results[key].score * (1 - weight)
+          // Times by 0.9 so weight never overpowers the score
+          score: results[key].score * (1 - (weight * 0.9))
         })
       }
 
