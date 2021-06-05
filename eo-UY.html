@@ -50,8 +50,8 @@
     <meta name="msapplication-TileColor" content="#8c97ce">
     <meta name="theme-color" content="#ffffff">
 
-    <script src="main.js" integrity="sha256-IalogtE0ztUqs+86d58tTOGnK086YQWzh+4wBcGvC1U=" crossorigin="use-credentials"></script>
-    <link rel="stylesheet" href="main.css" integrity="sha256-lVX3tQLU/2LzR+JVQcDAucfdgKX4VfhkEV4slZlBZIE=" crossorigin="use-credentials">
+    <script src="main.js" integrity="sha256-vPSGsaqCYvwoe655gQDWYrLFIeA1vl+F+jV3+9MY5YY=" crossorigin="use-credentials"></script>
+    <link rel="stylesheet" href="main.css" integrity="sha256-EmGNBpk9t/rJEpZX2NQYG+oa2x0SwYO6H8o/fIi3WkA=" crossorigin="use-credentials">
 
     <script>
       // Clear the console on reload for easier debugging
@@ -81,7 +81,7 @@
 
           <label for="session" class="tooltipped" data-position="right" data-tooltip="Savis loke sur via aparato">Memoru mian pasvorton</label>
 
-          <div class="switch" id="session" onclick="sessionToggle();">
+          <div class="switch" id="session" onclick="sessionToggle()">
             <label>
               Malŝaltita
               <input type="checkbox" id="session-toggle">
@@ -96,11 +96,15 @@
           <input id="length-pref" type="number" onchange="lengthPref(this.value)" step="1" min="4" value="16" max="512">
         </div>
 
+        <a class="btn waves-effect waves-light" onclick="reset()" id="reset">Reset preset usage</a>
+
         <div id="footer">
-          <a class="btn waves-effect waves-light" onclick="install()">
-            Instalu kiel denaska app <i class="material-icons" id="install-icon">add_to_home_screen</i>
-          </a>
-          <i class="material-icons" id="close" onclick="side.close();">close</i>
+          <div id="install-container">
+            <a class="btn waves-effect waves-light" onclick="install()">
+              Instalu kiel denaska app <i class="material-icons" id="install-icon">add_to_home_screen</i>
+            </a>
+            <i class="material-icons" id="close" onclick="side.close();">close</i>
+          </div>
         </div>
 
       </div>
@@ -207,4 +211,4 @@
   </body>
 </html>
 
-<!-- Built Sat May 22 2021 23:37:44 GMT+0000 (Coordinated Universal Time) (118fa57272f6b54df5f5aba487ce3f572c0a5ad0) -->
+<!-- Built Sat Jun 05 2021 10:56:51 GMT+0000 (Coordinated Universal Time) (bae0e283beb86d9fe8ba2f8be93ccd08f4273d5c) -->
