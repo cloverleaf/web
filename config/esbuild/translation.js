@@ -12,10 +12,10 @@ rimraf.sync('langs/')
 
 async function unzip () {
   const directory = await unzipper.Open.file(path.join(__dirname, 'temp.zip'))
-  await directory.extract({
+
+  return await directory.extract({
     path: path.join(__dirname, '../../langs/')
   })
-  return 'done'
 }
 
 module.exports = new Promise(function (resolve, reject) {
@@ -44,12 +44,12 @@ module.exports = new Promise(function (resolve, reject) {
       }
 
       // Extract zip to langs folder
-      return unzip()
-    }).then(unzipped => {
-      // Make plugin instance
-      resolve(makeLangs())
+      unzip().then(unzipped => {
+        // Make plugin instance
+        resolve(makeLangs())
 
-      // Remove temp file
-      rimraf.sync(path.join(__dirname, 'temp.zip'))
+        // Remove temp file
+        rimraf.sync(path.join(__dirname, 'temp.zip'))
+      })
     })
 })
