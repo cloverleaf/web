@@ -347,6 +347,8 @@ window.onload = function () {
 
     // Ensure session switch is true
     document.getElementById('session-toggle').checked = true
+    // Ensure the store token is set
+    localStorage.setItem('store', true)
   }
 
   if (localStorage.getItem('length')) {

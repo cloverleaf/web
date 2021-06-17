@@ -1,6 +1,6 @@
 const esbuild = require('esbuild')
 const essass = require('essass')
-const liveServer = require('live-server')
+const FiveServer = require('five-server').default
 const fs = require('fs-extra')
 const { markdownPlugin } = require('esbuild-plugin-markdown')
 
@@ -22,7 +22,7 @@ esbuild.build({
   // Call "stop" on the result when you're done
   console.log(result)
   require('./makeHTML')
-  liveServer.start({
+  new FiveServer().start({
     root: './public',
     open: true,
     port: 1234
