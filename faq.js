@@ -19,6 +19,14 @@
 <p><strong>A:</strong> A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Cloverleaf uses these for remembering what theme you like and a few other things like that.</p>
 <br/>
 
+<p><strong>Q:</strong> What&#39;s the deal with the coloured underline?:</p>
+<p><strong>A:</strong> That colour represents your password</p>
+<br/>
+
+<p><strong>Q:</strong> Why is &quot;preset usage&quot; stored?:</p>
+<p><strong>A:</strong> All that means is that each time you use a preset, Cloverleaf makes a note that you&#39;ve used it. The only thing that&#39;s stored is the number of times you&#39;ve used each preset, so that autocomplete suggestions can be more taliored to each user. This data never leaves your device.</p>
+<br/>
+
 <p><strong>Q:</strong> What if I have a question that&#39;s not listed here?</p>
 <p><strong>A:</strong> <a href="https://github.com/cloverleaf/web/issues/new?assignees=&amp;labels=Question&amp;template=question.md">Ask your question here</a></p>
 `,a=`# Frequently Asked Questions\r
@@ -50,6 +58,18 @@
 <a name="cookies">**Q:** What are cookies and why do you use them?:</a>\r
 \r
 **A:** A cookie is a small bit of information that a website stores on your computer so that when you come back to the site later, it can remember things from your previous visit. Cloverleaf uses these for remembering what theme you like and a few other things like that.\r
+\r
+<br/>\r
+\r
+**Q:** What's the deal with the coloured underline?:\r
+\r
+**A:** That colour represents your password\r
+\r
+<br/>\r
+\r
+**Q:** Why is "preset usage" stored?:\r
+\r
+**A:** All that means is that each time you use a preset, Cloverleaf makes a note that you've used it. The only thing that's stored is the number of times you've used each preset, so that autocomplete suggestions can be more taliored to each user. This data never leaves your device.\r
 \r
 <br/>\r
 \r
