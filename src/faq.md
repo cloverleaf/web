@@ -30,6 +30,18 @@
 
 <br/>
 
+**Q:** What's the deal with the coloured underline?:
+
+**A:** That colour represents your password
+
+<br/>
+
+**Q:** Why is "preset usage" stored?:
+
+**A:** All that means is that each time you use a preset, Cloverleaf makes a note that you've used it. The only thing that's stored is the number of times you've used each preset, so that autocomplete suggestions can be more taliored to each user. This data never leaves your device.
+
+<br/>
+
 **Q:** What if I have a question that's not listed here?
 
 **A:** [Ask your question here](https://github.com/cloverleaf/web/issues/new?assignees=&labels=Question&template=question.md)

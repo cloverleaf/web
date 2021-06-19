@@ -53,11 +53,15 @@ jobs:
         cd unit_tests
         python3 -m pytest -s
 
+    - name: Remove existing CNAME
+      run: rm ./public/CNAME
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         external_repository: cloverleaf/dev
         publish_dir: ./public
-        deploy_key: ${{ secrets.PERSONAL_TOKEN }}
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        cname: dev.cloverleaf.app
         user_name: 'github-actions[bot]'
         user_email: 'github-actions[bot]@users.noreply.github.com'

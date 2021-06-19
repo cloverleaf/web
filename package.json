@@ -38,6 +38,7 @@
     "js-sha3": "^0.8.0",
     "material-design-icons-iconfont": "^6.1.0",
     "seedrandom": "^3.0.5",
+    "trim-newlines": "^4.0.2",
     "workbox-recipes": "^6.1.2"
   },
   "devDependencies": {
@@ -52,8 +53,8 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "essass": "^1.1.0",
+    "five-server": "0.0.26",
     "fs-extra": "^9.1.0",
-    "live-server": "^1.2.1",
     "locale-code": "^2.0.2",
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
