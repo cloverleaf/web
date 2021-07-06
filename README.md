@@ -1,6 +1,7 @@
 # [Cloverleaf](https://cloverleaf.app/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg)](#contributors-)<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 ![CI](https://github.com/cloverleaf/web/workflows/CI/badge.svg)
 ![Last commit label](https://img.shields.io/github/last-commit/cloverleaf/web.svg)
 [![Up or down indicator](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
@@ -58,6 +59,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   <tr>
     <td align="center"><a href="https://github.com/ChildishGiant"><img src="https://avatars.githubusercontent.com/u/13716824?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allie</b></sub></a><br /><a href="#design-ChildishGiant" title="Design">🎨</a> <a href="https://github.com/cloverleaf/web/commits?author=ChildishGiant" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/matthew-law"><img src="https://avatars.githubusercontent.com/u/18603830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matthew Law</b></sub></a><br /><a href="#translation-matthew-law" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://moaufmklo.com"><img src="https://avatars.githubusercontent.com/u/45636897?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MoaufmKlo</b></sub></a><br /><a href="#translation-MoaufmKlo" title="Translation">🌍</a></td>
   </tr>
 </table>
 
