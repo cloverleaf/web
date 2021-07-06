@@ -8,7 +8,7 @@
     <title>Cloverleaf</title>
 
     <meta name="viewport" content="minimum-scale=1.0,initial-scale=1.0">
-    <meta name="description" content="Cloverleaf ist eine gratis, Open-Source App um deinen Passwortmanager zu ersetzen ohne deine Passwörter irgendwo zu speichern.">
+    <meta name="description" content="Cloverleaf ist eine gratis, Open-Source-App um deinen Kennwortmanager zu ersetzen ohne deine Kennwörter irgendwo zu speichern.">
     <meta name="robots" content="index, follow">
     <meta name="author" content="ChildishGiant">
     <meta name="keywords" content="password, password manager, password generator, security, open source, cloverleaf, perdola, cloverleaf app, cloverleaf.app, stateless, password storage, FOSS">
@@ -20,7 +20,7 @@
     <meta name="mobile-web-app-capable" content="yes">
 
     <!-- OpenGraph -->
-    <meta property="og:description" content="Cloverleaf ist eine gratis, Open-Source App um deinen Passwortmanager zu ersetzen ohne deine Passwörter irgendwo zu speichern.">
+    <meta property="og:description" content="Cloverleaf ist eine gratis, Open-Source-App um deinen Kennwortmanager zu ersetzen ohne deine Kennwörter irgendwo zu speichern.">
     <meta property="og:title" content="Cloverleaf">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://cloverleaf.app">
@@ -35,7 +35,7 @@
     <meta name="twitter:creator" content="@ChildishGiant">
     <meta name="twitter:creator:id" content="871150969417084928">
     <meta name="twitter:title" content="Cloverleaf">
-    <meta name="twitter:description" content="Cloverleaf ist eine gratis, Open-Source App um deinen Passwortmanager zu ersetzen ohne deine Passwörter irgendwo zu speichern.">
+    <meta name="twitter:description" content="Cloverleaf ist eine gratis, Open-Source-App um deinen Kennwortmanager zu ersetzen ohne deine Kennwörter irgendwo zu speichern.">
     <meta name="twitter:image" content="https://cloverleaf.app/android-chrome-512x512.png">
 
     <!-- Icons -->
@@ -67,7 +67,7 @@
         <div class="input-field" id="theme-container">
           <select id="theme" onchange="changeTheme(this.value)" class="browser-default">
           </select>
-          <label for="theme">Theme</label>
+          <label for="theme">Design</label>
         </div>
 
 
@@ -79,7 +79,7 @@
 
         <div class="input-field" id="session-container">
 
-          <label for="session" class="tooltipped" data-position="right" data-tooltip="Lokal auf Ihrem Gerät gespeichert">Erinnere mein Passwort</label>
+          <label for="session" class="tooltipped" data-position="right" data-tooltip="Lokal auf deinem Gerät gespeichert">Mein Kennwort merken</label>
 
           <div class="switch" id="session" onclick="sessionToggle()">
             <label>
@@ -123,7 +123,7 @@
       <div id="back" role="main">
 
         <div class="input-field">
-          <label for="app">Applikation</label>
+          <label for="app">Anwendung</label>
           <input id="app" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" oninput="appInput(event);" onkeydown="appDown(event);" onkeyup="presetScroll();">
           <div id="logoContainer" class="suffix">
             <img id="logo" draggable="false">
@@ -131,13 +131,13 @@
         </div>
 
         <div class="input-field">
-          <label for="pass">Master Passwort</label>
+          <label for="pass">Masterkennwort</label>
           <input id="pass" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" onkeyup="passwordUp();">
         </div>
 
         <div class="switch" onclick="passwordToggle();">
           <label>
-            Zeigen
+            Anzeigen
             <input type="checkbox" id="passwordToggle" checked="checked">
             <span class="lever" id="passTogglelever"></span>
             Verstecken
@@ -145,24 +145,24 @@
         </div>
 
         <div class="input-field">
-          <label for="length">Länge des Passworts</label>
+          <label for="length">Länge des Kennworts</label>
           <input id="length" type="number" step="1" min="4" value="16" max="512" oninput="fixLength();generate();" onkeypress="return event.charCode >= 48 && event.charCode <= 57;">
         </div>
 
         <span class="hint">Desto länger, desto besser</span>
 
-        <input id="result" type="password" placeholder="Kein Passwort :)" readonly="readonly">
+        <input id="result" type="password" placeholder="Kein Kennwort :)" readonly="readonly">
 
         <div class="switch" id="resultSwitch" onclick="resultToggle();">
           <label>
-            Zeigen
+            Anzeigen
             <input type="checkbox" id="resultToggle" checked="checked">
             <span class="lever" id="resultTogglelever"></span>
             Verstecken
           </label>
         </div>
 
-        <button id="copy" class="waves-effect waves-light btn" onclick="copy();">Passwort kopieren</button>
+        <button id="copy" class="waves-effect waves-light btn" onclick="copy();">Kennwort kopieren</button>
 
         <div class="cf">
           <a href="faq" id="faq" title="Frequently Asked Questions - Cloverleaf">Hilfe und FAQs</a>
@@ -211,4 +211,4 @@
   </body>
 </html>
 
-<!-- Built Sat Jun 19 2021 23:23:31 GMT+0000 (Coordinated Universal Time) (08d5053943fa53d62bd585cfec5203eb9dae58d9) -->
+<!-- Built Tue Jul 06 2021 18:23:09 GMT+0000 (Coordinated Universal Time) (ad083fe8c56268b6a9e9c7aa087aac1c6e56b390) -->
