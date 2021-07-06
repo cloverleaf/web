@@ -6,7 +6,6 @@
   "commit": false,
   "contributors": [
     {
-
       "login": "ChildishGiant",
       "name": "Allie",
       "avatar_url": "https://avatars.githubusercontent.com/u/13716824?v=4",
@@ -21,6 +20,15 @@
       "name": "Matthew Law",
       "avatar_url": "https://avatars.githubusercontent.com/u/18603830?v=4",
       "profile": "https://github.com/matthew-law",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "MoaufmKlo",
+      "name": "MoaufmKlo",
+      "avatar_url": "https://avatars.githubusercontent.com/u/45636897?v=4",
+      "profile": "https://moaufmklo.com",
       "contributions": [
         "translation"
       ]
