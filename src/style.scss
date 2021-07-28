@@ -2,10 +2,10 @@
 
 // Import only what you need from Materialize
 
-@import "node_modules/@materializecss/materialize/sass/components/normalize";
+@import "materialize/sass/components/normalize";
 
 // Color
-@import "node_modules/@materializecss/materialize/sass/components/color-variables";
+@import "materialize/sass/components/color-variables";
 
 $accentColor: #3f51b5;
 $lightAccent: lighten($accentColor, 15%);
@@ -31,7 +31,7 @@ $input-border-color: $textColor;
 $link-color: $linkColor;
 
 // Variables;
-@import "node_modules/@materializecss/materialize/sass/components/variables";
+@import "materialize/sass/components/variables";
 
 $toast-action-color: $link-color;
 $toast-action-color: var(--linkColor);
@@ -41,20 +41,20 @@ $toast-text-color: $textColor;
 $toast-text-color: var(--textColor);
 
 // Components
-@import "node_modules/@materializecss/materialize/sass/components/global";
-@import "node_modules/@materializecss/materialize/sass/components/grid";
-@import "node_modules/@materializecss/materialize/sass/components/typography";
-@import "node_modules/@materializecss/materialize/sass/components/toast";
-@import "node_modules/@materializecss/materialize/sass/components/tabs";
-@import "node_modules/@materializecss/materialize/sass/components/tooltip";
-@import "node_modules/@materializecss/materialize/sass/components/buttons";
-@import "node_modules/@materializecss/materialize/sass/components/dropdown";
-@import "node_modules/@materializecss/materialize/sass/components/waves";
-@import "node_modules/@materializecss/materialize/sass/components/sidenav";
+@import "materialize/sass/components/global";
+@import "materialize/sass/components/grid";
+@import "materialize/sass/components/typography";
+@import "materialize/sass/components/toast";
+@import "materialize/sass/components/tabs";
+@import "materialize/sass/components/tooltip";
+@import "materialize/sass/components/buttons";
+@import "materialize/sass/components/dropdown";
+@import "materialize/sass/components/waves";
+@import "materialize/sass/components/sidenav";
 // Form parts
-@import "node_modules/@materializecss/materialize/sass/components/forms/switches.scss";
-@import "node_modules/@materializecss/materialize/sass/components/forms/select.scss";
-@import "node_modules/@materializecss/materialize/sass/components/forms/input-fields.scss";
+@import "materialize/sass/components/forms/switches.scss";
+@import "materialize/sass/components/forms/select.scss";
+@import "materialize/sass/components/forms/input-fields.scss";
 
 
 
