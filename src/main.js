@@ -148,13 +148,8 @@ window.copy = function () {
       classes: 'warning'
     })
   } else {
-    let copyElement = document.createElement('input')
-    copyElement.setAttribute('type', 'text')
-    copyElement.setAttribute('value', pass)
-    copyElement = document.body.appendChild(copyElement)
-    copyElement.select()
-    document.execCommand('copy')
-    copyElement.remove()
+    // Copy the password to the clipboard
+    navigator.clipboard.writeText(pass)
 
     M.toast({
       text: 'Successfully copied!',
