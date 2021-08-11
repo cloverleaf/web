@@ -4,9 +4,8 @@
 [![Up or down indicator](https://img.shields.io/website-up-down-green-red/https/cloverleaf.app.svg?label=Cloverleaf.app)](https://cloverleaf.app/)
 ![MIT License](https://img.shields.io/github/license/cloverleaf/web.svg)
 [![Crowdin](https://badges.crowdin.net/cloverleaf/localized.svg)](https://crowdin.com/project/cloverleaf)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![All Contributors](https://img.shields.io/github/all-contributors/cloverleaf/web)](#contributors-)
+
 See the [latest patch notes here](https://github.com/cloverleaf/web/commit/master).
 
 A smart solution to the problem of passwords. Cloverleaf generates passwords on demand, using the name of the app you're making a password for and a master password.
