@@ -54,7 +54,7 @@
     "essass": "^1.1.0",
     "five-server": "0.0.26",
     "fs-extra": "^10.0.0",
-    "http-server": "^0.12.3",
+    "http-server": "^13.0.1",
     "locale-code": "^2.0.2",
     "node-fetch": "^2.6.1",
     "node-sass": "^6.0.1",
