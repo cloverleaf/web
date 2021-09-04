@@ -26,9 +26,6 @@
     "alias": "Microsoft",
     "mini": true
   },
-  "Chrono.gg": {
-    "mini": true
-  },
   "Club Penguin Rewritten": {
     "logo": "logos/Club_Penguin_Rewritten.png"
   },
@@ -36,6 +33,9 @@
     "mini": true
   },
   "DeviantArt": {
+    "mini": true
+  },
+  "Discogs": {
     "mini": true
   },
   "Discord": {
@@ -65,7 +65,7 @@
   "Fanatical": {
     "mini": true
   },
-  "FANDOM": {
+  "Fandom": {
     "mini": true
   },
   "Firebox": {
@@ -166,6 +166,9 @@
   "StellarX": {
     "mini": true
   },
+  "Threema": {
+    "mini": true
+  },
   "TikTok": {
     "mini": true
   },
@@ -174,6 +177,9 @@
     "mini": true
   },
   "Twitch": {
+    "mini": true
+  },
+  "Uphold": {
     "mini": true
   },
   "Uplay": {
