@@ -52,7 +52,7 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
     "essass": "^1.1.0",
-    "five-server": "0.0.26",
+    "five-server": "0.0.29",
     "fs-extra": "^10.0.0",
     "http-server": "^0.12.3",
     "locale-code": "^2.0.2",
