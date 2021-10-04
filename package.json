@@ -61,7 +61,7 @@
     "rimraf": "^3.0.2",
     "sass": "^1.35.2",
     "ssri": "^8.0.1",
-    "standard": "^16.0.3",
+    "standard": "^16.0.4",
     "unzipper": "^0.10.11"
   },
   "standard": {
