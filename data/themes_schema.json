@@ -9,7 +9,7 @@
 					"type": "string",
 					"format": "color"
 				},
-				"lightAccent": {
+				"light-accent": {
 					"type": "string",
 					"format": "color"
 				},
@@ -33,19 +33,19 @@
 					"type": "string",
 					"format": "color"
 				},
-				"inputColor": {
+				"input-color": {
 					"type": "string",
 					"format": "color"
 				},
-				"linkColor": {
+				"link-color": {
 					"type": "string",
 					"format": "color"
 				},
-				"highlightColor": {
+				"highlight-color": {
 					"type": "string",
 					"format": "color"
 				},
-				"accentRGBs": {
+				"accent-RGBs": {
 					"type": "array",
 					"maxItems": 3,
 					"minItems": 3,
@@ -58,15 +58,15 @@
 			},
 			"required": [
 				"accent",
-				"lightAccent",
+				"light-accent",
 				"text",
 				"background",
 				"internal",
 				"incorrect",
 				"correct",
-				"inputColor",
-				"linkColor",
-				"highlightColor"
+				"input-color",
+				"link-color",
+				"highlight-color"
 			]
 		}
 	},

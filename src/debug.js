@@ -15,15 +15,15 @@ if (debug) {
 
   themeData.testTheme = {
     accent: '#ff00ff',
-    lightAccent: '#ff00ff',
+    light-accent: '#ff00ff',
     text: '#ff00ff',
     background: '#ff00ff',
     internal: '#ff00ff',
     incorrect: '#ff00ff',
     correct: '#ff00ff',
-    inputColor: '#ff00ff',
-    linkColor: '#ff00ff',
-    highlightColor: '#ff00ff'
+    input-color: '#ff00ff',
+    link-color: '#ff00ff',
+    highlight-color: '#ff00ff'
   }
 
   const themeOption = document.createElement('option')
