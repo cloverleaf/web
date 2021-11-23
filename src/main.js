@@ -89,17 +89,17 @@ window.changeTheme = function (passedTheme) {
 
   localStorage.setItem('theme', passedTheme)
 
-  document.documentElement.style.setProperty('--accent-color', themeData[passedTheme].accent)
-  document.documentElement.style.setProperty('--light-accent', themeData[passedTheme].light-accent)
-  document.documentElement.style.setProperty('--text-color', themeData[passedTheme].text)
-  document.documentElement.style.setProperty('--background-color', themeData[passedTheme].background)
-  document.documentElement.style.setProperty('--internal-color', themeData[passedTheme].internal)
-  document.documentElement.style.setProperty('--incorrect-color', themeData[passedTheme].incorrect)
-  document.documentElement.style.setProperty('--correct-color', themeData[passedTheme].correct)
-  document.documentElement.style.setProperty('--input-color', themeData[passedTheme].input-color)
-  document.documentElement.style.setProperty('--link-color', themeData[passedTheme].link-color)
-  document.documentElement.style.setProperty('--highlight-color', themeData[passedTheme].highlight-color)
-  document.documentElement.style.setProperty('--accent-RGBs', themeData[passedTheme].accent-RGBs)
+  document.documentElement.style.setProperty('--accentColor', themeData[passedTheme].accent)
+  document.documentElement.style.setProperty('--lightAccent', themeData[passedTheme].lightAccent)
+  document.documentElement.style.setProperty('--textColor', themeData[passedTheme].text)
+  document.documentElement.style.setProperty('--backgroundColor', themeData[passedTheme].background)
+  document.documentElement.style.setProperty('--internalColor', themeData[passedTheme].internal)
+  document.documentElement.style.setProperty('--incorrectColor', themeData[passedTheme].incorrect)
+  document.documentElement.style.setProperty('--correctColor', themeData[passedTheme].correct)
+  document.documentElement.style.setProperty('--inputColor', themeData[passedTheme].inputColor)
+  document.documentElement.style.setProperty('--linkColor', themeData[passedTheme].linkColor)
+  document.documentElement.style.setProperty('--highlightColor', themeData[passedTheme].highlightColor)
+  document.documentElement.style.setProperty('--accentRGBs', themeData[passedTheme].accentRGBs)
 }
 
 // Change theme to stored before the page loads to avoid flicker.
@@ -245,7 +245,7 @@ function setLogo (appName) {
   }
 
   // Set image
-  document.getElementById('logo-container').style.display = 'flex'
+  document.getElementById('logoContainer').style.display = 'flex'
   document.getElementById('logo').src = logo
   document.getElementById('logo').alt = appName
   document.getElementById('logo').title = appName
@@ -545,7 +545,7 @@ function colourUnderline () {
     )}%, ${window.getRandomArbitrary(45, 80)}%)`
     document
       .getElementById('pass')
-      .style.setProperty('--accent-color', colour)
+      .style.setProperty('--accentColor', colour)
   } else {
     // If there's no password, reset the underline colour
     document.getElementById('pass').removeAttribute('style')
@@ -557,7 +557,7 @@ window.appInput = function () {
   presetInUse = false
 
   // Clear logo
-  document.getElementById('logo-container').style.display = 'none'
+  document.getElementById('logoContainer').style.display = 'none'
   document.getElementById('logo').removeAttribute('src')
   document.getElementById('logo').removeAttribute('alt')
   document.getElementById('logo').removeAttribute('title')
