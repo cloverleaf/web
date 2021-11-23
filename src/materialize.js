@@ -5075,9 +5075,9 @@ $jscomp.polyfill = function (e, r, p, m) {
       // Apply element color and background color to wrapper
       var elementStyle = window.getComputedStyle(element, null);
       var color = elementStyle.color;
-      var backgroundColor = elementStyle.backgroundColor;
+      var background-color = elementStyle.background-color;
 
-      wrapper.setAttribute('style', 'color:' + color + ';background:' + backgroundColor);
+      wrapper.setAttribute('style', 'color:' + color + ';background:' + background-color);
       element.setAttribute('style', 'background-color:rgba(0,0,0,0);');
     },
 

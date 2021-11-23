@@ -1,80 +1,80 @@
 {
   "Vanilla":{
     "accent": "#3f51b5",
-    "accentRGBs": [63, 81, 181],
-    "lightAccent": "#7280ce",
+    "accent-RGBs": [63, 81, 181],
+    "light-accent": "#7280ce",
     "text": "#535353",
     "background": "#fff",
     "internal": "#fff",
     "incorrect": "#f44336",
     "correct": "#8fff66",
-    "inputColor": "#000",
-    "linkColor": "#00539b",
-    "highlightColor": "#eee"
+    "input-color": "#000",
+    "link-color": "#00539b",
+    "highlight-color": "#eee"
   },
   "Discord":{
     "accent": "#7289da",
-    "accentRGBs": [114, 137, 218],
-    "lightAccent": "#9aabe5",
+    "accent-RGBs": [114, 137, 218],
+    "light-accent": "#9aabe5",
     "text": "#dcddde",
     "background": "#2f3136",
     "internal": "#393c43",
     "incorrect": "#f04747",
     "correct": "#43b581",
-    "inputColor": "#fff",
-    "linkColor": "#00b0f4",
-    "highlightColor": "#393c43"
+    "input-color": "#fff",
+    "link-color": "#00b0f4",
+    "highlight-color": "#393c43"
   },
   "Solarized Dark":{
     "accent": "#6c71c4",
-    "accentRGBs": [108, 113, 196],
-    "lightAccent": "#9094d3",
+    "accent-RGBs": [108, 113, 196],
+    "light-accent": "#9094d3",
     "text": "#93a1a1",
     "background": "#073642",
     "internal": "#002b36",
     "incorrect": "#ce2726",
     "correct": "#7c9114",
-    "inputColor": "#839496",
-    "linkColor": "#268bd2",
-    "highlightColor": "#002b36"
+    "input-color": "#839496",
+    "link-color": "#268bd2",
+    "highlight-color": "#002b36"
   },
   "OLED":{
     "accent": "#3f51b5",
-    "accentRGBs": [63, 81, 181],
-    "lightAccent": "#6d78b5",
+    "accent-RGBs": [63, 81, 181],
+    "light-accent": "#6d78b5",
     "text": "#d4d4d4",
     "background": "#000",
     "internal": "#000",
     "incorrect": "#f44336",
     "correct": "#8fff66",
-    "inputColor": "#839496",
-    "linkColor": "#268bd2",
-    "highlightColor": "#0e0e0e"
+    "input-color": "#839496",
+    "link-color": "#268bd2",
+    "highlight-color": "#0e0e0e"
   },
   "Dracula":{
     "accent": "#3f51b5",
-    "accentRGBs": [63, 81, 181],
-    "lightAccent": "#6272a4",
+    "accent-RGBs": [63, 81, 181],
+    "light-accent": "#6272a4",
     "text": "#bcc2cd",
     "background": "#282a36",
     "internal": "#343746",
     "incorrect": "#f55",
     "correct": "#50fa7b",
-    "inputColor": "#f8f8f2",
-    "linkColor": "#6272a4",
-    "highlightColor": "#343746"
+    "input-color": "#f8f8f2",
+    "link-color": "#6272a4",
+    "highlight-color": "#343746"
   },
   "Monokai":{
     "accent": "#e43265",
-    "accentRGBs": [228, 50, 101],
-    "lightAccent": "#292c3f",
+    "accent-RGBs": [228, 50, 101],
+    "light-accent": "#292c3f",
     "text": "#979bb0",
     "background": "#11121d",
     "internal": "#171926",
     "incorrect": "#f5680a",
     "correct": "#2fd6b5",
-    "inputColor": "#fff",
-    "linkColor": "#e53265",
-    "highlightColor": "#171926"
+    "input-color": "#fff",
+    "link-color": "#e53265",
+    "highlight-color": "#171926"
   }
 }

@@ -7,38 +7,38 @@
 // Color
 @import "node_modules/@materializecss/materialize/sass/components/color-variables";
 
-$accentColor: #3f51b5;
-$lightAccent: lighten($accentColor, 15%);
-$textColor: #535353;
-$backgroundColor: #fff;
-$internalColor: #fff;
-$incorrectColor: #f44336;
-$correctColor: #8fff66;
-$inputColor: #000;
-$linkColor: #00539b;
-$highlightColor: #eee;
+$accent-color: #3f51b5;
+$light-accent: lighten($accent-color, 15%);
+$text-color: #535353;
+$background-color: #fff;
+$internal-color: #fff;
+$incorrect-color: #f44336;
+$correct-color: #8fff66;
+$input-color: #000;
+$link-color: #00539b;
+$highlight-color: #eee;
 
-$secondary-color: $accentColor;
+$secondary-color: $accent-color;
 
-$select-background: $internalColor;
-$switch-checked-lever-bg: $lightAccent;
-$sidenav-bg-color: $backgroundColor;
-$button-raised-background: $accentColor;
-$tabs-underline-color: $accentColor;
-$tabs-text-color: $inputColor;
-$tabs-bg-color: $internalColor;
-$input-border-color: $textColor;
-$link-color: $linkColor;
+$select-background: $internal-color;
+$switch-checked-lever-bg: $light-accent;
+$sidenav-bg-color: $background-color;
+$button-raised-background: $accent-color;
+$tabs-underline-color: $accent-color;
+$tabs-text-color: $input-color;
+$tabs-bg-color: $internal-color;
+$input-border-color: $text-color;
+$link-color: $link-color;
 
 // Variables;
 @import "node_modules/@materializecss/materialize/sass/components/variables";
 
 $toast-action-color: $link-color;
-$toast-action-color: var(--linkColor);
-$toast-color: $internalColor;
-$toast-color: var(--internalColor);
-$toast-text-color: $textColor;
-$toast-text-color: var(--textColor);
+$toast-action-color: var(--link-color);
+$toast-color: $internal-color;
+$toast-color: var(--internal-color);
+$toast-text-color: $text-color;
+$toast-text-color: var(--text-color);
 
 // Components
 @import "node_modules/@materializecss/materialize/sass/components/global";
@@ -130,25 +130,25 @@ $toast-text-color: var(--textColor);
 }
 
 :root {
-  --accentColor: #{$accentColor};
-  --lightAccent: #{$lightAccent};
-  --textColor: #{$textColor};
-  --backgroundColor: #{$backgroundColor};
-  --internalColor: #{$internalColor};
-  --incorrectColor: #{$incorrectColor};
-  --correctColor: #{$correctColor};
-  --inputColor: #{$inputColor};
-  --linkColor: #{$linkColor};
-  --highlightColor: #{$highlightColor};
+  --accent-color: #{$accent-color};
+  --light-accent: #{$light-accent};
+  --text-color: #{$text-color};
+  --background-color: #{$background-color};
+  --internal-color: #{$internal-color};
+  --incorrect-color: #{$incorrect-color};
+  --correct-color: #{$correct-color};
+  --input-color: #{$input-color};
+  --link-color: #{$link-color};
+  --highlight-color: #{$highlight-color};
 }
 
 html,
 body {
   height: 100% !important;
-  color: $inputColor;
-  color: var(--inputColor);
-  caret-color: $accentColor;
-  caret-color: var(--accentColor);
+  color: $input-color;
+  color: var(--input-color);
+  caret-color: $accent-color;
+  caret-color: var(--accent-color);
   text-align: center;
   overflow-x: hidden;
 }
@@ -164,8 +164,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $backgroundColor;
-  background-color: var(--backgroundColor);
+  background-color: $background-color;
+  background-color: var(--background-color);
 }
 
 #box {
@@ -178,8 +178,8 @@ body {
 
 label,
 .input-field>label {
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   font-size: 1.5rem;
   transition: transform .3s ease-out, -webkit-transform .3s ease-out, background-color .3s ease, color .3s ease;
 }
@@ -191,8 +191,8 @@ label,
 .input-field input[type=text],
 .input-field input[type=number],
 .input-field input[type=password] {
-  border-bottom: 1px solid $textColor;
-  border-bottom: 1px solid var(--textColor);
+  border-bottom: 1px solid $text-color;
+  border-bottom: 1px solid var(--text-color);
   transition: border .3s ease-out, background-color .3s ease, color .3s ease;
 }
 
@@ -200,10 +200,10 @@ label,
 .input-field input[type=text]:focus,
 .input-field input[type=number]:focus,
 .input-field input[type=password]:focus {
-  border-bottom: 1px solid $accentColor !important;
-  border-bottom: 1px solid var(--accentColor) !important;
-  box-shadow: 0 1px 0 0 $accentColor !important;
-  box-shadow: 0 1px 0 0 var(--accentColor) !important;
+  border-bottom: 1px solid $accent-color !important;
+  border-bottom: 1px solid var(--accent-color) !important;
+  box-shadow: 0 1px 0 0 $accent-color !important;
+  box-shadow: 0 1px 0 0 var(--accent-color) !important;
 }
 
 input[type=text]:not(#result):not(.select-dropdown),
@@ -223,8 +223,8 @@ input[type=number] {
 
 #back {
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
-  background-color: $internalColor;
-  background-color: var(--internalColor);
+  background-color: $internal-color;
+  background-color: var(--internal-color);
   border-radius: 0.325em;
   padding: 0.975em;
   padding-top: 1.5em;
@@ -242,14 +242,14 @@ input[type=number] {
   text-align: center;
   margin: 0;
   width: 100%;
-  color: $inputColor;
-  color: var(--inputColor);
+  color: $input-color;
+  color: var(--input-color);
 }
 
 // Colour fix
 #result::placeholder {
-  color: $inputColor !important;
-  color: var(--inputColor) !important;
+  color: $input-color !important;
+  color: var(--input-color) !important;
   opacity: 1;
 }
 
@@ -260,8 +260,8 @@ input[type=number] {
 
 .hint {
   float: left;
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   width: 100%;
   text-align: left;
 }
@@ -270,8 +270,8 @@ input,
 textarea {
   font-size: 1.56rem;
   padding: 0.65rem;
-  color: $inputColor !important;
-  color: var(--inputColor) !important;
+  color: $input-color !important;
+  color: var(--input-color) !important;
   margin: 0 0 0.8rem 0 !important;
 }
 
@@ -298,8 +298,8 @@ input#length {
 }
 
 ul.autocomplete-content.dropdown-content {
-  background: $backgroundColor;
-  background: var(--backgroundColor);
+  background: $background-color;
+  background: var(--background-color);
   position: absolute !important;
   width: calc(100% - 3rem);
   max-height: calc(82% * 4); /* 82% seems to work out as one row */
@@ -321,8 +321,8 @@ ul.autocomplete-content.dropdown-content li {
 /* Theme selection */
 body.keyboard-focused .select-dropdown.dropdown-content li:focus,
 .select-dropdown.dropdown-content li.selected {
-  background: $highlightColor;
-  background: var(--highlightColor);
+  background: $highlight-color;
+  background: var(--highlight-color);
 }
 
 ul.autocomplete-content.dropdown-content li img.right.circle {
@@ -349,15 +349,15 @@ ul.autocomplete-content.dropdown-content span {
 }
 
 ul.autocomplete-content.dropdown-content span:not(.highlight) {
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   overflow-x: hidden;
 }
 
 ul.autocomplete-content.dropdown-content span .highlight {
   max-width: 100%;
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   font-weight: 400;
   overflow: visible;
   padding: 0;
@@ -392,20 +392,20 @@ ul.autocomplete-content.dropdown-content span .highlight {
 input[type=checkbox]:checked:not(:disabled)~.lever:active::before,
 input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   transform: scale(2.4);
-  background-color: rgba($accentColor, 0.3);
-  background-color: rgba(var(--accentRGBs), 0.3);
+  background-color: rgba($accent-color, 0.3);
+  background-color: rgba(var(--accent-RGBs), 0.3);
 }
 
 /*Switch knob*/
 .switch label input[type=checkbox]:checked+.lever:after {
-  background-color: $accentColor;
-  background-color: var(--accentColor);
+  background-color: $accent-color;
+  background-color: var(--accent-color);
 }
 
 /*Switch backing*/
 .switch label input[type=checkbox]:checked+.lever {
-  background-color: $lightAccent;
-  background-color: var(--lightAccent);
+  background-color: $light-accent;
+  background-color: var(--light-accent);
 }
 
 #passTogglelever {
@@ -414,20 +414,20 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 .icon {
   font-size: 1.4em !important;
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   transition: color .2s;
   cursor: pointer;
 }
 
 .icon:hover {
-  color: $lightAccent;
-  color: var(--lightAccent);
+  color: $light-accent;
+  color: var(--light-accent);
 }
 
 .icon:active {
-  color: $accentColor;
-  color: var(--accentColor);
+  color: $accent-color;
+  color: var(--accent-color);
 }
 
 .input-field label:not(.label-icon).active {
@@ -443,16 +443,16 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
 
 /* Negative toasts get this */
 .toast.warning {
-  color: $inputColor;
-  color: var(--inputColor);
-  background-color: $incorrectColor;
-  background-color: var(--incorrectColor);
+  color: $input-color;
+  color: var(--input-color);
+  background-color: $incorrect-color;
+  background-color: var(--incorrect-color);
 }
 
 /* Positive toasts get this */
 .toast.success {
-  background-color: $correctColor;
-  background-color: var(--correctColor);
+  background-color: $correct-color;
+  background-color: var(--correct-color);
   color: #000;
 }
 
@@ -469,19 +469,19 @@ input[type=checkbox]:checked:not(:disabled).tabbed:focus~.lever::before {
   font-size: 10vmin;
   top: 0;
   left: 0;
-  color: $backgroundColor;
-  color: var(--backgroundColor);
+  color: $background-color;
+  color: var(--background-color);
   -webkit-text-stroke-width: 0.05em !important;
-  -webkit-text-stroke-color: $textColor !important;
-  -webkit-text-stroke-color: var(--textColor) !important;
+  -webkit-text-stroke-color: $text-color !important;
+  -webkit-text-stroke-color: var(--text-color) !important;
   padding: 10px;
 }
 
 #jsBanner a {
-  color: $backgroundColor;
-  color: var(--backgroundColor);
-  -webkit-text-stroke: 3px $textColor;
-  -webkit-text-stroke: 3px var(--textColor);
+  color: $background-color;
+  color: var(--background-color);
+  -webkit-text-stroke: 3px $text-color;
+  -webkit-text-stroke: 3px var(--text-color);
   text-decoration: underline;
 }
 
@@ -509,7 +509,7 @@ ul:empty {
 }
 
 /* For portrait logos so they don't oversize */
-#logoContainer {
+#logo-container {
   margin-right: 5px;
   background: #fff;
   padding: 3px;
@@ -529,8 +529,8 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked+label::before {
-  box-shadow: 0 0 3px 1px $textColor;
-  box-shadow: 0 0 3px 1px var(--textColor);
+  box-shadow: 0 0 3px 1px $text-color;
+  box-shadow: 0 0 3px 1px var(--text-color);
 }
 
 label:focus {
@@ -538,10 +538,10 @@ label:focus {
 }
 
 .github-corner {
-  fill: $accentColor;
-  fill: var(--accentColor);
-  color: $backgroundColor;
-  color: var(--backgroundColor);
+  fill: $accent-color;
+  fill: var(--accent-color);
+  color: $background-color;
+  color: var(--background-color);
   position: absolute;
   top: 0;
   border: 0;
@@ -570,8 +570,8 @@ label:focus {
   }
 }
 .tabs {
-  background-color: $internalColor;
-  background-color: var(--internalColor);
+  background-color: $internal-color;
+  background-color: var(--internal-color);
   cursor: pointer;
   overflow-x: hidden;
   z-index: 995;
@@ -579,27 +579,27 @@ label:focus {
 
 .tabs .tab a,
 .tabs .tab a:hover {
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
   font-size: 1em;
   padding: 0 .5em;
 }
 
 .tabs .tab a:focus,
 .tabs .tab a:focus.active {
-  background-color: $backgroundColor;
-  background-color: var(--backgroundColor);
+  background-color: $background-color;
+  background-color: var(--background-color);
 }
 
 .tabs .tab a.active {
-  color: $inputColor;
-  color: var(--inputColor);
+  color: $input-color;
+  color: var(--input-color);
   font-weight: 400;
 }
 
 .tabs .indicator {
-  background: $accentColor;
-  background-color: var(--accentColor)
+  background: $accent-color;
+  background-color: var(--accent-color)
 }
 
 .btn {
@@ -609,14 +609,14 @@ label:focus {
   font-weight: 300;
   font-size: 1rem;
   padding: 0 2rem;
-  background: $accentColor;
-  background: var(--accentColor);
+  background: $accent-color;
+  background: var(--accent-color);
 }
 
 .btn:focus,
 .btn:hover {
-  background: $accentColor;
-  background: var(--accentColor);
+  background: $accent-color;
+  background: var(--accent-color);
 }
 
 .switch label .lever {
@@ -652,11 +652,11 @@ label:focus {
 }
 
 .material-tooltip {
-  background-color: $internalColor;
-  background-color: var(--internalColor);
+  background-color: $internal-color;
+  background-color: var(--internal-color);
   box-shadow: 0 0.26em 0.65em 0 rgba(0, 0, 0, 0.2);
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
 }
 
 /* In the future focus-visable should be used. See https://caniuse.com/?#search=css-focus-visible */
@@ -681,8 +681,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 ul.tabs li.tab a i.material-icons {
   vertical-align: middle;
-  color: $incorrectColor;
-  color: var(--incorrectColor);
+  color: $incorrect-color;
+  color: var(--incorrect-color);
 }
 
 /* Normal size */
@@ -713,7 +713,7 @@ ul.tabs li.tab a i.material-icons {
 @media only all and (max-width:40em) {
 
   body {
-    background-color: var(--internalColor);
+    background-color: var(--internal-color);
   }
 
   #back {
@@ -759,8 +759,8 @@ ul.tabs li.tab a i.material-icons {
   }
 
   .github-corner {
-    color: $internalColor;
-    color: var(--internalColor);
+    color: $internal-color;
+    color: var(--internal-color);
   }
 }
 
@@ -773,8 +773,8 @@ ul.tabs li.tab a i.material-icons {
 }
 
 .sidenav {
-  background-color: $backgroundColor;
-  background-color: var(--backgroundColor);
+  background-color: $background-color;
+  background-color: var(--background-color);
   width: 350px;
   max-width: 100%;
   overflow-y: hidden;
@@ -804,8 +804,8 @@ ul.tabs li.tab a i.material-icons {
 #settings a i.material-icons {
   display: block;
   font-size: 2.5em;
-  color: $textColor;
-  color: var(--textColor);
+  color: $text-color;
+  color: var(--text-color);
 }
 
 .sidenav label:not([for=length-pref]) {
@@ -824,31 +824,31 @@ ul.tabs li.tab a i.material-icons {
 }
 
 .sidenav .dropdown-content {
-  background: $backgroundColor;
-  background: var(--backgroundColor);
+  background: $background-color;
+  background: var(--background-color);
 }
 
 .sidenav .dropdown-content li>a,
 .dropdown-content li>span {
-  color: $inputColor;
-  color: var(--inputColor);
+  color: $input-color;
+  color: var(--input-color);
 }
 
 select {
-  background-color: $internalColor;
-  background-color: var(--internalColor);
+  background-color: $internal-color;
+  background-color: var(--internal-color);
 
-  border: 1px solid $textColor;
-  border: 1px solid var(--textColor);
+  border: 1px solid $text-color;
+  border: 1px solid var(--text-color);
   border-radius: 3px;
 
-  color: $inputColor;
-  color: var(--inputColor);
+  color: $input-color;
+  color: var(--input-color);
 }
 
 select:focus {
-  border: 1px solid $lightAccent;
-  border: 1px solid var(--lightAccent);
+  border: 1px solid $light-accent;
+  border: 1px solid var(--light-accent);
   outline: none;
 }
 
@@ -900,13 +900,13 @@ select:focus {
   align-self: end;
   justify-self: flex-end;
   font-size: 2.4em;
-  color: $inputColor;
-  color: var(--inputColor);
+  color: $input-color;
+  color: var(--input-color);
 }
 
 a {
-  color: $linkColor;
-  color: var(--linkColor);
+  color: $link-color;
+  color: var(--link-color);
 }
 
 #length-pref {
