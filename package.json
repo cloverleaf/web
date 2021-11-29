@@ -58,11 +58,11 @@
     "locale-code": "^2.0.2",
     "node-fetch": "^2.6.1",
     "node-sass": "^5.0.0",
+    "node-stream-zip": "^1.15.0",
     "rimraf": "^3.0.2",
     "sass": "^1.32.8",
     "ssri": "^8.0.1",
-    "standard": "^16.0.3",
-    "unzipper": "^0.10.11"
+    "standard": "^16.0.3"
   },
   "standard": {
     "env": "browser"
