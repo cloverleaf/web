@@ -7,22 +7,25 @@ function processTranslations () {
 
   console.log('Processing translations')
 
-  const folders = fs.readdirSync(path.join(__dirname, '../../langs/'))
+  const folders = fs.readdirSync(path.join(__dirname, '../../langs'))
 
   // For each lang folder
   folders.forEach(function (folder) {
-    // List the files in the folder
-    const files = fs.readdirSync(path.join(__dirname, '../../langs/' + folder))
+    // If it's a folder
+    if (fs.statSync(path.join(__dirname, '../../langs', folder)).isDirectory()) {
+      // List the files in the folder
+      const files = fs.readdirSync(path.join(__dirname, '../../langs/' + folder))
 
-    // For each language in folder
-    files.forEach(function (file) {
-      const code = file.split('.')[0]
+      // For each language in folder
+      files.forEach(function (file) {
+        const code = file.split('.')[0]
 
-      langs[code] = {
-        native: lc.getLanguageNativeName(code)
-        // english: lc.getLanguageName(code)
-      }
-    })
+        langs[code] = {
+          native: lc.getLanguageNativeName(code)
+          // english: lc.getLanguageName(code)
+        }
+      })
+    }
   })
 
   // Write langs to json
