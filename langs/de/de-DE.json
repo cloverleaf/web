@@ -1,6 +1,6 @@
 {
 	"legacy": {
-		"message": "Legacy Modus",
+		"message": "Traditioneller Modus",
 		"description": "This appears on the button to change to legacy mode"
 	},
 	"suggested": {
@@ -8,11 +8,11 @@
 		"description": "This appears on the button to change to suggested mode"
 	},
 	"theme": {
-		"message": "Theme",
+		"message": "Design",
 		"description": "Label for the theme selector"
 	},
 	"remember": {
-		"message": "Erinnere mein Passwort",
+		"message": "Mein Kennwort merken",
 		"description": "Label for the password saving toggle"
 	},
 	"off": {
@@ -28,15 +28,15 @@
 		"description": ""
 	},
 	"app": {
-		"message": "Applikation",
+		"message": "Anwendung",
 		"description": "Label for the Application field"
 	},
 	"pass": {
-		"message": "Master Passwort",
+		"message": "Masterkennwort",
 		"description": "Label for the password field"
 	},
 	"show": {
-		"message": "Zeigen",
+		"message": "Anzeigen",
 		"description": ""
 	},
 	"hide": {
@@ -44,7 +44,7 @@
 		"description": ""
 	},
 	"length": {
-		"message": "Länge des Passworts",
+		"message": "Länge des Kennworts",
 		"description": "Label for the length field"
 	},
 	"hint": {
@@ -52,7 +52,7 @@
 		"description": "Shown underneath the length field"
 	},
 	"copy": {
-		"message": "Passwort kopieren",
+		"message": "Kennwort kopieren",
 		"description": "Shown on the copy password button"
 	},
 	"faq": {
@@ -64,7 +64,7 @@
 		"description": "Message shown when the user has javascript disabled"
 	},
 	"noPassword": {
-		"message": "Kein Passwort :)",
+		"message": "Kein Kennwort :)",
 		"description": "Message shown when there is no outputted password"
 	},
 	"securityWarning": {
@@ -76,7 +76,7 @@
 		"description": "Shown when hovering on the octocat in the corner. Also used by screen readers"
 	},
 	"description": {
-		"message": "Cloverleaf ist eine gratis, Open-Source App um deinen Passwortmanager zu ersetzen ohne deine Passwörter irgendwo zu speichern.",
+		"message": "Cloverleaf ist eine gratis, Open-Source-App um deinen Kennwortmanager zu ersetzen ohne deine Kennwörter irgendwo zu speichern.",
 		"description": "This is the description shown on search engines"
 	},
 	"langCode": {
@@ -88,7 +88,7 @@
 		"description": "Label for the language selector"
 	},
 	"session": {
-		"message": "Lokal auf Ihrem Gerät gespeichert",
+		"message": "Lokal auf deinem Gerät gespeichert",
 		"description": "shown when hovering on the \"Remember my password\" toggle"
 	},
 	"length_pref": {
@@ -96,23 +96,23 @@
 		"description": "Label"
 	},
 	"failed": {
-		"message": "Failed to install app.",
+		"message": "Die App konnte nicht installiert werden.",
 		"description": "Shown in a toast when PWA fails to install"
 	},
 	"notCopied": {
-		"message": "You have no password to copy.",
+		"message": "Du hast kein Passwort, welches du kopieren könntest.",
 		"description": "Shown when the user tries to copy when no password is generated"
 	},
 	"copied": {
-		"message": "Successfully copied!",
+		"message": "Erfolgreich kopiert!",
 		"description": "Shown when the password is successfully copied."
 	},
 	"redirected": {
-		"message": "Redirected from __LANGAUGE__",
+		"message": "Umgeleitet von __LANGAUGE__",
 		"description": "Used when a user is redirected (EG: 'Redirected from Esperanto')"
 	},
 	"goBack": {
-		"message": "Go back",
+		"message": "Zurück",
 		"description": "Used on a back button"
 	}
 }
