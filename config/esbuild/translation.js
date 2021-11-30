@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const streamzip = require('node-stream-zip')
+const StreamZip = require('node-stream-zip')
 const fetch = require('node-fetch')
 const rimraf = require('rimraf')
 const makeLangs = require('./makeLangs.js')
@@ -11,11 +11,13 @@ const CROWDIN_KEY = fs.readFileSync(path.join(__dirname, '../secrets/crowdin_key
 rimraf.sync('langs/')
 
 async function unzip () {
-  const directory = await streamzip.async({ file: path.join(__dirname, 'temp.zip') })
+  // eslint-disable-next-line new-cap
+  const directory = await new StreamZip.async({ file: path.join(__dirname, 'temp.zip').toString() })
 
-  return directory.extract({
-    path: path.join(__dirname, '../../langs/')
-  })
+  return directory.extract(
+    null,
+    path.join(__dirname, '../../langs/').toString()
+  )
 }
 
 module.exports = new Promise(function (resolve, reject) {
