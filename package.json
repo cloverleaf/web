@@ -8,8 +8,8 @@
     "build": "cross-env NODE_ENV=production node config/esbuild/build.js",
     "watch": "cross-env NODE_ENV=development node config/esbuild/dev.js",
     "server-test": "cd public && npx http-server",
-    "pytest": "cd unit_tests && py -3 -m pytest -s",
-    "pytest-first": "cd unit_tests && py -3 -m pytest -s -x",
+    "pytest": "cd unit_tests && python3 -m pytest -s",
+    "pytest-first": "cd unit_tests && python3 -m pytest -s -x",
     "style": "standard"
   },
   "repository": {
@@ -59,7 +59,7 @@
     "node-fetch": "^2.6.1",
     "node-stream-zip": "^1.15.0",
     "rimraf": "^3.0.2",
-    "sass": "^1.35.2",
+    "sass": "^1.44.0",
     "ssri": "^8.0.1",
     "standard": "^16.0.3"
   },
