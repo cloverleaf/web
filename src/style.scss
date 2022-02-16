@@ -101,7 +101,7 @@ $toast-text-color: var(--textColor);
   font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../fonts/RobotoMono-Regular.ttf) format('truetype');
+  src: local('Roboto Mono'), local('RobotoMono-Regular'), url(../static/fonts/RobotoMono-Regular.ttf) format('truetype');
   font-display: swap;
 }
 
@@ -109,7 +109,7 @@ $toast-text-color: var(--textColor);
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'), url(../fonts/Roboto-Light.ttf) format('truetype');
+  src: local('Roboto Light'), local('Roboto-Light'), url(../static/fonts/Roboto-Light.ttf) format('truetype');
   font-display: swap;
 }
 
@@ -117,7 +117,7 @@ $toast-text-color: var(--textColor);
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'), url(../fonts/Roboto-Regular.ttf) format('truetype');
+  src: local('Roboto'), local('Roboto-Regular'), url(../static/fonts/Roboto-Regular.ttf) format('truetype');
   font-display: swap;
 }
 
@@ -125,7 +125,7 @@ $toast-text-color: var(--textColor);
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'), url(../fonts/Roboto-Medium.ttf) format('truetype');
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(../static/fonts/Roboto-Medium.ttf) format('truetype');
   font-display: swap;
 }
 
@@ -208,7 +208,7 @@ label,
 
 input[type=text]:not(#result):not(.select-dropdown),
 input[type=number]:not(#length-pref),
-input[type=password]:not(#result) {
+#input {
   font-size: 3rem !important;
   height: 1.2em !important;
   box-sizing: content-box;
