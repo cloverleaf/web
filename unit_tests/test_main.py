@@ -9,6 +9,8 @@ from meta import get_var
 import json
 from urllib.parse import quote
 import deep_merge
+import warnings
+
 getVar = get_var.getVar
 
 address = "http://localhost:8080/"
@@ -125,41 +127,46 @@ def test_enter_preset(driver):
 
         assert appElem.get_attribute("value") == site, "Enter not setting preset name - Preset: " + site
 
-        if "minLength" in sites[site]:
+        try :
+          if "minLength" in sites[site]:
             assert getVar(driver, "minLength") == sites[site]["minLength"], "Enter not setting preset minLength - Preset: " + site
 
-        if "maxLength" in sites[site]:
-            assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Enter not setting preset maxLength - Preset: " + site
+          if "maxLength" in sites[site]:
+              assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Enter not setting preset maxLength - Preset: " + site
 
-        # Logo
-        logoURL = ""
-        if "logo" in sites[site]:
-            logoURL = address + sites[site]["logo"]
-        else:
-            logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
+          # Logo
+          logoURL = ""
+          if "logo" in sites[site]:
+              logoURL = address + sites[site]["logo"]
+          else:
+              logoURL = address + "logos/" + site.replace(" ", "%20") + ".svg"
 
-        #  Mini logo
-        if "mini" in sites[site]:
-            if sites[site]["mini"] == True:
-                logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
-            else:
-                logoURL = address + sites[site]["mini"]
+          #  Mini logo
+          if "mini" in sites[site]:
+              if sites[site]["mini"] == True:
+                  logoURL = address + "logos/" + site.replace(" ", "%20") + "-MINI.svg"
+              else:
+                  logoURL = address + sites[site]["mini"]
 
 
-        assert logo.get_attribute("src") == logoURL, "Enter not setting preset logo src - Preset: " + site
-        assert status_code(driver, logoURL) == 200, "Enter not setting preset logo src (404) - Preset: " + site
+          assert logo.get_attribute("src") == logoURL, "Enter not setting preset logo src - Preset: " + site
+          assert status_code(driver, logoURL) == 200, "Enter not setting preset logo src (404) - Preset: " + site
 
-        assert logo.get_attribute("title") == site, "Enter not setting preset logo title - Preset: " + site
-        assert logo.get_attribute("alt") == site, "Enter not setting preset logo alt - Preset: " + site
+          assert logo.get_attribute("title") == site, "Enter not setting preset logo title - Preset: " + site
+          assert logo.get_attribute("alt") == site, "Enter not setting preset logo alt - Preset: " + site
 
-        passElem.send_keys(configs["default length"]["password"])
+          passElem.send_keys(configs["default length"]["password"])
 
-        assert driver.find_element_by_id("result").get_attribute("value") == results["default length"][site]["result"], "Preset password incorrect - Preset: " + site
+          assert driver.find_element_by_id("result").get_attribute("value") == results["default length"][site]["result"], "Preset password incorrect - Preset: " + site
 
-        # Click the copy button
-        driver.find_element_by_id("copy").click()
+          # Click the copy button
+          driver.find_element_by_id("copy").click()
 
-        assert read_clipboard(driver) == results["default length"][site]["result"], "Copy button not working - Preset: " + site
+          assert read_clipboard(driver) == results["default length"][site]["result"], "Copy button not working - Preset: " + site
+
+        except (KeyError):
+          warnings.warn("No entry for " + site)
+
 
     # Remove text box used for reading from the clipboard
     driver.execute_script("""let elem = document.getElementById('paste-box');

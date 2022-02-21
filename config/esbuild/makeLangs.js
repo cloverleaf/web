@@ -1,6 +1,6 @@
 const path = require('path')
 const fs = require('fs')
-const lc = require('locale-code')
+const lc = require('iso-639-1')
 
 function processTranslations () {
   const langs = {}
@@ -21,8 +21,8 @@ function processTranslations () {
         const code = file.split('.')[0]
 
         langs[code] = {
-          native: lc.getLanguageNativeName(code)
-          // english: lc.getLanguageName(code)
+          native: lc.getNativeName(code.split('-')[0])
+          // english: lc.getName(code)
         }
       })
     }
