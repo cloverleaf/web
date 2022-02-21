@@ -50,6 +50,7 @@ Idea stolen from [Master Password](https://masterpasswordapp.com/). [More info](
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
@@ -58,11 +59,13 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="https://github.com/ChildishGiant"><img src="https://avatars.githubusercontent.com/u/13716824?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Allie</b></sub></a><br /><a href="#design-ChildishGiant" title="Design">🎨</a> <a href="https://github.com/cloverleaf/web/commits?author=ChildishGiant" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/matthew-law"><img src="https://avatars.githubusercontent.com/u/18603830?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Matthew Law</b></sub></a><br /><a href="#translation-matthew-law" title="Translation">🌍</a></td>
     <td align="center"><a href="https://moaufmklo.com"><img src="https://avatars.githubusercontent.com/u/45636897?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MoaufmKlo</b></sub></a><br /><a href="#translation-MoaufmKlo" title="Translation">🌍</a></td>
+    <td align="center"><a href="https://github.com/Michael-Curtis0"><img src="https://avatars.githubusercontent.com/u/59065704?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Michael Curtis</b></sub></a><br /><a href="https://github.com/cloverleaf/web/commits?author=Michael-Curtis0" title="Code">💻</a></td>
   </tr>
 </table>
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
