@@ -54,7 +54,7 @@
     "eslint-plugin-promise": "^6.0.0",
     "essass": "^1.1.0",
     "five-server": "^0.1.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.1.0",
     "iso-639-1": "^2.1.13",
     "node-fetch": "^3.2.0",
     "node-stream-zip": "^1.15.0",
