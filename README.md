@@ -30,7 +30,7 @@ We use [Crowdin](https://crowdin.com/project/cloverleaf) for localisation.
 
 [seedrandom](https://github.com/davidbau/seedrandom) by David Bau under the [MIT license](https://github.com/davidbau/seedrandom#license-mit)
 
-The [Materialize Framework](https://github.com/Dogfalo/materialize) under the [MIT license](https://github.com/Dogfalo/materialize/blob/v1-dev/LICENSE)
+The [Materialize Framework](https://github.com/materializecss/materialize) under the [MIT license](https://github.com/materializecss/materialize/blob/main/LICENSE)
 
 [js-sha3](https://github.com/emn178/js-sha3) under the [MIT license](https://github.com/emn178/js-sha3/blob/master/LICENSE.txt)
 
