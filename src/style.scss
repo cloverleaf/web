@@ -33,6 +33,8 @@ $link-color: $linkColor;
 // Variables;
 @import "materialize/sass/components/variables";
 
+$button-height: auto;
+
 $toast-action-color: $link-color;
 $toast-action-color: var(--linkColor);
 $toast-color: $internalColor;
@@ -603,7 +605,7 @@ label:focus {
 }
 
 .btn {
-  height: 2.4em;
+  min-height: 2.4em;
   line-height: 2.4em;
   font-family: 'Roboto', sans-serif;
   font-weight: 300;
