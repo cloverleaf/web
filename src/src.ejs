@@ -95,8 +95,12 @@
         </div>
 
         <div class="input-field" id="length-pref-container">
-          <label for="length-pref" class="active"><%= length_pref %></label>
-          <input id="length-pref" type="number" onchange="lengthPref(this.value)" step="1" min="4" value="16" max="512">
+          <div>
+            <label for="length-pref" class="active"><%= length_pref %></label>
+          </div>
+          <div>
+            <input id="length-pref" type="number" onchange="lengthPref(this.value)" step="1" min="4" value="16" max="512">
+          </div>
         </div>
 
         <a class="btn waves-effect waves-light" onclick="reset()" id="reset">Reset preset usage</a>
