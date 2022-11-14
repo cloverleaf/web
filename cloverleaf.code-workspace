@@ -27,6 +27,7 @@
 			"presets",
 			"deps",
 			"themes"
-		]
+		],
+    "eslint.enable": false
 	}
 }

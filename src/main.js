@@ -2,7 +2,7 @@
 
 // Using a custom flavour of materialize to allow for fuzzy searching
 // https://github.com/ChildishGiant/materialize/tree/custom-sort
-import './materialize/materialize'
+import './materialize/materialize.cjs'
 import Fuse from 'fuse.js'
 
 import './style.scss'

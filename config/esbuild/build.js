@@ -1,9 +1,11 @@
-const esbuild = require('esbuild')
-const essass = require('essass')
-const translation = require('./translation.js')
-const fs = require('fs-extra')
-const rimraf = require('rimraf')
-const { markdownPlugin } = require('esbuild-plugin-markdown')
+import esbuild from 'esbuild'
+import essass from 'essass'
+import translation from './translation.js'
+import fs from 'fs-extra'
+import rimraf from 'rimraf'
+import makeHTML from './makeHTML.js'
+import autoprefixer from 'autoprefixer'
+import postCssPlugin from '@deanc/esbuild-plugin-postcss'
 
 rimraf.sync('public/*')
 translation.then(() => {
@@ -15,15 +17,18 @@ translation.then(() => {
       minify: true,
       outdir: 'public',
       sourcemap: true,
-      plugins: [essass, markdownPlugin()],
-      loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file' },
+      plugins: [essass,
+        postCssPlugin({
+          plugins: [autoprefixer]
+        })],
+      loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file', '.md': 'text' },
       define: {
         'process.env.NODE_ENV': '"production"'
       },
       color: true
-    }).catch(() => process.exit(1)).then(() => {
+    }).catch(function (error) { console.error(error); process.exit(1) }).then(() => {
       // Generate html
-      require('./makeHTML')
-    }).catch(() => process.exit(1))
-  }).catch(() => process.exit(1))
+      makeHTML()
+    }).catch(function (error) { console.error(error); process.exit(1) })
+  }).catch(function (error) { console.error(error); process.exit(1) })
 })

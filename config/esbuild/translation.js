@@ -1,9 +1,13 @@
-const path = require('path')
-const fs = require('fs')
-const StreamZip = require('node-stream-zip')
-const fetch = require('node-fetch')
-const rimraf = require('rimraf')
-const makeLangs = require('./makeLangs.js')
+import fetch from 'node-fetch'
+import path from 'path'
+import fs from 'fs'
+import StreamZip from 'node-stream-zip'
+import rimraf from 'rimraf'
+import makeLangs from './makeLangs.js'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const CROWDIN_KEY = fs.readFileSync(path.join(__dirname, '../secrets/crowdin_key.txt'), 'utf8')
 
@@ -20,7 +24,7 @@ async function unzip () {
   )
 }
 
-module.exports = new Promise(function (resolve, reject) {
+export default new Promise(function (resolve, reject) {
   // Build translations
   fetch(`https://api.crowdin.com/api/project/cloverleaf/export?key=${CROWDIN_KEY}`).then(res => res.text())
     .then(data => {

@@ -1,8 +1,12 @@
-const path = require('path')
-const fs = require('fs')
-const lc = require('iso-639-1')
+import path from 'path'
+import fs from 'fs'
+import lc from 'iso-639-1'
+import { fileURLToPath } from 'url'
 
-function processTranslations () {
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+export default function processTranslations () {
   const langs = {}
 
   console.log('Processing translations')
@@ -33,5 +37,3 @@ function processTranslations () {
 
   console.log('Finished processing translations')
 }
-
-module.exports = processTranslations

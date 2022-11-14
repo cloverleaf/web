@@ -1,16 +1,16 @@
-const esbuild = require('esbuild')
-const essass = require('essass')
-const FiveServer = require('five-server').default
-const fs = require('fs-extra')
-const { markdownPlugin } = require('esbuild-plugin-markdown')
+import esbuild from 'esbuild'
+import essass from 'essass'
+import serve from 'create-serve';
+import fs from 'fs-extra'
+import makeHTML from './makeHTML.js'
 
 esbuild.build({
   entryPoints: ['src/main.js', 'src/sw.js', 'src/faq.js'],
   bundle: true,
   outdir: 'public',
   sourcemap: true,
-  plugins: [essass, markdownPlugin()],
-  loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file' },
+  plugins: [essass],
+  loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file', '.md': 'text' },
   watch: {
     onRebuild (error, result) {
       if (error) console.error('watch build failed:', error)
@@ -21,10 +21,9 @@ esbuild.build({
 }).then(result => {
   // Call "stop" on the result when you're done
   console.log(result)
-  require('./makeHTML')
-  new FiveServer().start({
+  makeHTML()
+  serve.start({
     root: './public',
-    open: true,
     port: 1234
   })
   // result.stop()

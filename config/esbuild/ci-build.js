@@ -1,10 +1,10 @@
-const esbuild = require('esbuild')
-const essass = require('essass')
+import esbuild from 'esbuild'
+import essass from 'essass'
 // const translation = require('./translation.js')
-const makeLangs = require('./makeLangs.js')
-const fs = require('fs-extra')
-const rimraf = require('rimraf')
-const { markdownPlugin } = require('esbuild-plugin-markdown')
+import makeLangs from './makeLangs.js'
+import fs from 'fs-extra'
+import rimraf from 'rimraf'
+import makeHTML from './makeHTML.js'
 
 rimraf.sync('public/*')
 makeLangs()
@@ -16,14 +16,14 @@ fs.copy('static/', 'public/').then(() => {
     minify: true,
     outdir: 'public',
     sourcemap: true,
-    plugins: [essass, markdownPlugin()],
-    loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file' },
+    plugins: [essass],
+    loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file', '.eot': 'file', '.md': 'text' },
     define: {
       'process.env.NODE_ENV': '"production"'
     },
     color: true
   }).catch(() => process.exit(1)).then(() => {
     // Generate html
-    require('./makeHTML')
+    makeHTML()
   }).catch(() => process.exit(1))
 }).catch(() => process.exit(1))
