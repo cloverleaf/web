@@ -60,7 +60,7 @@
     "node-stream-zip": "^1.15.0",
     "rimraf": "^3.0.2",
     "sass": "^1.49.8",
-    "ssri": "^8.0.1",
+    "ssri": "^10.0.1",
     "standard": "^16.0.3"
   },
   "standard": {
