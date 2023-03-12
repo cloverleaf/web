@@ -44,7 +44,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.2",
     "cross-env": "^7.0.3",
-    "ejs": "^3.1.6",
+    "ejs": "^3.1.7",
     "esbuild": "^0.14.23",
     "esbuild-plugin-markdown": "^0.0.3",
     "eslint": "^7.30.0",
