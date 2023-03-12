@@ -3,10 +3,10 @@ updates:
 - package-ecosystem: npm
   directory: "/"
   schedule:
-    interval: daily
+    interval: monthly
   labels:
     - "dependencies"
-  open-pull-requests-limit: 10
+  open-pull-requests-limit: 3
   target-branch: dev
   ignore:
   - dependency-name: exports-loader
