@@ -357,10 +357,10 @@ window.onload = function () {
   for (const key in jsonData) {
     // If the preset has a custom logo url
     if (jsonData[key].logo) {
-      autoCompleteData[key] = jsonData[key].logo
+      autoCompleteData[key] = jsonData[key].logo.replaceAll(' ', '_') // Replace spaces with underscores
     } else {
       // Set the logo url to the default
-      autoCompleteData[key] = `logos/${key}.svg`
+      autoCompleteData[key] = `logos/${key}.svg`.replaceAll(' ', '_') // Replace spaces with underscores
     }
   }
 
