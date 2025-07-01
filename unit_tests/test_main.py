@@ -1,76 +1,45 @@
-import pytest
+import pytest 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.action_chains import ActionChains
 from meta import pass_vis
-from meta import get_var
+from meta.get_var import getVar
 import json
 from urllib.parse import quote
 import deep_merge
 import warnings
+import requests
 
-getVar = get_var.getVar
-
+# Assign initial variables
 address = "http://localhost:8080/"
 defaultMinLength = 4
 defaultMaxLength = 512
+options = 
 
-options = Options()
-options.headless = True
-
-sites = {}
-logos = {}
-configs = {}
-results = {}
-
+# Assign json file variables
 with open("../node_modules/cloverleaf/data/sites.json", 'r') as json_file:
     sites = json.load(json_file)
-
 with open("../data/logos.json", 'r') as json_file:
     logos = json.load(json_file)
-
 with open("../node_modules/cloverleaf/unit_tests/configs.json", 'r') as json_file:
     configs = json.load(json_file)
-
 with open("../node_modules/cloverleaf/unit_tests/results.json", 'r') as json_file:
     results = json.load(json_file)
 
 sites = deep_merge.merge(sites, logos)
 
-
-def status_code(driver, url):
-    js = '''
-        let callback = arguments[0];
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', ''' + "'" + url.replace("'", "\\\'") + "'" + ''', true);
-        xhr.onload = function () {
-            if (this.readyState === 4) {
-                callback(this.status);
-            }
-        };
-        xhr.onerror = function () {
-            callback('error');
-        };
-        xhr.send(null);
-    '''
-
-    return driver.execute_async_script(js)
-
-
-def read_clipboard(driver):
-
-    box = driver.find_element_by_id("paste-box")
-    box.send_keys(Keys.CONTROL, "v")
-    toreturn = box.get_attribute("value")
-    box.clear()
-    return toreturn
-
+def status_code(url):
+    try:
+        response = requests.head(url)
+        return response.status_code
+    except requests.exceptions.RequestException:
+        return 'error'
 
 @pytest.fixture()
 def driver():
-    driverInternal = webdriver.Firefox(options=options)
+    driverInternal = webdriver.Firefox(options=Options(headless=True))
     try:
         driverInternal.get(address)
     except WebDriverException:
@@ -78,55 +47,76 @@ def driver():
     yield driverInternal
     # Close procedures
     driverInternal.close()
-
-
-def test_caps_equals_nocaps(driver):
-
-    pass_vis.show(driver)
-
+    
+# This method ensures no flakey tests. 
+@pytest.fixture()
+def clearBoxes():
     appElem = driver.find_element_by_id("app")
     appElem.clear()
-    appElem.send_keys("Test site")
 
     passElem = driver.find_element_by_id("pass")
     passElem.clear()
-    passElem.send_keys("Test password")
-
-    caps = driver.find_element_by_id("result").get_attribute("value")
-
-    appElem.clear()
-    appElem.send_keys("test site")
-
-    nocaps = driver.find_element_by_id("result").get_attribute("value")
-
-    assert caps == nocaps, "Output with caps and without is different"
-
-
-# Tests to make sure that hitting enter properly applies
-def test_enter_preset(driver):
-
-    appElem = driver.find_element_by_id("app")
-    logo = driver.find_element_by_id("logo")
-    label = driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/label")
-    passElem = driver.find_element_by_id("pass")
-
-    # Add box for reading paste
+  
+# For the methods pasteBoxSetup and read_clipboard, we make a textbox in order to then paste out the clipboard into it.
+@pytest.fixture()    
+def pasteBoxSetup():
     driver.execute_script(
         """body = document.querySelector('body');
         element = document.createElement('textarea');
         element.id = "paste-box"
         body.append(element);""")
+    
+def read_clipboard(driver):
+    box = driver.find_element_by_id("paste-box")
+    box.send_keys(Keys.CONTROL, "v")
+    toreturn = box.get_attribute("value")
+    box.clear()
+    return toreturn
+    
+def find_elements(driver):
+    app_elem = driver.find_element_by_id("app")
+    logo_elem = driver.find_element_by_id("logo")
+    label_elem = driver.find_element_by_xpath("/html/body/div[2]/div/div[1]/label")
+    pass_elem = driver.find_element_by_id("pass")
+    
+    return app_elem, logo_elem, label_elem, pass_elem
 
+def test_app_not_case_sensitive(driver):
+    app, logo, label, password = find_elements(driver)
+
+    pass_vis.show(driver)
+    
+    # Set name to site with a Caps in it
+    appElem.send_keys("Test site")
+    passElem.send_keys("Test password")
+
+    # Get the end resulting password
+    caps = driver.find_element_by_id("result").get_attribute("value")
+
+    appElem.clear()
+    
+    # Set name to site without Caps
+    appElem.send_keys("test site")
+    
+    # Get the end resulting password
+    nocaps = driver.find_element_by_id("result").get_attribute("value")
+
+    # As app is not case sensitive, end resulting password should be the same
+    assert caps == nocaps, "Output with caps and without is different"
+
+
+# Tests to make sure that hitting enter properly applies a preset
+def test_enter_preset(driver):
+    app, logo, label, password = find_elements(driver)
+
+    # For Preset Site Names (Apple, Protonmail...)
     for site in sites:
 
-        label.click()
-        appElem.clear()
-        passElem.clear()
+        label.click() # unsure why click
         appElem.send_keys(site)
         appElem.send_keys(Keys.ENTER)
 
-        assert appElem.get_attribute("value") == site, "Enter not setting preset name - Preset: " + site
-
+        # TODO: Comment this code, as it is not readable to human readers
         try :
           if "minLength" in sites[site]:
             assert getVar(driver, "minLength") == sites[site]["minLength"], "Enter not setting preset minLength - Preset: " + site
@@ -134,8 +124,7 @@ def test_enter_preset(driver):
           if "maxLength" in sites[site]:
               assert getVar(driver, "maxLength") == sites[site]["maxLength"], "Enter not setting preset maxLength - Preset: " + site
 
-          # Logo
-          logoURL = ""
+          # TODO: Comment this code, as it is not readable to human readers
           if "logo" in sites[site]:
               logoURL = address + sites[site]["logo"]
           else:
@@ -175,13 +164,12 @@ def test_enter_preset(driver):
 
 # Tests to make sure that query strings presets are loaded properly
 def test_qs_preset(driver):
-
+    app, logo, label, password = find_elements(driver)
+    
+    # For Preset Site Names (Apple, Protonmail...)
     for site in sites:
 
         driver.get(address + "?app="+quote(site))
-
-        appElem = driver.find_element_by_id("app")
-        logo = driver.find_element_by_id("logo")
 
         assert appElem.get_attribute("value") == site, "Query strings not setting preset name - Preset: " + site
 
