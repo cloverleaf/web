@@ -470,8 +470,8 @@ window.onload = function () {
       // Sort by weighted score
       toDraw.sort(function (a, b) {
         if (a.score > b.score) { return 1 } else if (a.score < b.score) { return -1 }
-        // Scores equal, sort by alphabetical
-        if (a.key > b.key) { return 1 } else if (a.key < b.key) { return -1 }
+        // Scores equal, sort by alphabetical, ignoring case
+        if (a.key.toLowerCase() > b.key.toLowerCase()) { return 1 } else if (a.key.toLowerCase() < b.key.toLowerCase()) { return -1 }
         // If all is equal
         return 0
       })
