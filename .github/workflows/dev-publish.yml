@@ -8,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - uses: pnpm/action-setup@v4
     - name: Get secrets
       run: |
         cd config
@@ -16,15 +17,15 @@ jobs:
 
     - name: esbuild
       run: |
-        npm i
-        npm run-script ci-build
+        pnpm i
+        pnpm run ci-build
         # Remove gitignore rule for public folder
         sed -i 's/public\///' .gitignore
 
     - name: Start server
       run: |
         cd public
-        npx http-server --port 8080 &
+        pnpx http-server --port 8080 &
 
     - name: Audit URLs using Lighthouse
       uses: treosh/lighthouse-ci-action@v3

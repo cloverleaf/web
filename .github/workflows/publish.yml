@@ -9,6 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-node@v2
+    - uses: pnpm/action-setup@v4
       with:
         node-version: '16'
     - name: Get secrets
@@ -19,15 +20,15 @@ jobs:
 
     - name: esbuild
       run: |
-        npm i
-        npm run-script ci-build
+        pnpm i
+        pnpm run ci-build
         # Remove gitignore rule for public folder
         sed -i 's/public\///' .gitignore
 
     - name: Start server
       run: |
         cd public
-        npx http-server --port 8080 &
+        pnpx http-server --port 8080 &
 
     - name: Audit URLs using Lighthouse
       uses: treosh/lighthouse-ci-action@v3

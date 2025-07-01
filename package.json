@@ -8,7 +8,7 @@
     "ci-build": "cross-env NODE_ENV=production node config/esbuild/ci-build.js",
     "build": "cross-env NODE_ENV=production node config/esbuild/build.js",
     "watch": "cross-env NODE_ENV=development node config/esbuild/dev.js",
-    "server-test": "cd public && npx http-server",
+    "server-test": "cd public && pnpx http-server",
     "pytest": "cd unit_tests && python3 -m pytest -s",
     "pytest-first": "cd unit_tests && python3 -m pytest -s -x",
     "style": "standard"

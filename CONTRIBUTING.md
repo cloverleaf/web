@@ -3,7 +3,7 @@
 ## Setting up the dev environment
 
 * Fork the **dev branch** and clone it locally.
-* Run `npm install` to make sure you have all the dependancies installed.
+* Run `pnpm install` to make sure you have all the dependancies installed.
 * Start dev work
 
 
